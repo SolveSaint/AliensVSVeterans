@@ -1,6 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-import { CustomOgImages } from "./quartz/plugins/emitters/ogImage"
+//import { CustomOgImages } from "./quartz/plugins/emitters/ogImage"
 import { ogWithBackground } from "./quartz/plugins/emitters/ogWithBackground"
 
 /**
@@ -100,13 +100,13 @@ const config: QuartzConfig = {
       Plugin.NotFoundPage(),
 
       // Custom OG Images (forest background + auto title/description/meta)
-Plugin.CustomOgImages({
-  colorScheme: "darkMode",
-  width: 1200,
-  height: 630,
-  excludeRoot: false,
-  imageStructure: ogWithBackground,
-}),
+//Plugin.CustomOgImages({
+//  colorScheme: "darkMode",
+//  width: 1200,
+//  height: 630,
+//  excludeRoot: false,
+//  imageStructure: ogWithBackground,
+//}),
 
     ],
   },
