@@ -1,29 +1,20 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-//import { CustomOgImages } from "./quartz/plugins/emitters/ogImage"
-import { ogWithBackground } from "./quartz/plugins/emitters/ogWithBackground"
+import { ogWithBackground } from "./quartz/components/ogWithBackground"
 
-/**
- * Quartz 4 Configuration
- *
- * See https://quartz.jzhao.xyz/configuration for more information.
- */
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "AliensVSVeterans",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-
     analytics: {
       provider: "plausible",
     },
-
     locale: "en-US",
     baseUrl: "solvesaint.github.io/AliensVSVeterans",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
-
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -57,12 +48,7 @@ const config: QuartzConfig = {
         },
       },
     },
-
-    // If Custom OG Images is enabled, it becomes the default per page.
-    // Keep this only as a fallback if the emitter is disabled.
-    defaultOgImage: "/static/og-image.png",
   },
-
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
@@ -99,15 +85,13 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
 
-      // Custom OG Images (forest background + auto title/description/meta)
-//Plugin.CustomOgImages({
-//  colorScheme: "darkMode",
-//  width: 1200,
-//  height: 630,
-//  excludeRoot: false,
-//  imageStructure: ogWithBackground,
-//}),
-
+      Plugin.CustomOgImages({
+        colorScheme: "darkMode",
+        width: 1200,
+        height: 630,
+        excludeRoot: false,
+        imageStructure: ogWithBackground,
+      }),
     ],
   },
 }
