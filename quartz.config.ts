@@ -1,6 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-import { ogWithBackground } from "./quartz/plugins/ogWithBackground"
+import { ogWithBackground } from "./quartz/plugins/emitters/ogWithBackground"
 
 const config: QuartzConfig = {
   configuration: {
