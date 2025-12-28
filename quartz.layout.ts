@@ -4,7 +4,7 @@ import * as Component from "./quartz/components"
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [Component.HeaderImage()],   // ← use the component, not the path
+  header: [Component.HeaderImage()],
   afterBody: [],
   footer: Component.Footer({
     links: {
@@ -44,21 +44,6 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
-}
-
-// From Perplexity for header
-import { QuartzComponent, QuartzComponentConstructor } from "./types"
-
-const HeaderImage: QuartzComponent = () => {
-  return (
-    <div style={{ width: "100%", textAlign: "center" }}>
-      <img
-        src="/static/NHI_Connection Banner Cropped.png"
-        alt="NHI Connection banner"
-        style={{ maxWidth: "100%", height: "auto" }}
-      />
-    </div>
-  )
 }
 
 export default (() => HeaderImage) satisfies QuartzComponentConstructor
