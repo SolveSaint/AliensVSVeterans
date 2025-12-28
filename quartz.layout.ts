@@ -46,8 +46,6 @@ export const defaultContentPageLayout: PageLayout = {
   ],
 }
 
-export default (() => HeaderImage) satisfies QuartzComponentConstructor
-
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
