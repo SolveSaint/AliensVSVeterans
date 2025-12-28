@@ -1,5 +1,6 @@
 ---
+created:
+updated:
 title: AliensVSVeterans
 ---
-
-This is a temporary page.
+![[NHI_Connection Banner Cropped.png]]
