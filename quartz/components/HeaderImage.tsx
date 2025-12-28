@@ -4,7 +4,7 @@ const HeaderImage: QuartzComponent = () => {
   return (
     <div style={{ width: "100%", textAlign: "center", marginBottom: "1rem" }}>
       <img
-        src="https://solvesaint.github.io/AliensVSVeterans/static/NHI_Connection_Banner_Cropped.png"
+        src="https://solvesaint.github.io/AliensVSVeterans/static/header.png"
         alt="NHI Connection banner"
         style={{ maxWidth: "100%", height: "auto" }}
 />
