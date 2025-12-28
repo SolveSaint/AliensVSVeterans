@@ -5,28 +5,38 @@ import { QuartzPluginData } from "../vfile"
 
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
-function fontName(fonts: MaybeFonts, idx: number, fallback: string) {
+function safeFont(fonts: MaybeFonts, idx: number, fallback: string) {
   const f = Array.isArray(fonts) ? fonts[idx] : undefined
-  // satori font objects usually look like { name, data, weight, style }
-  // but we guard hard.
   const name = (f as any)?.name
-  return typeof name === "string" && name.length > 0 ? name : fallback
+  return typeof name === "string" && name.length ? name : fallback
 }
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
-  _userOpts: UserOpts | undefined,
+  userOpts: UserOpts | undefined,
   title: string,
   description: string,
   fonts: MaybeFonts,
-  _fileData: QuartzPluginData,
+  fileData: QuartzPluginData,
 ) => {
-  const baseUrl = cfg.baseUrl
-  const safeTitle = title && title.length > 0 ? title : "AliensVSVeterans"
-  const safeDesc = description && description.length > 0 ? description : ""
+  const colorScheme = userOpts?.colorScheme ?? "darkMode"
 
-  const headerFont = fontName(fonts, 0, "serif")
-  const bodyFont = fontName(fonts, 1, "sans-serif")
+  // Hard fallbacks so cfg/theme never crashes even if something is weird in the pipeline
+  const colors =
+    (cfg as any)?.theme?.colors?.[colorScheme] ??
+    (cfg as any)?.theme?.colors?.darkMode ??
+    {
+      light: "#161618",
+      dark: "#ebebec",
+      gray: "#646464",
+      tertiary: "#84a59d",
+    }
+
+  const headerFont = safeFont(fonts, 0, "serif")
+  const bodyFont = safeFont(fonts, 1, "sans-serif")
+
+  const safeTitle = title?.trim() ? title : (cfg as any)?.pageTitle ?? "AliensVSVeterans"
+  const safeDesc = description?.trim() ? description : ""
 
   return (
     <div
@@ -35,7 +45,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundImage: `url("https://${baseUrl}/static/og-image.png")`,
+        backgroundImage: `url("https://${cfg.baseUrl}/static/og-image.png")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -44,7 +54,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.55)",
+          backgroundColor: "rgba(0,0,0,0.55)",
         }}
       />
 
@@ -56,38 +66,40 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
           justifyContent: "center",
           alignItems: "flex-start",
           padding: "4rem",
-          gap: "1.5rem",
+          gap: "1.25rem",
           height: "100%",
           width: "100%",
-          color: "#ffffff",
         }}
       >
-        <h1
+        <div
           style={{
             fontFamily: headerFont,
             fontSize: "4rem",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            margin: 0,
-            maxWidth: "90%",
+            fontWeight: 800,
+            lineHeight: 1.05,
+            color: colors.dark ?? "#ffffff",
+            maxWidth: "92%",
           }}
         >
           {safeTitle}
-        </h1>
+        </div>
 
-        {safeDesc.length > 0 && (
-          <p
+        {safeDesc && (
+          <div
             style={{
               fontFamily: bodyFont,
               fontSize: "1.75rem",
-              lineHeight: 1.4,
-              margin: 0,
+              lineHeight: 1.35,
+              color: colors.gray ?? "rgba(255,255,255,0.85)",
               maxWidth: "85%",
-              opacity: 0.9,
+              display: "-webkit-box",
+              WebkitLineClamp: 5,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
             }}
           >
             {safeDesc}
-          </p>
+          </div>
         )}
       </div>
     </div>
