@@ -4,7 +4,7 @@ const HeaderImage: QuartzComponent = () => {
   return (
     <div style={{ width: "100%", textAlign: "center", marginBottom: "1rem" }}>
       <img
-        src="/quartz/static/NHI_Connection Banner Cropped.png"
+        src="/images/NHI_Connection Banner Cropped.png"
         alt="NHI Connection banner"
         style={{ maxWidth: "100%", height: "auto" }}
       />
