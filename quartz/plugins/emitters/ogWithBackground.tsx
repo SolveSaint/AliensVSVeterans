@@ -3,17 +3,30 @@ import { GlobalConfiguration } from "../../cfg"
 import { SocialImageOptions, UserOpts } from "./imageHelper"
 import { QuartzPluginData } from "../vfile"
 
+type MaybeFonts = SatoriOptions["fonts"] | undefined
+
+function fontName(fonts: MaybeFonts, idx: number, fallback: string) {
+  const f = Array.isArray(fonts) ? fonts[idx] : undefined
+  // satori font objects usually look like { name, data, weight, style }
+  // but we guard hard.
+  const name = (f as any)?.name
+  return typeof name === "string" && name.length > 0 ? name : fallback
+}
+
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   _userOpts: UserOpts | undefined,
   title: string,
   description: string,
-  fonts: SatoriOptions["fonts"],
+  fonts: MaybeFonts,
   _fileData: QuartzPluginData,
 ) => {
   const baseUrl = cfg.baseUrl
-  const safeTitle = title || "AliensVSVeterans"
-  const safeDesc = description || ""
+  const safeTitle = title && title.length > 0 ? title : "AliensVSVeterans"
+  const safeDesc = description && description.length > 0 ? description : ""
+
+  const headerFont = fontName(fonts, 0, "serif")
+  const bodyFont = fontName(fonts, 1, "sans-serif")
 
   return (
     <div
@@ -30,10 +43,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
       <div
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          inset: 0,
           backgroundColor: "rgba(0, 0, 0, 0.55)",
         }}
       />
@@ -54,7 +64,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
       >
         <h1
           style={{
-            fontFamily: fonts[0].name,
+            fontFamily: headerFont,
             fontSize: "4rem",
             fontWeight: 700,
             lineHeight: 1.1,
@@ -68,7 +78,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         {safeDesc.length > 0 && (
           <p
             style={{
-              fontFamily: fonts[1].name,
+              fontFamily: bodyFont,
               fontSize: "1.75rem",
               lineHeight: 1.4,
               margin: 0,
