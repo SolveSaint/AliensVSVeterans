@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { ogWithBackground } from "./quartz/plugins/emitters/ogWithBackground"
 
 /**
  * Quartz 4 Configuration
@@ -56,10 +57,9 @@ const config: QuartzConfig = {
       },
     },
 
-    // Global OG image for link previews.
-    // Put the file at: quartz/static/index-og-image.png
-    // It will be served as: /index-og-image.png
-    defaultOgImage: "/index-og-image.png",
+    // If Custom OG Images is enabled, it becomes the default per page.
+    // Keep this only as a fallback if the emitter is disabled.
+    defaultOgImage: "/static/og-image.png",
   },
 
   plugins: {
@@ -97,8 +97,15 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+
+      // Custom OG Images (forest background + auto title/description/meta)
+      Plugin.CustomOgImages({
+        colorScheme: "darkMode",
+        width: 1200,
+        height: 630,
+        excludeRoot: false,
+        imageStructure: ogWithBackground,
+      }),
     ],
   },
 }
