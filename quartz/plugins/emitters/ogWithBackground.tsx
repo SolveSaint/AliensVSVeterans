@@ -2,12 +2,9 @@ import { SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../../cfg"
 import { SocialImageOptions, UserOpts } from "./ogImage/imageHelper"
 import { QuartzPluginData } from "../vfile"
-import { i18n } from "../../i18n"
-import { formatDate } from "../../util/date"
-import { getDate } from "../../util/ctx"
-import readingTime from "reading-time"
 
-// Forest background. Put the file here:
+// Uses quartz/static/og-image.png as the background.
+// Put your forest image here:
 // quartz/static/og-image.png
 // Then it is reachable at: https://<baseUrl>/static/og-image.png
 
@@ -17,27 +14,9 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   title: string,
   description: string,
   fonts: SatoriOptions["fonts"],
-  fileData: QuartzPluginData,
+  _fileData: QuartzPluginData,
 ) => {
   const { colorScheme } = userOpts
-
-  // created date (if present)
-  let created: string | undefined
-  if (fileData.dates) {
-    const d = getDate(cfg, fileData)
-    if (d) created = formatDate(d, cfg.locale)
-  }
-
-  // reading time (if text present)
-  let reading: string | undefined
-  if (fileData.text) {
-    const rt = readingTime(fileData.text)
-    reading = i18n(cfg.locale).components.contentMeta.readingTime({
-      minutes: Math.max(1, Math.ceil(rt.minutes)),
-    })
-  }
-
-  const meta = [created, reading].filter(Boolean) as string[]
 
   return (
     <div
@@ -53,13 +32,12 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* dark overlay so text is readable */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.52) 55%, rgba(0,0,0,0.18) 100%)",
         }}
       />
 
@@ -79,48 +57,18 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
           paddingRight: "4rem",
         }}
       >
-        <div
+        <h2
           style={{
-            display: "flex",
-            flexDirection: "column",
-            textAlign: "left",
-            width: "100%",
+            color: cfg.theme.colors[colorScheme].light,
+            fontSize: "3.25rem",
+            fontWeight: 800,
+            margin: 0,
+            fontFamily: fonts[0].name,
+            lineClamp: 2,
           }}
         >
-          <h2
-            style={{
-              color: cfg.theme.colors[colorScheme].light,
-              fontSize: "3.25rem",
-              fontWeight: 800,
-              margin: 0,
-              fontFamily: fonts[0].name,
-              lineClamp: 2,
-            }}
-          >
-            {title}
-          </h2>
-
-          {meta.length > 0 && (
-            <ul
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "1.25rem",
-                listStyleType: "none",
-                padding: 0,
-                marginTop: "1.25rem",
-                marginBottom: 0,
-                color: cfg.theme.colors[colorScheme].gray,
-                fontSize: "1.5rem",
-                fontFamily: fonts[1].name,
-              }}
-            >
-              {meta.map((m, idx) => (
-                <li key={idx}>{m}</li>
-              ))}
-            </ul>
-          )}
-        </div>
+          {title}
+        </h2>
 
         <p
           style={{
@@ -134,7 +82,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
             WebkitBoxOrient: "vertical",
             lineClamp: 6,
             fontFamily: fonts[1].name,
-            maxWidth: "70%",
+            maxWidth: "72%",
           }}
         >
           {description}

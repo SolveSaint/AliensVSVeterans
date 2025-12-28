@@ -99,13 +99,14 @@ const config: QuartzConfig = {
       Plugin.NotFoundPage(),
 
       // Custom OG Images (forest background + auto title/description/meta)
-      Plugin.CustomOgImages({
-        colorScheme: "darkMode",
-        width: 1200,
-        height: 630,
-        excludeRoot: false,
-        imageStructure: ogWithBackground,
-      }),
+Plugin.CustomOgImages({
+  colorScheme: "darkMode",
+  width: 1200,
+  height: 630,
+  excludeRoot: false,
+  imageStructure: ogWithBackground,
+}),
+
     ],
   },
 }
