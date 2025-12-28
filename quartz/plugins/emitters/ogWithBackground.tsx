@@ -5,13 +5,15 @@ import { QuartzPluginData } from "../vfile"
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
-  userOpts: UserOpts | undefined,
+  _userOpts: UserOpts | undefined,
   title: string,
   description: string,
   fonts: SatoriOptions["fonts"],
   _fileData: QuartzPluginData,
 ) => {
-  const colorScheme = userOpts?.colorScheme ?? "darkMode"
+  const baseUrl = cfg.baseUrl
+  const safeTitle = title || "AliensVSVeterans"
+  const safeDesc = description || ""
 
   return (
     <div
@@ -20,21 +22,22 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundImage: `url("https://${cfg.baseUrl}/static/og-image.png")`,
+        backgroundImage: `url("https://${baseUrl}/static/og-image.png")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Dark overlay for readability */}
       <div
         style={{
           position: "absolute",
-          inset: 0,
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           backgroundColor: "rgba(0, 0, 0, 0.55)",
         }}
       />
 
-      {/* Content */}
       <div
         style={{
           position: "relative",
@@ -46,7 +49,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
           gap: "1.5rem",
           height: "100%",
           width: "100%",
-          color: cfg.theme.colors[colorScheme].light,
+          color: "#ffffff",
         }}
       >
         <h1
@@ -59,10 +62,10 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
             maxWidth: "90%",
           }}
         >
-          {title}
+          {safeTitle}
         </h1>
 
-        {description && (
+        {safeDesc.length > 0 && (
           <p
             style={{
               fontFamily: fonts[1].name,
@@ -73,7 +76,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
               opacity: 0.9,
             }}
           >
-            {description}
+            {safeDesc}
           </p>
         )}
       </div>
