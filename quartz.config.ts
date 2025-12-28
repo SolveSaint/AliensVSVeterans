@@ -12,13 +12,16 @@ const config: QuartzConfig = {
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
+
     analytics: {
       provider: "plausible",
     },
+
     locale: "en-US",
     baseUrl: "solvesaint.github.io/AliensVSVeterans",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
+
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -52,7 +55,13 @@ const config: QuartzConfig = {
         },
       },
     },
+
+    // Global OG image for link previews.
+    // Put the file at: quartz/static/index-og-image.png
+    // It will be served as: /index-og-image.png
+    defaultOgImage: "/index-og-image.png",
   },
+
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
