@@ -46,6 +46,23 @@ export const defaultContentPageLayout: PageLayout = {
   ],
 }
 
+// From Perplexity for header
+import { QuartzComponent, QuartzComponentConstructor } from "./types"
+
+const HeaderImage: QuartzComponent = () => {
+  return (
+    <div style={{ width: "100%", textAlign: "center" }}>
+      <img
+        src="/static/NHI_Connection Banner Cropped.png"
+        alt="NHI Connection banner"
+        style={{ maxWidth: "100%", height: "auto" }}
+      />
+    </div>
+  )
+}
+
+export default (() => HeaderImage) satisfies QuartzComponentConstructor
+
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
@@ -65,20 +82,3 @@ export const defaultListPageLayout: PageLayout = {
   ],
   right: [],
 }
-
-// From Perplexity for header
-import { QuartzComponent, QuartzComponentConstructor } from "./types"
-
-const HeaderImage: QuartzComponent = () => {
-  return (
-    <div style={{ width: "100%", textAlign: "center" }}>
-      <img
-        src="/static/NHI_Connection Banner Cropped.png"
-        alt="NHI Connection banner"
-        style={{ maxWidth: "100%", height: "auto" }}
-      />
-    </div>
-  )
-}
-
-export default (() => HeaderImage) satisfies QuartzComponentConstructor
