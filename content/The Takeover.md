@@ -25,6 +25,7 @@ The NHI have developed deep control over my nervous system over the course of fi
 ## How It Began
 I had been training Brazilian Jiu Jitsu with the plan to open my own school. This was a very difficult process due to my muscle cramping condition but I found I could fight laying down quite proficiently as long as no one was able to get head control and torque my spine. I made it work and became very good with Closed Guard, Half Guard, Deep Half, De La Riva, and Spider occasionally. However, around mid blue belt I began to become weak with increased muscle cramping. The cramping became much worse over time and I was forced to stop.
 
+## Homebound
 Over the next couple years it continued to get worse. The electrical strikes became extremely noticeable. I told my girl friend I was going to have to start yelling out loud because of how painful it was. The spinal cord burning started to increase. It used to be laying down would alleviate the pain decently. But that changed and no position became painless. 
 
 I saw many doctors, probably 6-7. None had ever heard of anything like this. I would go in and they'd give me a medication and set an appointment four months later. And then the medication would have no effect and I would be screaming in agony for four months so the doctor could throw darts at an invisible board and miss again, leaving me to another four months of agony.
