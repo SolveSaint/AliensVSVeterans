@@ -1,12 +1,13 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/28/2025 8:32 PM
+updated: 12/28/2025 8:36 PM
 title: AVSV
 tags:
   - AVSV
   - Quartz
 ---
-# Welcome to Aliens VS Veterans
+# Welcome to <span class="avv-aliens">Aliens</span> VS <span class="avv-veterans">Veterans</span>
+
 
 > [!info]
 > **How to use this site**  
