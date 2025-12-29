@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/28/2025 9:16 PM
+updated: 12/29/2025 8:18 AM
 title: AVSV
 tags:
   - AVSV
@@ -18,17 +18,17 @@ tags:
 > Use the sidebar on desktop or the menu icon on mobile to explore posts at your leisure.
 
 ---
-## The Gray
-A gray alien has taken partial control of my body. This began in 2020 and I was put through an extremely painful process that caused my spine to burn for around 2 years with constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.  How this occurred...
+## The Gray Trap
+A gray alien has taken partial control of my body, using advanced remote technology. This began in 2020. I was put through an extremely painful process that caused my spinal cord to burn horribly for around 2 years. This was accompanied by constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.  How this occurred...
 
 ---
-## The Pathway
+## Pathways
 My father, a combat wounded veteran hit with 8 rounds and mortar shrapnel, died of ALS/Lou Gherrig's disease in 2014. I had struggled with muscle issues my whole life and was experiencing some symptoms so I began researching on my own.
 
 I learned of **glutamate** being the primary excitatory neurotransmitter and had noticed that for sleep disorder, **GABA agonists** were prescribed. GABA is the primary inhibitory neurotransmitter. I thought to myself that this was building an inhibition wall, but why not lower the glutamate so no wall was necessary?
 
 ---
-## The Pain Transition
+## Pain-life Ablation
 I began to experience burning pain in my spinal cord that grew over time.  Then I started to experience electrical strikes into my muscles, like burning blades that stabbed deep. I began to scream constantly from the strikes all day and night. The burning spine was unbearable.
 
 I saw numerous doctors and none of them could explain it nor had they heard of such a thing. I would sleep 2–4 hours a night and scream while I was sleeping, according to my significant other. The pain never stopped, not in any position. Just constant agony. 
@@ -36,7 +36,7 @@ I saw numerous doctors and none of them could explain it nor had they heard of s
 I thought I would die but month after month I was forced to endure. A never-ending stream of agony day after day, to month after month, to year after year. And then, it began to fade.
 
 ---
-## A Constant Connection
+## Constant Connection
 As the burning spine and muscle stabs began to recede, there was an **NHI attached to my nervous system remotely**. They could speak to me using my internal voice, control my body to a good extent though I could override it, and use my mouth to speak. They could target specific areas with what I call the *"pleasure beam"*, and it cause pleasure in whatever area they target, such as the brain or chest or lower region, with no way to stop it. Consent was never given. They just did what they wanted.
 
 ---
