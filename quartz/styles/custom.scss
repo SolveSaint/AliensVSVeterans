@@ -53,13 +53,14 @@
   letter-spacing: 0.02em;
 }
 .avv-title {
-  font-size: 3.25rem;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   letter-spacing: 0.03em;
   font-weight: 800;
   line-height: 1.1;
   margin: 0 0 2rem 0;
   color: #cfd6e6;
 }
+
 
 
 /* Aliens: readable red */
