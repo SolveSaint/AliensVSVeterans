@@ -5,6 +5,10 @@ import type { QuartzPluginData } from "../plugins/vfile"
 
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
+// Hard fallback so builds never fail and URLs stay absolute.
+// Change this only if you ever change domains.
+const FALLBACK_DOMAIN = "aliensvsveterans.com"
+
 function safeFont(fonts: MaybeFonts, idx: number, fallback: string) {
   const f = Array.isArray(fonts) ? (fonts[idx] as any) : undefined
   const name = f?.name
@@ -40,19 +44,29 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
-function getAbsoluteBgUrl(cfg: GlobalConfiguration) {
-  // Quartz sometimes passes a flattened shape, sometimes nested under configuration.
-  const baseCandidate = (cfg as any)?.baseUrl ?? (cfg as any)?.configuration?.baseUrl ?? ""
-  const base = normalizeBaseUrl(baseCandidate)
+function pickBaseUrl(cfg: GlobalConfiguration) {
+  // Quartz v4.5.2 may pass different shapes here depending on the call site.
+  const anyCfg = cfg as any
 
-  // Quartz CustomOgImages requires absolute URLs for image sources.
-  if (!base) {
-    throw new Error("ogWithBackground: baseUrl is missing. Set configuration.baseUrl in quartz.config.ts")
+  const candidates = [
+    anyCfg?.baseUrl,
+    anyCfg?.configuration?.baseUrl,
+    anyCfg?.site?.baseUrl,
+    anyCfg?.siteUrl,
+  ]
+
+  for (const c of candidates) {
+    const base = normalizeBaseUrl(typeof c === "string" ? c : undefined)
+    if (base) return base
   }
 
-  // Forest background lives at: quartz/static/og-image.png
-  // Served at: https://<baseUrl>/static/og-image.png
-  return `https://${base}/static/og-image.png`
+  // Final safety. Must be absolute to satisfy Quartz.
+  return FALLBACK_DOMAIN
+}
+
+function absoluteStaticUrl(baseDomain: string, path: string) {
+  const base = normalizeBaseUrl(baseDomain) || FALLBACK_DOMAIN
+  return `https://${base}${path.startsWith("/") ? path : `/${path}`}`
 }
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
@@ -83,7 +97,8 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  const bgUrl = getAbsoluteBgUrl(cfg)
+  const base = pickBaseUrl(cfg)
+  const bgUrl = absoluteStaticUrl(base, "/static/og-image.png")
 
   return (
     <div
@@ -96,7 +111,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         backgroundImage: `url("${bgUrl}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "no-repeat", // stops tiling
       }}
     >
       <div
