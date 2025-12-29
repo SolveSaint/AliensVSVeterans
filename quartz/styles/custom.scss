@@ -208,3 +208,12 @@
     overflow-x: hidden;
   }
 }
+/* Global textured background */
+body {
+  background-color: #0e1114;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 3px 3px, 6px 6px;
+  background-position: 0 0, 1px 1px;
+}
