@@ -20,4 +20,28 @@
 .center {
   padding-top: 0 !important;
 }
+/* Pull the sidebars up to match the center column */
+.left.sidebar,
+.right.sidebar {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove top margin on the left title */
+.left.sidebar .page-title {
+  margin-top: 0 !important;
+}
+
+/* Remove extra spacing at the top of the graph block */
+.right.sidebar .graph {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* If Quartz is padding the whole row, remove it */
+#quartz-body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  align-items: flex-start !important;
+}
 
