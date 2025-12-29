@@ -40,6 +40,22 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
+function getBaseUrl(cfg: any) {
+  const candidates = [
+    cfg?.configuration?.baseUrl,
+    cfg?.baseUrl,
+    cfg?.cfg?.configuration?.baseUrl,
+    cfg?.cfg?.baseUrl,
+  ]
+
+  for (const c of candidates) {
+    const base = normalizeBaseUrl(typeof c === "string" ? c : undefined)
+    if (base) return base
+  }
+
+  throw new Error("ogWithBackground: baseUrl is missing. Set configuration.baseUrl in quartz.config.ts.")
+}
+
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
@@ -64,18 +80,9 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-   // Quartz CustomOgImages requires absolute image URLs.
-  // In Quartz v4, baseUrl lives under cfg.configuration.baseUrl.
-  const base = normalizeBaseUrl(
-    (cfg as any)?.configuration?.baseUrl ?? (cfg as any)?.baseUrl
-  )
-
-  if (!base) {
-    throw new Error(
-      "ogWithBackground: baseUrl is missing. Set configuration.baseUrl in quartz.config.ts."
-    )
-  }
-
+  // Quartz CustomOgImages requires absolute image URLs.
+  // Quartz may pass config in slightly different shapes depending on call site.
+  const base = getBaseUrl(cfg as any)
   const bgUrl = `https://${base}/static/og-image.png`
 
   return (
