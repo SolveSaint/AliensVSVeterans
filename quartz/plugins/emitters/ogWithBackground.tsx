@@ -38,32 +38,15 @@ function clampText(s: string, max = 160) {
   return t.length > max ? t.slice(0, max - 1) + "…" : t
 }
 
-function normalizeBaseUrl(baseUrl: string | undefined) {
-  const raw = (baseUrl ?? "").trim()
-  const noProto = raw.replace(/^https?:\/\//i, "")
-  return noProto.replace(/\/+$/, "")
-}
-
-function pickBaseUrl(cfg: GlobalConfiguration) {
-  const anyCfg = cfg as any
-  const candidates = [anyCfg?.baseUrl, anyCfg?.configuration?.baseUrl, anyCfg?.site?.baseUrl, anyCfg?.siteUrl]
-  for (const c of candidates) {
-    const base = normalizeBaseUrl(typeof c === "string" ? c : undefined)
-    if (base) return base
-  }
-  return "aliensvsveterans.com"
-}
-
-// Reads quartz/static/og-image.png and embeds it as a data URL.
-// This avoids any HTTPS fetch during OG generation (the cause of the black cards).
-function localForestDataUrl() {
+function localForestDataUrl(): string | null {
   try {
     const __filename = fileURLToPath(import.meta.url)
     const __dirname = path.dirname(__filename)
 
-    // ogWithBackground.tsx lives in: quartz/plugins/emitters/
-    // static lives in: quartz/static/
+    // This file lives at: quartz/plugins/emitters/ogWithBackground.tsx
+    // Static is at: quartz/static/og-image.png
     const fp = path.resolve(__dirname, "../../static/og-image.png")
+
     const buf = fs.readFileSync(fp)
     return `data:image/png;base64,${buf.toString("base64")}`
   } catch {
@@ -98,14 +81,11 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
     ""
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Prefer local embedded image so OG render never depends on the network.
-  const localBg = localForestDataUrl()
+  const bgDataUrl = localForestDataUrl()
 
-  // If local read ever fails, fall back to absolute https URL (must be absolute or Quartz will throw).
-  const base = pickBaseUrl(cfg)
-  const remoteBg = `https://${base}/static/og-image.png`
-
-  const bgUrl = localBg ?? remoteBg
+  // If this is null, you will see black, and it means the file path is wrong
+  // or quartz/static/og-image.png is missing.
+  const bgSrc = bgDataUrl ?? "data:image/png;base64,"
 
   return (
     <div
@@ -115,21 +95,33 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         height: "100%",
         width: "100%",
         backgroundColor: "#000",
-        backgroundImage: `url("${bgUrl}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat", // stops tiling
+        overflow: "hidden",
       }}
     >
+      {/* Background image layer */}
+      <img
+        src={bgSrc}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
+
+      {/* Contrast overlay */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.35) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.38) 100%)",
         }}
       />
 
+      {/* Text layer */}
       <div
         style={{
           position: "relative",
