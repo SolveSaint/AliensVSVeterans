@@ -65,3 +65,21 @@
   letter-spacing: 0.02em;
 }
 
+/* Color only the words inside the H1 without HTML */
+h1 {
+  color: #cfd6e6;
+}
+
+h1::before {
+  content: "Welcome to ";
+}
+
+h1 span.avv-aliens {
+  color: #c43c3c;
+  font-weight: 600;
+}
+
+h1 span.avv-veterans {
+  color: #1f4ed8;
+  font-weight: 600;
+}
