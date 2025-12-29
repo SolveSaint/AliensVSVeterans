@@ -53,9 +53,11 @@
     0 4px 12px rgba(0, 0, 0, 0.45);
   animation: avvFadeIn 600ms ease-out both;
 }
+
 .avv-title span {
   display: inline;
 }
+
 /* Gradient underline accent */
 .avv-title::after {
   content: "";
@@ -110,12 +112,14 @@
     transform: translateY(0);
   }
 }
+
 .page-meta,
 .content-meta,
 .breadcrumb,
 .breadcrumbs {
   margin-top: 0.25rem !important;
 }
+
 /* Pull the date and read time up tight under the header image */
 .center .page-header .popover-hint {
   margin-top: 0 !important;
@@ -132,16 +136,27 @@
   margin-bottom: 0.35rem !important;
 }
 
-/* Top left header logo */
-header .avv-logo {
-  white-space: nowrap;
+/* Top-left site title: Aliens VS Veterans in RWB */
+.left.sidebar .page-title a {
   font-weight: 600;
   letter-spacing: 0.01em;
-  line-height: 1;
-}
+  text-decoration: none;
+  color: #cfd6e6;
 
-/* VS in white, slightly softened */
-header .avv-logo .avv-vs {
-  color: #ffffff;
-  opacity: 0.95;
+  background: linear-gradient(
+    90deg,
+    #c43c3c 0%,
+    #c43c3c 38%,
+    #ffffff 38%,
+    #ffffff 52%,
+    #1f4ed8 52%,
+    #1f4ed8 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 0 14px rgba(196, 60, 60, 0.25),
+    0 0 14px rgba(31, 78, 216, 0.25);
 }
