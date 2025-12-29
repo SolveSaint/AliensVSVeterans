@@ -3,10 +3,6 @@ import type { GlobalConfiguration } from "../cfg"
 import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/imageHelper"
 import type { QuartzPluginData } from "../plugins/vfile"
 
-import fs from "node:fs"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
-
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
 function safeFont(fonts: MaybeFonts, idx: number, fallback: string) {
@@ -38,20 +34,10 @@ function clampText(s: string, max = 160) {
   return t.length > max ? t.slice(0, max - 1) + "…" : t
 }
 
-function localForestDataUrl(): string | null {
-  try {
-    const __filename = fileURLToPath(import.meta.url)
-    const __dirname = path.dirname(__filename)
-
-    // This file lives at: quartz/plugins/emitters/ogWithBackground.tsx
-    // Static is at: quartz/static/og-image.png
-    const fp = path.resolve(__dirname, "../../static/og-image.png")
-
-    const buf = fs.readFileSync(fp)
-    return `data:image/png;base64,${buf.toString("base64")}`
-  } catch {
-    return null
-  }
+function normalizeBaseUrl(baseUrl: string | undefined) {
+  const raw = (baseUrl ?? "").trim()
+  const noProto = raw.replace(/^https?:\/\//i, "")
+  return noProto.replace(/\/+$/, "")
 }
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
@@ -69,23 +55,20 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
   const fmTitle = (fileData as any)?.frontmatter?.socialTitle ?? (fileData as any)?.frontmatter?.title ?? ""
-  const safeTitle = clampText(
-    ((title ?? "").trim() || (fmTitle ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans") as string,
-    72,
-  )
+  const safeTitle = (title ?? "").trim() || (fmTitle ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
 
   const fmDesc =
     (fileData as any)?.frontmatter?.socialDescription ??
     (fileData as any)?.frontmatter?.description ??
     (fileData as any)?.frontmatter?.summary ??
     ""
+
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  const bgDataUrl = localForestDataUrl()
-
-  // If this is null, you will see black, and it means the file path is wrong
-  // or quartz/static/og-image.png is missing.
-  const bgSrc = bgDataUrl ?? "data:image/png;base64,"
+  // In Quartz v4.5.2, cfg here is ctx.cfg.configuration (see ogImage.tsx you pasted).
+  // So baseUrl is cfg.baseUrl (not cfg.configuration.baseUrl).
+  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
+  const bgUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
 
   return (
     <div
@@ -95,23 +78,12 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         height: "100%",
         width: "100%",
         backgroundColor: "#000",
-        overflow: "hidden",
+        backgroundImage: `url("${bgUrl}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // THIS is what stops tiling
       }}
     >
-      {/* Background image layer */}
-      <img
-        src={bgSrc}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-      />
-
-      {/* Contrast overlay */}
       <div
         style={{
           position: "absolute",
@@ -121,7 +93,6 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         }}
       />
 
-      {/* Text layer */}
       <div
         style={{
           position: "relative",
