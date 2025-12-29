@@ -40,13 +40,19 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
-// Quartz CustomOgImages requires an ABSOLUTE url for any image source.
-// If baseUrl is missing for any reason, fall back to a safe dummy absolute url
-// instead of a relative /static/... which will hard-fail the build.
 function getAbsoluteBgUrl(cfg: GlobalConfiguration) {
-  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  if (base) return `https://${base}/static/og-image.png`
-  return "https://example.com/static/og-image.png"
+  // Quartz sometimes passes a flattened shape, sometimes nested under configuration.
+  const baseCandidate = (cfg as any)?.baseUrl ?? (cfg as any)?.configuration?.baseUrl ?? ""
+  const base = normalizeBaseUrl(baseCandidate)
+
+  // Quartz CustomOgImages requires absolute URLs for image sources.
+  if (!base) {
+    throw new Error("ogWithBackground: baseUrl is missing. Set configuration.baseUrl in quartz.config.ts")
+  }
+
+  // Forest background lives at: quartz/static/og-image.png
+  // Served at: https://<baseUrl>/static/og-image.png
+  return `https://${base}/static/og-image.png`
 }
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
@@ -63,11 +69,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  const fmTitle =
-    (fileData as any)?.frontmatter?.socialTitle ??
-    (fileData as any)?.frontmatter?.title ??
-    ""
-
+  const fmTitle = (fileData as any)?.frontmatter?.socialTitle ?? (fileData as any)?.frontmatter?.title ?? ""
   const safeTitle = clampText(
     ((title ?? "").trim() || (fmTitle ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans") as string,
     72,
