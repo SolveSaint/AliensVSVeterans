@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/28/2025 9:08 PM
+updated: 12/28/2025 9:16 PM
 title: AVSV
 tags:
   - AVSV
@@ -15,7 +15,7 @@ tags:
 
 > [!info]
 > **How to use this site**  
-> Use the sidebar on desktop or the menu icon on mobile to explore pathways, molecular mechanisms, inheritance patterns, and therapeutic strategies.
+> Use the sidebar on desktop or the menu icon on mobile to explore posts at your leisure.
 
 ---
 ## The Gray
