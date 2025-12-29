@@ -107,3 +107,10 @@
     transform: translateY(0);
   }
 }
+/* Tighten spacing between image header and metadata block */
+.page-header + .page-meta,
+.page-header + .content-meta,
+.page-header + .breadcrumb,
+.page-header + .breadcrumbs {
+  margin-top: 0.25rem !important;
+}
