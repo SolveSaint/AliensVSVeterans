@@ -39,31 +39,54 @@
 
 /* Fake H1 title */
 .avv-title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  line-height: 1.1;
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.08;
   margin: 0 0 2rem 0;
   color: #cfd6e6;
   text-align: center;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
+  transform: translateZ(0);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 4px 12px rgba(0, 0, 0, 0.45);
+  animation: avvFadeIn 600ms ease-out both;
+}
+
+/* Gradient underline accent */
+.avv-title::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 3px;
+  margin: 0.8rem auto 0;
+  background: linear-gradient(90deg, #c43c3c, #f2c94c, #1f4ed8);
+  border-radius: 2px;
+  opacity: 0.85;
 }
 
 /* Welcome: USA star gold */
 .avv-welcome {
   color: #f2c94c;
-  font-weight: 800;
+  font-weight: 700;
+  opacity: 0.92;
+  text-shadow: 0 0 14px rgba(242, 201, 76, 0.45);
 }
 
 /* Aliens: readable red */
 .avv-aliens {
   color: #c43c3c;
-  font-weight: 800;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 14px rgba(196, 60, 60, 0.45);
 }
 
 /* Veterans: USA blue */
 .avv-veterans {
   color: #1f4ed8;
-  font-weight: 800;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 14px rgba(31, 78, 216, 0.45);
 }
 
 /* Slight tracking on colored words */
@@ -72,18 +95,15 @@
 .avv-veterans {
   letter-spacing: 0.02em;
 }
-.avv-title {
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-}
 
-.avv-welcome {
-  text-shadow: 0 0 14px rgba(242, 201, 76, 0.45);
-}
-
-.avv-aliens {
-  text-shadow: 0 0 14px rgba(196, 60, 60, 0.45);
-}
-
-.avv-veterans {
-  text-shadow: 0 0 14px rgba(31, 78, 216, 0.45);
+/* One time entrance animation */
+@keyframes avvFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
