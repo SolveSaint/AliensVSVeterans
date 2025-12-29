@@ -4,7 +4,7 @@ import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/i
 import type { QuartzPluginData } from "../plugins/vfile"
 
 import fs from "node:fs"
-import { fileURLToPath } from "node:url"
+import path from "node:path"
 
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
@@ -43,18 +43,32 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
-// Load the forest background from disk once at module load time.
-// This avoids Satori needing to fetch https://... during builds (the main cause of “black” renders).
-let forestDataUrl: string | null = null
-try {
-  // ogWithBackground.tsx is at quartz/plugins/emitters/ogWithBackground.tsx
-  // static is at quartz/static/og-image.png
-  const forestPath = fileURLToPath(new URL("../../static/og-image.png", import.meta.url))
-  const buf = fs.readFileSync(forestPath)
-  forestDataUrl = `data:image/png;base64,${buf.toString("base64")}`
-} catch {
-  forestDataUrl = null
+function loadStaticOgImageAsDataUrl(): string | null {
+  // Prefer process.cwd() anchored lookup because Quartz builds run from repo root.
+  const candidates = [
+    path.join(process.cwd(), "quartz", "static", "og-image.png"),
+    path.join(process.cwd(), "quartz", "static", "og-image.jpg"),
+    path.join(process.cwd(), "quartz", "static", "og-image.jpeg"),
+  ]
+
+  for (const p of candidates) {
+    try {
+      if (!fs.existsSync(p)) continue
+      const buf = fs.readFileSync(p)
+      const ext = path.extname(p).toLowerCase()
+      const mime =
+        ext === ".jpg" || ext === ".jpeg" ? "image/jpeg" : ext === ".png" ? "image/png" : "image/png"
+      return `data:${mime};base64,${buf.toString("base64")}`
+    } catch {
+      // keep trying candidates
+    }
+  }
+
+  return null
 }
+
+// Load once
+const forestDataUrl = loadStaticOgImageAsDataUrl()
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
@@ -85,12 +99,11 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
     ""
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Fallback absolute URL (only used if the local read fails)
+  // Absolute URL fallback only if local file load failed
   const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const fallbackBgUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
+  const fallbackUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
 
-  // Prefer local data URL to prevent black renders
-  const bgUrl = forestDataUrl ?? fallbackBgUrl
+  const imgSrc = forestDataUrl ?? fallbackUrl
 
   return (
     <div
@@ -100,12 +113,22 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         height: "100%",
         width: "100%",
         backgroundColor: "#000",
-        backgroundImage: `url("${bgUrl}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat", // stops tiling
+        overflow: "hidden",
       }}
     >
+      {/* Background image (no tiling possible) */}
+      <img
+        src={imgSrc}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+
+      {/* Contrast overlay */}
       <div
         style={{
           position: "absolute",
@@ -115,6 +138,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         }}
       />
 
+      {/* Text content */}
       <div
         style={{
           position: "relative",
