@@ -19,9 +19,10 @@ const config: QuartzConfig = {
       defaultTheme: "dark",is 
       fontOrigin: "googleFonts",
       cdnCaching: true,
+       },
       typography: {
         header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        body: "Source Sans 3",
         code: "IBM Plex Mono",
       },
       colors: {
