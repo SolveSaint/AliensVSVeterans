@@ -16,12 +16,12 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      defaultTheme: "dark",
+      defaultTheme: "dark",is 
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
         header: "Schibsted Grotesk",
-        body: "Source Sans 3",
+        body: "Source Sans Pro",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -89,7 +89,6 @@ Plugin.CustomOgImages({
   colorScheme: "darkMode",
   width: 1200,
   height: 630,
-  excludeRoot: true,
   imageStructure: ogWithBackground,
 }),
 
