@@ -4,7 +4,7 @@ import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/i
 import type { QuartzPluginData } from "../plugins/vfile"
 
 import fs from "node:fs/promises"
-import { joinSegments, QUARTZ } from "../util/path"
+import path from "node:path"
 
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
@@ -37,11 +37,15 @@ function clampText(s: string, max = 160) {
   return t.length > max ? t.slice(0, max - 1) + "…" : t
 }
 
-// Build-time safe: read the background from local disk and embed as data URI
-async function getOgBackgroundDataUri(): Promise<string | null> {
-  const bgPath = joinSegments(QUARTZ, "static", "og-image.png")
+// Set this to "contain" to fit whole image, or "cover" to fill card (cropping edges)
+const BG_FIT: "contain" | "cover" = "contain"
+
+async function loadOgImageDataUri(): Promise<string | null> {
+  // Quartz is typically run from repo root, so this resolves correctly:
+  // <repo>/quartz/static/og-image.png
+  const p = path.join(process.cwd(), "quartz", "static", "og-image.png")
   try {
-    const buf = await fs.readFile(bgPath)
+    const buf = await fs.readFile(p)
     return `data:image/png;base64,${buf.toString("base64")}`
   } catch {
     return null
@@ -62,6 +66,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
+  // Use the page title Quartz already computed. This should be "The Takeover" for that page.
   const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
 
   const fmDesc =
@@ -69,10 +74,9 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
     (fileData as any)?.frontmatter?.description ??
     (fileData as any)?.frontmatter?.summary ??
     ""
-
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  const bgDataUri = await getOgBackgroundDataUri()
+  const bgDataUri = await loadOgImageDataUri()
 
   return (
     <div
@@ -81,14 +85,17 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
         display: "flex",
         height: "100%",
         width: "100%",
+        overflow: "hidden",
+
+        // background image
         backgroundColor: "#000",
         backgroundImage: bgDataUri ? `url("${bgDataUri}")` : undefined,
-        backgroundSize: "contain",
+        backgroundSize: BG_FIT, // "contain" = fit whole image, "cover" = fill (crop)
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "no-repeat", // no tiling
       }}
     >
-      {/* Darken for contrast so title/desc read cleanly on the forest */}
+      {/* Contrast overlay */}
       <div
         style={{
           position: "absolute",
@@ -98,6 +105,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
         }}
       />
 
+      {/* Text */}
       <div
         style={{
           position: "relative",
