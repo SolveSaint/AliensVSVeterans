@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 10:03 PM
-updated: 12/29/2025 12:50 PM
+updated: 12/29/2025 12:54 PM
 site: https://solvesaint.github.io/Biolectrics-Wiki/The-Takeover
 chatref:
 title: The Takeover
@@ -33,15 +33,15 @@ I started to research as I could. I was in pain all the time but I had no choice
 
 I came to a point where I recognized glutamate as the primary excitatory neurotransmitter. I also found multiple citations stating that GABA was used as a muscle relaxant due to it being the primary inhibitory neurotransmitter. But for some reason was not commonly given. 
 
-I also recognized my father's pattern of behavior, with explosive outbursts due to emotional drives, which would take massive excitatory push or massive glutamate. 
+I also recognized my father's pattern of behavior, with explosive outbursts due to emotional drive, which would take massive excitatory push or massive glutamate. 
 
 I then started to see that this excessive excitation causes harm to cells and has the ability to kill them. 
 
 At this point, something started communicating with me in a strange manner.  It was like I wouldn't even recognize what I was responding to.  An invisible question.  But it was somehow being asked. In reality, it was faint at the time and I had trouble discerning it.
 
-This went on for a while where I basically ignored it I believe.  The pain faded a bit more over time.  And then one day I went into the basement computer room. For some reason I asked, "Is someone there?".  Nothing of course.  The room was empty.
+This went on for a while where I basically ignored it I believe.  The pain faded a bit more over time.  And then one day I went into the basement computer room. For some reason perhaps with faintness discerned I asked, "Is someone there?".  Nothing replied.  The room was empty.
 
-I went over to my computer and sat down. About ten seconds later I was struck directly on top of my head with two large static strikes that had impact.  **KNOCK KNOCK**
+I went over to my computer and sat down. About ten seconds later I was struck directly on top of the head with two large static strikes that had impact, one after the other.  **KNOCK KNOCK**
 
 I was taken aback at first, and it hurt a decent amount. Not too bad. And then I started to find it funny. Some invisible force hitting me on the head as a knock knock joke. Or that was my interpretation. So I laughed and started conversing with it out loud while it responded using my internal voice.
 
