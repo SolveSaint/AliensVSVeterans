@@ -37,7 +37,7 @@
   align-items: flex-start !important;
 }
 
-/* Fake H1 title */
+/* Fake H1 title (desktop default: single line) */
 .avv-title {
   white-space: nowrap;
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
@@ -159,4 +159,26 @@
   text-shadow:
     0 0 14px rgba(196, 60, 60, 0.25),
     0 0 14px rgba(31, 78, 216, 0.25);
+}
+
+/* =========================
+   Mobile fixes (critical)
+   ========================= */
+@media (max-width: 700px) {
+  /* Allow hero title to wrap instead of overflowing */
+  .avv-title {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  /* Keep underline inside viewport */
+  .avv-title::after {
+    width: min(360px, 92vw);
+  }
+
+  /* Absolute safeguard against horizontal skew */
+  #quartz-body,
+  .center {
+    overflow-x: hidden;
+  }
 }
