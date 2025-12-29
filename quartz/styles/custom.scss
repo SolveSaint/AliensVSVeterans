@@ -1,6 +1,5 @@
 @use "./base.scss";
 
-// put your custom CSS here!
 /* Pull the whole layout up */
 #quartz-root,
 #quartz-body,
@@ -11,75 +10,45 @@
   padding-top: 0 !important;
 }
 
-/* Your banner wrapper has an inline margin-bottom: 1rem; override it */
+/* Banner wrapper has inline margin-bottom, override it */
 .center .page-header header > div {
   margin-bottom: 0 !important;
 }
 
-/* If Quartz is adding top padding to the center column specifically */
-.center {
-  padding-top: 0 !important;
-}
-/* Pull the sidebars up to match the center column */
+/* Pull sidebars up, then add controlled spacing */
 .left.sidebar,
 .right.sidebar {
-  padding-top: 0 !important;
   margin-top: 0 !important;
+  padding-top: 1rem !important;
 }
 
-/* Remove top margin on the left title */
+/* Tighten left title and right graph spacing */
 .left.sidebar .page-title {
   margin-top: 0 !important;
 }
 
-/* Remove extra spacing at the top of the graph block */
 .right.sidebar .graph {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* If Quartz is padding the whole row, remove it */
+/* Keep columns aligned at the top */
 #quartz-body {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
   align-items: flex-start !important;
 }
-/* Slight offset for sidebars only */
-.left.sidebar,
-.right.sidebar {
-  padding-top: 1rem !important;
-}
-/* Aliens: readable red */
+
+/* Aliens and Veterans colors */
 .avv-aliens {
   color: #c43c3c;
   font-weight: 600;
 }
 
-/* Veterans: USA blue */
 .avv-veterans {
   color: #1f4ed8;
   font-weight: 600;
 }
+
 .avv-aliens,
 .avv-veterans {
   letter-spacing: 0.02em;
-}
-
-/* Color only the words inside the H1 without HTML */
-h1 {
-  color: #cfd6e6;
-}
-
-h1::before {
-  content: "Welcome to ";
-}
-
-h1 span.avv-aliens {
-  color: #c43c3c;
-  font-weight: 600;
-}
-
-h1 span.avv-veterans {
-  color: #1f4ed8;
-  font-weight: 600;
 }
