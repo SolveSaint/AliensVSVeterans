@@ -44,4 +44,9 @@
   margin-top: 0 !important;
   align-items: flex-start !important;
 }
+/* Slight offset for sidebars only */
+.left.sidebar,
+.right.sidebar {
+  padding-top: 1rem !important;
+}
 
