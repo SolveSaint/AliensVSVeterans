@@ -37,45 +37,37 @@
   align-items: flex-start !important;
 }
 
-/* Aliens and Veterans colors */
-.avv-aliens {
-  color: #c43c3c;
-  font-weight: 600;
-}
-
-.avv-veterans {
-  color: #1f4ed8;
-  font-weight: 600;
-}
-
-.avv-aliens,
-.avv-veterans {
-  letter-spacing: 0.02em;
-}
+/* Fake H1 title */
 .avv-title {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  letter-spacing: 0.03em;
   font-weight: 800;
   line-height: 1.1;
   margin: 0 0 2rem 0;
   color: #cfd6e6;
   text-align: center;
+  letter-spacing: 0.03em;
 }
 
-
+/* Welcome: USA star gold */
+.avv-welcome {
+  color: #f2c94c;
+  font-weight: 800;
+}
 
 /* Aliens: readable red */
 .avv-aliens {
   color: #c43c3c;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* Veterans: USA blue */
 .avv-veterans {
   color: #1f4ed8;
-  font-weight: 700;
+  font-weight: 800;
 }
 
+/* Slight tracking on colored words */
+.avv-welcome,
 .avv-aliens,
 .avv-veterans {
   letter-spacing: 0.02em;
