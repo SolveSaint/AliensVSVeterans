@@ -1,27 +1,64 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/28/2025 8:22 PM
+updated: 12/28/2025 8:32 PM
 title: AVSV
 tags:
   - AVSV
   - Quartz
 ---
-Welcome to Aliens VS Veterans. A gray alien has taken partial control of my body. This began in 2020 and I was put through an extremely painful process that caused my spine to burn for around 2 years with constant electrical stabs into my muscles, like blades, over and over again.  I believe this was some type of nervous system mapping process for deep integration.
+# Welcome to Aliens VS Veterans
 
-As the burning spine and muscle stabs began to recede, there was an NHI attached to my nervous system remotely. They could speak to me using my internal voice, control my body to a good extent though I can override it, use my mouth to speak. They can target specific areas with what I call the "pleasure beam", and it causes pleasure in whatever area they target, such as the brain or chest or lower region. 
+> [!info]
+> **How to use this site**  
+> Use the sidebar on desktop or the menu icon on mobile to explore pathways, molecular mechanisms, inheritance patterns, and therapeutic strategies.
 
-They forced me to research Stress Physiology. It began with my father dying of Amyotrophic Lateral Sclerosis or Lou Gherrig's disease.  Disabled combat veterans have a much higher incidence, and my father was hit with 8 shots and mortar shrapnel and survived. This caused genetic mutation in me, counter to the mass understanding of evolution. And the reason for my father's disease was related.
+---
 
-I had learned of glutamate being the primary excitatory neurotransmitter and had noticed that for sleep disorder, GABA agonists were prescribed.  GABA is the primary inhibitory neurotransmitter. I thought to myself that this was building an inhibition wall, but why not lower the glutamate so no wall was necessary?
+A gray alien has taken partial control of my body. This began in 2020 and I was put through an extremely painful process that caused my spine to burn for around 2 years with constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.
 
-At this point, the NHI started interacting with me directly. They began to speak to me in my internal voice and began to push feelings and emotions onto me that weren't my own. Very strongly as well.  They could force the physiological response from my body even though the feelings weren't mine. This meant they could push high stress when nothing was occuring physiologically or other feelings, such as constant pleasure at times.
+---
 
-The glutamate angle was correct and directed me on a long pathway of Stress Physiology and going through hundreds of research papers to understand what was happening. Any time I tried to take a breath, the NHI would begin to attack any internal weaknesses I had. And viciously.  Until I began researching again. So I ended up researching all day long every day for the most part.  
+I saw numerous doctors and none of them could explain it nor had they heard of such a thing. I would sleep 2–4 hours a night and scream while I was sleeping, according to my significant other. The pain never stopped, not in any position. Just constant agony. I thought I would die but month after month I was forced to endure. A never-ending stream of agony day after day, to month after month, to year after year. And then, it began to fade.
+
+---
+
+As the burning spine and muscle stabs began to recede, there was an **NHI attached to my nervous system remotely**. They could speak to me using my internal voice, control my body to a good extent though I can override it, use my mouth to speak. They can target specific areas with what I call the *"pleasure beam"*, and it causes pleasure in whatever area they target, such as the brain or chest or lower region.
+
+---
+
+They forced me to research **Stress Physiology**. It began with my father dying of **Amyotrophic Lateral Sclerosis**, or *Lou Gherrig's disease*. Disabled combat veterans have a much higher incidence, and my father was hit with 8 shots and mortar shrapnel and survived. This caused genetic mutation in me, counter to the mass understanding of evolution. And the reason for my father's disease was related.
+
+---
+
+I had learned of **glutamate** being the primary excitatory neurotransmitter and had noticed that for sleep disorder, **GABA agonists** were prescribed. GABA is the primary inhibitory neurotransmitter. I thought to myself that this was building an inhibition wall, but why not lower the glutamate so no wall was necessary?
+
+---
+
+At this point, the NHI started interacting with me directly. They began to speak to me in my internal voice and began to push feelings and emotions onto me that weren't my own. Very strongly as well. They could force the physiological response from my body even though the feelings weren't mine. This meant they could push high stress when nothing was occuring physiologically or other feelings, such as constant pleasure at times.
+
+---
+
+The glutamate angle was correct and directed me on a long pathway of Stress Physiology and going through hundreds of research papers to understand what was happening. Any time I tried to take a breath, the NHI would begin to attack any internal weaknesses I had. And viciously. Until I began researching again. So I ended up researching all day long every day for the most part.
+
+---
 
 Whenever I would have a large breakthrough, the NHI would give me a few days to relax. Otherwise, it was research or get smashed by something that can read your mind and memories, or fight them as they speak negatively which still leaves you in a stressed state.
 
-I've essentially finished the research and understand my father's disease which is unknown to current medicine.  I also have found that most disease is caused by the same thing. 
+---
 
-Reactive Oxygen Species is generated by mitochondria when ATP is needed. Stress overclocks this system and more ATP is generated along with more Reactive Oxygen Species. This hits a tipping point where clean up ability is exceeded and the ROS begins to tear apart the cell.  If free iron is present , it catalyzes with the H2O2 ROS to form and iron-sulfur ROS that is much more damaging to cell tissue and starts ripping things apart.  From heart cells to neurons, the outcome is the same. So most disease is caused through overusage of cellular groups along with stress upregulation of glutamate to constantly activate cells, creating excess ROS which damages the cell. 
+I've essentially finished the research and understand my father's disease which is unknown to current medicine. I also have found that most disease is caused by the same thing.
 
-This is the cause of most disease.
+---
+
+## Core Mechanism
+
+**Reactive Oxygen Species** is generated by mitochondria when ATP is needed. Stress overclocks this system and more ATP is generated along with more Reactive Oxygen Species. This hits a tipping point where clean up ability is exceeded and the ROS begins to tear apart the cell.
+
+If free iron is present, it catalyzes with the H2O2 ROS to form and iron-sulfur ROS that is much more damaging to cell tissue and starts ripping things apart. From heart cells to neurons, the outcome is the same.
+
+So most disease is caused through overusage of cellular groups along with stress upregulation of glutamate to constantly activate cells, creating excess ROS which damages the cell.
+
+---
+
+> [!quote]
+> **This is the cause of most disease.**
