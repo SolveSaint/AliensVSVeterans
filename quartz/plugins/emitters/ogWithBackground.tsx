@@ -3,7 +3,7 @@ import type { GlobalConfiguration } from "../cfg"
 import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/imageHelper"
 import type { QuartzPluginData } from "../plugins/vfile"
 
-import fs from "node:fs/promises"
+import fs from "node:fs"
 import path from "node:path"
 
 type MaybeFonts = SatoriOptions["fonts"] | undefined
@@ -37,22 +37,21 @@ function clampText(s: string, max = 160) {
   return t.length > max ? t.slice(0, max - 1) + "…" : t
 }
 
-// Set this to "contain" to fit whole image, or "cover" to fill card (cropping edges)
+// "contain" = fit entire image (no crop). "cover" = fill card (crop edges).
 const BG_FIT: "contain" | "cover" = "contain"
 
-async function loadOgImageDataUri(): Promise<string | null> {
-  // Quartz is typically run from repo root, so this resolves correctly:
-  // <repo>/quartz/static/og-image.png
-  const p = path.join(process.cwd(), "quartz", "static", "og-image.png")
+// Build-time safe. Load once synchronously so imageStructure stays sync.
+const BG_DATA_URI: string | null = (() => {
   try {
-    const buf = await fs.readFile(p)
+    const p = path.join(process.cwd(), "quartz", "static", "og-image.png")
+    const buf = fs.readFileSync(p)
     return `data:image/png;base64,${buf.toString("base64")}`
   } catch {
     return null
   }
-}
+})()
 
-export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
+export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
   title: string,
@@ -66,7 +65,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  // Use the page title Quartz already computed. This should be "The Takeover" for that page.
+  // Quartz passes the page title here. For your post it should be "The Takeover".
   const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
 
   const fmDesc =
@@ -75,8 +74,6 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
     (fileData as any)?.frontmatter?.summary ??
     ""
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
-
-  const bgDataUri = await loadOgImageDataUri()
 
   return (
     <div
@@ -87,15 +84,13 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
         width: "100%",
         overflow: "hidden",
 
-        // background image
         backgroundColor: "#000",
-        backgroundImage: bgDataUri ? `url("${bgDataUri}")` : undefined,
-        backgroundSize: BG_FIT, // "contain" = fit whole image, "cover" = fill (crop)
+        backgroundImage: BG_DATA_URI ? `url("${BG_DATA_URI}")` : undefined,
+        backgroundSize: BG_FIT,
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat", // no tiling
+        backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Contrast overlay */}
       <div
         style={{
           position: "absolute",
@@ -105,7 +100,6 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
         }}
       />
 
-      {/* Text */}
       <div
         style={{
           position: "relative",
