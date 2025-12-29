@@ -39,6 +39,7 @@
 
 /* Fake H1 title */
 .avv-title {
+  white-space: nowrap;
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 700;
   line-height: 1.08;
@@ -52,7 +53,9 @@
     0 4px 12px rgba(0, 0, 0, 0.45);
   animation: avvFadeIn 600ms ease-out both;
 }
-
+.avv-title span {
+  display: inline;
+}
 /* Gradient underline accent */
 .avv-title::after {
   content: "";
