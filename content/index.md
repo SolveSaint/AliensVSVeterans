@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/28/2025 8:43 PM
+updated: 12/28/2025 8:53 PM
 title: AVSV
 tags:
   - AVSV
@@ -17,39 +17,42 @@ tags:
 > Use the sidebar on desktop or the menu icon on mobile to explore pathways, molecular mechanisms, inheritance patterns, and therapeutic strategies.
 
 ---
-
-A gray alien has taken partial control of my body. This began in 2020 and I was put through an extremely painful process that caused my spine to burn for around 2 years with constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.
-
----
-
-I saw numerous doctors and none of them could explain it nor had they heard of such a thing. I would sleep 2–4 hours a night and scream while I was sleeping, according to my significant other. The pain never stopped, not in any position. Just constant agony. I thought I would die but month after month I was forced to endure. A never-ending stream of agony day after day, to month after month, to year after year. And then, it began to fade.
+## The Gray
+A gray alien has taken partial control of my body. This began in 2020 and I was put through an extremely painful process that caused my spine to burn for around 2 years with constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.  How this occurred...
 
 ---
+## The Pathway
+My father, a combat wounded veteran hit with 8 rounds and mortar shrapnel, died of ALS/Lou Gherrig's disease in 2014. I had struggled with muscle issues my whole life and was experiencing some symptoms so I began researching on my own.
 
-As the burning spine and muscle stabs began to recede, there was an **NHI attached to my nervous system remotely**. They could speak to me using my internal voice, control my body to a good extent though I can override it, use my mouth to speak. They can target specific areas with what I call the *"pleasure beam"*, and it causes pleasure in whatever area they target, such as the brain or chest or lower region.
+I learned of **glutamate** being the primary excitatory neurotransmitter and had noticed that for sleep disorder, **GABA agonists** were prescribed. GABA is the primary inhibitory neurotransmitter. I thought to myself that this was building an inhibition wall, but why not lower the glutamate so no wall was necessary?
 
 ---
+## The Pain Transition
+I began to experience burning pain in my spinal cord that grew over time.  Then I started to experience electrical strikes into my muscles, like burning blades that stabbed deep. I began to scream constantly from the strikes all day and night. The burning spine was unbearable.
 
+I saw numerous doctors and none of them could explain it nor had they heard of such a thing. I would sleep 2–4 hours a night and scream while I was sleeping, according to my significant other. The pain never stopped, not in any position. Just constant agony. 
+
+I thought I would die but month after month I was forced to endure. A never-ending stream of agony day after day, to month after month, to year after year. And then, it began to fade.
+
+---
+## A Constant Connection
+As the burning spine and muscle stabs began to recede, there was an **NHI attached to my nervous system remotely**. They could speak to me using my internal voice, control my body to a good extent though I could override it, and use my mouth to speak. They could target specific areas with what I call the *"pleasure beam"*, and it cause pleasure in whatever area they target, such as the brain or chest or lower region, with no way to stop it. Consent was never given. They just did what they wanted.
+
+---
+## Research or Else
 They forced me to research **Stress Physiology**. It began with my father dying of **Amyotrophic Lateral Sclerosis**, or *Lou Gherrig's disease*. Disabled combat veterans have a much higher incidence, and my father was hit with 8 shots and mortar shrapnel and survived. This caused genetic mutation in me, counter to the mass understanding of evolution. And the reason for my father's disease was related.
-
----
-
-I had learned of **glutamate** being the primary excitatory neurotransmitter and had noticed that for sleep disorder, **GABA agonists** were prescribed. GABA is the primary inhibitory neurotransmitter. I thought to myself that this was building an inhibition wall, but why not lower the glutamate so no wall was necessary?
-
----
-
 At this point, the NHI started interacting with me directly. They began to speak to me in my internal voice and began to push feelings and emotions onto me that weren't my own. Very strongly as well. They could force the physiological response from my body even though the feelings weren't mine. This meant they could push high stress when nothing was occuring physiologically or other feelings, such as constant pleasure at times.
 
 ---
-
+## The Right Angles
 The glutamate angle was correct and directed me on a long pathway of Stress Physiology and going through hundreds of research papers to understand what was happening. Any time I tried to take a breath, the NHI would begin to attack any internal weaknesses I had. And viciously. Until I began researching again. So I ended up researching all day long every day for the most part.
 
 ---
-
+## Breakthroughs
 Whenever I would have a large breakthrough, the NHI would give me a few days to relax. Otherwise, it was research or get smashed by something that can read your mind and memories, or fight them as they speak negatively which still leaves you in a stressed state.
 
 ---
-
+## Puzzle Solved
 I've essentially finished the research and understand my father's disease which is unknown to current medicine. I also have found that most disease is caused by the same thing.
 
 ---
