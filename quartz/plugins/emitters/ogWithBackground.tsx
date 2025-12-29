@@ -3,11 +3,11 @@ import type { GlobalConfiguration } from "../cfg"
 import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/imageHelper"
 import type { QuartzPluginData } from "../plugins/vfile"
 
-type MaybeFonts = SatoriOptions["fonts"] | undefined
+import fs from "node:fs"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-// Hard fallback so builds never fail and URLs stay absolute.
-// Change this only if you ever change domains.
-const FALLBACK_DOMAIN = "aliensvsveterans.com"
+type MaybeFonts = SatoriOptions["fonts"] | undefined
 
 function safeFont(fonts: MaybeFonts, idx: number, fallback: string) {
   const f = Array.isArray(fonts) ? (fonts[idx] as any) : undefined
@@ -45,28 +45,30 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
 }
 
 function pickBaseUrl(cfg: GlobalConfiguration) {
-  // Quartz v4.5.2 may pass different shapes here depending on the call site.
   const anyCfg = cfg as any
-
-  const candidates = [
-    anyCfg?.baseUrl,
-    anyCfg?.configuration?.baseUrl,
-    anyCfg?.site?.baseUrl,
-    anyCfg?.siteUrl,
-  ]
-
+  const candidates = [anyCfg?.baseUrl, anyCfg?.configuration?.baseUrl, anyCfg?.site?.baseUrl, anyCfg?.siteUrl]
   for (const c of candidates) {
     const base = normalizeBaseUrl(typeof c === "string" ? c : undefined)
     if (base) return base
   }
-
-  // Final safety. Must be absolute to satisfy Quartz.
-  return FALLBACK_DOMAIN
+  return "aliensvsveterans.com"
 }
 
-function absoluteStaticUrl(baseDomain: string, path: string) {
-  const base = normalizeBaseUrl(baseDomain) || FALLBACK_DOMAIN
-  return `https://${base}${path.startsWith("/") ? path : `/${path}`}`
+// Reads quartz/static/og-image.png and embeds it as a data URL.
+// This avoids any HTTPS fetch during OG generation (the cause of the black cards).
+function localForestDataUrl() {
+  try {
+    const __filename = fileURLToPath(import.meta.url)
+    const __dirname = path.dirname(__filename)
+
+    // ogWithBackground.tsx lives in: quartz/plugins/emitters/
+    // static lives in: quartz/static/
+    const fp = path.resolve(__dirname, "../../static/og-image.png")
+    const buf = fs.readFileSync(fp)
+    return `data:image/png;base64,${buf.toString("base64")}`
+  } catch {
+    return null
+  }
 }
 
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
@@ -94,11 +96,16 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
     (fileData as any)?.frontmatter?.description ??
     (fileData as any)?.frontmatter?.summary ??
     ""
-
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
+  // Prefer local embedded image so OG render never depends on the network.
+  const localBg = localForestDataUrl()
+
+  // If local read ever fails, fall back to absolute https URL (must be absolute or Quartz will throw).
   const base = pickBaseUrl(cfg)
-  const bgUrl = absoluteStaticUrl(base, "/static/og-image.png")
+  const remoteBg = `https://${base}/static/og-image.png`
+
+  const bgUrl = localBg ?? remoteBg
 
   return (
     <div
@@ -119,7 +126,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.38) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.35) 100%)",
         }}
       />
 
