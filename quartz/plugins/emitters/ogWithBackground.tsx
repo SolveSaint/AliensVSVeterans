@@ -34,6 +34,12 @@ function clampText(s: string, max = 160) {
   return t.length > max ? t.slice(0, max - 1) + "…" : t
 }
 
+function normalizeBaseUrl(baseUrl: string | undefined) {
+  const raw = (baseUrl ?? "").trim()
+  const noProto = raw.replace(/^https?:\/\//i, "")
+  return noProto.replace(/\/+$/, "")
+}
+
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
@@ -58,10 +64,11 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // IMPORTANT:
-  // Put your forest here: quartz/static/og-image.png
-  // It will be served at: https://<baseUrl>/static/og-image.png
-  const bgUrl = `https://${cfg.baseUrl}/static/og-image.png`
+  // Forest background lives at: quartz/static/og-image.png
+  // Quartz serves it at: https://<baseUrl>/static/og-image.png
+  // Normalize baseUrl defensively to avoid https://https:// or trailing slashes.
+  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
+  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
 
   return (
     <div
@@ -75,12 +82,13 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         backgroundPosition: "center",
       }}
     >
+      {/* Darken for contrast so title/desc read cleanly on the forest */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.35) 100%)",
+            "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.38) 100%)",
         }}
       />
 
