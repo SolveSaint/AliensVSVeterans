@@ -1,5 +1,42 @@
 @use "./base.scss";
 
+/* Strong global textured background */
+body {
+  background-color: #0b0e11;
+
+  background-image:
+    /* soft vignette */
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.03) 35%,
+      rgba(0, 0, 0, 0.35) 70%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+
+    /* coarse grain */
+    radial-gradient(
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    ),
+
+    /* fine grain */
+    radial-gradient(
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    100% 100%,
+    5px 5px,
+    2px 2px;
+
+  background-position:
+    center,
+    0 0,
+    1px 1px;
+}
+
 /* =========================
    GLOBAL LAYOUT PULL-UP
    ========================= */
@@ -207,13 +244,4 @@
   .center {
     overflow-x: hidden;
   }
-}
-/* Global textured background */
-body {
-  background-color: #0e1114;
-  background-image:
-    radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    radial-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-  background-size: 3px 3px, 6px 6px;
-  background-position: 0 0, 1px 1px;
 }
