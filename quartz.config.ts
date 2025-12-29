@@ -16,6 +16,7 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
+      defaultTheme: "dark",
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
@@ -84,7 +85,6 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-
       Plugin.CustomOgImages({
         colorScheme: "darkMode",
         width: 1200,
