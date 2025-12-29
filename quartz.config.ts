@@ -12,7 +12,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "solvesaint.github.io/AliensVSVeterans",
+    baseUrl: "aliensvsveterans.com",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
