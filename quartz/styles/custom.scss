@@ -52,3 +52,28 @@
 .avv-veterans {
   letter-spacing: 0.02em;
 }
+/* Fake H1 title */
+.avv-title {
+  font-size: 2.25rem;     /* Quartz H1 size */
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.5rem 0;
+  color: #cfd6e6;
+}
+
+/* Aliens: readable red */
+.avv-aliens {
+  color: #c43c3c;
+  font-weight: 700;
+}
+
+/* Veterans: USA blue */
+.avv-veterans {
+  color: #1f4ed8;
+  font-weight: 700;
+}
+
+.avv-aliens,
+.avv-veterans {
+  letter-spacing: 0.02em;
+}
