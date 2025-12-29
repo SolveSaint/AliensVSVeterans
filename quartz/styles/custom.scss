@@ -132,3 +132,16 @@
   margin-bottom: 0.35rem !important;
 }
 
+/* Top left header logo */
+header .avv-logo {
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+/* VS in white, slightly softened */
+header .avv-logo .avv-vs {
+  color: #ffffff;
+  opacity: 0.95;
+}
