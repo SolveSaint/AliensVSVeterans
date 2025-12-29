@@ -54,8 +54,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  const fmTitle = (fileData as any)?.frontmatter?.socialTitle ?? (fileData as any)?.frontmatter?.title ?? ""
-  const safeTitle = (title ?? "").trim() || (fmTitle ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
+  const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
 
   const fmDesc =
     (fileData as any)?.frontmatter?.socialDescription ??
@@ -65,10 +64,11 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // In Quartz v4.5.2, cfg here is ctx.cfg.configuration (see ogImage.tsx you pasted).
-  // So baseUrl is cfg.baseUrl (not cfg.configuration.baseUrl).
+  // Forest background lives at: quartz/static/og-image.png
+  // Quartz serves it at: https://<baseUrl>/static/og-image.png
+  // Normalize baseUrl defensively to avoid https://https:// or trailing slashes.
   const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const bgUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
+  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
 
   return (
     <div
@@ -77,13 +77,12 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: "#000",
         backgroundImage: `url("${bgUrl}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat", // THIS is what stops tiling
       }}
     >
+      {/* Darken for contrast so title/desc read cleanly on the forest */}
       <div
         style={{
           position: "absolute",
