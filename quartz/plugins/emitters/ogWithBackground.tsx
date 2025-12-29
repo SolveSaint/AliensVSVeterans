@@ -40,6 +40,15 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
+// Quartz CustomOgImages requires an ABSOLUTE url for any image source.
+// If baseUrl is missing for any reason, fall back to a safe dummy absolute url
+// instead of a relative /static/... which will hard-fail the build.
+function getAbsoluteBgUrl(cfg: GlobalConfiguration) {
+  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
+  if (base) return `https://${base}/static/og-image.png`
+  return "https://example.com/static/og-image.png"
+}
+
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
@@ -72,8 +81,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
+  const bgUrl = getAbsoluteBgUrl(cfg)
 
   return (
     <div
@@ -86,7 +94,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         backgroundImage: `url("${bgUrl}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat", // stops tiling
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div
