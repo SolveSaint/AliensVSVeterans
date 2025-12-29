@@ -40,22 +40,6 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
-function getBaseUrl(cfg: any) {
-  const candidates = [
-    cfg?.configuration?.baseUrl,
-    cfg?.baseUrl,
-    cfg?.cfg?.configuration?.baseUrl,
-    cfg?.cfg?.baseUrl,
-  ]
-
-  for (const c of candidates) {
-    const base = normalizeBaseUrl(typeof c === "string" ? c : undefined)
-    if (base) return base
-  }
-
-  throw new Error("ogWithBackground: baseUrl is missing. Set configuration.baseUrl in quartz.config.ts.")
-}
-
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
@@ -70,7 +54,15 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
+  const fmTitle =
+    (fileData as any)?.frontmatter?.socialTitle ??
+    (fileData as any)?.frontmatter?.title ??
+    ""
+
+  const safeTitle = clampText(
+    ((title ?? "").trim() || (fmTitle ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans") as string,
+    72,
+  )
 
   const fmDesc =
     (fileData as any)?.frontmatter?.socialDescription ??
@@ -80,10 +72,8 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Quartz CustomOgImages requires absolute image URLs.
-  // Quartz may pass config in slightly different shapes depending on call site.
-  const base = getBaseUrl(cfg as any)
-  const bgUrl = `https://${base}/static/og-image.png`
+  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
+  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
 
   return (
     <div
@@ -92,9 +82,11 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         display: "flex",
         height: "100%",
         width: "100%",
+        backgroundColor: "#000",
         backgroundImage: `url("${bgUrl}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // stops tiling
       }}
     >
       <div
