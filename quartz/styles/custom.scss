@@ -1,6 +1,8 @@
 @use "./base.scss";
 
-/* Pull the whole layout up */
+/* =========================
+   GLOBAL LAYOUT PULL-UP
+   ========================= */
 #quartz-root,
 #quartz-body,
 .center,
@@ -10,12 +12,32 @@
   padding-top: 0 !important;
 }
 
-/* Banner wrapper has inline margin-bottom, override it */
+/* IMPORTANT: remove Quartz default header margins entirely */
+.center .page-header header {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Banner wrapper has inline margin-bottom — override it */
 .center .page-header header > div {
   margin-bottom: 0 !important;
 }
 
-/* Pull sidebars up, then add controlled spacing */
+/* Kill default margins on banner containers */
+.center .page-header figure,
+.center .page-header picture {
+  margin: 0 !important;
+}
+
+/* Ensure images do not create inline spacing */
+.center .page-header img,
+.center .page-header a {
+  display: block;
+}
+
+/* =========================
+   SIDEBARS
+   ========================= */
 .left.sidebar,
 .right.sidebar {
   margin-top: 0 !important;
@@ -37,9 +59,11 @@
   align-items: flex-start !important;
 }
 
-/* Fake H1 title (desktop default: single line) */
+/* =========================
+   FAKE H1 HERO TITLE
+   ========================= */
 .avv-title {
-  white-space: nowrap;
+  white-space: nowrap; /* desktop */
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 500;
   line-height: 1.08;
@@ -70,7 +94,9 @@
   opacity: 0.85;
 }
 
-/* Welcome: USA star gold */
+/* =========================
+   COLOR TOKENS
+   ========================= */
 .avv-welcome {
   color: #f2c94c;
   font-weight: 500;
@@ -78,7 +104,6 @@
   text-shadow: 0 0 14px rgba(242, 201, 76, 0.45);
 }
 
-/* Aliens: readable red */
 .avv-aliens {
   color: #c43c3c;
   font-weight: 500;
@@ -86,7 +111,6 @@
   text-shadow: 0 0 14px rgba(196, 60, 60, 0.45);
 }
 
-/* Veterans: USA blue */
 .avv-veterans {
   color: #1f4ed8;
   font-weight: 500;
@@ -94,14 +118,15 @@
   text-shadow: 0 0 14px rgba(31, 78, 216, 0.45);
 }
 
-/* Slight tracking on colored words */
 .avv-welcome,
 .avv-aliens,
 .avv-veterans {
   letter-spacing: 0.01em;
 }
 
-/* One time entrance animation */
+/* =========================
+   HERO ENTRANCE ANIMATION
+   ========================= */
 @keyframes avvFadeIn {
   from {
     opacity: 0;
@@ -113,6 +138,9 @@
   }
 }
 
+/* =========================
+   META ROW TIGHTENING
+   ========================= */
 .page-meta,
 .content-meta,
 .breadcrumb,
@@ -120,23 +148,21 @@
   margin-top: 0.25rem !important;
 }
 
-/* Pull the date and read time up tight under the header image */
-.center .page-header .popover-hint {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
+/* Pull date / read time tight under header image */
+.center .page-header .popover-hint,
 .center .page-header .content-meta {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Optional: tighten the gap below the meta line too */
+/* Small, controlled breathing room */
 .center .page-header .content-meta {
   margin-bottom: 0.35rem !important;
 }
 
-/* Top-left site title: Aliens VS Veterans in RWB */
+/* =========================
+   TOP-LEFT SITE TITLE
+   ========================= */
 .left.sidebar .page-title a {
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -162,10 +188,10 @@
 }
 
 /* =========================
-   Mobile fixes (critical)
+   MOBILE FIXES
    ========================= */
 @media (max-width: 700px) {
-  /* Allow hero title to wrap instead of overflowing */
+  /* Allow hero title to wrap */
   .avv-title {
     white-space: normal;
     text-wrap: balance;
