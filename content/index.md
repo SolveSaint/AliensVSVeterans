@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/28/2025 8:56 PM
+updated: 12/28/2025 8:57 PM
 title: AVSV
 tags:
   - AVSV
@@ -10,8 +10,6 @@ tags:
 <div class="avv-title">
   Welcome to <span class="avv-aliens">Aliens</span> VS <span class="avv-veterans">Veterans</span>
 </div>
-
-
 
 > [!info]
 > **How to use this site**  
