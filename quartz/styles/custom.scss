@@ -72,3 +72,20 @@
 .avv-veterans {
   letter-spacing: 0.02em;
 }
+/* Subtle depth for title */
+.avv-title {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+/* Individual word accents */
+.avv-welcome {
+  text-shadow: 0 0 10px rgba(242, 201, 76, 0.35);
+}
+
+.avv-aliens {
+  text-shadow: 0 0 10px rgba(196, 60, 60, 0.35);
+}
+
+.avv-veterans {
+  text-shadow: 0 0 10px rgba(31, 78, 216, 0.35);
+}
