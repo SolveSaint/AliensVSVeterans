@@ -83,7 +83,7 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
         width: "100%",
         backgroundColor: "#000",
         backgroundImage: bgDataUri ? `url("${bgDataUri}")` : undefined,
-        backgroundSize: "cover",
+        backgroundSize: "contain",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
