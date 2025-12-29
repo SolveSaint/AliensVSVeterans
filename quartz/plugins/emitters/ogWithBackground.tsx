@@ -3,8 +3,8 @@ import type { GlobalConfiguration } from "../cfg"
 import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/imageHelper"
 import type { QuartzPluginData } from "../plugins/vfile"
 
-import fs from "node:fs"
-import path from "node:path"
+import fs from "node:fs/promises"
+import { joinSegments, QUARTZ } from "../util/path"
 
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
@@ -37,40 +37,18 @@ function clampText(s: string, max = 160) {
   return t.length > max ? t.slice(0, max - 1) + "…" : t
 }
 
-function normalizeBaseUrl(baseUrl: string | undefined) {
-  const raw = (baseUrl ?? "").trim()
-  const noProto = raw.replace(/^https?:\/\//i, "")
-  return noProto.replace(/\/+$/, "")
-}
-
-function loadStaticOgImageAsDataUrl(): string | null {
-  // Prefer process.cwd() anchored lookup because Quartz builds run from repo root.
-  const candidates = [
-    path.join(process.cwd(), "quartz", "static", "og-image.png"),
-    path.join(process.cwd(), "quartz", "static", "og-image.jpg"),
-    path.join(process.cwd(), "quartz", "static", "og-image.jpeg"),
-  ]
-
-  for (const p of candidates) {
-    try {
-      if (!fs.existsSync(p)) continue
-      const buf = fs.readFileSync(p)
-      const ext = path.extname(p).toLowerCase()
-      const mime =
-        ext === ".jpg" || ext === ".jpeg" ? "image/jpeg" : ext === ".png" ? "image/png" : "image/png"
-      return `data:${mime};base64,${buf.toString("base64")}`
-    } catch {
-      // keep trying candidates
-    }
+// Build-time safe: read the background from local disk and embed as data URI
+async function getOgBackgroundDataUri(): Promise<string | null> {
+  const bgPath = joinSegments(QUARTZ, "static", "og-image.png")
+  try {
+    const buf = await fs.readFile(bgPath)
+    return `data:image/png;base64,${buf.toString("base64")}`
+  } catch {
+    return null
   }
-
-  return null
 }
 
-// Load once
-const forestDataUrl = loadStaticOgImageAsDataUrl()
-
-export const ogWithBackground: SocialImageOptions["imageStructure"] = (
+export const ogWithBackground: SocialImageOptions["imageStructure"] = async (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
   title: string,
@@ -84,26 +62,17 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  const fmTitle =
-    (fileData as any)?.frontmatter?.socialTitle ?? (fileData as any)?.frontmatter?.title ?? ""
-  const safeTitle =
-    (title ?? "").trim() ||
-    (fmTitle ?? "").trim() ||
-    (cfg as any)?.pageTitle ||
-    "AliensVSVeterans"
+  const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
 
   const fmDesc =
     (fileData as any)?.frontmatter?.socialDescription ??
     (fileData as any)?.frontmatter?.description ??
     (fileData as any)?.frontmatter?.summary ??
     ""
+
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Absolute URL fallback only if local file load failed
-  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const fallbackUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
-
-  const imgSrc = forestDataUrl ?? fallbackUrl
+  const bgDataUri = await getOgBackgroundDataUri()
 
   return (
     <div
@@ -113,22 +82,13 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         height: "100%",
         width: "100%",
         backgroundColor: "#000",
-        overflow: "hidden",
+        backgroundImage: bgDataUri ? `url("${bgDataUri}")` : undefined,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Background image (no tiling possible) */}
-      <img
-        src={imgSrc}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      />
-
-      {/* Contrast overlay */}
+      {/* Darken for contrast so title/desc read cleanly on the forest */}
       <div
         style={{
           position: "absolute",
@@ -138,7 +98,6 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         }}
       />
 
-      {/* Text content */}
       <div
         style={{
           position: "relative",
