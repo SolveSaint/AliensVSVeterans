@@ -64,11 +64,12 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Forest background lives at: quartz/static/og-image.png
-  // Quartz serves it at: https://<baseUrl>/static/og-image.png
-  // Normalize baseUrl defensively to avoid https://https:// or trailing slashes.
+  // Quartz CustomOgImages requires absolute image URLs.
   const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
+  if (!base) {
+    throw new Error("ogWithBackground: cfg.baseUrl is missing. Set configuration.baseUrl in quartz.config.ts.")
+  }
+  const bgUrl = `https://${base}/static/og-image.png`
 
   return (
     <div
@@ -82,7 +83,6 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         backgroundPosition: "center",
       }}
     >
-      {/* Darken for contrast so title/desc read cleanly on the forest */}
       <div
         style={{
           position: "absolute",
