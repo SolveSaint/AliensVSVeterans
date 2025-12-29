@@ -3,6 +3,9 @@ import type { GlobalConfiguration } from "../cfg"
 import type { SocialImageOptions, UserOpts } from "../plugins/emitters/ogImage/imageHelper"
 import type { QuartzPluginData } from "../plugins/vfile"
 
+import fs from "node:fs"
+import { fileURLToPath } from "node:url"
+
 type MaybeFonts = SatoriOptions["fonts"] | undefined
 
 function safeFont(fonts: MaybeFonts, idx: number, fallback: string) {
@@ -40,6 +43,19 @@ function normalizeBaseUrl(baseUrl: string | undefined) {
   return noProto.replace(/\/+$/, "")
 }
 
+// Load the forest background from disk once at module load time.
+// This avoids Satori needing to fetch https://... during builds (the main cause of “black” renders).
+let forestDataUrl: string | null = null
+try {
+  // ogWithBackground.tsx is at quartz/plugins/emitters/ogWithBackground.tsx
+  // static is at quartz/static/og-image.png
+  const forestPath = fileURLToPath(new URL("../../static/og-image.png", import.meta.url))
+  const buf = fs.readFileSync(forestPath)
+  forestDataUrl = `data:image/png;base64,${buf.toString("base64")}`
+} catch {
+  forestDataUrl = null
+}
+
 export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts | undefined,
@@ -54,21 +70,27 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
+  const fmTitle =
+    (fileData as any)?.frontmatter?.socialTitle ?? (fileData as any)?.frontmatter?.title ?? ""
+  const safeTitle =
+    (title ?? "").trim() ||
+    (fmTitle ?? "").trim() ||
+    (cfg as any)?.pageTitle ||
+    "AliensVSVeterans"
 
   const fmDesc =
     (fileData as any)?.frontmatter?.socialDescription ??
     (fileData as any)?.frontmatter?.description ??
     (fileData as any)?.frontmatter?.summary ??
     ""
-
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Forest background lives at: quartz/static/og-image.png
-  // Quartz serves it at: https://<baseUrl>/static/og-image.png
-  // Normalize baseUrl defensively to avoid https://https:// or trailing slashes.
+  // Fallback absolute URL (only used if the local read fails)
   const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
+  const fallbackBgUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
+
+  // Prefer local data URL to prevent black renders
+  const bgUrl = forestDataUrl ?? fallbackBgUrl
 
   return (
     <div
@@ -77,12 +99,13 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         display: "flex",
         height: "100%",
         width: "100%",
+        backgroundColor: "#000",
         backgroundImage: `url("${bgUrl}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // stops tiling
       }}
     >
-      {/* Darken for contrast so title/desc read cleanly on the forest */}
       <div
         style={{
           position: "absolute",
