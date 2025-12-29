@@ -85,13 +85,14 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      Plugin.CustomOgImages({
-        colorScheme: "darkMode",
-        width: 1200,
-        height: 630,
-        excludeRoot: false,
-        imageStructure: ogWithBackground,
-      }),
+Plugin.CustomOgImages({
+  colorScheme: "darkMode",
+  width: 1200,
+  height: 630,
+  excludeRoot: true,
+  imageStructure: ogWithBackground,
+}),
+
     ],
   },
 }
