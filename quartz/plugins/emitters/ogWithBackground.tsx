@@ -35,6 +35,8 @@ function clampText(s: string, max = 160) {
 }
 
 function normalizeBaseUrl(baseUrl: string | undefined) {
+  // Docs: configuration.baseUrl should not include protocol or slashes.
+  // This normalizes defensively anyway.
   const raw = (baseUrl ?? "").trim()
   const noProto = raw.replace(/^https?:\/\//i, "")
   return noProto.replace(/\/+$/, "")
@@ -54,21 +56,22 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
   const headerFont = safeFont(fonts, 0, "serif")
   const bodyFont = safeFont(fonts, 1, "sans-serif")
 
-  const safeTitle = (title ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
+  const fmTitle = (fileData as any)?.frontmatter?.socialTitle ?? (fileData as any)?.frontmatter?.title ?? ""
+  const safeTitle =
+    (title ?? "").trim() || (fmTitle ?? "").trim() || (cfg as any)?.pageTitle || "AliensVSVeterans"
 
   const fmDesc =
     (fileData as any)?.frontmatter?.socialDescription ??
     (fileData as any)?.frontmatter?.description ??
     (fileData as any)?.frontmatter?.summary ??
     ""
-
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Forest background lives at: quartz/static/og-image.png
-  // Quartz serves it at: https://<baseUrl>/static/og-image.png
-  // Normalize baseUrl defensively to avoid https://https:// or trailing slashes.
+  // Docs: baseUrl is the deployed URL WITHOUT protocol (e.g. aliensvsveterans.com)
+  // Quartz passes cfg as ctx.cfg.configuration, so cfg.baseUrl is correct here.
+  // OG generation requires absolute URLs, so we always build an https:// URL.
   const base = normalizeBaseUrl((cfg as any)?.baseUrl)
-  const bgUrl = base ? `https://${base}/static/og-image.png` : "/static/og-image.png"
+  const bgUrl = `https://${base || "aliensvsveterans.com"}/static/og-image.png`
 
   return (
     <div
@@ -77,12 +80,14 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
         display: "flex",
         height: "100%",
         width: "100%",
+        backgroundColor: "#000",
         backgroundImage: `url("${bgUrl}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // prevents tiling
       }}
     >
-      {/* Darken for contrast so title/desc read cleanly on the forest */}
+      {/* Contrast overlay so text reads clearly on the forest */}
       <div
         style={{
           position: "absolute",
