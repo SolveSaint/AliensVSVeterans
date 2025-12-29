@@ -64,11 +64,18 @@ export const ogWithBackground: SocialImageOptions["imageStructure"] = (
 
   const safeDesc = clampText(((description ?? "").trim() || fmDesc) as string, 170)
 
-  // Quartz CustomOgImages requires absolute image URLs.
-  const base = normalizeBaseUrl((cfg as any)?.baseUrl)
+   // Quartz CustomOgImages requires absolute image URLs.
+  // In Quartz v4, baseUrl lives under cfg.configuration.baseUrl.
+  const base = normalizeBaseUrl(
+    (cfg as any)?.configuration?.baseUrl ?? (cfg as any)?.baseUrl
+  )
+
   if (!base) {
-    throw new Error("ogWithBackground: cfg.baseUrl is missing. Set configuration.baseUrl in quartz.config.ts.")
+    throw new Error(
+      "ogWithBackground: baseUrl is missing. Set configuration.baseUrl in quartz.config.ts."
+    )
   }
+
   const bgUrl = `https://${base}/static/og-image.png`
 
   return (
