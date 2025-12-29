@@ -1,31 +1,23 @@
 @use "./base.scss";
 
 // put your custom CSS here!
-/* Remove excessive top spacing on pages */
-main {
+/* Pull the whole layout up */
+#quartz-root,
+#quartz-body,
+.center,
+.center .page-header,
+.center .page-header header {
+  margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Pull content closer to the header */
-.page {
-  padding-top: 0 !important;
-}
-
-/* Remove header bottom margin */
-header {
+/* Your banner wrapper has an inline margin-bottom: 1rem; override it */
+.center .page-header header > div {
   margin-bottom: 0 !important;
 }
 
-/* Remove content top padding */
-.content {
+/* If Quartz is adding top padding to the center column specifically */
+.center {
   padding-top: 0 !important;
 }
 
-/* If a hero wrapper exists, collapse it */
-.hero,
-.hero-container,
-.hero-wrapper {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  min-height: unset !important;
-}
