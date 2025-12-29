@@ -113,4 +113,19 @@
 .breadcrumbs {
   margin-top: 0.25rem !important;
 }
+/* Pull the date and read time up tight under the header image */
+.center .page-header .popover-hint {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.center .page-header .content-meta {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Optional: tighten the gap below the meta line too */
+.center .page-header .content-meta {
+  margin-bottom: 0.35rem !important;
+}
 
