@@ -1,8 +1,6 @@
 @use "./base.scss";
 
-/* =========================
-   STRONG GLOBAL TEXTURED BACKGROUND
-   ========================= */
+/* Strong global textured background */
 body {
   background-color: #0b0e11;
 
@@ -14,28 +12,15 @@ body {
       rgba(0, 0, 0, 0.35) 70%,
       rgba(0, 0, 0, 0.6) 100%
     ),
-    radial-gradient(
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
-    ),
-    radial-gradient(
-      rgba(255, 255, 255, 0.04) 1px,
-      transparent 1px
-    );
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 
-  background-size:
-    100% 100%,
-    5px 5px,
-    2px 2px;
-
-  background-position:
-    center,
-    0 0,
-    1px 1px;
+  background-size: 100% 100%, 5px 5px, 2px 2px;
+  background-position: center, 0 0, 1px 1px;
 }
 
 /* =========================
-   GLOBAL WIDTH SAFETY
+   MOBILE TEXT CLIP SAFEGUARDS
    ========================= */
 html,
 body,
@@ -43,15 +28,16 @@ body,
 #quartz-body {
   width: 100%;
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  max-width: 100%;
 }
 
-/* Wrap long strings in reading content */
 p,
 li,
 blockquote,
@@ -68,7 +54,6 @@ em {
   hyphens: auto;
 }
 
-/* Media should never push width */
 img,
 svg,
 video,
@@ -77,7 +62,6 @@ canvas {
   height: auto;
 }
 
-/* Code blocks scroll internally, not the page */
 pre {
   max-width: 100%;
   overflow-x: auto;
@@ -105,18 +89,15 @@ code {
   padding: 0 !important;
 }
 
-/* Banner wrapper has inline margin-bottom, override it */
 .center .page-header header > div {
   margin-bottom: 0 !important;
 }
 
-/* Kill default margins on banner containers */
 .center .page-header figure,
 .center .page-header picture {
   margin: 0 !important;
 }
 
-/* Ensure images do not create inline spacing */
 .center .page-header img,
 .center .page-header a {
   display: block;
@@ -131,7 +112,6 @@ code {
   padding-top: 1rem !important;
 }
 
-/* Tighten left title and right graph spacing */
 .left.sidebar .page-title {
   margin-top: 0 !important;
 }
@@ -141,7 +121,6 @@ code {
   padding-top: 0 !important;
 }
 
-/* Keep columns aligned at the top */
 #quartz-body {
   align-items: flex-start !important;
 }
@@ -150,7 +129,7 @@ code {
    FAKE H1 HERO TITLE
    ========================= */
 .avv-title {
-  white-space: nowrap; /* desktop */
+  white-space: nowrap;
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 500;
   line-height: 1.08;
@@ -169,7 +148,6 @@ code {
   display: inline;
 }
 
-/* Gradient underline accent */
 .avv-title::after {
   content: "";
   display: block;
@@ -211,9 +189,6 @@ code {
   letter-spacing: 0.01em;
 }
 
-/* =========================
-   HERO ENTRANCE ANIMATION
-   ========================= */
 @keyframes avvFadeIn {
   from {
     opacity: 0;
@@ -235,20 +210,18 @@ code {
   margin-top: 0.25rem !important;
 }
 
-/* Pull date / read time tight under header image */
 .center .page-header .popover-hint,
 .center .page-header .content-meta {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Small, controlled breathing room */
 .center .page-header .content-meta {
   margin-bottom: 0.35rem !important;
 }
 
 /* =========================
-   TOP-LEFT SITE TITLE (DESKTOP)
+   TOP-LEFT SITE TITLE
    ========================= */
 .left.sidebar .page-title a {
   font-weight: 600;
@@ -271,6 +244,29 @@ code {
   text-shadow:
     0 0 14px rgba(196, 60, 60, 0.25),
     0 0 14px rgba(31, 78, 216, 0.25);
+}
+
+/* =========================
+   MOBILE FIXES
+   ========================= */
+@media (max-width: 700px) {
+  .avv-title {
+    white-space: normal !important;
+    max-width: 92vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+
+    text-align: center !important;
+    line-height: 1.15 !important;
+  }
+
+  .avv-title::after {
+    width: min(360px, 92vw);
+  }
 }
 
 /* =========================
@@ -318,115 +314,65 @@ code {
 }
 
 /* =========================
-   MOBILE: FIX RIGHT EDGE CUT OFF AND HERO WRAP
+   FORCE DARK MODE ONLY
+   ========================= */
+/* Prevent light scheme rendering on browsers that auto-switch */
+:root {
+  color-scheme: dark;
+}
+
+/* =========================
+   MOBILE HEADER: FIX TITLE VISIBILITY AND SHRINK SEARCH
    ========================= */
 @media (max-width: 700px) {
-  /* Do not allow the page to create a hidden wider viewport */
-  html,
-  body {
-    overflow-x: hidden !important;
-  }
-
-  /* Flex shrink fixes (prevents cut off on the right) */
-  #quartz-body,
-  .center,
-  main,
-  article,
-  .content,
-  .page,
-  .page-content,
-  .content-container,
+  /* Let header items shrink properly */
   header,
   nav,
-  .page-header,
-  .page-header header {
-    min-width: 0 !important;
-    max-width: 100% !important;
-  }
-
-  /* Ensure main content column spans viewport */
-  .center {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* HERO TITLE: wrap by words, not characters, and stay inside viewport */
-  .avv-title {
-    white-space: normal !important;
-    max-width: 92vw !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    hyphens: none !important;
-
-    text-align: center !important;
-    line-height: 1.15 !important;
-    text-wrap: balance;
-  }
-
-  /* Keep underline inside viewport */
-  .avv-title::after {
-    width: min(360px, 92vw);
-  }
-
-  /* MOBILE TOP LEFT TITLE: keep readable, never stack per character */
-  .left.sidebar {
-    width: 100% !important;
-    max-width: 100% !important;
+  header * {
     min-width: 0 !important;
   }
 
+  /* Hide the book icon and the theme toggle */
+  header a[aria-label*="Reader"],
+  header a[title*="Reader"],
+  header .reader,
+  header .book,
+  header button[aria-label*="theme"],
+  header button[title*="theme"],
+  header .theme-toggle,
+  header .darkmode,
+  header .lightmode,
+  header svg[data-icon*="book"],
+  header svg[data-icon*="moon"] {
+    display: none !important;
+  }
+
+  /* Make site title always fully visible */
   .left.sidebar .page-title {
-    margin: 0 !important;
     min-width: 0 !important;
-    max-width: 100% !important;
-  }
-
-  .left.sidebar .page-title a {
-    display: block !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-
-    overflow-wrap: normal !important;
-    word-break: keep-all !important;
-    hyphens: none !important;
-  }
-}
-/* =========================
-   MOBILE HEADER: SHOW A-V-S-V
-   ========================= */
-@media (max-width: 700px) {
-  /* Header row must be flexible */
-  header,
-  nav {
-    min-width: 0 !important;
-  }
-
-  /* Protect site title width */
-  .left.sidebar .page-title a {
     flex: 0 0 auto !important;
-    max-width: none !important;
+  }
+
+  .left.sidebar .page-title a {
+    display: inline-block !important;
     white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    max-width: none !important;
+    padding-right: 0.35rem;
   }
 
-  /* Shrink the search box aggressively */
+  /* Shrink search input hard so it never steals the title space */
   header input[type="search"],
-  header .search,
   header .search input {
-    max-width: 42vw !important;   /* key line */
-    min-width: 0 !important;
-    flex: 1 1 auto !important;
+    width: 34vw !important;
+    max-width: 34vw !important;
+    flex: 0 0 34vw !important;
   }
 
-  /* If Quartz wraps search in a container */
+  /* Also shrink the search container if it exists */
   header .search {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
+    flex: 0 0 34vw !important;
+    max-width: 34vw !important;
   }
 }
