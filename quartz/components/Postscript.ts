@@ -1,10 +1,8 @@
+import { h } from "preact"
 import { QuartzComponent } from "./types"
 
-const Postscript: QuartzComponent = () => {
-  return (
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `
+const PostScript: QuartzComponent = () => {
+  const code = `
 (function () {
   function highlightActiveExplorerLink() {
     const slug = document.body?.dataset?.slug
@@ -24,10 +22,9 @@ const Postscript: QuartzComponent = () => {
   document.addEventListener('nav', highlightActiveExplorerLink)
   highlightActiveExplorerLink()
 })()
-        `,
-      }}
-    />
-  )
+  `.trim()
+
+  return h("script", { dangerouslySetInnerHTML: { __html: code } })
 }
 
 export default Postscript
