@@ -1,6 +1,47 @@
 @use "./base.scss";
 
 /* =========================
+   SIDE CAMO IMPACT (BETTER)
+   Night woodland camo: layered, small shapes, low repetition
+   ========================= */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* Keep the header clean, fade camo in lower */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  background-image:
+    /* LEFT CAMO LAYER 1 (medium scale) */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='720' viewBox='0 0 360 720'%3E%3Crect width='360' height='720' fill='none'/%3E%3Cg opacity='0.95'%3E%3Cpath fill='%23060f0a' d='M12 28 h78 v42 h-42 v36 h-36 z'/%3E%3Cpath fill='%230b1a12' d='M98 80 h64 v28 h-24 v44 h-40 z'/%3E%3Cpath fill='%23142518' d='M210 42 h84 v36 h-34 v30 h-50 z'/%3E%3Cpath fill='%2309120c' d='M40 162 h92 v34 h-36 v38 h-56 z'/%3E%3Cpath fill='%230b1a12' d='M170 150 h72 v28 h-26 v44 h-46 z'/%3E%3Cpath fill='%23142518' d='M260 148 h88 v40 h-44 v32 h-44 z'/%3E%3Cpath fill='%23060f0a' d='M22 272 h96 v38 h-40 v34 h-56 z'/%3E%3Cpath fill='%23142518' d='M150 268 h78 v34 h-30 v40 h-48 z'/%3E%3Cpath fill='%2309120c' d='M246 286 h92 v34 h-40 v42 h-52 z'/%3E%3Cpath fill='%230b1a12' d='M18 406 h104 v36 h-54 v44 h-50 z'/%3E%3Cpath fill='%23142518' d='M146 404 h80 v32 h-36 v46 h-44 z'/%3E%3Cpath fill='%23060f0a' d='M252 410 h92 v36 h-48 v42 h-44 z'/%3E%3Cpath fill='%2309120c' d='M34 536 h92 v34 h-40 v44 h-52 z'/%3E%3Cpath fill='%230b1a12' d='M160 528 h86 v36 h-40 v44 h-46 z'/%3E%3Cpath fill='%23142518' d='M258 540 h90 v34 h-44 v46 h-46 z'/%3E%3C/g%3E%3C/svg%3E"),
+
+    /* LEFT CAMO LAYER 2 (fine scale speckle) */
+    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
+
+    /* LEFT EDGE FADE */
+    linear-gradient(to right, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0) 23%),
+
+    /* RIGHT CAMO LAYER 1 */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='720' viewBox='0 0 360 720'%3E%3Crect width='360' height='720' fill='none'/%3E%3Cg opacity='0.95'%3E%3Cpath fill='%23060f0a' d='M12 28 h78 v42 h-42 v36 h-36 z'/%3E%3Cpath fill='%230b1a12' d='M98 80 h64 v28 h-24 v44 h-40 z'/%3E%3Cpath fill='%23142518' d='M210 42 h84 v36 h-34 v30 h-50 z'/%3E%3Cpath fill='%2309120c' d='M40 162 h92 v34 h-36 v38 h-56 z'/%3E%3Cpath fill='%230b1a12' d='M170 150 h72 v28 h-26 v44 h-46 z'/%3E%3Cpath fill='%23
+
+/* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
    Night forest green bias + tall pine silhouettes (SVG)
    ========================= */
@@ -635,62 +676,4 @@ svg[data-icon*="book"],
   .toc li::before {
     transition: none !important;
   }
-}
-/* =========================
-   SIDE CAMOUFLAGE IMPACT
-   Military / forest camo texture on page edges
-   ========================= */
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  pointer-events: none;
-  z-index: 0;
-
-  /* Fade in from below header so hero stays clean */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 16%,
-    rgba(0, 0, 0, 0.75) 32%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 16%,
-    rgba(0, 0, 0, 0.75) 32%,
-    rgba(0, 0, 0, 1) 100%
-  );
-
-  background-image:
-    /* LEFT CAMO */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 1200'%3E%3Cg fill='%230b1a12'%3E%3Cpath d='M0 0 L140 0 L110 60 L160 120 L90 200 L150 280 L70 360 L140 450 L60 540 L135 630 L55 720 L130 810 L50 900 L120 990 L90 1200 L0 1200 Z'/%3E%3Cpath d='M160 0 L320 0 L280 90 L330 170 L260 260 L320 350 L250 450 L310 560 L240 680 L300 800 L230 940 L290 1080 L250 1200 L160 1200 Z' fill='%23060f0a'/%3E%3Cpath d='M320 0 L600 0 L600 1200 L360 1200 L420 1100 L370 980 L460 880 L390 770 L490 680 L410 580 L520 490 L430 400 L540 320 L450 250 L560 190 L470 130 L580 80 L490 40 Z' fill='%23121f18'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 22%),
-
-    /* RIGHT CAMO (mirrored by gradient direction) */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 1200'%3E%3Cg fill='%230b1a12'%3E%3Cpath d='M0 0 L140 0 L110 60 L160 120 L90 200 L150 280 L70 360 L140 450 L60 540 L135 630 L55 720 L130 810 L50 900 L120 990 L90 1200 L0 1200 Z'/%3E%3Cpath d='M160 0 L320 0 L280 90 L330 170 L260 260 L320 350 L250 450 L310 560 L240 680 L300 800 L230 940 L290 1080 L250 1200 L160 1200 Z' fill='%23060f0a'/%3E%3Cpath d='M320 0 L600 0 L600 1200 L360 1200 L420 1100 L370 980 L460 880 L390 770 L490 680 L410 580 L520 490 L430 400 L540 320 L450 250 L560 190 L470 130 L580 80 L490 40 Z' fill='%23121f18'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(to left, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 22%);
-
-  background-repeat:
-    repeat-y,
-    no-repeat,
-    repeat-y,
-    no-repeat;
-
-  background-size:
-    320px 980px,
-    320px 100%,
-    320px 980px,
-    320px 100%;
-
-  background-position:
-    left top,
-    left top,
-    right top,
-    right top;
-
-  opacity: 0.45;
 }
