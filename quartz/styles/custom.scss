@@ -429,3 +429,39 @@ svg[data-icon*="book"],
 .reader-toggle {
   display: none !important;
 }
+/* =========================
+   ACTIVE MENU HIGHLIGHT
+   Explorer, sidebars, and header navigation
+   ========================= */
+
+/* Explorer active page */
+.explorer-content a[aria-current="page"] {
+  background-color: rgba(96, 163, 255, 0.22);
+  color: #e6f0ff;
+  border-radius: 8px;
+  box-shadow: inset 2px 0 0 rgba(96, 163, 255, 0.7);
+}
+
+/* If your Explorer uses divider rules, tint them for active link */
+.explorer-content a[aria-current="page"]::after {
+  background: rgba(96, 163, 255, 0.22);
+}
+
+/* Sidebar and header nav active page, but avoid content links */
+.left.sidebar nav a[aria-current="page"],
+.right.sidebar nav a[aria-current="page"],
+header nav a[aria-current="page"] {
+  background-color: rgba(96, 163, 255, 0.18);
+  color: #e6f0ff;
+  border-radius: 8px;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+/* Optional: make the active link slightly stronger on hover */
+.explorer-content a[aria-current="page"]:hover,
+.left.sidebar nav a[aria-current="page"]:hover,
+.right.sidebar nav a[aria-current="page"]:hover,
+header nav a[aria-current="page"]:hover {
+  background-color: rgba(96, 163, 255, 0.26);
+}
