@@ -8,17 +8,16 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
 
-    analytics: {
-      provider: "goatcounter",
-      websiteId: "aliensvsveterans", // your subdomain: aliensvsveterans.goatcounter.com
-      // host: "goatcounter.com", // optional, default is goatcounter.com
-      // scriptSrc: "https://gc.zgo.at/count.js", // optional override
-    },
+    // IMPORTANT:
+    // Analytics is handled via a custom GoatCounter component.
+    // Do NOT configure analytics here.
+    analytics: null,
 
     locale: "en-US",
 
     // Docs: no protocol, no leading or trailing slashes
     baseUrl: "www.aliensvsveterans.com",
+    canonicalUrl: "https://www.aliensvsveterans.com",
 
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
@@ -63,12 +62,17 @@ const config: QuartzConfig = {
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
-      Plugin.CreatedModifiedDate({ priority: ["frontmatter", "git", "filesystem"] }),
-      Plugin.SyntaxHighlighting({ theme: { light: "github-light", dark: "github-dark" }, keepBackground: false }),
+      Plugin.CreatedModifiedDate({
+        priority: ["frontmatter", "git", "filesystem"],
+      }),
+      Plugin.SyntaxHighlighting({
+        theme: { light: "github-light", dark: "github-dark" },
+        keepBackground: false,
+      }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
 
-      // Keep this order consistent with your working Biolectrics site
+      // Keep identical ordering with Biolectrics
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
 
@@ -84,7 +88,10 @@ const config: QuartzConfig = {
       Plugin.ContentPage(),
       Plugin.FolderPage(),
       Plugin.TagPage(),
-      Plugin.ContentIndex({ enableSiteMap: true, enableRSS: true }),
+      Plugin.ContentIndex({
+        enableSiteMap: true,
+        enableRSS: true,
+      }),
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.Favicon(),
