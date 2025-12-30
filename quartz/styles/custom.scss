@@ -384,3 +384,65 @@ code {
     line-height: 1.15;
   }
 }
+/* =========================
+   MOBILE: STOP RIGHT OVERFLOW (HEADER + HERO)
+   ========================= */
+@media (max-width: 700px) {
+  /* 1) Kill any remaining horizontal overflow at the layout level */
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  /* 2) Flex shrink fixes (this is what usually causes the “can’t go right” issue) */
+  header,
+  nav,
+  .page-header,
+  .page-header header,
+  #quartz-body,
+  .center {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* 3) Make the top bar row shrink instead of forcing width */
+  .left.sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .left.sidebar .page-title {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .left.sidebar .page-title a {
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+
+    /* prevent per-letter stacking */
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
+  }
+
+  /* 4) HERO TITLE: hard wrap by words and never exceed viewport */
+  .avv-title {
+    white-space: normal !important;
+    max-width: 92vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+
+    text-align: center !important;
+    line-height: 1.15 !important;
+  }
+}
