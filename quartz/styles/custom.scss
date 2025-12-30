@@ -366,16 +366,17 @@ code {
     min-width: 0 !important;
   }
 
-  .left.sidebar .page-title a {
-    display: inline-block !important;
-    max-width: 70vw !important;
+.left.sidebar .page-title a {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
 
-    overflow-wrap: normal !important;
-    word-break: keep-all !important;
-    hyphens: none !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  hyphens: none !important;
 
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
 }
