@@ -450,3 +450,62 @@ svg[data-icon*="book"],
   color: #e6f0ff;
   border-radius: 8px;
 }
+/* =========================
+   EXPLORER HOVER INDICATOR
+   Left rail with soft fade
+   ========================= */
+
+/* Make file links a positioning context */
+.explorer-content .explorer-ul > li > a:not(.folder-title),
+.explorer-content ul.content > li > a:not(.folder-title) {
+  position: relative;
+}
+
+/* The indicator itself, hidden by default */
+.explorer-content .explorer-ul > li > a:not(.folder-title)::before,
+.explorer-content ul.content > li > a:not(.folder-title)::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(96, 163, 255, 0.85);
+
+  transform: translateY(-50%) scale(0.92);
+  opacity: 0;
+  filter: blur(0.1px);
+
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+/* Fade in on hover */
+.explorer-content .explorer-ul > li > a:not(.folder-title):hover::before,
+.explorer-content ul.content > li > a:not(.folder-title):hover::before {
+  opacity: 0.9;
+  transform: translateY(-50%) scale(1);
+}
+
+/* Optional: keep it visible and slightly stronger for current page (Postscript) */
+.explorer-content a.is-active::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  background: rgba(96, 163, 255, 0.95);
+}
+
+/* Make hover and active transitions feel softer */
+.explorer-content .explorer-ul > li > a:not(.folder-title),
+.explorer-content ul.content > li > a:not(.folder-title) {
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .explorer-content .explorer-ul > li > a:not(.folder-title),
+  .explorer-content ul.content > li > a:not(.folder-title),
+  .explorer-content .explorer-ul > li > a:not(.folder-title)::before,
+  .explorer-content ul.content > li > a:not(.folder-title)::before {
+    transition: none !important;
+  }
+}
