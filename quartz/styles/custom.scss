@@ -503,56 +503,61 @@ svg[data-icon*="book"],
 }
 /* =========================
    TABLE OF CONTENTS CHEVRON
-   Matches Explorer behavior
+   Place marker on li so link fade does not affect it
    ========================= */
 
-/* TOC links get a left gutter */
-.toc a {
+/* Give each TOC row a gutter for the chevron */
+.toc li {
   position: relative;
-  padding-left: 24px;
-  transition: background-color 220ms ease, color 220ms ease;
+  padding-left: 22px;
 }
 
-/* Chevron indicator */
-.toc a::before {
+/* Do not add extra left padding to the link itself */
+.toc a {
+  padding-left: 0 !important;
+}
+
+/* Chevron lives on the li, not the faded link */
+.toc li::before {
   content: "›";
   position: absolute;
-  left: 10px;
-  top: 50%;
+  left: 8px;
+  top: 0.65em;
 
   font-size: 1.05rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
 
-  transform: translateY(-50%) translateX(-2px);
+  transform: translateX(-2px);
   opacity: 0;
 
   transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
 }
 
-/* Hover fade-in */
-.toc a:hover::before {
+/* Hover on the row */
+.toc li:hover::before {
   opacity: 0.95;
-  transform: translateY(-50%) translateX(0);
+  transform: translateX(0);
 }
 
-/* Active section (Quartz adds .active) */
-.toc a.active::before {
+/* Active section marker, Quartz sets .active on the link */
+.toc li:has(a.active)::before {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
+  transform: translateX(0);
   color: rgba(96, 163, 255, 0.98);
 }
 
-/* Optional: subtle background on hover */
-.toc a:hover {
+/* Optional hover background without touching text fade rules */
+.toc li:hover > a {
   background-color: rgba(96, 163, 255, 0.12);
   border-radius: 6px;
 }
 
-/* Reduced motion accessibility */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .toc a,
-  .toc a::before {
+  .toc li::before {
     transition: none !important;
   }
 }
+
