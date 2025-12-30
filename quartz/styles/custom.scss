@@ -5,7 +5,6 @@ body {
   background-color: #0b0e11;
 
   background-image:
-    /* soft vignette */
     radial-gradient(
       ellipse at center,
       rgba(255, 255, 255, 0.06) 0%,
@@ -13,14 +12,10 @@ body {
       rgba(0, 0, 0, 0.35) 70%,
       rgba(0, 0, 0, 0.6) 100%
     ),
-
-    /* coarse grain */
     radial-gradient(
       rgba(255, 255, 255, 0.08) 1px,
       transparent 1px
     ),
-
-    /* fine grain */
     radial-gradient(
       rgba(255, 255, 255, 0.04) 1px,
       transparent 1px
@@ -38,7 +33,7 @@ body {
 }
 
 /* =========================
-   MOBILE TEXT CLIP SAFEGUARDS
+   GLOBAL WIDTH SAFETY
    ========================= */
 html,
 body,
@@ -46,19 +41,16 @@ body,
 #quartz-body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
 }
 
-/* Prevent any element from forcing a wider viewport */
+/* Prevent obvious width explosions without breaking Quartz header layout */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  max-width: 100%;
 }
 
-/* Force long strings to wrap instead of running off screen
-   NOTE: do NOT apply to all <a> tags, it breaks the top-left title */
+/* Wrap long strings in reading content, not in global anchors */
 p,
 li,
 blockquote,
@@ -158,7 +150,7 @@ code {
    FAKE H1 HERO TITLE
    ========================= */
 .avv-title {
-  white-space: nowrap; /* desktop */
+  white-space: nowrap;
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 500;
   line-height: 1.08;
@@ -296,10 +288,39 @@ code {
     width: min(360px, 92vw);
   }
 
-  /* Absolute safeguard against horizontal skew */
+  /* Allow horizontal panning if anything still overflows */
+  html,
+  body,
+  #quartz-root,
   #quartz-body,
   .center {
-    overflow-x: hidden;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Flex children must be allowed to shrink */
+  #quartz-body,
+  .center,
+  main,
+  article,
+  .content {
+    min-width: 0 !important;
+  }
+
+  /* Wrap long links and strings inside the reading area only */
+  .center article a,
+  .center article p,
+  .center article li,
+  .center article blockquote {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Code blocks should scroll internally */
+  .center pre {
+    overflow-x: auto;
+    max-width: 100%;
   }
 }
 
@@ -307,12 +328,10 @@ code {
    MOBILE FONT SIZE BOOST
    ========================= */
 @media (max-width: 700px) {
-  /* Base text */
   body {
     font-size: 1.05rem;
   }
 
-  /* Reading content */
   p,
   li,
   blockquote {
@@ -320,7 +339,6 @@ code {
     line-height: 1.65;
   }
 
-  /* Headings */
   h1 {
     font-size: 1.6rem;
   }
@@ -337,13 +355,11 @@ code {
     font-size: 1.15rem;
   }
 
-  /* Sidebar + nav text */
   .left.sidebar,
   .right.sidebar {
     font-size: 0.95rem;
   }
 
-  /* Meta text (date, read time, breadcrumbs) */
   .page-meta,
   .content-meta,
   .breadcrumb,
@@ -366,17 +382,17 @@ code {
     min-width: 0 !important;
   }
 
-.left.sidebar .page-title a {
-  display: block !important;
-  width: auto !important;
-  max-width: 100% !important;
+  .left.sidebar .page-title a {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
 
-  overflow-wrap: normal !important;
-  word-break: keep-all !important;
-  hyphens: none !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
 
-  white-space: nowrap !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-}
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
 }
