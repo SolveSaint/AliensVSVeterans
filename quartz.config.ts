@@ -7,15 +7,17 @@ const config: QuartzConfig = {
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
+
     analytics: {
       provider: "goatcounter",
       options: {
         url: "https://aliensvsveterans.goatcounter.com/count",
       },
     },
+
     locale: "en-US",
 
-    // Docs: no protocol, no leading/trailing slashes
+    // Docs: no protocol, no leading or trailing slashes
     baseUrl: "www.aliensvsveterans.com",
 
     ignorePatterns: ["private", "templates", ".obsidian"],
@@ -25,7 +27,7 @@ const config: QuartzConfig = {
       defaultTheme: "dark",
 
       // Docs: this is the supported switch for font loading behavior.
-      // true = use Google CDN caching. false = download for self-contained.
+      // true = use Google CDN caching. false = download for self contained.
       cdnCaching: true,
 
       typography: {
@@ -63,10 +65,13 @@ const config: QuartzConfig = {
 
   plugins: {
     transformers: [
+      // Metadata first
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "git", "filesystem"],
       }),
+
+      // Presentation helpers that do not affect link syntax
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
@@ -74,12 +79,20 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
+
+      // Markdown dialect and text mutation
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+
+      // Derived text fields
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+
+      // Links after text mutation
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+
+      // Indexing and presentation after links
+      Plugin.TableOfContents(),
     ],
 
     filters: [Plugin.RemoveDrafts()],
