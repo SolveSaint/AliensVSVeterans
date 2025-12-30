@@ -1,6 +1,8 @@
 @use "./base.scss";
 
-/* Strong global textured background */
+/* =========================
+   STRONG GLOBAL TEXTURED BACKGROUND
+   ========================= */
 body {
   background-color: #0b0e11;
 
@@ -43,8 +45,6 @@ body,
   max-width: 100%;
 }
 
-/* Do NOT cap everything to max-width:100% globally.
-   That blocks horizontal pan and can force clipping in flex layouts. */
 *,
 *::before,
 *::after {
@@ -105,15 +105,18 @@ code {
   padding: 0 !important;
 }
 
+/* Banner wrapper has inline margin-bottom, override it */
 .center .page-header header > div {
   margin-bottom: 0 !important;
 }
 
+/* Kill default margins on banner containers */
 .center .page-header figure,
 .center .page-header picture {
   margin: 0 !important;
 }
 
+/* Ensure images do not create inline spacing */
 .center .page-header img,
 .center .page-header a {
   display: block;
@@ -128,6 +131,7 @@ code {
   padding-top: 1rem !important;
 }
 
+/* Tighten left title and right graph spacing */
 .left.sidebar .page-title {
   margin-top: 0 !important;
 }
@@ -137,6 +141,7 @@ code {
   padding-top: 0 !important;
 }
 
+/* Keep columns aligned at the top */
 #quartz-body {
   align-items: flex-start !important;
 }
@@ -145,7 +150,7 @@ code {
    FAKE H1 HERO TITLE
    ========================= */
 .avv-title {
-  white-space: nowrap;
+  white-space: nowrap; /* desktop */
   font-size: clamp(2.4rem, 4.2vw, 3.6rem);
   font-weight: 500;
   line-height: 1.08;
@@ -164,6 +169,7 @@ code {
   display: inline;
 }
 
+/* Gradient underline accent */
 .avv-title::after {
   content: "";
   display: block;
@@ -205,6 +211,9 @@ code {
   letter-spacing: 0.01em;
 }
 
+/* =========================
+   HERO ENTRANCE ANIMATION
+   ========================= */
 @keyframes avvFadeIn {
   from {
     opacity: 0;
@@ -226,18 +235,20 @@ code {
   margin-top: 0.25rem !important;
 }
 
+/* Pull date / read time tight under header image */
 .center .page-header .popover-hint,
 .center .page-header .content-meta {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
+/* Small, controlled breathing room */
 .center .page-header .content-meta {
   margin-bottom: 0.35rem !important;
 }
 
 /* =========================
-   TOP-LEFT SITE TITLE
+   TOP-LEFT SITE TITLE (DESKTOP)
    ========================= */
 .left.sidebar .page-title a {
   font-weight: 600;
@@ -307,39 +318,16 @@ code {
 }
 
 /* =========================
-   MOBILE: FIX TOP LEFT TITLE LAYOUT
+   MOBILE: FIX RIGHT EDGE CUT OFF AND HERO WRAP
    ========================= */
 @media (max-width: 700px) {
-  .left.sidebar {
-    width: 100% !important;
-    max-width: 100% !important;
+  /* Do not allow the page to create a hidden wider viewport */
+  html,
+  body {
+    overflow-x: hidden !important;
   }
 
-  .left.sidebar .page-title {
-    margin: 0 !important;
-    min-width: 0 !important;
-  }
-
-  .left.sidebar .page-title a {
-    display: block !important;
-    max-width: 100% !important;
-
-    overflow-wrap: normal !important;
-    word-break: keep-all !important;
-    hyphens: none !important;
-
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
-}
-
-/* =========================
-   MOBILE: FIX RIGHT SIDE CLIPPING IN CONTENT
-   ========================= */
-@media (max-width: 700px) {
-  /* The most common Quartz culprit is a flex child with min-width:auto.
-     Force shrink so text can wrap instead of being cut off. */
+  /* Flex shrink fixes (prevents cut off on the right) */
   #quartz-body,
   .center,
   main,
@@ -347,91 +335,22 @@ code {
   .content,
   .page,
   .page-content,
-  .content-container {
-    min-width: 0 !important;
-    max-width: 100% !important;
-  }
-
-  /* Ensure the main content column actually spans the viewport */
-  .center {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* Keep headings from creating overflow, wrap by words not letters */
-  .center h1,
-  .center h2,
-  .center h3 {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
-  }
-}
-/* =========================
-   MOBILE: HERO TITLE WRAP CLEANLY
-   ========================= */
-@media (max-width: 700px) {
-  .avv-title {
-    white-space: normal !important;
-    max-width: 100% !important;
-
-    /* allow word wrapping but never character stacking */
-    overflow-wrap: normal !important;
-    word-break: keep-all !important;
-    hyphens: none !important;
-
-    text-align: center;
-    line-height: 1.15;
-  }
-}
-/* =========================
-   MOBILE: STOP RIGHT OVERFLOW (HEADER + HERO)
-   ========================= */
-@media (max-width: 700px) {
-  /* 1) Kill any remaining horizontal overflow at the layout level */
-  html,
-  body {
-    overflow-x: hidden !important;
-  }
-
-  /* 2) Flex shrink fixes (this is what usually causes the “can’t go right” issue) */
+  .content-container,
   header,
   nav,
   .page-header,
-  .page-header header,
-  #quartz-body,
-  .center {
+  .page-header header {
     min-width: 0 !important;
     max-width: 100% !important;
   }
 
-  /* 3) Make the top bar row shrink instead of forcing width */
-  .left.sidebar {
+  /* Ensure main content column spans viewport */
+  .center {
     width: 100% !important;
     max-width: 100% !important;
-    min-width: 0 !important;
   }
 
-  .left.sidebar .page-title {
-    min-width: 0 !important;
-    max-width: 100% !important;
-  }
-
-  .left.sidebar .page-title a {
-    display: block !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-
-    /* prevent per-letter stacking */
-    overflow-wrap: normal !important;
-    word-break: keep-all !important;
-    hyphens: none !important;
-  }
-
-  /* 4) HERO TITLE: hard wrap by words and never exceed viewport */
+  /* HERO TITLE: wrap by words, not characters, and stay inside viewport */
   .avv-title {
     white-space: normal !important;
     max-width: 92vw !important;
@@ -444,5 +363,38 @@ code {
 
     text-align: center !important;
     line-height: 1.15 !important;
+    text-wrap: balance;
+  }
+
+  /* Keep underline inside viewport */
+  .avv-title::after {
+    width: min(360px, 92vw);
+  }
+
+  /* MOBILE TOP LEFT TITLE: keep readable, never stack per character */
+  .left.sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .left.sidebar .page-title {
+    margin: 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .left.sidebar .page-title a {
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
   }
 }
