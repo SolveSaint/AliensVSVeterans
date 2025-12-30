@@ -8,10 +8,14 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
 
-    // IMPORTANT:
-    // Analytics is handled via a custom GoatCounter component.
-    // Do NOT configure analytics here.
-    analytics: null,
+    analytics: {
+      provider: "goatcounter",
+      websiteId: "aliensvsveterans",
+      // Optional. If you use a self hosted GoatCounter script, set scriptSrc.
+      // scriptSrc: "https://www.aliensvsveterans.com/count.js",
+      // Optional. If your GoatCounter instance is on a custom host, set host.
+      // host: "https://YOUR_GOATCOUNTER_HOST",
+    },
 
     locale: "en-US",
 
