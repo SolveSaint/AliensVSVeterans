@@ -57,7 +57,8 @@ body,
   max-width: 100%;
 }
 
-/* Force long strings to wrap instead of running off screen */
+/* Force long strings to wrap instead of running off screen
+   NOTE: do NOT apply to all <a> tags, it breaks the top-left title */
 p,
 li,
 blockquote,
@@ -67,11 +68,8 @@ h3,
 h4,
 h5,
 h6,
-a,
 strong,
-em,
-.page-title,
-.avv-title {
+em {
   overflow-wrap: anywhere;
   word-break: break-word;
   hyphens: auto;
@@ -304,37 +302,10 @@ code {
     overflow-x: hidden;
   }
 }
-/* =========================
-   FIX MOBILE SITE TITLE STACKING
-   ========================= */
 
-/* Never allow the top left site title to break per character */
-.left.sidebar .page-title,
-.left.sidebar .page-title a {
-  overflow-wrap: normal !important;
-  word-break: normal !important;
-  hyphens: none !important;
-  white-space: nowrap !important;
-  max-width: 100%;
-}
-
-/* If the sidebar gets too narrow on mobile, keep the title readable */
-@media (max-width: 700px) {
-  .left.sidebar .page-title {
-    font-size: 1.05rem;
-    line-height: 1.1;
-  }
-
-  .left.sidebar .page-title a {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-  }
-}
 /* =========================
    MOBILE FONT SIZE BOOST
    ========================= */
-
 @media (max-width: 700px) {
   /* Base text */
   body {
@@ -378,5 +349,33 @@ code {
   .breadcrumb,
   .breadcrumbs {
     font-size: 0.85rem;
+  }
+}
+
+/* =========================
+   MOBILE: FIX TOP LEFT TITLE LAYOUT
+   ========================= */
+@media (max-width: 700px) {
+  .left.sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .left.sidebar .page-title {
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .left.sidebar .page-title a {
+    display: inline-block !important;
+    max-width: 70vw !important;
+
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 }
