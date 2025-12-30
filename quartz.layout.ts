@@ -5,7 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [Component.HeaderImage()],
-  afterBody: [GoatCounterSPA()],
+  afterBody: [Component.GoatCounterSPA()],
   footer: Component.Footer({
     links: {
       "AVSV Discord": "https://discord.gg/5zdc5RJByb",
