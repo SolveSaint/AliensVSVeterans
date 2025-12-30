@@ -1,49 +1,19 @@
 @use "./base.scss";
 
 /* =========================
-   SIDE CAMO IMPACT (BETTER)
-   Night woodland camo: layered, small shapes, low repetition
+   GLOBAL STACKING
+   Keep overlays behind content
    ========================= */
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-
-  /* Keep the header clean, fade camo in lower */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 14%,
-    rgba(0, 0, 0, 0.7) 30%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 14%,
-    rgba(0, 0, 0, 0.7) 30%,
-    rgba(0, 0, 0, 1) 100%
-  );
-
-  background-image:
-    /* LEFT CAMO LAYER 1 (medium scale) */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='720' viewBox='0 0 360 720'%3E%3Crect width='360' height='720' fill='none'/%3E%3Cg opacity='0.95'%3E%3Cpath fill='%23060f0a' d='M12 28 h78 v42 h-42 v36 h-36 z'/%3E%3Cpath fill='%230b1a12' d='M98 80 h64 v28 h-24 v44 h-40 z'/%3E%3Cpath fill='%23142518' d='M210 42 h84 v36 h-34 v30 h-50 z'/%3E%3Cpath fill='%2309120c' d='M40 162 h92 v34 h-36 v38 h-56 z'/%3E%3Cpath fill='%230b1a12' d='M170 150 h72 v28 h-26 v44 h-46 z'/%3E%3Cpath fill='%23142518' d='M260 148 h88 v40 h-44 v32 h-44 z'/%3E%3Cpath fill='%23060f0a' d='M22 272 h96 v38 h-40 v34 h-56 z'/%3E%3Cpath fill='%23142518' d='M150 268 h78 v34 h-30 v40 h-48 z'/%3E%3Cpath fill='%2309120c' d='M246 286 h92 v34 h-40 v42 h-52 z'/%3E%3Cpath fill='%230b1a12' d='M18 406 h104 v36 h-54 v44 h-50 z'/%3E%3Cpath fill='%23142518' d='M146 404 h80 v32 h-36 v46 h-44 z'/%3E%3Cpath fill='%23060f0a' d='M252 410 h92 v36 h-48 v42 h-44 z'/%3E%3Cpath fill='%2309120c' d='M34 536 h92 v34 h-40 v44 h-52 z'/%3E%3Cpath fill='%230b1a12' d='M160 528 h86 v36 h-40 v44 h-46 z'/%3E%3Cpath fill='%23142518' d='M258 540 h90 v34 h-44 v46 h-46 z'/%3E%3C/g%3E%3C/svg%3E"),
-
-    /* LEFT CAMO LAYER 2 (fine scale speckle) */
-    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-
-    /* LEFT EDGE FADE */
-    linear-gradient(to right, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0) 23%),
-
-    /* RIGHT CAMO LAYER 1 */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='720' viewBox='0 0 360 720'%3E%3Crect width='360' height='720' fill='none'/%3E%3Cg opacity='0.95'%3E%3Cpath fill='%23060f0a' d='M12 28 h78 v42 h-42 v36 h-36 z'/%3E%3Cpath fill='%230b1a12' d='M98 80 h64 v28 h-24 v44 h-40 z'/%3E%3Cpath fill='%23142518' d='M210 42 h84 v36 h-34 v30 h-50 z'/%3E%3Cpath fill='%2309120c' d='M40 162 h92 v34 h-36 v38 h-56 z'/%3E%3Cpath fill='%230b1a12' d='M170 150 h72 v28 h-26 v44 h-46 z'/%3E%3Cpath fill='%23
+#quartz-root,
+#quartz-body {
+  position: relative;
+  z-index: 1;
+}
 
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
    Night forest green bias + tall pine silhouettes (SVG)
+   Trees are part of the BODY background, so they sit above ::after
    ========================= */
 body {
   background-color: #0a120e;
@@ -52,7 +22,7 @@ body {
     /* SEAMLESS TALL PINE TREELINE, REPEATS ACROSS BOTTOM */
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.85)'%3E%3Cpath d='M0 600 L0 450 L40 390 L70 450 L110 330 L150 470 L200 310 L250 500 L300 360 L350 540 L400 380 L450 560 L500 410 L550 585 L600 430 L650 560 L700 380 L750 540 L800 360 L850 500 L900 310 L950 470 L990 330 L1030 450 L1060 390 L1100 450 L1100 600 Z'/%3E%3Cpath d='M1100 600 L1100 450 L1140 390 L1170 450 L1200 450 L1200 600 Z'/%3E%3Cpath d='M0 600 L0 450 L30 405 L55 450 L95 345 L130 465 L175 330 L215 490 L265 350 L315 525 L365 370 L415 550 L465 400 L515 575 L565 420 L615 550 L665 370 L715 525 L765 350 L815 490 L865 330 L905 465 L945 345 L970 450 L1000 405 L1030 450 L1030 600 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
 
-    /* FOG FADE ABOVE TREES, REPEATS ACROSS BOTTOM */
+    /* FOG FADE ABOVE TREES */
     linear-gradient(
       to top,
       rgba(0, 0, 0, 0.65) 0%,
@@ -61,7 +31,7 @@ body {
       rgba(10, 18, 14, 0) 86%
     ),
 
-    /* YOUR EXISTING NIGHT FOREST TEXTURE */
+    /* NIGHT FOREST TEXTURE */
     radial-gradient(
       ellipse at center,
       rgba(255, 255, 255, 0.055) 0%,
@@ -78,12 +48,12 @@ body {
       transparent 1px
     );
 
-background-size:
-  1200px 950px,
-  100% 950px,
-  100% 100%,
-  5px 5px,
-  2px 2px;
+  background-size:
+    1200px 950px,
+    100% 950px,
+    100% 100%,
+    5px 5px,
+    2px 2px;
 
   background-position:
     left bottom,
@@ -101,6 +71,87 @@ background-size:
 }
 
 /* =========================
+   SIDE CAMO IMPACT
+   Uses quartz/static/camo-side.svg
+   Placed on ::after so the BODY treeline renders above it
+   ========================= */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* Fade camo in lower so header stays clean */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0.70) 30%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0.70) 30%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  background-image:
+    /* LEFT CAMO */
+    url("/camo-side.svg"),
+    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0) 23%),
+
+    /* RIGHT CAMO */
+    url("/camo-side.svg"),
+    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px),
+    linear-gradient(to left, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0) 23%);
+
+  background-repeat:
+    repeat-y,
+    repeat,
+    no-repeat,
+    repeat-y,
+    repeat,
+    no-repeat;
+
+  background-size:
+    360px 720px,
+    4px 4px,
+    360px 100%,
+    360px 720px,
+    4px 4px,
+    360px 100%;
+
+  background-position:
+    left top,
+    left top,
+    left top,
+    right top,
+    right top,
+    right top;
+
+  opacity: 0.42;
+}
+
+/* Mobile: reduce pressure */
+@media (max-width: 700px) {
+  body::after {
+    opacity: 0.32;
+
+    background-size:
+      240px 720px,
+      4px 4px,
+      240px 100%,
+      240px 720px,
+      4px 4px,
+      240px 100%;
+  }
+}
+
+/* =========================
    GLOBAL TEXT PALETTE
    Warm neutrals tuned for dark green
    ========================= */
@@ -111,7 +162,6 @@ body,
   color: #e6ebe7;
 }
 
-/* Make common low emphasis text read cleanly on green */
 .page-meta,
 .content-meta,
 .breadcrumb,
@@ -124,7 +174,6 @@ footer {
   color: #9aa8a0;
 }
 
-/* Links */
 a {
   color: #7fb4ff;
 }
@@ -133,7 +182,6 @@ a:hover {
   color: #a7c9ff;
 }
 
-/* Headings inside articles (do not touch your hero title) */
 .center article h1,
 .center article h2,
 .center article h3,
@@ -143,7 +191,6 @@ a:hover {
   color: #f1f5f2;
 }
 
-/* Code should remain readable */
 code,
 pre {
   color: #e6ebe7;
@@ -160,14 +207,12 @@ body,
   max-width: 100%;
 }
 
-/* Prevent layout blowouts */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Media should never push width */
 img,
 svg,
 video,
@@ -176,7 +221,6 @@ canvas {
   height: auto;
 }
 
-/* Code blocks scroll internally, not the page */
 pre {
   max-width: 100%;
   overflow-x: auto;
@@ -188,7 +232,6 @@ code {
   word-break: break-word;
 }
 
-/* Wrap long text in the reading area only */
 .center article p,
 .center article li,
 .center article blockquote,
@@ -206,7 +249,6 @@ code {
   hyphens: auto;
 }
 
-/* Allow flex children to shrink on mobile */
 #quartz-body,
 .center,
 main,
@@ -302,7 +344,6 @@ article,
   opacity: 0.85;
 }
 
-/* Color tokens */
 .avv-welcome {
   color: #f2c94c;
   font-weight: 500;
@@ -387,7 +428,6 @@ article,
     0 0 14px rgba(31, 78, 216, 0.22);
 }
 
-/* Do not let the site title break per character */
 .left.sidebar .page-title,
 .left.sidebar .page-title a {
   overflow-wrap: normal !important;
@@ -412,7 +452,6 @@ article,
 
 /* =========================
    MOBILE: FIX HEADER ROW (TITLE + SEARCH)
-   Make the search box shrink so AVSV shows fully
    ========================= */
 @media (max-width: 700px) {
   .left.sidebar {
@@ -430,7 +469,6 @@ article,
     text-overflow: clip !important;
   }
 
-  /* Shrink search so the title can show */
   .left.sidebar input[type="search"],
   .left.sidebar .search input,
   .left.sidebar .searchbar input {
@@ -438,7 +476,6 @@ article,
     max-width: 9.5rem !important;
   }
 
-  /* Prevent search container from eating the row */
   .left.sidebar .search,
   .left.sidebar .searchbar {
     flex: 0 0 auto !important;
@@ -571,7 +608,6 @@ svg[data-icon*="book"],
 
 /* =========================
    EXPLORER CHEVRON INDICATOR
-   Left gutter + soft fade
    ========================= */
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
@@ -586,14 +622,11 @@ svg[data-icon*="book"],
   position: absolute;
   left: 12px;
   top: 50%;
-
   font-size: 1.15rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
-
   transform: translateY(-50%) translateX(-2px);
   opacity: 0;
-
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
@@ -620,58 +653,46 @@ svg[data-icon*="book"],
 
 /* =========================
    TABLE OF CONTENTS CHEVRON
-   No overlap, chevron unaffected by link fade
    ========================= */
-
-/* Each TOC row owns the gutter */
 .toc li {
   position: relative;
 }
 
-/* Make the link occupy the row and start after the gutter */
 .toc li > a {
   display: block;
   padding-left: 24px !important;
   border-radius: 6px;
 }
 
-/* Chevron sits in the gutter */
 .toc li::before {
   content: "›";
   position: absolute;
   left: 8px;
   top: 50%;
-
   font-size: 1.05rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
-
   transform: translateY(-50%) translateX(-2px);
   opacity: 0;
-
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
 }
 
-/* Hover fade-in */
 .toc li:hover::before {
   opacity: 0.95;
   transform: translateY(-50%) translateX(0);
 }
 
-/* Active section marker */
 .toc li:has(> a.active)::before {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
   color: rgba(96, 163, 255, 0.98);
 }
 
-/* Optional row hover background without changing text fade logic */
 .toc li > a:hover {
   background-color: rgba(96, 163, 255, 0.12);
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .toc li::before {
     transition: none !important;
