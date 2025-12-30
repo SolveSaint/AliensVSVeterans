@@ -2,12 +2,24 @@
 
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
-   Night forest green bias
+   Night forest green bias + tall pine silhouettes (SVG)
    ========================= */
 body {
   background-color: #0a120e;
 
   background-image:
+    /* TALL PINE TREELINE SILHOUETTES (BOTTOM) */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 700'%3E%3Cg fill='rgba(0,0,0,0.78)'%3E%3Cpath d='M0 700 L0 520 L25 450 L45 520 L70 410 L95 535 L125 380 L155 560 L185 430 L215 600 L245 470 L275 630 L305 500 L335 650 L365 520 L395 670 L425 540 L455 690 L485 560 L515 700 Z'/%3E%3Cpath d='M500 700 L520 520 L545 440 L565 520 L590 400 L615 545 L645 365 L675 575 L705 420 L735 610 L765 465 L795 640 L825 490 L855 660 L885 515 L915 680 L945 535 L975 695 L1005 555 L1035 700 Z'/%3E%3Cpath d='M980 700 L1005 520 L1035 435 L1060 520 L1090 390 L1120 545 L1155 355 L1190 580 L1225 415 L1260 615 L1295 455 L1330 645 L1365 485 L1400 665 L1435 510 L1470 685 L1505 530 L1540 697 L1575 555 L1600 700 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    /* SOFT FOG FADE ABOVE THE TREES */
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.58) 0%,
+      rgba(10, 18, 14, 0.42) 32%,
+      rgba(10, 18, 14, 0.22) 58%,
+      rgba(10, 18, 14, 0) 86%
+    ),
+
+    /* YOUR EXISTING NIGHT FOREST TEXTURE */
     radial-gradient(
       ellipse at center,
       rgba(255, 255, 255, 0.055) 0%,
@@ -25,14 +37,25 @@ body {
     );
 
   background-size:
+    100% 520px,  /* treeline height */
+    100% 520px,  /* fog fade matches treeline height */
     100% 100%,
     5px 5px,
     2px 2px;
 
   background-position:
+    center bottom,
+    center bottom,
     center,
     0 0,
     1px 1px;
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    repeat,
+    repeat;
 }
 
 /* =========================
