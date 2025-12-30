@@ -2,6 +2,7 @@
 created: 12/28/2025 1:00 PM
 updated: 12/30/2025 3:01 PM
 title: AVSV
+description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
   - AVSV
   - Quartz
