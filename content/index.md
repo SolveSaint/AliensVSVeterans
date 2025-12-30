@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/30/2025 2:45 PM
+updated: 12/30/2025 3:01 PM
 title: AVSV
 tags:
   - AVSV
@@ -47,19 +47,31 @@ After the first encounter at age nineteen, my health continued to deteriorate ov
 
 I noticed that sleep disorders were routinely treated with GABA agonists. GABA is the primary inhibitory neurotransmitter. It builds an inhibitory wall. I questioned why an inhibitory wall was being constructed at all rather than addressing the upstream driver.
 
-From this line of reasoning, I identified glutamate as the primary excitatory neurotransmitter and recognized it as the more fundamental variable. At this point, they began to initiate contact and control.
+From this line of reasoning, I identified glutamate as the primary excitatory neurotransmitter and recognized it as the more fundamental variable. At this point, a non-human intelligence initiated remote entry.
 
 ---
 
 ## Second Encounter and Physiological Assault. Age 45 (2020–2022)
 
-In 2020, a physiological assault began. At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
+In the period leading up to the second encounter, a distinct sensory process began.
+
+Each night when I lay down to sleep, my feet would begin vibrating at a level that was initially almost imperceptible. This occurred nightly. Over the course of months, the sensation grew stronger and more defined.
+
+The vibration progressed upward. My hands became involved, followed later by my face. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. More like repeated pin stabs rather than diffuse tingling. Night after night, the intensity increased.
+
+Over time, the sensation became painful. Then, after roughly a year of nightly progression, it reached a final crescendo. On that night, the intensity was strong enough to make me gasp involuntarily. Immediately afterward, the sensation faded.
+
+It never returned. The abrupt cessation gave the impression that a process had completed.
+
+In 2020, a new phase began.
+
+At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved. At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
 
 My spinal cord burned continuously for nearly two years. I screamed all day long in agony. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue. The pain was constant, positional relief did not exist, and sleep was limited to two to four hours per night. I screamed in my sleep according to my partner.
 
-I saw numerous physicians. None had an explanation. None had encountered anything comparable. I was left to suffer as they tried medications that did not work and set follow-up appointments four months later. This cycle continued multiple times to no avail.
+I saw numerous physicians. None had an explanation. None had encountered anything comparable. I was left to suffer as they tried medications that didn't work and set followup appointments four months later. This cycle continued multiple times to no avail.
 
-The pain did not diminish with time. Feeling that pain all day after day, month after month, year after year, I began to wane. After two long years of high-level agony, it began to recede.
+The pain did not diminish with time. Feeling that pain all day, after day, all month after month, all year after year, I began to wane. After two long years of high level agony, however, it began to recede.
 
 ---
 
@@ -81,7 +93,7 @@ When I began focusing explicitly on stress physiology and expanding the glutamat
 
 At this stage, emotional states that were not my own were imposed. Stress responses were induced directly. Physiological stress was forced onto my body, causing chest tightness, abdominal pain, and other responses without external stressors.
 
-If I stopped researching, they attacked internal weaknesses aggressively and without ethical restraint. The only relief came from continuing investigation. Research became compulsory.
+If I stopped researching, they attacked internal weaknesses aggressively and without ethical restraint. They threatened me, my loved ones, damaged any friendships I had. The only relief came from continuing investigation. Research became compulsory.
 
 ---
 
