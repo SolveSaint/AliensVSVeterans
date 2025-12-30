@@ -72,16 +72,15 @@ body {
 
 /* =========================
    SIDE CAMO IMPACT
-   Use quartz/static/camo-side.svg
-   Visible on GH Pages baseUrl
-   Trees stay on top because this is on html::before
+   Uses #quartz-root::before so Quartz cannot override it
+   Trees remain on top
    ========================= */
 
-html {
+#quartz-root {
   position: relative;
 }
 
-html::before {
+#quartz-root::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -104,13 +103,13 @@ html::before {
   );
 
   background-image:
-    url("camo-side.svg"),
+    url("/camo-side.svg"),
     radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0) 26%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 28%),
 
-    url("camo-side.svg"),
+    url("/camo-side.svg"),
     radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-    linear-gradient(to left, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0) 26%);
+    linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 28%);
 
   background-repeat:
     repeat-y,
@@ -137,25 +136,19 @@ html::before {
     right top;
 
   background-blend-mode: multiply, normal, normal, multiply, normal, normal;
-  opacity: 1.00;
+  opacity: 0.85;
 }
 
-/* Put body and content above the html camo layer */
-body {
+/* Ensure content and trees sit above camo */
+body,
+#quartz-body {
   position: relative;
   z-index: 1;
 }
 
-#quartz-root,
-#quartz-body {
-  position: relative;
-  z-index: 2;
-}
-
 @media (max-width: 700px) {
-  html::before {
-    opacity: 0.60;
-
+  #quartz-root::before {
+    opacity: 0.6;
     background-size:
       280px 820px,
       4px 4px,
