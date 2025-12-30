@@ -72,42 +72,45 @@ body {
 
 /* =========================
    SIDE CAMO IMPACT
-   Uses quartz/static/camo-side.svg
-   Placed on ::after so the BODY treeline renders above it
+   Use quartz/static/camo-side.svg
+   Visible on GH Pages baseUrl
+   Trees stay on top because this is on html::before
    ========================= */
-body::after {
+
+html {
+  position: relative;
+}
+
+html::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 
-  /* Fade camo in lower so header stays clean */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 14%,
-    rgba(0, 0, 0, 0.70) 30%,
+    rgba(0, 0, 0, 0) 12%,
+    rgba(0, 0, 0, 0.65) 28%,
     rgba(0, 0, 0, 1) 100%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 14%,
-    rgba(0, 0, 0, 0.70) 30%,
+    rgba(0, 0, 0, 0) 12%,
+    rgba(0, 0, 0, 0.65) 28%,
     rgba(0, 0, 0, 1) 100%
   );
 
   background-image:
-    /* LEFT CAMO */
-    url("/camo-side.svg"),
-    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0) 23%),
+    url("camo-side.svg"),
+    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0) 26%),
 
-    /* RIGHT CAMO */
-    url("/camo-side.svg"),
-    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px),
-    linear-gradient(to left, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0) 23%);
+    url("camo-side.svg"),
+    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
+    linear-gradient(to left, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0) 26%);
 
   background-repeat:
     repeat-y,
@@ -118,12 +121,12 @@ body::after {
     no-repeat;
 
   background-size:
-    360px 720px,
+    420px 820px,
     4px 4px,
-    360px 100%,
-    360px 720px,
+    420px 100%,
+    420px 820px,
     4px 4px,
-    360px 100%;
+    420px 100%;
 
   background-position:
     left top,
@@ -133,21 +136,33 @@ body::after {
     right top,
     right top;
 
-  opacity: 0.42;
+  background-blend-mode: multiply, normal, normal, multiply, normal, normal;
+  opacity: 0.75;
 }
 
-/* Mobile: reduce pressure */
+/* Put body and content above the html camo layer */
+body {
+  position: relative;
+  z-index: 1;
+}
+
+#quartz-root,
+#quartz-body {
+  position: relative;
+  z-index: 2;
+}
+
 @media (max-width: 700px) {
-  body::after {
-    opacity: 0.32;
+  html::before {
+    opacity: 0.60;
 
     background-size:
-      240px 720px,
+      280px 820px,
       4px 4px,
-      240px 100%,
-      240px 720px,
+      280px 100%,
+      280px 820px,
       4px 4px,
-      240px 100%;
+      280px 100%;
   }
 }
 
