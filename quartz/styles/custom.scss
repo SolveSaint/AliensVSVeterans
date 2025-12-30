@@ -637,69 +637,106 @@ svg[data-icon*="book"],
   }
 }
 /* =========================
-   SIDE FOREST IMPACT
-   Subtle pine mass on left and right edges
+   IMMEDIATE IMPACT OVERLAY
+   Vignette + side forest that starts mid page
    ========================= */
-body {
-  position: relative;
-}
 
-/* Side silhouettes live behind Quartz content */
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  bottom: 0;
-
-  width: 320px; /* increase for stronger side pressure */
-  pointer-events: none;
-
-  z-index: 0;
-  opacity: 0.5;
-
-  /* Slight softness so it blends with your dot texture */
-  filter: blur(0.3px);
-
-  /* Two layers: repeating pine strip + a fade gradient into the page */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.82)'%3E%3Cpath d='M0 0 L310 0 L260 70 L310 140 L230 230 L305 320 L215 420 L300 520 L205 620 L295 720 L195 830 L290 940 L185 1060 L260 1200 L0 1200 Z'/%3E%3Cpath d='M310 0 L560 0 L500 85 L555 170 L470 270 L545 365 L455 475 L535 585 L445 700 L525 820 L435 950 L515 1085 L460 1200 L310 1200 Z' opacity='0.92'/%3E%3Cpath d='M560 0 L900 0 L900 1200 L600 1200 L655 1110 L600 1020 L690 930 L610 850 L705 770 L615 690 L720 620 L620 545 L735 480 L630 415 L750 355 L640 300 L765 245 L650 200 L780 155 L660 115 L795 80 L670 40 Z' opacity='0.88'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.78) 0%,
-      rgba(0, 0, 0, 0.38) 45%,
-      rgba(0, 0, 0, 0) 100%
-    );
-
-  background-repeat: repeat-y, no-repeat;
-  background-size: 320px 980px, 100% 100%;
-  background-position: left top, left top;
-}
-
-/* Left side */
-body::before {
-  left: 0;
-}
-
-/* Right side, mirrored */
-body::after {
-  right: 0;
-  transform: scaleX(-1);
-}
-
-/* Keep Quartz layers above the side silhouettes */
+/* Keep Quartz content above our overlays */
 #quartz-root,
 #quartz-body {
   position: relative;
   z-index: 1;
 }
 
-/* Mobile: reduce side pressure */
+/* Global vignette and edge pressure */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* Corners and side darkening, subtle but immediate */
+  background:
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 75%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0) 18%, rgba(0, 0, 0, 0) 82%, rgba(0, 0, 0, 0.42) 100%);
+
+  opacity: 0.85;
+}
+
+/* Side silhouettes, but they fade in lower so they do not fight your header */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  /* This mask makes the sides start around 22 percent down the viewport */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 18%,
+    rgba(0, 0, 0, 0.85) 34%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 18%,
+    rgba(0, 0, 0, 0.85) 34%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  /* Two repeating vertical strips, left and right, mirrored */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.86)'%3E%3Cpath d='M0 0 L320 0 L270 80 L320 160 L240 260 L315 355 L225 470 L310 585 L215 710 L300 845 L205 990 L285 1140 L250 1200 L0 1200 Z'/%3E%3Cpath d='M320 0 L560 0 L505 95 L555 190 L475 300 L545 405 L460 530 L535 670 L445 820 L520 980 L470 1200 L320 1200 Z' opacity='0.92'/%3E%3Cpath d='M560 0 L900 0 L900 1200 L610 1200 L665 1115 L610 1030 L690 940 L620 860 L705 780 L625 700 L720 625 L635 550 L735 485 L645 415 L750 355 L655 300 L765 245 L665 200 L780 155 L675 115 L795 80 L685 40 Z' opacity='0.88'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(to right, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0) 22%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.86)'%3E%3Cpath d='M0 0 L320 0 L270 80 L320 160 L240 260 L315 355 L225 470 L310 585 L215 710 L300 845 L205 990 L285 1140 L250 1200 L0 1200 Z'/%3E%3Cpath d='M320 0 L560 0 L505 95 L555 190 L475 300 L545 405 L460 530 L535 670 L445 820 L520 980 L470 1200 L320 1200 Z' opacity='0.92'/%3E%3Cpath d='M560 0 L900 0 L900 1200 L610 1200 L665 1115 L610 1030 L690 940 L620 860 L705 780 L625 700 L720 625 L635 550 L735 485 L645 415 L750 355 L655 300 L765 245 L665 200 L780 155 L675 115 L795 80 L685 40 Z' opacity='0.88'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(to left, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0) 22%);
+
+  background-repeat:
+    repeat-y,
+    no-repeat,
+    repeat-y,
+    no-repeat;
+
+  background-size:
+    360px 980px,
+    360px 100%,
+    360px 980px,
+    360px 100%;
+
+  background-position:
+    left top,
+    left top,
+    right top,
+    right top;
+
+  /* Mirror the right strip by flipping the third layer visually using background only */
+  /* The separate right SVG is the same. The gradient handles the falloff. */
+
+  opacity: 0.5;
+}
+
+/* Mobile: reduce pressure so it does not crowd */
 @media (max-width: 700px) {
-  body::before,
+  body::before {
+    opacity: 0.75;
+  }
+
   body::after {
-    width: 180px;
-    opacity: 0.38;
-    background-size: 180px 920px, 100% 100%;
+    opacity: 0.35;
+
+    background-size:
+      220px 920px,
+      220px 100%,
+      220px 920px,
+      220px 100%;
   }
 }
+
