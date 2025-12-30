@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/29/2025 8:18 AM
+updated: 12/29/2025 2:56 PM
 title: AVSV
 tags:
   - AVSV
@@ -18,6 +18,10 @@ tags:
 > Use the sidebar on desktop or the menu icon on mobile to explore posts at your leisure.
 
 ---
+
+## About Me
+My father was a combat wounded Vietnam veteran who was hit with 8 rounds and mortar shrapnel and survived. I had issues with my muscles from a young age. Doctors said this was tendonitis and I would grow out of it, so everyone ignored it. I developed Scoliosis over the course of youth due to constant heightened muscle tone. When I was 19, I was staying at my mother's for a couple weeks, a house on a dead end road out in a deep pine forest. I was asleep and a whirring sound woke me. Whatever it was making the whirring sound became louder as it approached my house from the front. I propped myself up on my elbow and steadily looked out the window, stuck in inaction. It was technological in nature and not a sound I've ever heard before or after. It slowly passed by and faded. I told my father the next day by phone as he wasn't living there, and he aggressively told me to forget about it. This was due to public perception.
+
 ## The Gray Trap
 A gray alien has taken partial control of my body, using advanced remote technology. This began in 2020. I was put through an extremely painful process that caused my spinal cord to burn horribly for around 2 years. This was accompanied by constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.  How this occurred...
 

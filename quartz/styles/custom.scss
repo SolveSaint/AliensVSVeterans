@@ -38,6 +38,66 @@ body {
 }
 
 /* =========================
+   MOBILE TEXT CLIP SAFEGUARDS
+   ========================= */
+html,
+body,
+#quartz-root,
+#quartz-body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent any element from forcing a wider viewport */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Force long strings to wrap instead of running off screen */
+p,
+li,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+strong,
+em,
+.page-title,
+.avv-title {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Media should never push width */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Code blocks scroll internally, not the page */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================
    GLOBAL LAYOUT PULL-UP
    ========================= */
 #quartz-root,
@@ -55,7 +115,7 @@ body {
   padding: 0 !important;
 }
 
-/* Banner wrapper has inline margin-bottom — override it */
+/* Banner wrapper has inline margin-bottom, override it */
 .center .page-header header > div {
   margin-bottom: 0 !important;
 }
@@ -204,7 +264,6 @@ body {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
-  color: #cfd6e6;
 
   background: linear-gradient(
     90deg,
