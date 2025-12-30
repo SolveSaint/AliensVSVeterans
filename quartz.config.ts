@@ -8,7 +8,10 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "goatcounter",
+      options: {
+        url: "https://aliensvsveterans.goatcounter.com/count",
+      },
     },
     locale: "en-US",
 
