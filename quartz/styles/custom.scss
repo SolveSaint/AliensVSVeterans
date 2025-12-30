@@ -637,67 +637,42 @@ svg[data-icon*="book"],
   }
 }
 /* =========================
-   IMMEDIATE IMPACT OVERLAY
-   Vignette + side forest that starts mid page
+   SIDE CAMOUFLAGE IMPACT
+   Military / forest camo texture on page edges
    ========================= */
 
-/* Keep Quartz content above our overlays */
-#quartz-root,
-#quartz-body {
-  position: relative;
-  z-index: 1;
-}
-
-/* Global vignette and edge pressure */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-
-  /* Corners and side darkening, subtle but immediate */
-  background:
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 75%, rgba(0, 0, 0, 0.62) 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0) 18%, rgba(0, 0, 0, 0) 82%, rgba(0, 0, 0, 0.42) 100%);
-
-  opacity: 0.85;
-}
-
-/* Side silhouettes, but they fade in lower so they do not fight your header */
 body::after {
   content: "";
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
 
   pointer-events: none;
   z-index: 0;
 
-  /* This mask makes the sides start around 22 percent down the viewport */
+  /* Fade in from below header so hero stays clean */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 18%,
-    rgba(0, 0, 0, 0.85) 34%,
+    rgba(0, 0, 0, 0) 16%,
+    rgba(0, 0, 0, 0.75) 32%,
     rgba(0, 0, 0, 1) 100%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 18%,
-    rgba(0, 0, 0, 0.85) 34%,
+    rgba(0, 0, 0, 0) 16%,
+    rgba(0, 0, 0, 0.75) 32%,
     rgba(0, 0, 0, 1) 100%
   );
 
-  /* Two repeating vertical strips, left and right, mirrored */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.86)'%3E%3Cpath d='M0 0 L320 0 L270 80 L320 160 L240 260 L315 355 L225 470 L310 585 L215 710 L300 845 L205 990 L285 1140 L250 1200 L0 1200 Z'/%3E%3Cpath d='M320 0 L560 0 L505 95 L555 190 L475 300 L545 405 L460 530 L535 670 L445 820 L520 980 L470 1200 L320 1200 Z' opacity='0.92'/%3E%3Cpath d='M560 0 L900 0 L900 1200 L610 1200 L665 1115 L610 1030 L690 940 L620 860 L705 780 L625 700 L720 625 L635 550 L735 485 L645 415 L750 355 L655 300 L765 245 L665 200 L780 155 L675 115 L795 80 L685 40 Z' opacity='0.88'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(to right, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0) 22%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.86)'%3E%3Cpath d='M0 0 L320 0 L270 80 L320 160 L240 260 L315 355 L225 470 L310 585 L215 710 L300 845 L205 990 L285 1140 L250 1200 L0 1200 Z'/%3E%3Cpath d='M320 0 L560 0 L505 95 L555 190 L475 300 L545 405 L460 530 L535 670 L445 820 L520 980 L470 1200 L320 1200 Z' opacity='0.92'/%3E%3Cpath d='M560 0 L900 0 L900 1200 L610 1200 L665 1115 L610 1030 L690 940 L620 860 L705 780 L625 700 L720 625 L635 550 L735 485 L645 415 L750 355 L655 300 L765 245 L665 200 L780 155 L675 115 L795 80 L685 40 Z' opacity='0.88'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(to left, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0) 22%);
+    /* LEFT CAMO */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 1200'%3E%3Cg fill='%230b1a12'%3E%3Cpath d='M0 0 L140 0 L110 60 L160 120 L90 200 L150 280 L70 360 L140 450 L60 540 L135 630 L55 720 L130 810 L50 900 L120 990 L90 1200 L0 1200 Z'/%3E%3Cpath d='M160 0 L320 0 L280 90 L330 170 L260 260 L320 350 L250 450 L310 560 L240 680 L300 800 L230 940 L290 1080 L250 1200 L160 1200 Z' fill='%23060f0a'/%3E%3Cpath d='M320 0 L600 0 L600 1200 L360 1200 L420 1100 L370 980 L460 880 L390 770 L490 680 L410 580 L520 490 L430 400 L540 320 L450 250 L560 190 L470 130 L580 80 L490 40 Z' fill='%23121f18'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 22%),
+
+    /* RIGHT CAMO (mirrored by gradient direction) */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 1200'%3E%3Cg fill='%230b1a12'%3E%3Cpath d='M0 0 L140 0 L110 60 L160 120 L90 200 L150 280 L70 360 L140 450 L60 540 L135 630 L55 720 L130 810 L50 900 L120 990 L90 1200 L0 1200 Z'/%3E%3Cpath d='M160 0 L320 0 L280 90 L330 170 L260 260 L320 350 L250 450 L310 560 L240 680 L300 800 L230 940 L290 1080 L250 1200 L160 1200 Z' fill='%23060f0a'/%3E%3Cpath d='M320 0 L600 0 L600 1200 L360 1200 L420 1100 L370 980 L460 880 L390 770 L490 680 L410 580 L520 490 L430 400 L540 320 L450 250 L560 190 L470 130 L580 80 L490 40 Z' fill='%23121f18'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(to left, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 22%);
 
   background-repeat:
     repeat-y,
@@ -706,10 +681,10 @@ body::after {
     no-repeat;
 
   background-size:
-    360px 980px,
-    360px 100%,
-    360px 980px,
-    360px 100%;
+    320px 980px,
+    320px 100%,
+    320px 980px,
+    320px 100%;
 
   background-position:
     left top,
@@ -717,26 +692,5 @@ body::after {
     right top,
     right top;
 
-  /* Mirror the right strip by flipping the third layer visually using background only */
-  /* The separate right SVG is the same. The gradient handles the falloff. */
-
-  opacity: 0.5;
+  opacity: 0.45;
 }
-
-/* Mobile: reduce pressure so it does not crowd */
-@media (max-width: 700px) {
-  body::before {
-    opacity: 0.75;
-  }
-
-  body::after {
-    opacity: 0.35;
-
-    background-size:
-      220px 920px,
-      220px 100%,
-      220px 920px,
-      220px 100%;
-  }
-}
-
