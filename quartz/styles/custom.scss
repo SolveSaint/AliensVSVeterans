@@ -304,3 +304,30 @@ code {
     overflow-x: hidden;
   }
 }
+/* =========================
+   FIX MOBILE SITE TITLE STACKING
+   ========================= */
+
+/* Never allow the top left site title to break per character */
+.left.sidebar .page-title,
+.left.sidebar .page-title a {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none !important;
+  white-space: nowrap !important;
+  max-width: 100%;
+}
+
+/* If the sidebar gets too narrow on mobile, keep the title readable */
+@media (max-width: 700px) {
+  .left.sidebar .page-title {
+    font-size: 1.05rem;
+    line-height: 1.1;
+  }
+
+  .left.sidebar .page-title a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+  }
+}
