@@ -1,625 +1,6 @@
-@use "./base.scss";
-
-/* =========================
-   GLOBAL STACKING
-   Keep overlays behind content and do not break scrolling
-   ========================= */
-
-#quartz-root,
-#quartz-body {
-  position: relative;
-  z-index: 1;
-}
-
-/* Ensure our overlay can sit behind everything without changing layout */
-#quartz-root {
-  isolation: isolate;
-}
-
-/* =========================
-   STRONG GLOBAL TEXTURED BACKGROUND
-   Night forest green bias + tall pine silhouettes (SVG)
-   Trees are on BODY background so they sit above the camo overlay
-   ========================= */
-
-body {
-  background-color: #0a120e;
-
-  background-image:
-    /* SEAMLESS TALL PINE TREELINE, REPEATS ACROSS BOTTOM */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.86)'%3E%3Cpath d='M0 800 L0 520 L40 430 L70 520 L110 360 L150 560 L200 330 L250 620 L300 390 L350 700 L400 420 L450 740 L500 460 L550 790 L600 480 L650 740 L700 420 L750 700 L800 390 L850 620 L900 330 L950 560 L990 360 L1030 520 L1060 430 L1100 520 L1100 800 Z'/%3E%3Cpath d='M1100 800 L1100 520 L1140 430 L1170 520 L1200 520 L1200 800 Z'/%3E%3Cpath d='M0 800 L0 520 L30 450 L55 520 L95 380 L130 560 L175 350 L215 610 L265 380 L315 690 L365 410 L415 730 L465 450 L515 780 L565 470 L615 730 L665 410 L715 690 L765 380 L815 610 L865 350 L905 560 L945 380 L970 520 L1000 450 L1030 520 L1030 800 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
-
-    /* FOG FADE ABOVE TREES */
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.68) 0%,
-      rgba(10, 18, 14, 0.46) 34%,
-      rgba(10, 18, 14, 0.24) 60%,
-      rgba(10, 18, 14, 0) 88%
-    ),
-
-    /* NIGHT FOREST TEXTURE */
-    radial-gradient(
-      ellipse at center,
-      rgba(255, 255, 255, 0.055) 0%,
-      rgba(255, 255, 255, 0.028) 35%,
-      rgba(0, 0, 0, 0.36) 70%,
-      rgba(0, 0, 0, 0.64) 100%
-    ),
-    radial-gradient(
-      rgba(255, 255, 255, 0.07) 1px,
-      transparent 1px
-    ),
-    radial-gradient(
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    1200px 980px,
-    100% 980px,
-    100% 100%,
-    5px 5px,
-    2px 2px;
-
-  background-position:
-    left bottom,
-    center bottom,
-    center,
-    0 0,
-    1px 1px;
-
-  background-repeat:
-    repeat-x,
-    no-repeat,
-    no-repeat,
-    repeat,
-    repeat;
-}
-
-/* =========================
-   SIDE CAMO IMPACT
-   Keep it behind content and behind the BODY background trees
-   Use /static path for Quartz static emitter
-   ========================= */
-
-#quartz-root::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  /* Critical: stay behind everything in quartz-root stacking context */
-  z-index: -1;
-
-  /* Keep header area clean */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 12%,
-    rgba(0, 0, 0, 0.65) 28%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 12%,
-    rgba(0, 0, 0, 0.65) 28%,
-    rgba(0, 0, 0, 1) 100%
-  );
-
-  background-image:
-    /* Left camo */
-    url("/static/camo-side.svg"),
-    /* Left speckle */
-    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-    /* Left edge fade */
-    linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0) 32%),
-
-    /* Right camo */
-    url("/static/camo-side.svg"),
-    /* Right speckle */
-    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-    /* Right edge fade */
-    linear-gradient(to left, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0) 32%);
-
-  background-repeat:
-    repeat-y,
-    repeat,
-    no-repeat,
-    repeat-y,
-    repeat,
-    no-repeat;
-
-  background-size:
-    560px 980px,
-    5px 5px,
-    32vw 100%,
-    560px 980px,
-    5px 5px,
-    32vw 100%;
-
-  background-position:
-    left top,
-    left top,
-    left top,
-    right top,
-    right top,
-    right top;
-
-  background-blend-mode:
-    multiply,
-    normal,
-    normal,
-    multiply,
-    normal,
-    normal;
-
-  /* Make it actually visible */
-  opacity: 0.45;
-  filter: contrast(1.18) saturate(0.85);
-}
-
-@media (max-width: 700px) {
-  #quartz-root::before {
-    opacity: 0.42;
-    background-size:
-      360px 980px,
-      5px 5px,
-      38vw 100%,
-      360px 980px,
-      5px 5px,
-      38vw 100%;
-  }
-}
-
-/* =========================
-   GLOBAL TEXT PALETTE
-   ========================= */
-
-html,
-body,
-#quartz-root,
-#quartz-body {
-  color: #e6ebe7;
-}
-
-.page-meta,
-.content-meta,
-.breadcrumb,
-.breadcrumbs,
-.left.sidebar,
-.right.sidebar,
-.toc,
-.graph,
-footer {
-  color: #9aa8a0;
-}
-
-a {
-  color: #7fb4ff;
-}
-
-a:hover {
-  color: #a7c9ff;
-}
-
-.center article h1,
-.center article h2,
-.center article h3,
-.center article h4,
-.center article h5,
-.center article h6 {
-  color: #f1f5f2;
-}
-
-code,
-pre {
-  color: #e6ebe7;
-}
-
-/* =========================
-   GLOBAL WIDTH SAFETY
-   ========================= */
-
-html,
-body,
-#quartz-root,
-#quartz-body {
-  width: 100%;
-  max-width: 100%;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-img,
-svg,
-video,
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-
-pre {
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-code {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.center article p,
-.center article li,
-.center article blockquote,
-.center article h1,
-.center article h2,
-.center article h3,
-.center article h4,
-.center article h5,
-.center article h6,
-.center article strong,
-.center article em,
-.center article a {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  hyphens: auto;
-}
-
-#quartz-body,
-.center,
-main,
-article,
-.content {
-  min-width: 0;
-}
-
-/* =========================
-   GLOBAL LAYOUT PULL UP
-   ========================= */
-
-#quartz-root,
-#quartz-body,
-.center,
-.center .page-header,
-.center .page-header header {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.center .page-header header {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.center .page-header header > div {
-  margin-bottom: 0 !important;
-}
-
-.center .page-header figure,
-.center .page-header picture {
-  margin: 0 !important;
-}
-
-.center .page-header img,
-.center .page-header a {
-  display: block;
-}
-
-/* =========================
-   SIDEBARS
-   ========================= */
-
-.left.sidebar,
-.right.sidebar {
-  margin-top: 0 !important;
-  padding-top: 1rem !important;
-}
-
-.left.sidebar .page-title {
-  margin-top: 0 !important;
-}
-
-.right.sidebar .graph {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-#quartz-body {
-  align-items: flex-start !important;
-}
-
-/* =========================
-   FAKE H1 HERO TITLE
-   ========================= */
-
-.avv-title {
-  white-space: nowrap;
-  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
-  font-weight: 500;
-  line-height: 1.08;
-  margin: 0 0 2rem 0;
-  color: #e6ebe7;
-  text-align: center;
-  letter-spacing: 0.01em;
-  transform: translateZ(0);
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.8),
-    0 4px 12px rgba(0, 0, 0, 0.45);
-  animation: avvFadeIn 600ms ease-out both;
-}
-
-.avv-title span {
-  display: inline;
-}
-
-.avv-title::after {
-  content: "";
-  display: block;
-  width: 360px;
-  height: 7px;
-  margin: 0.8rem auto 0;
-  background: linear-gradient(90deg, #c43c3c, #ffffff, #1f4ed8);
-  border-radius: 2px;
-  opacity: 0.85;
-}
-
-.avv-welcome {
-  color: #f2c94c;
-  font-weight: 500;
-  opacity: 0.92;
-  text-shadow: 0 0 14px rgba(242, 201, 76, 0.42);
-}
-
-.avv-aliens {
-  color: #c43c3c;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-shadow: 0 0 14px rgba(196, 60, 60, 0.4);
-}
-
-.avv-veterans {
-  color: #1f4ed8;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-shadow: 0 0 14px rgba(31, 78, 216, 0.36);
-}
-
-.avv-welcome,
-.avv-aliens,
-.avv-veterans {
-  letter-spacing: 0.01em;
-}
-
-@keyframes avvFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   META ROW TIGHTENING
-   ========================= */
-
-.page-meta,
-.content-meta,
-.breadcrumb,
-.breadcrumbs {
-  margin-top: 0.25rem !important;
-}
-
-.center .page-header .popover-hint,
-.center .page-header .content-meta {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.center .page-header .content-meta {
-  margin-bottom: 0.35rem !important;
-}
-
-/* =========================
-   TOP LEFT SITE TITLE
-   ========================= */
-
-.left.sidebar .page-title a {
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-
-  background: linear-gradient(
-    90deg,
-    #c43c3c 0%,
-    #c43c3c 38%,
-    #ffffff 38%,
-    #ffffff 52%,
-    #1f4ed8 52%,
-    #1f4ed8 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-
-  text-shadow:
-    0 0 14px rgba(196, 60, 60, 0.22),
-    0 0 14px rgba(31, 78, 216, 0.22);
-}
-
-.left.sidebar .page-title,
-.left.sidebar .page-title a {
-  overflow-wrap: normal !important;
-  word-break: keep-all !important;
-  hyphens: none !important;
-  white-space: nowrap !important;
-}
-
-/* =========================
-   MOBILE: WRAP HERO TITLE
-   ========================= */
-
-@media (max-width: 700px) {
-  .avv-title {
-    white-space: normal;
-    text-wrap: balance;
-  }
-
-  .avv-title::after {
-    width: min(360px, 92vw);
-  }
-}
-
-/* =========================
-   MOBILE: FIX HEADER ROW (TITLE + SEARCH)
-   ========================= */
-
-@media (max-width: 700px) {
-  .left.sidebar {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .left.sidebar .page-title {
-    min-width: 0 !important;
-  }
-
-  .left.sidebar .page-title a {
-    max-width: none !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-  }
-
-  .left.sidebar input[type="search"],
-  .left.sidebar .search input,
-  .left.sidebar .searchbar input {
-    width: 9.5rem !important;
-    max-width: 9.5rem !important;
-  }
-
-  .left.sidebar .search,
-  .left.sidebar .searchbar {
-    flex: 0 0 auto !important;
-  }
-}
-
-/* =========================
-   MOBILE FONT SIZE BOOST
-   ========================= */
-
-@media (max-width: 700px) {
-  body {
-    font-size: 1.05rem;
-  }
-
-  p,
-  li,
-  blockquote {
-    font-size: 1.1rem;
-    line-height: 1.65;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1.15rem;
-  }
-
-  .left.sidebar,
-  .right.sidebar {
-    font-size: 0.95rem;
-  }
-
-  .page-meta,
-  .content-meta,
-  .breadcrumb,
-  .breadcrumbs {
-    font-size: 0.85rem;
-  }
-}
-
-/* =========================
-   FORCE DARK MODE ONLY
-   ========================= */
-
-:root {
-  color-scheme: dark !important;
-}
-
-html[data-theme="light"],
-html[data-theme="light"] body {
-  background-color: #0a120e !important;
-  color: #e6ebe7 !important;
-}
-
-html,
-html[data-theme],
-html[data-theme="dark"] {
-  --background: #0a120e !important;
-  --text: #e6ebe7 !important;
-}
-
-/* =========================
-   REMOVE THEME TOGGLE (MOON ICON)
-   ========================= */
-
-button[aria-label*="theme"],
-button[title*="theme"],
-button[aria-label*="dark"],
-button[aria-label*="light"],
-a[aria-label*="theme"],
-a[title*="theme"],
-svg[data-icon*="moon"],
-svg[data-icon*="sun"],
-.theme-toggle,
-.theme-switch,
-.darkmode-toggle,
-.lightmode-toggle {
-  display: none !important;
-}
-
-/* =========================
-   REMOVE BOOK ICON
-   ========================= */
-
-button[aria-label*="reader"],
-button[title*="reader"],
-button[aria-label*="book"],
-button[title*="book"],
-a[aria-label*="reader"],
-a[title*="reader"],
-a[aria-label*="book"],
-a[title*="book"],
-svg[data-icon*="book"],
-.book,
-.book-toggle,
-.reader-toggle {
-  display: none !important;
-}
-
 /* =========================
    EXPLORER ACTIVE LINK
    ========================= */
-
 .explorer-content a.is-active {
   background-color: rgba(96, 163, 255, 0.24);
   color: #eef4f0;
@@ -634,7 +15,6 @@ svg[data-icon*="book"],
 /* =========================
    EXPLORER HOVER HIGHLIGHT
    ========================= */
-
 .explorer-content a:not(.folder-title):hover {
   background-color: rgba(96, 163, 255, 0.15);
   color: #eef4f0;
@@ -643,8 +23,8 @@ svg[data-icon*="book"],
 
 /* =========================
    EXPLORER CHEVRON INDICATOR
+   Left gutter + soft fade
    ========================= */
-
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
   position: relative;
@@ -658,11 +38,14 @@ svg[data-icon*="book"],
   position: absolute;
   left: 12px;
   top: 50%;
+
   font-size: 1.15rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
+
   transform: translateY(-50%) translateX(-2px);
   opacity: 0;
+
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
@@ -689,47 +72,58 @@ svg[data-icon*="book"],
 
 /* =========================
    TABLE OF CONTENTS CHEVRON
+   No overlap, chevron unaffected by link fade
    ========================= */
 
+/* Each TOC row owns the gutter */
 .toc li {
   position: relative;
 }
 
+/* Make the link occupy the row and start after the gutter */
 .toc li > a {
   display: block;
   padding-left: 24px !important;
   border-radius: 6px;
 }
 
+/* Chevron sits in the gutter */
 .toc li::before {
   content: "›";
   position: absolute;
   left: 8px;
   top: 50%;
+
   font-size: 1.05rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
+
   transform: translateY(-50%) translateX(-2px);
   opacity: 0;
+
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
 }
 
+/* Hover fade-in */
 .toc li:hover::before {
   opacity: 0.95;
   transform: translateY(-50%) translateX(0);
 }
 
+/* Active section marker */
 .toc li:has(> a.active)::before {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
   color: rgba(96, 163, 255, 0.98);
 }
 
+/* Optional row hover background without changing text fade logic */
 .toc li > a:hover {
   background-color: rgba(96, 163, 255, 0.12);
 }
 
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .toc li::before {
     transition: none !important;
