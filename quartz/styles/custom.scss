@@ -398,3 +398,35 @@ code {
     hyphens: none !important;
   }
 }
+/* =========================
+   MOBILE HEADER: SHOW A-V-S-V
+   ========================= */
+@media (max-width: 700px) {
+  /* Header row must be flexible */
+  header,
+  nav {
+    min-width: 0 !important;
+  }
+
+  /* Protect site title width */
+  .left.sidebar .page-title a {
+    flex: 0 0 auto !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+  }
+
+  /* Shrink the search box aggressively */
+  header input[type="search"],
+  header .search,
+  header .search input {
+    max-width: 42vw !important;   /* key line */
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  /* If Quartz wraps search in a container */
+  header .search {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+}
