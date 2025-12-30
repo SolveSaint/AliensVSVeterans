@@ -8,12 +8,13 @@ body {
   background-color: #0a120e;
 
   background-image:
-    /* TALL PINE TREELINE SILHOUETTES (BOTTOM) */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 700'%3E%3Cg fill='rgba(0,0,0,0.78)'%3E%3Cpath d='M0 700 L0 520 L25 450 L45 520 L70 410 L95 535 L125 380 L155 560 L185 430 L215 600 L245 470 L275 630 L305 500 L335 650 L365 520 L395 670 L425 540 L455 690 L485 560 L515 700 Z'/%3E%3Cpath d='M500 700 L520 520 L545 440 L565 520 L590 400 L615 545 L645 365 L675 575 L705 420 L735 610 L765 465 L795 640 L825 490 L855 660 L885 515 L915 680 L945 535 L975 695 L1005 555 L1035 700 Z'/%3E%3Cpath d='M980 700 L1005 520 L1035 435 L1060 520 L1090 390 L1120 545 L1155 355 L1190 580 L1225 415 L1260 615 L1295 455 L1330 645 L1365 485 L1400 665 L1435 510 L1470 685 L1505 530 L1540 697 L1575 555 L1600 700 Z'/%3E%3C/g%3E%3C/svg%3E"),
-    /* SOFT FOG FADE ABOVE THE TREES */
+    /* SEAMLESS TALL PINE TREELINE, REPEATS ACROSS BOTTOM */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.85)'%3E%3Cpath d='M0 600 L0 450 L40 390 L70 450 L110 330 L150 470 L200 310 L250 500 L300 360 L350 540 L400 380 L450 560 L500 410 L550 585 L600 430 L650 560 L700 380 L750 540 L800 360 L850 500 L900 310 L950 470 L990 330 L1030 450 L1060 390 L1100 450 L1100 600 Z'/%3E%3Cpath d='M1100 600 L1100 450 L1140 390 L1170 450 L1200 450 L1200 600 Z'/%3E%3Cpath d='M0 600 L0 450 L30 405 L55 450 L95 345 L130 465 L175 330 L215 490 L265 350 L315 525 L365 370 L415 550 L465 400 L515 575 L565 420 L615 550 L665 370 L715 525 L765 350 L815 490 L865 330 L905 465 L945 345 L970 450 L1000 405 L1030 450 L1030 600 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
+
+    /* FOG FADE ABOVE TREES, REPEATS ACROSS BOTTOM */
     linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.58) 0%,
+      rgba(0, 0, 0, 0.65) 0%,
       rgba(10, 18, 14, 0.42) 32%,
       rgba(10, 18, 14, 0.22) 58%,
       rgba(10, 18, 14, 0) 86%
@@ -36,22 +37,22 @@ body {
       transparent 1px
     );
 
-  background-size:
-    100% 520px,  /* treeline height */
-    100% 520px,  /* fog fade matches treeline height */
-    100% 100%,
-    5px 5px,
-    2px 2px;
+background-size:
+  1200px 950px,
+  100% 950px,
+  100% 100%,
+  5px 5px,
+  2px 2px;
 
   background-position:
-    center bottom,
+    left bottom,
     center bottom,
     center,
     0 0,
     1px 1px;
 
   background-repeat:
-    no-repeat,
+    repeat-x,
     no-repeat,
     no-repeat,
     repeat,
