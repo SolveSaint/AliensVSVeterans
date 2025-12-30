@@ -25,6 +25,8 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import HeaderImage from "./HeaderImage"
 import GoatCounterSPA from "./GoatCounterSPA"
+import Postscript from "./Postscript"
+
 export {
   ArticleTitle,
   Content,
@@ -53,4 +55,5 @@ export {
   ConditionalRender,
   HeaderImage,
   GoatCounterSPA,
+  Postscript,
 }
