@@ -10,9 +10,9 @@ const config: QuartzConfig = {
 
     analytics: {
       provider: "goatcounter",
-      options: {
-        url: "https://aliensvsveterans.goatcounter.com/count",
-      },
+      websiteId: "aliensvsveterans", // your subdomain: aliensvsveterans.goatcounter.com
+      // host: "goatcounter.com", // optional, default is goatcounter.com
+      // scriptSrc: "https://gc.zgo.at/count.js", // optional override
     },
 
     locale: "en-US",
@@ -25,9 +25,6 @@ const config: QuartzConfig = {
 
     theme: {
       defaultTheme: "dark",
-
-      // Docs: this is the supported switch for font loading behavior.
-      // true = use Google CDN caching. false = download for self contained.
       cdnCaching: true,
 
       typography: {
@@ -65,34 +62,18 @@ const config: QuartzConfig = {
 
   plugins: {
     transformers: [
-      // Metadata first
       Plugin.FrontMatter(),
-      Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "git", "filesystem"],
-      }),
-
-      // Presentation helpers that do not affect link syntax
-      Plugin.SyntaxHighlighting({
-        theme: {
-          light: "github-light",
-          dark: "github-dark",
-        },
-        keepBackground: false,
-      }),
-
-      // Markdown dialect and text mutation
+      Plugin.CreatedModifiedDate({ priority: ["frontmatter", "git", "filesystem"] }),
+      Plugin.SyntaxHighlighting({ theme: { light: "github-light", dark: "github-dark" }, keepBackground: false }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
 
-      // Derived text fields
-      Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
-
-      // Links after text mutation
+      // Keep this order consistent with your working Biolectrics site
+      Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
 
-      // Indexing and presentation after links
-      Plugin.TableOfContents(),
+      Plugin.Description(),
+      Plugin.Latex({ renderEngine: "katex" }),
     ],
 
     filters: [Plugin.RemoveDrafts()],
@@ -103,22 +84,11 @@ const config: QuartzConfig = {
       Plugin.ContentPage(),
       Plugin.FolderPage(),
       Plugin.TagPage(),
-      Plugin.ContentIndex({
-        enableSiteMap: true,
-        enableRSS: true,
-      }),
+      Plugin.ContentIndex({ enableSiteMap: true, enableRSS: true }),
       Plugin.Assets(),
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-
-      // Plugin.CustomOgImages({
-      //   colorScheme: "darkMode",
-      //   width: 1200,
-      //   height: 630,
-      //   excludeRoot: false,
-      //   imageStructure: ogWithBackground,
-      // }),
     ],
   },
 }
