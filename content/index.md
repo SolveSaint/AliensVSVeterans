@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/30/2025 3:23 PM
+updated: 12/30/2025 4:45 PM
 title: www.AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -136,6 +136,4 @@ Most chronic disease emerges from this pattern. Excessive cellular activation co
 
 This unified mechanism is explored in more depth at the [Biolectrics-Wiki](https://solvesaint.github.io/Biolectrics-Wiki/)
 
----
-
-> **This is the cause of most disease.**
+> **This mechanism is the cause of most disease.**
