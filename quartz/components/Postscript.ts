@@ -1,20 +1,21 @@
 import { h } from "preact"
-import { QuartzComponent } from "./types"
+import { QuartzComponentConstructor } from "./types"
 
-const PostScript: QuartzComponent = () => {
-  const code = `
+const Postscript: QuartzComponentConstructor = () => {
+  return () => {
+    const code = `
 (function () {
   function highlightActiveExplorerLink() {
-    const slug = document.body?.dataset?.slug
+    const slug = document.body && document.body.dataset ? document.body.dataset.slug : null
     if (!slug) return
 
-    const selector = '.explorer-content a[data-for="' + CSS.escape(slug) + '"]'
-    const link = document.querySelector(selector)
+    var selector = '.explorer-content a[data-for="' + CSS.escape(slug) + '"]'
+    var link = document.querySelector(selector)
     if (!link) return
 
     document
       .querySelectorAll('.explorer-content a.is-active')
-      .forEach(a => a.classList.remove('is-active'))
+      .forEach(function (a) { a.classList.remove('is-active') })
 
     link.classList.add('is-active')
   }
@@ -22,9 +23,10 @@ const PostScript: QuartzComponent = () => {
   document.addEventListener('nav', highlightActiveExplorerLink)
   highlightActiveExplorerLink()
 })()
-  `.trim()
+    `.trim()
 
-  return h("script", { dangerouslySetInnerHTML: { __html: code } })
+    return h("script", { dangerouslySetInnerHTML: { __html: code } })
+  }
 }
 
 export default Postscript
