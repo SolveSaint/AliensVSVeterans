@@ -367,3 +367,20 @@ code {
     hyphens: auto;
   }
 }
+/* =========================
+   MOBILE: HERO TITLE WRAP CLEANLY
+   ========================= */
+@media (max-width: 700px) {
+  .avv-title {
+    white-space: normal !important;
+    max-width: 100% !important;
+
+    /* allow word wrapping but never character stacking */
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    hyphens: none !important;
+
+    text-align: center;
+    line-height: 1.15;
+  }
+}
