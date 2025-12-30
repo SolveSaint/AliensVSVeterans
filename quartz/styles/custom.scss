@@ -442,3 +442,11 @@ svg[data-icon*="book"],
 .explorer-content a.is-active::after {
   background: rgba(96, 163, 255, 0.22);
 }
+/* =========================
+   EXPLORER HOVER HIGHLIGHT
+   ========================= */
+.explorer-content a:not(.folder-title):hover {
+  background-color: rgba(96, 163, 255, 0.15);
+  color: #e6f0ff;
+  border-radius: 8px;
+}
