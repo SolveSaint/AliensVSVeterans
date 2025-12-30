@@ -12,24 +12,23 @@
 
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
-   Night forest green bias + FIXED ominous treeline
-   Treeline is FIXED so it is always on screen
-   No camo. No extra overlays.
+   Night forest green bias + tall pine silhouettes (SVG)
+   Trees are FIXED to viewport so they are always visible (no background scroll)
    ========================= */
 body {
   background-color: #0a120e;
 
   background-image:
-    /* FIXED TREELINE (always visible) */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.88)'%3E%3Cpath d='M0 700 L0 430 L35 345 L70 430 L110 285 L150 450 L195 255 L240 505 L290 295 L345 565 L400 305 L455 605 L510 330 L565 645 L620 345 L675 610 L730 315 L785 575 L840 295 L895 525 L950 275 L1005 485 L1060 265 L1115 455 L1170 285 L1225 435 L1270 335 L1310 420 L1350 360 L1400 430 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 448 L28 380 L55 448 L92 320 L125 468 L165 300 L205 500 L252 320 L300 548 L350 338 L402 586 L452 360 L505 620 L558 372 L612 592 L664 350 L716 564 L768 330 L820 520 L872 310 L924 488 L976 298 L1028 465 L1080 290 L1132 448 L1184 300 L1236 438 L1278 360 L1320 432 L1360 388 L1400 448 L1400 700 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E")'%3E%3Cpath d='M0 700 L0 420 L40 330 L70 420 L120 260 L160 450 L210 235 L270 510 L330 300 L390 565 L450 315 L510 610 L570 340 L630 650 L700 360 L770 610 L830 315 L890 565 L950 300 L1010 510 L1070 235 L1130 450 L1180 260 L1230 420 L1260 330 L1400 420 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 430 L30 360 L55 430 L95 285 L130 450 L175 255 L215 490 L265 290 L315 550 L365 305 L415 600 L465 330 L515 640 L565 350 L615 600 L665 305 L715 550 L765 290 L815 490 L865 255 L905 450 L945 285 L970 430 L1000 360 L1030 430 L1030 700 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
+    /* FIXED TALL PINE TREELINE, ALWAYS ON SCREEN, CLEAN RIGHT EDGE */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.88)'%3E%3Cpath d='M0 700 L0 430 L35 345 L70 430 L110 285 L150 450 L195 255 L240 505 L290 295 L345 565 L400 305 L455 605 L510 330 L565 645 L620 345 L675 610 L730 315 L785 575 L840 295 L895 525 L950 275 L1005 485 L1060 265 L1115 455 L1170 285 L1225 435 L1270 335 L1310 420 L1350 360 L1400 430 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 448 L28 380 L55 448 L92 320 L125 468 L165 300 L205 500 L252 320 L300 548 L350 338 L402 586 L452 360 L505 620 L558 372 L612 592 L664 350 L716 564 L768 330 L820 520 L872 310 L924 488 L976 298 L1028 465 L1080 290 L1132 448 L1184 300 L1236 438 L1278 360 L1320 432 L1360 388 L1400 448 L1400 700 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
 
     /* FOG FADE ABOVE TREES */
     linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.75) 0%,
-      rgba(10, 18, 14, 0.46) 34%,
-      rgba(10, 18, 14, 0.22) 62%,
-      rgba(10, 18, 14, 0) 88%
+      rgba(0, 0, 0, 0.70) 0%,
+      rgba(10, 18, 14, 0.48) 34%,
+      rgba(10, 18, 14, 0.22) 60%,
+      rgba(10, 18, 14, 0) 86%
     ),
 
     /* NIGHT FOREST TEXTURE */
@@ -50,13 +49,12 @@ body {
     );
 
   background-size:
-    1400px 980px,
-    100% 980px,
+    1800px 1100px,
+    100% 1100px,
     100% 100%,
     5px 5px,
     2px 2px;
 
-  /* Treeline is anchored to the viewport bottom */
   background-position:
     center bottom,
     center bottom,
@@ -71,25 +69,26 @@ body {
     repeat,
     repeat;
 
-  /* THIS is what keeps the trees visible without “background scroll” */
+  /* This is the key: trees stay locked to the viewport */
   background-attachment:
     fixed,
     fixed,
-    scroll,
-    scroll,
-    scroll;
+    fixed,
+    fixed,
+    fixed;
 }
 
-/* Optional: keep trees readable behind content on very tall pages */
-@media (max-width: 700px) {
-  body {
-    background-size:
-      1100px 920px,
-      100% 920px,
-      100% 100%,
-      5px 5px,
-      2px 2px;
-  }
+/* =========================
+   KEEP CONTENT ABOVE BACKGROUND
+   ========================= */
+#quartz-body,
+.center,
+main,
+article,
+.content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
 }
 
 /* =========================
@@ -115,14 +114,15 @@ footer {
   color: #9aa8a0;
 }
 
+/* Links */
 a {
   color: #7fb4ff;
 }
-
 a:hover {
   color: #a7c9ff;
 }
 
+/* Headings inside articles */
 .center article h1,
 .center article h2,
 .center article h3,
@@ -132,6 +132,7 @@ a:hover {
   color: #f1f5f2;
 }
 
+/* Code */
 code,
 pre {
   color: #e6ebe7;
@@ -148,12 +149,14 @@ body,
   max-width: 100%;
 }
 
+/* Prevent layout blowouts */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Media should never push width */
 img,
 svg,
 video,
@@ -162,6 +165,7 @@ canvas {
   height: auto;
 }
 
+/* Code blocks scroll internally, not the page */
 pre {
   max-width: 100%;
   overflow-x: auto;
@@ -173,6 +177,7 @@ code {
   word-break: break-word;
 }
 
+/* Wrap long text in the reading area only */
 .center article p,
 .center article li,
 .center article blockquote,
@@ -188,14 +193,6 @@ code {
   overflow-wrap: anywhere;
   word-break: break-word;
   hyphens: auto;
-}
-
-#quartz-body,
-.center,
-main,
-article,
-.content {
-  min-width: 0;
 }
 
 /* =========================
@@ -285,6 +282,7 @@ article,
   opacity: 0.85;
 }
 
+/* Color tokens */
 .avv-welcome {
   color: #f2c94c;
   font-weight: 500;
@@ -344,7 +342,7 @@ article,
 }
 
 /* =========================
-   TOP LEFT SITE TITLE (GRADIENT AVSV)
+   TOP LEFT SITE TITLE
    ========================= */
 .left.sidebar .page-title a {
   font-weight: 600;
@@ -393,7 +391,6 @@ article,
 
 /* =========================
    MOBILE: FIX HEADER ROW (TITLE + SEARCH)
-   Make the search box shrink so AVSV shows fully
    ========================= */
 @media (max-width: 700px) {
   .left.sidebar {
@@ -470,7 +467,6 @@ article,
 
 /* =========================
    FORCE DARK MODE ONLY
-   Keep Quartz variables aligned with our night forest palette
    ========================= */
 :root {
   color-scheme: dark !important;
@@ -526,7 +522,7 @@ svg[data-icon*="book"],
 }
 
 /* =========================
-   EXPLORER ACTIVE LINK
+   EXPLORER ACTIVE LINKULEIGHT + CHEVRON
    ========================= */
 .explorer-content a.is-active {
   background-color: rgba(96, 163, 255, 0.24);
@@ -539,19 +535,14 @@ svg[data-icon*="book"],
   background: rgba(96, 163, 255, 0.22);
 }
 
-/* =========================
-   EXPLORER HOVER HIGHLIGHT
-   ========================= */
+/* Hover */
 .explorer-content a:not(.folder-title):hover {
   background-color: rgba(96, 163, 255, 0.15);
   color: #eef4f0;
   border-radius: 8px;
 }
 
-/* =========================
-   EXPLORER CHEVRON INDICATOR
-   Left gutter + soft fade
-   ========================= */
+/* Chevron */
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
   position: relative;
@@ -565,14 +556,11 @@ svg[data-icon*="book"],
   position: absolute;
   left: 12px;
   top: 50%;
-
   font-size: 1.15rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
-
   transform: translateY(-50%) translateX(-2px);
   opacity: 0;
-
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
@@ -599,7 +587,6 @@ svg[data-icon*="book"],
 
 /* =========================
    TABLE OF CONTENTS CHEVRON
-   No overlap, chevron unaffected by link fade
    ========================= */
 .toc li {
   position: relative;
@@ -616,14 +603,11 @@ svg[data-icon*="book"],
   position: absolute;
   left: 8px;
   top: 50%;
-
   font-size: 1.05rem;
   line-height: 1;
   color: rgba(96, 163, 255, 0.9);
-
   transform: translateY(-50%) translateX(-2px);
   opacity: 0;
-
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
 }
