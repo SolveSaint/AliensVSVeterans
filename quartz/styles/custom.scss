@@ -501,3 +501,58 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
+/* =========================
+   TABLE OF CONTENTS CHEVRON
+   Matches Explorer behavior
+   ========================= */
+
+/* TOC links get a left gutter */
+.toc a {
+  position: relative;
+  padding-left: 24px;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* Chevron indicator */
+.toc a::before {
+  content: "›";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+
+  font-size: 1.05rem;
+  line-height: 1;
+  color: rgba(96, 163, 255, 0.9);
+
+  transform: translateY(-50%) translateX(-2px);
+  opacity: 0;
+
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+/* Hover fade-in */
+.toc a:hover::before {
+  opacity: 0.95;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Active section (Quartz adds .active) */
+.toc a.active::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  color: rgba(96, 163, 255, 0.98);
+}
+
+/* Optional: subtle background on hover */
+.toc a:hover {
+  background-color: rgba(96, 163, 255, 0.12);
+  border-radius: 6px;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .toc a,
+  .toc a::before {
+    transition: none !important;
+  }
+}
