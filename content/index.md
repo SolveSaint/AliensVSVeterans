@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/30/2025 3:07 PM
+updated: 12/30/2025 3:10 PM
 title: AVSV
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -66,7 +66,7 @@ It never returned. The abrupt cessation gave the impression that a process had c
 
 In 2020, a new phase began.
 
-At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved. At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
+At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
 
 My spinal cord burned continuously for nearly two years. I screamed all day long in agony. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue. The pain was constant, positional relief did not exist, and sleep was limited to two to four hours per night. I screamed in my sleep according to my partner.
 
