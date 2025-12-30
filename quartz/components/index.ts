@@ -24,7 +24,7 @@ import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import HeaderImage from "./HeaderImage"
-
+import GoatCounterSPA from "./GoatCounterSPA"
 export {
   ArticleTitle,
   Content,
@@ -52,4 +52,5 @@ export {
   Flex,
   ConditionalRender,
   HeaderImage,
+  GoatCounterSPA,
 }
