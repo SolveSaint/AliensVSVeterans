@@ -429,3 +429,16 @@ svg[data-icon*="book"],
 .reader-toggle {
   display: none !important;
 }
+/* =========================
+   EXPLORER ACTIVE LINK
+   ========================= */
+.explorer-content a.is-active {
+  background-color: rgba(96, 163, 255, 0.24);
+  color: #e6f0ff;
+  border-radius: 8px;
+  box-shadow: inset 2px 0 0 rgba(96, 163, 255, 0.75);
+}
+
+.explorer-content a.is-active::after {
+  background: rgba(96, 163, 255, 0.22);
+}
