@@ -1,37 +1,14 @@
 @use "./base.scss";
 
 /* =========================
-   GLOBAL STACKING
-   Keep overlays behind content
+   BASE PAGE BACKGROUND
+   Night forest green bias + texture
    ========================= */
-#quartz-root,
-#quartz-body {
-  position: relative;
-  z-index: 1;
-}
 
-/* =========================
-   STRONG GLOBAL TEXTURED BACKGROUND
-   Night forest green bias + tall pine silhouettes (SVG)
-   Trees are part of the BODY background, so they sit above ::after
-   ========================= */
 body {
   background-color: #0a120e;
 
   background-image:
-    /* SEAMLESS TALL PINE TREELINE, REPEATS ACROSS BOTTOM */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.85)'%3E%3Cpath d='M0 600 L0 450 L40 390 L70 450 L110 330 L150 470 L200 310 L250 500 L300 360 L350 540 L400 380 L450 560 L500 410 L550 585 L600 430 L650 560 L700 380 L750 540 L800 360 L850 500 L900 310 L950 470 L990 330 L1030 450 L1060 390 L1100 450 L1100 600 Z'/%3E%3Cpath d='M1100 600 L1100 450 L1140 390 L1170 450 L1200 450 L1200 600 Z'/%3E%3Cpath d='M0 600 L0 450 L30 405 L55 450 L95 345 L130 465 L175 330 L215 490 L265 350 L315 525 L365 370 L415 550 L465 400 L515 575 L565 420 L615 550 L665 370 L715 525 L765 350 L815 490 L865 330 L905 465 L945 345 L970 450 L1000 405 L1030 450 L1030 600 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
-
-    /* FOG FADE ABOVE TREES */
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.65) 0%,
-      rgba(10, 18, 14, 0.42) 32%,
-      rgba(10, 18, 14, 0.22) 58%,
-      rgba(10, 18, 14, 0) 86%
-    ),
-
-    /* NIGHT FOREST TEXTURE */
     radial-gradient(
       ellipse at center,
       rgba(255, 255, 255, 0.055) 0%,
@@ -49,120 +26,137 @@ body {
     );
 
   background-size:
-    1200px 950px,
-    100% 950px,
     100% 100%,
     5px 5px,
     2px 2px;
 
   background-position:
-    left bottom,
-    center bottom,
     center,
     0 0,
     1px 1px;
 
   background-repeat:
-    repeat-x,
-    no-repeat,
     no-repeat,
     repeat,
     repeat;
 }
 
-/* =========================
-   SIDE CAMO IMPACT
-   Uses #quartz-root::before so Quartz cannot override it
-   Trees remain on top
-   ========================= */
-
-#quartz-root {
+/* Put the whole Quartz app above our background layers */
+#quartz-root,
+#quartz-body {
   position: relative;
+  z-index: 2;
 }
 
-#quartz-root::before {
+/* =========================
+   SIDE CAMO LAYER
+   Uses emitted Quartz static asset:
+   /static/camo-side.svg
+   ========================= */
+
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 
+  /* Fade in below the header */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 12%,
-    rgba(0, 0, 0, 0.65) 28%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0.7) 30%,
     rgba(0, 0, 0, 1) 100%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 12%,
-    rgba(0, 0, 0, 0.65) 28%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0.7) 30%,
     rgba(0, 0, 0, 1) 100%
   );
 
+  /* Two sides plus soft edge fades and speckle */
   background-image:
-    url("/camo-side.svg"),
-    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 28%),
-
-    url("/camo-side.svg"),
-    radial-gradient(rgba(0, 0, 0, 0.22) 1px, transparent 1px),
-    linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 28%);
+    /* Left camo */
+    url("/static/camo-side.svg"),
+    /* Right camo */
+    url("/static/camo-side.svg"),
+    /* Left edge dark fade */
+    linear-gradient(to right, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 26%),
+    /* Right edge dark fade */
+    linear-gradient(to left, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 26%),
+    /* Fine speckle to break banding */
+    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px);
 
   background-repeat:
     repeat-y,
-    repeat,
-    no-repeat,
     repeat-y,
-    repeat,
-    no-repeat;
+    no-repeat,
+    no-repeat,
+    repeat;
 
   background-size:
-    420px 820px,
-    4px 4px,
-    420px 100%,
-    420px 820px,
-    4px 4px,
-    420px 100%;
+    460px auto,
+    460px auto,
+    24vw 100%,
+    24vw 100%,
+    6px 6px;
 
   background-position:
     left top,
-    left top,
+    right top,
     left top,
     right top,
-    right top,
-    right top;
+    0 0;
 
-  background-blend-mode: multiply, normal, normal, multiply, normal, normal;
-  opacity: 0.85;
+  opacity: 0.42;
 }
 
-/* Ensure content and trees sit above camo */
-body,
-#quartz-body {
-  position: relative;
+/* =========================
+   TREELINE LAYER
+   Must be above camo, below content
+   ========================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
   z-index: 1;
-}
 
-@media (max-width: 700px) {
-  #quartz-root::before {
-    opacity: 0.6;
-    background-size:
-      280px 820px,
-      4px 4px,
-      280px 100%,
-      280px 820px,
-      4px 4px,
-      280px 100%;
-  }
+  background-image:
+    /* Tall pine treeline, repeats across bottom */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.90)'%3E%3Cpath d='M0 900 L0 520 L40 420 L70 520 L110 360 L150 560 L200 330 L250 620 L300 390 L350 700 L400 420 L450 740 L500 460 L550 860 L600 480 L650 740 L700 420 L750 700 L800 390 L850 620 L900 330 L950 560 L990 360 L1030 520 L1060 420 L1100 520 L1100 900 Z'/%3E%3Cpath d='M1100 900 L1100 520 L1140 420 L1170 520 L1200 520 L1200 900 Z'/%3E%3Cpath d='M0 900 L0 520 L30 440 L55 520 L95 380 L130 560 L175 350 L215 610 L265 380 L315 690 L365 410 L415 730 L465 450 L515 845 L565 470 L615 730 L665 410 L715 690 L765 380 L815 610 L865 350 L905 560 L945 380 L970 520 L1000 440 L1030 520 L1030 900 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
+    /* Fog fade above the trees */
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.70) 0%,
+      rgba(10, 18, 14, 0.46) 30%,
+      rgba(10, 18, 14, 0.22) 56%,
+      rgba(10, 18, 14, 0) 86%
+    );
+
+  background-repeat:
+    repeat-x,
+    repeat-x;
+
+  background-size:
+    1200px 980px,
+    100% 980px;
+
+  background-position:
+    left bottom,
+    center bottom;
+
+  opacity: 0.92;
 }
 
 /* =========================
    GLOBAL TEXT PALETTE
-   Warm neutrals tuned for dark green
    ========================= */
+
 html,
 body,
 #quartz-root,
@@ -205,339 +199,9 @@ pre {
 }
 
 /* =========================
-   GLOBAL WIDTH SAFETY
-   ========================= */
-html,
-body,
-#quartz-root,
-#quartz-body {
-  width: 100%;
-  max-width: 100%;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-img,
-svg,
-video,
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-
-pre {
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-code {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.center article p,
-.center article li,
-.center article blockquote,
-.center article h1,
-.center article h2,
-.center article h3,
-.center article h4,
-.center article h5,
-.center article h6,
-.center article strong,
-.center article em,
-.center article a {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  hyphens: auto;
-}
-
-#quartz-body,
-.center,
-main,
-article,
-.content {
-  min-width: 0;
-}
-
-/* =========================
-   GLOBAL LAYOUT PULL UP
-   ========================= */
-#quartz-root,
-#quartz-body,
-.center,
-.center .page-header,
-.center .page-header header {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.center .page-header header {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.center .page-header header > div {
-  margin-bottom: 0 !important;
-}
-
-.center .page-header figure,
-.center .page-header picture {
-  margin: 0 !important;
-}
-
-.center .page-header img,
-.center .page-header a {
-  display: block;
-}
-
-/* =========================
-   SIDEBARS
-   ========================= */
-.left.sidebar,
-.right.sidebar {
-  margin-top: 0 !important;
-  padding-top: 1rem !important;
-}
-
-.left.sidebar .page-title {
-  margin-top: 0 !important;
-}
-
-.right.sidebar .graph {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-#quartz-body {
-  align-items: flex-start !important;
-}
-
-/* =========================
-   FAKE H1 HERO TITLE
-   ========================= */
-.avv-title {
-  white-space: nowrap;
-  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
-  font-weight: 500;
-  line-height: 1.08;
-  margin: 0 0 2rem 0;
-  color: #e6ebe7;
-  text-align: center;
-  letter-spacing: 0.01em;
-  transform: translateZ(0);
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.8),
-    0 4px 12px rgba(0, 0, 0, 0.45);
-  animation: avvFadeIn 600ms ease-out both;
-}
-
-.avv-title span {
-  display: inline;
-}
-
-.avv-title::after {
-  content: "";
-  display: block;
-  width: 360px;
-  height: 7px;
-  margin: 0.8rem auto 0;
-  background: linear-gradient(90deg, #c43c3c, #ffffff, #1f4ed8);
-  border-radius: 2px;
-  opacity: 0.85;
-}
-
-.avv-welcome {
-  color: #f2c94c;
-  font-weight: 500;
-  opacity: 0.92;
-  text-shadow: 0 0 14px rgba(242, 201, 76, 0.42);
-}
-
-.avv-aliens {
-  color: #c43c3c;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-shadow: 0 0 14px rgba(196, 60, 60, 0.4);
-}
-
-.avv-veterans {
-  color: #1f4ed8;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-shadow: 0 0 14px rgba(31, 78, 216, 0.36);
-}
-
-.avv-welcome,
-.avv-aliens,
-.avv-veterans {
-  letter-spacing: 0.01em;
-}
-
-@keyframes avvFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   META ROW TIGHTENING
-   ========================= */
-.page-meta,
-.content-meta,
-.breadcrumb,
-.breadcrumbs {
-  margin-top: 0.25rem !important;
-}
-
-.center .page-header .popover-hint,
-.center .page-header .content-meta {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.center .page-header .content-meta {
-  margin-bottom: 0.35rem !important;
-}
-
-/* =========================
-   TOP LEFT SITE TITLE
-   ========================= */
-.left.sidebar .page-title a {
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-
-  background: linear-gradient(
-    90deg,
-    #c43c3c 0%,
-    #c43c3c 38%,
-    #ffffff 38%,
-    #ffffff 52%,
-    #1f4ed8 52%,
-    #1f4ed8 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-
-  text-shadow:
-    0 0 14px rgba(196, 60, 60, 0.22),
-    0 0 14px rgba(31, 78, 216, 0.22);
-}
-
-.left.sidebar .page-title,
-.left.sidebar .page-title a {
-  overflow-wrap: normal !important;
-  word-break: keep-all !important;
-  hyphens: none !important;
-  white-space: nowrap !important;
-}
-
-/* =========================
-   MOBILE: WRAP HERO TITLE
-   ========================= */
-@media (max-width: 700px) {
-  .avv-title {
-    white-space: normal;
-    text-wrap: balance;
-  }
-
-  .avv-title::after {
-    width: min(360px, 92vw);
-  }
-}
-
-/* =========================
-   MOBILE: FIX HEADER ROW (TITLE + SEARCH)
-   ========================= */
-@media (max-width: 700px) {
-  .left.sidebar {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .left.sidebar .page-title {
-    min-width: 0 !important;
-  }
-
-  .left.sidebar .page-title a {
-    max-width: none !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-  }
-
-  .left.sidebar input[type="search"],
-  .left.sidebar .search input,
-  .left.sidebar .searchbar input {
-    width: 9.5rem !important;
-    max-width: 9.5rem !important;
-  }
-
-  .left.sidebar .search,
-  .left.sidebar .searchbar {
-    flex: 0 0 auto !important;
-  }
-}
-
-/* =========================
-   MOBILE FONT SIZE BOOST
-   ========================= */
-@media (max-width: 700px) {
-  body {
-    font-size: 1.05rem;
-  }
-
-  p,
-  li,
-  blockquote {
-    font-size: 1.1rem;
-    line-height: 1.65;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1.15rem;
-  }
-
-  .left.sidebar,
-  .right.sidebar {
-    font-size: 0.95rem;
-  }
-
-  .page-meta,
-  .content-meta,
-  .breadcrumb,
-  .breadcrumbs {
-    font-size: 0.85rem;
-  }
-}
-
-/* =========================
    FORCE DARK MODE ONLY
-   Keep Quartz variables aligned with our night forest palette
    ========================= */
+
 :root {
   color-scheme: dark !important;
 }
@@ -556,8 +220,9 @@ html[data-theme="dark"] {
 }
 
 /* =========================
-   REMOVE THEME TOGGLE (MOON ICON)
+   REMOVE TOGGLES
    ========================= */
+
 button[aria-label*="theme"],
 button[title*="theme"],
 button[aria-label*="dark"],
@@ -573,9 +238,6 @@ svg[data-icon*="sun"],
   display: none !important;
 }
 
-/* =========================
-   REMOVE BOOK ICON
-   ========================= */
 button[aria-label*="reader"],
 button[title*="reader"],
 button[aria-label*="book"],
@@ -592,8 +254,9 @@ svg[data-icon*="book"],
 }
 
 /* =========================
-   EXPLORER ACTIVE LINK
+   EXPLORER ACTIVE LINK + CHEVRON
    ========================= */
+
 .explorer-content a.is-active {
   background-color: rgba(96, 163, 255, 0.24);
   color: #eef4f0;
@@ -605,18 +268,12 @@ svg[data-icon*="book"],
   background: rgba(96, 163, 255, 0.22);
 }
 
-/* =========================
-   EXPLORER HOVER HIGHLIGHT
-   ========================= */
 .explorer-content a:not(.folder-title):hover {
   background-color: rgba(96, 163, 255, 0.15);
   color: #eef4f0;
   border-radius: 8px;
 }
 
-/* =========================
-   EXPLORER CHEVRON INDICATOR
-   ========================= */
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
   position: relative;
@@ -650,18 +307,10 @@ svg[data-icon*="book"],
   color: rgba(96, 163, 255, 0.98);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .explorer-content .explorer-ul > li > a:not(.folder-title),
-  .explorer-content ul.content > li > a:not(.folder-title),
-  .explorer-content .explorer-ul > li > a:not(.folder-title)::before,
-  .explorer-content ul.content > li > a:not(.folder-title)::before {
-    transition: none !important;
-  }
-}
-
 /* =========================
-   TABLE OF CONTENTS CHEVRON
+   TOC CHEVRON
    ========================= */
+
 .toc li {
   position: relative;
 }
@@ -702,7 +351,11 @@ svg[data-icon*="book"],
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toc li::before {
+  .toc li::before,
+  .explorer-content .explorer-ul > li > a:not(.folder-title),
+  .explorer-content ul.content > li > a:not(.folder-title),
+  .explorer-content .explorer-ul > li > a:not(.folder-title)::before,
+  .explorer-content ul.content > li > a:not(.folder-title)::before {
     transition: none !important;
   }
 }
