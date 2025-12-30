@@ -43,14 +43,15 @@ body,
   max-width: 100%;
 }
 
-/* Prevent obvious width explosions without breaking Quartz header layout */
+/* Do NOT cap everything to max-width:100% globally.
+   That blocks horizontal pan and can force clipping in flex layouts. */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Wrap long strings in reading content, not in global anchors */
+/* Wrap long strings in reading content */
 p,
 li,
 blockquote,
@@ -99,24 +100,20 @@ code {
   padding-top: 0 !important;
 }
 
-/* IMPORTANT: remove Quartz default header margins entirely */
 .center .page-header header {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* Banner wrapper has inline margin-bottom, override it */
 .center .page-header header > div {
   margin-bottom: 0 !important;
 }
 
-/* Kill default margins on banner containers */
 .center .page-header figure,
 .center .page-header picture {
   margin: 0 !important;
 }
 
-/* Ensure images do not create inline spacing */
 .center .page-header img,
 .center .page-header a {
   display: block;
@@ -131,7 +128,6 @@ code {
   padding-top: 1rem !important;
 }
 
-/* Tighten left title and right graph spacing */
 .left.sidebar .page-title {
   margin-top: 0 !important;
 }
@@ -141,7 +137,6 @@ code {
   padding-top: 0 !important;
 }
 
-/* Keep columns aligned at the top */
 #quartz-body {
   align-items: flex-start !important;
 }
@@ -169,7 +164,6 @@ code {
   display: inline;
 }
 
-/* Gradient underline accent */
 .avv-title::after {
   content: "";
   display: block;
@@ -211,9 +205,6 @@ code {
   letter-spacing: 0.01em;
 }
 
-/* =========================
-   HERO ENTRANCE ANIMATION
-   ========================= */
 @keyframes avvFadeIn {
   from {
     opacity: 0;
@@ -235,14 +226,12 @@ code {
   margin-top: 0.25rem !important;
 }
 
-/* Pull date / read time tight under header image */
 .center .page-header .popover-hint,
 .center .page-header .content-meta {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Small, controlled breathing room */
 .center .page-header .content-meta {
   margin-bottom: 0.35rem !important;
 }
@@ -271,57 +260,6 @@ code {
   text-shadow:
     0 0 14px rgba(196, 60, 60, 0.25),
     0 0 14px rgba(31, 78, 216, 0.25);
-}
-
-/* =========================
-   MOBILE FIXES
-   ========================= */
-@media (max-width: 700px) {
-  /* Allow hero title to wrap */
-  .avv-title {
-    white-space: normal;
-    text-wrap: balance;
-  }
-
-  /* Keep underline inside viewport */
-  .avv-title::after {
-    width: min(360px, 92vw);
-  }
-
-  /* Allow horizontal panning if anything still overflows */
-  html,
-  body,
-  #quartz-root,
-  #quartz-body,
-  .center {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Flex children must be allowed to shrink */
-  #quartz-body,
-  .center,
-  main,
-  article,
-  .content {
-    min-width: 0 !important;
-  }
-
-  /* Wrap long links and strings inside the reading area only */
-  .center article a,
-  .center article p,
-  .center article li,
-  .center article blockquote {
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
-  }
-
-  /* Code blocks should scroll internally */
-  .center pre {
-    overflow-x: auto;
-    max-width: 100%;
-  }
 }
 
 /* =========================
@@ -384,7 +322,6 @@ code {
 
   .left.sidebar .page-title a {
     display: block !important;
-    width: auto !important;
     max-width: 100% !important;
 
     overflow-wrap: normal !important;
@@ -392,7 +329,41 @@ code {
     hyphens: none !important;
 
     white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+/* =========================
+   MOBILE: FIX RIGHT SIDE CLIPPING IN CONTENT
+   ========================= */
+@media (max-width: 700px) {
+  /* The most common Quartz culprit is a flex child with min-width:auto.
+     Force shrink so text can wrap instead of being cut off. */
+  #quartz-body,
+  .center,
+  main,
+  article,
+  .content,
+  .page,
+  .page-content,
+  .content-container {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Ensure the main content column actually spans the viewport */
+  .center {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Keep headings from creating overflow, wrap by words not letters */
+  .center h1,
+  .center h2,
+  .center h3 {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
   }
 }
