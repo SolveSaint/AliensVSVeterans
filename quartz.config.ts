@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     locale: "en-US",
 
     // Docs: no protocol, no leading/trailing slashes
-    baseUrl: "aliensvsveterans.com",
+    baseUrl: "www.aliensvsveterans.com",
 
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
