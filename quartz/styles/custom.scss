@@ -636,3 +636,70 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
+/* =========================
+   SIDE FOREST IMPACT
+   Subtle pine mass on left and right edges
+   ========================= */
+body {
+  position: relative;
+}
+
+/* Side silhouettes live behind Quartz content */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+
+  width: 320px; /* increase for stronger side pressure */
+  pointer-events: none;
+
+  z-index: 0;
+  opacity: 0.5;
+
+  /* Slight softness so it blends with your dot texture */
+  filter: blur(0.3px);
+
+  /* Two layers: repeating pine strip + a fade gradient into the page */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 1200' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.82)'%3E%3Cpath d='M0 0 L310 0 L260 70 L310 140 L230 230 L305 320 L215 420 L300 520 L205 620 L295 720 L195 830 L290 940 L185 1060 L260 1200 L0 1200 Z'/%3E%3Cpath d='M310 0 L560 0 L500 85 L555 170 L470 270 L545 365 L455 475 L535 585 L445 700 L525 820 L435 950 L515 1085 L460 1200 L310 1200 Z' opacity='0.92'/%3E%3Cpath d='M560 0 L900 0 L900 1200 L600 1200 L655 1110 L600 1020 L690 930 L610 850 L705 770 L615 690 L720 620 L620 545 L735 480 L630 415 L750 355 L640 300 L765 245 L650 200 L780 155 L660 115 L795 80 L670 40 Z' opacity='0.88'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.38) 45%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+  background-repeat: repeat-y, no-repeat;
+  background-size: 320px 980px, 100% 100%;
+  background-position: left top, left top;
+}
+
+/* Left side */
+body::before {
+  left: 0;
+}
+
+/* Right side, mirrored */
+body::after {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* Keep Quartz layers above the side silhouettes */
+#quartz-root,
+#quartz-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile: reduce side pressure */
+@media (max-width: 700px) {
+  body::before,
+  body::after {
+    width: 180px;
+    opacity: 0.38;
+    background-size: 180px 920px, 100% 100%;
+  }
+}
