@@ -2,24 +2,25 @@
 
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
+   Night forest green bias
    ========================= */
 body {
-  background-color: #0b0e11;
+  background-color: #0a120e;
 
   background-image:
     radial-gradient(
       ellipse at center,
-      rgba(255, 255, 255, 0.06) 0%,
-      rgba(255, 255, 255, 0.03) 35%,
-      rgba(0, 0, 0, 0.35) 70%,
-      rgba(0, 0, 0, 0.6) 100%
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.028) 35%,
+      rgba(0, 0, 0, 0.36) 70%,
+      rgba(0, 0, 0, 0.64) 100%
     ),
     radial-gradient(
-      rgba(255, 255, 255, 0.08) 1px,
+      rgba(255, 255, 255, 0.07) 1px,
       transparent 1px
     ),
     radial-gradient(
-      rgba(255, 255, 255, 0.04) 1px,
+      rgba(255, 255, 255, 0.035) 1px,
       transparent 1px
     );
 
@@ -32,6 +33,55 @@ body {
     center,
     0 0,
     1px 1px;
+}
+
+/* =========================
+   GLOBAL TEXT PALETTE
+   Warm neutrals tuned for dark green
+   ========================= */
+html,
+body,
+#quartz-root,
+#quartz-body {
+  color: #e6ebe7;
+}
+
+/* Make common low emphasis text read cleanly on green */
+.page-meta,
+.content-meta,
+.breadcrumb,
+.breadcrumbs,
+.left.sidebar,
+.right.sidebar,
+.toc,
+.graph,
+footer {
+  color: #9aa8a0;
+}
+
+/* Links */
+a {
+  color: #7fb4ff;
+}
+
+a:hover {
+  color: #a7c9ff;
+}
+
+/* Headings inside articles (do not touch your hero title) */
+.center article h1,
+.center article h2,
+.center article h3,
+.center article h4,
+.center article h5,
+.center article h6 {
+  color: #f1f5f2;
+}
+
+/* Code should remain readable */
+code,
+pre {
+  color: #e6ebe7;
 }
 
 /* =========================
@@ -162,7 +212,7 @@ article,
   font-weight: 500;
   line-height: 1.08;
   margin: 0 0 2rem 0;
-  color: #cfd6e6;
+  color: #e6ebe7;
   text-align: center;
   letter-spacing: 0.01em;
   transform: translateZ(0);
@@ -192,21 +242,21 @@ article,
   color: #f2c94c;
   font-weight: 500;
   opacity: 0.92;
-  text-shadow: 0 0 14px rgba(242, 201, 76, 0.45);
+  text-shadow: 0 0 14px rgba(242, 201, 76, 0.42);
 }
 
 .avv-aliens {
   color: #c43c3c;
   font-weight: 500;
   letter-spacing: 0.01em;
-  text-shadow: 0 0 14px rgba(196, 60, 60, 0.45);
+  text-shadow: 0 0 14px rgba(196, 60, 60, 0.4);
 }
 
 .avv-veterans {
   color: #1f4ed8;
   font-weight: 500;
   letter-spacing: 0.01em;
-  text-shadow: 0 0 14px rgba(31, 78, 216, 0.45);
+  text-shadow: 0 0 14px rgba(31, 78, 216, 0.36);
 }
 
 .avv-welcome,
@@ -268,8 +318,8 @@ article,
   color: transparent;
 
   text-shadow:
-    0 0 14px rgba(196, 60, 60, 0.25),
-    0 0 14px rgba(31, 78, 216, 0.25);
+    0 0 14px rgba(196, 60, 60, 0.22),
+    0 0 14px rgba(31, 78, 216, 0.22);
 }
 
 /* Do not let the site title break per character */
@@ -376,6 +426,7 @@ article,
 
 /* =========================
    FORCE DARK MODE ONLY
+   Keep Quartz variables aligned with our night forest palette
    ========================= */
 :root {
   color-scheme: dark !important;
@@ -383,15 +434,15 @@ article,
 
 html[data-theme="light"],
 html[data-theme="light"] body {
-  background-color: #0b0e11 !important;
-  color: #cfd6e6 !important;
+  background-color: #0a120e !important;
+  color: #e6ebe7 !important;
 }
 
 html,
 html[data-theme],
 html[data-theme="dark"] {
-  --background: #0b0e11 !important;
-  --text: #cfd6e6 !important;
+  --background: #0a120e !important;
+  --text: #e6ebe7 !important;
 }
 
 /* =========================
@@ -435,7 +486,7 @@ svg[data-icon*="book"],
    ========================= */
 .explorer-content a.is-active {
   background-color: rgba(96, 163, 255, 0.24);
-  color: #e6f0ff;
+  color: #eef4f0;
   border-radius: 8px;
   box-shadow: inset 2px 0 0 rgba(96, 163, 255, 0.75);
 }
@@ -449,7 +500,7 @@ svg[data-icon*="book"],
    ========================= */
 .explorer-content a:not(.folder-title):hover {
   background-color: rgba(96, 163, 255, 0.15);
-  color: #e6f0ff;
+  color: #eef4f0;
   border-radius: 8px;
 }
 
@@ -501,6 +552,7 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
+
 /* =========================
    TABLE OF CONTENTS CHEVRON
    No overlap, chevron unaffected by link fade
@@ -514,7 +566,7 @@ svg[data-icon*="book"],
 /* Make the link occupy the row and start after the gutter */
 .toc li > a {
   display: block;
-  padding-left: 24px !important; /* reserves space for chevron */
+  padding-left: 24px !important;
   border-radius: 6px;
 }
 
@@ -560,4 +612,3 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
-
