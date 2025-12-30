@@ -331,3 +331,52 @@ code {
     display: block;
   }
 }
+/* =========================
+   MOBILE FONT SIZE BOOST
+   ========================= */
+
+@media (max-width: 700px) {
+  /* Base text */
+  body {
+    font-size: 1.05rem;
+  }
+
+  /* Reading content */
+  p,
+  li,
+  blockquote {
+    font-size: 1.1rem;
+    line-height: 1.65;
+  }
+
+  /* Headings */
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.15rem;
+  }
+
+  /* Sidebar + nav text */
+  .left.sidebar,
+  .right.sidebar {
+    font-size: 0.95rem;
+  }
+
+  /* Meta text (date, read time, breadcrumbs) */
+  .page-meta,
+  .content-meta,
+  .breadcrumb,
+  .breadcrumbs {
+    font-size: 0.85rem;
+  }
+}
