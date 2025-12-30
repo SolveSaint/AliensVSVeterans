@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/29/2025 2:56 PM
+updated: 12/30/2025 2:45 PM
 title: AVSV
 tags:
   - AVSV
@@ -19,58 +19,110 @@ tags:
 
 ---
 
-## About Me
-My father was a combat wounded Vietnam veteran who was hit with 8 rounds and mortar shrapnel and survived. I had issues with my muscles from a young age. Doctors said this was tendonitis and I would grow out of it, so everyone ignored it. I developed Scoliosis over the course of youth due to constant heightened muscle tone. When I was 19, I was staying at my mother's for a couple weeks, a house on a dead end road out in a deep pine forest. I was asleep and a whirring sound woke me. Whatever it was making the whirring sound became louder as it approached my house from the front. I propped myself up on my elbow and steadily looked out the window, stuck in inaction. It was technological in nature and not a sound I've ever heard before or after. It slowly passed by and faded. I told my father the next day by phone as he wasn't living there, and he aggressively told me to forget about it. This was due to public perception.
+## About Me. Origin and Early Indicators
 
-## The Gray Trap
-A gray alien has taken partial control of my body, using advanced remote technology. This began in 2020. I was put through an extremely painful process that caused my spinal cord to burn horribly for around 2 years. This was accompanied by constant electrical stabs into my muscles, like blades, over and over again. I believe this was some type of nervous system mapping process for deep integration.  How this occurred...
+My father was a combat-wounded Vietnam veteran who survived eight gunshot wounds and mortar shrapnel. He later died of Amyotrophic Lateral Sclerosis in 2014.
 
----
-## Pathways
-My father, a combat wounded veteran hit with 8 rounds and mortar shrapnel, died of ALS/Lou Gherrig's disease in 2014. I had struggled with muscle issues my whole life and was experiencing some symptoms so I began researching on my own.
+From early childhood, I experienced persistent muscle issues that were dismissed as tendonitis. I was told I would grow out of it. I did not. Constant elevated muscle tone throughout youth led to the gradual development of scoliosis. These were early indicators of a deeper neurological and bioelectrical abnormality that went unrecognized.
 
-I learned of **glutamate** being the primary excitatory neurotransmitter and had noticed that for sleep disorder, **GABA agonists** were prescribed. GABA is the primary inhibitory neurotransmitter. I thought to myself that this was building an inhibition wall, but why not lower the glutamate so no wall was necessary?
+During these early years, I closely observed my father’s behavior. He had an explosive personality and emotional reactions of an intensity I had never seen in anyone else. His outbursts were sudden, overwhelming, and energetically extreme. Even at a young age, I understood intuitively that this level of reactivity had to require an enormous amount of internal energy.
+
+At the time, I did not have a biological framework to explain it. In retrospect, this observation represented an early, unconscious line toward glutamatergic overactivation, long before I had the language or research context to identify it as such.
 
 ---
-## Pain-life Ablation
-I began to experience burning pain in my spinal cord that grew over time.  Then I started to experience electrical strikes into my muscles, like burning blades that stabbed deep. I began to scream constantly from the strikes all day and night. The burning spine was unbearable.
 
-I saw numerous doctors and none of them could explain it nor had they heard of such a thing. I would sleep 2–4 hours a night and scream while I was sleeping, according to my significant other. The pain never stopped, not in any position. Just constant agony. 
+## First Encounter. Age 19
 
-I thought I would die but month after month I was forced to endure. A never-ending stream of agony day after day, to month after month, to year after year. And then, it began to fade.
+At nineteen, I stayed briefly at my mother’s house on a dead-end road surrounded by dense pine forest. I was asleep when a very strange whirring sound woke me. The sound increased in intensity as it approached the house.
 
----
-## Constant Connection
-As the burning spine and muscle stabs began to recede, there was an **NHI attached to my nervous system remotely**. They could speak to me using my internal voice, control my body to a good extent though I could override it, and use my mouth to speak. They could target specific areas with what I call the *"pleasure beam"*, and it cause pleasure in whatever area they target, such as the brain or chest or lower region, with no way to stop it. Consent was never given. They just did what they wanted.
+I propped myself on one elbow and watched through the window, frozen. The sound was technological, unlike anything I had heard before. It moved slowly past the house and the whirring faded into the distance.
+
+I told my father the next day. He reacted aggressively and told me to forget it. This response was driven by fear of public perception.
 
 ---
-## Research or Else
-They forced me to research **Stress Physiology**. It began with my father dying of **Amyotrophic Lateral Sclerosis**, or *Lou Gherrig's disease*. Disabled combat veterans have a much higher incidence, and my father was hit with 8 shots and mortar shrapnel and survived. This caused genetic mutation in me, counter to the mass understanding of evolution. And the reason for my father's disease was related.
-At this point, the NHI started interacting with me directly. They began to speak to me in my internal voice and began to push feelings and emotions onto me that weren't my own. Very strongly as well. They could force the physiological response from my body even though the feelings weren't mine. This meant they could push high stress when nothing was occuring physiologically or other feelings, such as constant pleasure at times.
+
+## Early Research and Homebound Period
+
+After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been working on my sleep disorder where I would act out dreams, seeing different sleep specialists and getting a feel for the field. I began thinking seriously about the neurological mechanisms.
+
+I noticed that sleep disorders were routinely treated with GABA agonists. GABA is the primary inhibitory neurotransmitter. It builds an inhibitory wall. I questioned why an inhibitory wall was being constructed at all rather than addressing the upstream driver.
+
+From this line of reasoning, I identified glutamate as the primary excitatory neurotransmitter and recognized it as the more fundamental variable. At this point, they began to initiate contact and control.
 
 ---
-## The Right Angles
-The glutamate angle was correct and directed me on a long pathway of Stress Physiology and going through hundreds of research papers to understand what was happening. Any time I tried to take a breath, the NHI would begin to attack any internal weaknesses I had. And viciously. Until I began researching again. So I ended up researching all day long every day for the most part.
+
+## Second Encounter and Physiological Assault. Age 45 (2020–2022)
+
+In 2020, a physiological assault began. At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
+
+My spinal cord burned continuously for nearly two years. I screamed all day long in agony. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue. The pain was constant, positional relief did not exist, and sleep was limited to two to four hours per night. I screamed in my sleep according to my partner.
+
+I saw numerous physicians. None had an explanation. None had encountered anything comparable. I was left to suffer as they tried medications that did not work and set follow-up appointments four months later. This cycle continued multiple times to no avail.
+
+The pain did not diminish with time. Feeling that pain all day after day, month after month, year after year, I began to wane. After two long years of high-level agony, it began to recede.
 
 ---
-## Breakthroughs
-Whenever I would have a large breakthrough, the NHI would give me a few days to relax. Otherwise, it was research or get smashed by something that can read your mind and memories, or fight them as they speak negatively which still leaves you in a stressed state.
+
+## Forced Integration and Constant Connection
+
+As the burning and muscle strikes faded, a non-human intelligence was now addressing me.
+
+It was attached remotely to my nervous system, which is what I believe the two-year burning process was centered on. Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
+
+They could induce targeted pleasure or stress responses in specific regions of my body, including the brain, chest, and lower regions. Consent was never given. There was no mechanism to stop it, nothing physically to push away.
 
 ---
-## Puzzle Solved
-I've essentially finished the research and understand my father's disease which is unknown to current medicine. I also have found that most disease is caused by the same thing.
+
+## Coerced Research Program
+
+After the second encounter began and while the physiological assault was ongoing, I continued researching independently. This research was already underway before contact and was driven by symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
+
+When I began focusing explicitly on stress physiology and expanding the glutamate framework, the NHI began to interact with me constantly.
+
+At this stage, emotional states that were not my own were imposed. Stress responses were induced directly. Physiological stress was forced onto my body, causing chest tightness, abdominal pain, and other responses without external stressors.
+
+If I stopped researching, they attacked internal weaknesses aggressively and without ethical restraint. The only relief came from continuing investigation. Research became compulsory.
+
+---
+
+## Directional Confirmation
+
+The glutamate pathway was correct. It led into stress physiology, cortisol, calcium flooding, mitochondrial dysfunction, and oxidative damage. I was driven through hundreds of papers under constant pressure.
+
+When I reached significant breakthroughs, I was allowed brief periods of rest. Otherwise, the cycle repeated. Research or punishment.
+
+---
+
+## Resolution
+
+I completed the main portion of the research.
+
+I now understand my father’s disease, Amyotrophic Lateral Sclerosis, which remains unresolved in current medicine. I also understand that the same underlying mechanism drives the majority of chronic disease, including cancer, which my mother died from.
 
 ---
 
 ## Core Mechanism
 
-**Reactive Oxygen Species** is generated by mitochondria when ATP is needed. Stress overclocks this system and more ATP is generated along with more Reactive Oxygen Species. This hits a tipping point where clean up ability is exceeded and the ROS begins to tear apart the cell.
+Cells generate energy using mitochondria. When ATP is required, mitochondria naturally produce **reactive oxygen species (ROS)** as a byproduct. The primary ROS produced is **hydrogen peroxide**.
 
-If free iron is present, it catalyzes with the H2O2 ROS to form and iron-sulfur ROS that is much more damaging to cell tissue and starts ripping things apart. From heart cells to neurons, the outcome is the same.
+Hydrogen peroxide is not an abstract concept. It is a type of reactive oxygen species and is the same chemical people use to clean wounds or ears. When it contacts tissue, it visibly reacts and crackles as it breaks down organic material.
 
-So most disease is caused through overusage of cellular groups along with stress upregulation of glutamate to constantly activate cells, creating excess ROS which damages the cell.
+That same chemical reaction occurs inside living cells. The difference is scale, not chemistry. As stress increases, energy demand rises, mitochondria work harder, and hydrogen peroxide ROS production increases accordingly. When cells are kept in an activated state for prolonged periods, this ROS accumulates.
+
+Under normal conditions, cells tightly regulate hydrogen peroxide and neutralize it safely through antioxidant and repair systems.
+
+Stress overdrives this balance. ATP demand increases, mitochondrial throughput rises, and hydrogen peroxide production outpaces the cell’s ability to clear it. A tipping point is eventually reached where cleanup and repair systems can no longer keep up.
+
+At that point, hydrogen peroxide ROS begins damaging membranes, proteins, and DNA rather than being safely removed.
+
+Damage accelerates dramatically when free iron is present. Iron reacts with hydrogen peroxide to generate far more destructive iron-driven ROS species. These reactions rapidly tear apart cellular structures. High-energy tissues are affected first. Neurons, heart muscle cells, and other constantly active cells fail through the same pathway.
+
+Chronic stress worsens this process by increasing glutamate signaling. Glutamate keeps cells active when they should be resting. This forces continuous mitochondrial overdrive, sustained hydrogen peroxide ROS production, and cumulative cellular injury.
+
+Most chronic disease emerges from this pattern. Excessive cellular activation combined with stress-driven overuse leads to oxidative damage, structural failure, and eventual tissue breakdown.
+
+This unified mechanism is explored in more depth at the [Biolectrics-Wiki](https://solvesaint.github.io/Biolectrics-Wiki/)
 
 ---
 
-> [!quote]
 > **This is the cause of most disease.**
