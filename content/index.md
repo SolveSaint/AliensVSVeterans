@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/30/2025 3:10 PM
+updated: 12/30/2025 3:12 PM
 title: AVSV
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -80,7 +80,7 @@ The pain did not diminish with time. Feeling that pain all day, after day, all m
 
 As the burning and muscle strikes faded, a non-human intelligence was now addressing me.
 
-It was attached remotely to my nervous system, which is what I believe the two-year burning process was centered on. Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
+It was attached remotely to my nervous system, which is what I believe the year of pins and needles before sleep and then the two-year burning process was centered on. Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
 
 They could induce targeted pleasure or stress responses in specific regions of my body, including the brain, chest, and lower regions. Consent was never given. There was no mechanism to stop it, nothing physically to push away.
 
