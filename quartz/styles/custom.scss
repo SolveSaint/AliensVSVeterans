@@ -429,6 +429,7 @@ svg[data-icon*="book"],
 .reader-toggle {
   display: none !important;
 }
+
 /* =========================
    EXPLORER ACTIVE LINK
    ========================= */
@@ -442,6 +443,7 @@ svg[data-icon*="book"],
 .explorer-content a.is-active::after {
   background: rgba(96, 163, 255, 0.22);
 }
+
 /* =========================
    EXPLORER HOVER HIGHLIGHT
    ========================= */
@@ -450,57 +452,47 @@ svg[data-icon*="book"],
   color: #e6f0ff;
   border-radius: 8px;
 }
-/* =========================
-   EXPLORER HOVER INDICATOR
-   Left rail with soft fade
-   ========================= */
 
-/* Make file links a positioning context */
+/* =========================
+   EXPLORER CHEVRON INDICATOR
+   Left gutter + soft fade
+   ========================= */
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
   position: relative;
+  padding-left: 28px;
+  transition: background-color 220ms ease, color 220ms ease;
 }
 
-/* The indicator itself, hidden by default */
 .explorer-content .explorer-ul > li > a:not(.folder-title)::before,
 .explorer-content ul.content > li > a:not(.folder-title)::before {
-  content: "";
+  content: "›";
   position: absolute;
-  left: 6px;
+  left: 12px;
   top: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(96, 163, 255, 0.85);
 
-  transform: translateY(-50%) scale(0.92);
+  font-size: 1.15rem;
+  line-height: 1;
+  color: rgba(96, 163, 255, 0.9);
+
+  transform: translateY(-50%) translateX(-2px);
   opacity: 0;
-  filter: blur(0.1px);
 
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
-/* Fade in on hover */
 .explorer-content .explorer-ul > li > a:not(.folder-title):hover::before,
 .explorer-content ul.content > li > a:not(.folder-title):hover::before {
-  opacity: 0.9;
-  transform: translateY(-50%) scale(1);
+  opacity: 0.95;
+  transform: translateY(-50%) translateX(0);
 }
 
-/* Optional: keep it visible and slightly stronger for current page (Postscript) */
 .explorer-content a.is-active::before {
   opacity: 1;
-  transform: translateY(-50%) scale(1);
-  background: rgba(96, 163, 255, 0.95);
+  transform: translateY(-50%) translateX(0);
+  color: rgba(96, 163, 255, 0.98);
 }
 
-/* Make hover and active transitions feel softer */
-.explorer-content .explorer-ul > li > a:not(.folder-title),
-.explorer-content ul.content > li > a:not(.folder-title) {
-  transition: background-color 220ms ease, color 220ms ease;
-}
-
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .explorer-content .explorer-ul > li > a:not(.folder-title),
   .explorer-content ul.content > li > a:not(.folder-title),
