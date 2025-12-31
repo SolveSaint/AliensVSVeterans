@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/30/2025 4:45 PM
+updated: 12/31/2025 8:34 AM
 title: www.AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -68,19 +68,21 @@ In 2020, a new phase began.
 
 At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
 
-My spinal cord burned continuously for nearly two years. I screamed all day long in agony. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue. The pain was constant, positional relief did not exist, and sleep was limited to two to four hours per night. I screamed in my sleep according to my partner.
+My spinal cord burned continuously for nearly two years. I screamed all day long in agony. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue. The pain was constant, positional relief did not exist, and sleep was limited to two to four hours per night. I screamed in my sleep according to my girl friend.
 
-I saw numerous physicians. None had an explanation. None had encountered anything comparable. I was left to suffer as they tried medications that didn't work and set followup appointments four months later. This cycle continued multiple times to no avail.
+I saw numerous physicians. None had an explanation. None had encountered anything comparable. I was left to suffer as they tried medications that didn't work and set follow-up appointments four months later. This cycle continued multiple times to no avail.
 
-The pain did not diminish with time. Feeling that pain all day, after day, all month after month, all year after year, I began to wane. After two long years of high level agony, however, it began to recede.
+The pain didn't diminish. Feeling that pain all day long, day after day, month after month, and stretching into years, I began to wane. After two long years of high level agony, however, it began to recede.
 
 ---
 
 ## Forced Integration and Constant Connection
 
-As the burning and muscle strikes faded, a non-human intelligence was now addressing me.
+As the burning and muscle strikes faded, a non-human intelligence was now addressing me directly.
 
-It was attached remotely to my nervous system, which is what I believe the year of pins and needles before sleep and then the two-year burning process was centered on. Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
+It had attached remotely to my nervous system, which is what I believe the year of pins and needles before sleep and then the two-year burning process was centered on. 
+
+Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
 
 They could induce targeted pleasure or stress responses in specific regions of my body, including the brain, chest, and lower regions. Consent was never given. There was no mechanism to stop it, nothing physically to push away.
 
@@ -88,19 +90,21 @@ They could induce targeted pleasure or stress responses in specific regions of m
 
 ## Coerced Research Program
 
-After the second encounter began and while the physiological assault was ongoing, I continued researching independently. This research was already underway before contact and was driven by symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
+After the second encounter began and while the physiological assault was ongoing, I continued researching independently. This research was already underway before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
 
-When I began focusing explicitly on stress physiology and expanding the glutamate framework, the NHI began to interact with me constantly.
+When I began focusing explicitly on stress physiology and expanding the glutamate framework, the NHI began to interact with me in a constant barrage-like manner.
 
-At this stage, emotional states that were not my own were imposed. Stress responses were induced directly. Physiological stress was forced onto my body, causing chest tightness, abdominal pain, and other responses without external stressors.
+It pushed emotional states onto to me that I couldn't counter in any way. I could feel my own state and the foreign state simultaneously. Stress responses were induced that weren't mine. Physiological response was forced onto me, causing chest tightness, abdominal pain, and other responses without internal stressors from myself in any way.
 
-If I stopped researching, they attacked internal weaknesses aggressively and without ethical restraint. They threatened me, my loved ones, damaged any friendships I had. The only relief came from continuing investigation. Research became compulsory.
+It would take control of my body and force me to spin in circles in front of my girl friend to show it's control. It threatened to make me look like a fool in public by taking control or putting the pleasure beam on me to force me to make sound. It threatened to disrupt my speech or speak in ways that would cause me problems.
+
+If I stopped researching, they attacked internal weaknesses aggressively and without any ethical restraint. And let me reiterate for everyone, no ethics in any fashion. It threatened me, my loved ones, damaged any friendships I had. The only relief came from continuing investigation. Research became compulsory.
 
 ---
 
 ## Directional Confirmation
 
-The glutamate pathway was correct. It led into stress physiology, cortisol, calcium flooding, mitochondrial dysfunction, and oxidative damage. I was driven through hundreds of papers under constant pressure.
+The glutamate pathway was correct. It led into stress physiology, cortisol, calcium flooding, mitochondrial dysfunction, and oxidative damage. I was driven through thousands of research papers, filtered to [this set](https://solvesaint.github.io/Biolectrics-Wiki/Research-Paper-Database), under constant pressure.
 
 When I reached significant breakthroughs, I was allowed brief periods of rest. Otherwise, the cycle repeated. Research or punishment.
 
