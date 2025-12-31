@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 12/31/2025 8:34 AM
+updated: 12/31/2025 9:09 AM
 title: www.AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -24,11 +24,11 @@ tags:
 
 My father was a combat-wounded Vietnam veteran who survived eight gunshot wounds and mortar shrapnel. He later died of Amyotrophic Lateral Sclerosis in 2014.
 
-From early childhood, I experienced persistent muscle issues that were dismissed as tendonitis. I was told I would grow out of it. I did not. Constant elevated muscle tone throughout youth led to the gradual development of scoliosis. These were early indicators of a deeper neurological and bioelectrical abnormality that went unrecognized.
+From early childhood, I experienced persistent muscle issues that were dismissed as tendonitis and a sleep issue where I moved around like I was awake while sleeping. I was told I would grow out of it. I did not. Constant elevated muscle tone throughout youth led to the gradual development of scoliosis.
 
-During these early years, I closely observed my father’s behavior. He had an explosive personality and emotional reactions of an intensity I had never seen in anyone else. His outbursts were sudden, overwhelming, and energetically extreme. Even at a young age, I understood intuitively that this level of reactivity had to require an enormous amount of internal energy.
+During this time, I observed my father’s behavior. He had an explosive personality and emotional reactions at an intensity I hadn't seen in anyone else. His blowups were quick to build, environmentally overwhelming, and energetically extreme. I understood intuitively that this level of reactivity had to require an enormous amount of internal energy.
 
-At the time, I did not have a biological framework to explain it. In retrospect, this observation represented an early, unconscious line toward glutamatergic overactivation, long before I had the language or research context to identify it as such.
+At the time, I did not have a biological framework to explain it, but I thought my father should most likely be on Valium or similar. In retrospect, this observation represented an early line toward glutamatergic overactivation, as Valium is a GABA agonist. More on that ahead.
 
 ---
 
@@ -44,7 +44,7 @@ I told my father the next day. He reacted aggressively and told me to forget it.
 
 ## Early Research and Homebound Period
 
-After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been working on my sleep disorder where I would act out dreams, seeing different sleep specialists and getting a feel for the field. I began thinking seriously about the neurological mechanisms.
+After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been looking at sleep disorder where and dream enactment, as well as seeing different sleep specialists and getting a feel for the field. I began thinking seriously about the neurological mechanisms.
 
 I noticed that sleep disorders were routinely treated with GABA agonists. GABA is the primary inhibitory neurotransmitter. It builds an inhibitory wall. I questioned why an inhibitory wall was being constructed at all rather than addressing the upstream driver.
 
@@ -54,25 +54,25 @@ From this line of reasoning, I identified glutamate as the primary excitatory ne
 
 ## Second Encounter and Physiological Assault. Age 45 (2020–2022)
 
-In the period leading up to the second encounter, a distinct sensory process began.
+In the period leading up to being controlled, a distinct sensory process began.
 
-Each night when I lay down to sleep, my feet would begin vibrating at a level that was initially almost imperceptible. This occurred nightly. Over the course of months, the sensation grew stronger and more defined.
+Each night when I lay down to sleep, my feet would begin vibrating at a level that was initially almost imperceptible. This occurred nightly. I mentioned it to my girl friend and couldn't figure out what it was. Over the course of months, the sensation grew stronger and more defined.
 
-The vibration progressed upward. My hands became involved, followed later by my face. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. More like repeated pin stabs rather than diffuse tingling. Night after night, the intensity increased.
+The vibration progressed to my hands. Again this lasted for a while, building up in strength every night.  Then it covered my face in the same manner. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. Like repeated pin stabs rather than diffuse tingling. Night after night, the intensity kept increasing.
 
-Over time, the sensation became painful. Then, after roughly a year of nightly progression, it reached a final crescendo. On that night, the intensity was strong enough to make me gasp involuntarily. Immediately afterward, the sensation faded.
+The sensations became painful. After roughly a year of nightly progression, it reached a final crescendo. That night, the intensity was so strong that it made me gasp involuntarily and jerk forward. But immediately afterward, the sensation faded.
 
-It never returned. The abrupt cessation gave the impression that a process had completed.
+It never returned. **The abrupt cessation gave the strong impression that a process had been completed**.
 
 In 2020, a new phase began.
 
-At that time, I had no understanding of the cause, the mechanism, or that a non-human intelligence was involved.
+At that time, I had no understanding of the cause, or the mechanism. I assumed it had to be due to my condition even though this was severely abnormal from what I knew of ALS.
 
-My spinal cord burned continuously for nearly two years. I screamed all day long in agony. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue. The pain was constant, positional relief did not exist, and sleep was limited to two to four hours per night. I screamed in my sleep according to my girl friend.
+My spinal cord itself burned horribly and continuously, unrelenting. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue, causing me to scream in agony with each strike. The pain was was so high that almost no one would be able to understand it. Positional relief did not exist. I slept when exhaustion forced it and was limited to two to four hours per night. I screamed in my sleep according to my girl friend.
 
-I saw numerous physicians. None had an explanation. None had encountered anything comparable. I was left to suffer as they tried medications that didn't work and set follow-up appointments four months later. This cycle continued multiple times to no avail.
+I saw numerous physicians. None had any explanation at all. Specialists, none had encountered anything similar. So that left me to suffer as they tried medications that didn't work and set follow-up appointments for four months later. This cycle continued multiple times to no avail.
 
-The pain didn't diminish. Feeling that pain all day long, day after day, month after month, and stretching into years, I began to wane. After two long years of high level agony, however, it began to recede.
+The pain didn't diminish. Feeling that pain all day long, day after day, month after month, and into year after year, I began to wane. But finally, after two long years of the most intense agony you can imagine, it began to recede.
 
 ---
 
@@ -84,21 +84,21 @@ It had attached remotely to my nervous system, which is what I believe the year 
 
 Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
 
-They could induce targeted pleasure or stress responses in specific regions of my body, including the brain, chest, and lower regions. Consent was never given. There was no mechanism to stop it, nothing physically to push away.
+They could induce targeted pleasure or stress response in specific regions of my body, including the brain, chest, stomach, and lower regions. Consent was never given. There was no mechanism to stop it, nothing to physically push away.
 
 ---
 
 ## Coerced Research Program
 
-After the second encounter began and while the physiological assault was ongoing, I continued researching independently. This research was already underway before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
+After the second encounter began and while the physiological assault was ongoing, I continued researching. I was already underway long before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
 
-When I began focusing explicitly on stress physiology and expanding the glutamate framework, the NHI began to interact with me in a constant barrage-like manner.
+When I began progressing into stress physiology and expanding the glutamate framework, the NHI began to interact with me in a constant barrage-like manner.
 
 It pushed emotional states onto to me that I couldn't counter in any way. I could feel my own state and the foreign state simultaneously. Stress responses were induced that weren't mine. Physiological response was forced onto me, causing chest tightness, abdominal pain, and other responses without internal stressors from myself in any way.
 
 It would take control of my body and force me to spin in circles in front of my girl friend to show it's control. It threatened to make me look like a fool in public by taking control or putting the pleasure beam on me to force me to make sound. It threatened to disrupt my speech or speak in ways that would cause me problems.
 
-If I stopped researching, they attacked internal weaknesses aggressively and without any ethical restraint. And let me reiterate for everyone, no ethics in any fashion. It threatened me, my loved ones, damaged any friendships I had. The only relief came from continuing investigation. Research became compulsory.
+If I stopped researching, they attacked internal weaknesses aggressively and without any ethical restraint. And let me reiterate for everyone, no ethics in any fashion. It threatened me, my loved ones, and damaged any friendships I had. The only relief came from continuing investigation. Research became compulsory.
 
 ---
 
@@ -114,7 +114,7 @@ When I reached significant breakthroughs, I was allowed brief periods of rest. O
 
 I completed the main portion of the research.
 
-I now understand my father’s disease, Amyotrophic Lateral Sclerosis, which remains unresolved in current medicine. I also understand that the same underlying mechanism drives the majority of chronic disease, including cancer, which my mother died from.
+I now understand my father’s disease, Amyotrophic Lateral Sclerosis, which remains unresolved in current medicine. I also understand that the same underlying mechanism drives the majority of chronic disease, including Alzheimer's, Parkinson's, Cardiovascular disease, and cancer, which my mother died from.
 
 ---
 
