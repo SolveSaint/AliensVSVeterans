@@ -9,6 +9,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       "AVSV Discord": "https://discord.gg/5zdc5RJByb",
+      "instagram": "https://www.instagram.com/aliensvsveterans/",
 	  "Contact": "mailto:contact@aliensvsveterans.com",
     },
   }),

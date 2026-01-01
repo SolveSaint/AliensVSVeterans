@@ -632,3 +632,17 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
+footer a[href*="instagram.com"] {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url("/static/instagram.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  opacity: 0.85;
+}
+
+footer a[href*="instagram.com"]:hover {
+  opacity: 1;
+}
