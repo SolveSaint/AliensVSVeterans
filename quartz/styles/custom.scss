@@ -632,30 +632,72 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
-/* Footer Instagram icon */
+/* Instagram icon */
 footer a[href^="https://www.instagram.com/"] {
   display: inline-block;
   width: 18px;
   height: 18px;
   min-width: 18px;
-
-  /* Quartz CSS is emitted under /assets/, so go up one level */
   background-image: url("../static/instagram.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
-  /* hide the word "instagram" but keep the link accessible */
   overflow: hidden;
   white-space: nowrap;
   text-indent: 200%;
-
-  /* make black SVG visible on dark background */
   filter: invert(1);
   opacity: 0.9;
   vertical-align: middle;
 }
 
-footer a[href^="https://www.instagram.com/"]:hover {
+/* Discord icon */
+footer a[href*="discord.gg"],
+footer a[href*="discord.com"] {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  background-image: url("../static/discord.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+  filter: invert(1);
+  opacity: 0.9;
+  vertical-align: middle;
+}
+
+/* spacing between footer icons */
+footer a[href*="instagram.com"],
+footer a[href*="discord"] {
+  margin-right: 0.75rem;
+}
+/* Footer Email (ProtonMail) icon */
+footer a[href^="mailto:"] {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+
+  /* Quartz CSS is served from /assets/, so go up to /static/ */
+  background-image: url("../static/protonmail.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  /* hide text but keep link accessible */
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+
+  /* ensure visibility on dark background */
+  filter: invert(1);
+  opacity: 0.9;
+  vertical-align: middle;
+}
+
+footer a[href^="mailto:"]:hover {
   opacity: 1;
 }
