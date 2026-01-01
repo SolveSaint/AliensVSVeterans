@@ -632,17 +632,30 @@ svg[data-icon*="book"],
     transition: none !important;
   }
 }
-footer a[href*="instagram.com"] {
+/* Footer Instagram icon */
+footer a[href^="https://www.instagram.com/"] {
   display: inline-block;
   width: 18px;
   height: 18px;
-  background-image: url("/static/instagram.svg");
+  min-width: 18px;
+
+  /* Quartz CSS is emitted under /assets/, so go up one level */
+  background-image: url("../static/instagram.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  text-indent: -9999px;
-  opacity: 0.85;
+  background-position: center;
+
+  /* hide the word "instagram" but keep the link accessible */
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+
+  /* make black SVG visible on dark background */
+  filter: invert(1);
+  opacity: 0.9;
+  vertical-align: middle;
 }
 
-footer a[href*="instagram.com"]:hover {
+footer a[href^="https://www.instagram.com/"]:hover {
   opacity: 1;
 }
