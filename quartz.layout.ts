@@ -9,7 +9,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       "Instagram": "https://www.instagram.com/aliensvsveterans/",
-      "TikTok_TEST": "https://www.tiktok.com/@aliensvsveterans",
+      "TikTok": "https://www.tiktok.com/@aliensvsveterans",
       "AVSV Discord": "https://discord.gg/5zdc5RJByb",
       "Contact": "mailto:contact@aliensvsveterans.com",
     },
