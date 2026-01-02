@@ -1,18 +1,74 @@
 @use "./base.scss";
 
-/* =========================
+/* =========================================================
+   HARD RULE
+   If this file contains any stray characters like "<" at end,
+   SCSS compilation can fail or partially apply. File must end clean.
+   ========================================================= */
+
+/* =========================================================
    GLOBAL STACKING
    Keep overlays behind content
-   ========================= */
+   ========================================================= */
 #quartz-root,
 #quartz-body {
   position: relative;
   z-index: 1;
 }
 
-/* =========================
+/* =========================================================
+   PULL THE ENTIRE LAYOUT UP
+   Remove the dead space above header image and keep columns aligned
+   ========================================================= */
+#quartz-root,
+#quartz-body,
+.center,
+.center .page-header,
+.center .page-header header {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Banner wrapper has inline margin-bottom, override it */
+.center .page-header header > div {
+  margin-bottom: 0 !important;
+}
+
+/* Pull sidebars up, then add controlled spacing */
+.left.sidebar,
+.right.sidebar {
+  margin-top: 0 !important;
+  padding-top: 1rem !important;
+}
+
+/* Tighten left title and right block spacing */
+.left.sidebar .page-title {
+  margin-top: 0 !important;
+}
+
+/* Keep columns aligned at the top */
+#quartz-body {
+  align-items: flex-start !important;
+}
+
+/* =========================================================
+   SITE TITLE COLOR
+   AVSV in the top left
+   ========================================================= */
+.left.sidebar .page-title,
+.left.sidebar .page-title a,
+.left.sidebar a.page-title {
+  color: #4da6ff !important;
+}
+
+.left.sidebar .page-title a:hover,
+.left.sidebar a.page-title:hover {
+  color: #3dd5d9 !important;
+}
+
+/* =========================================================
    STRONG GLOBAL TEXTURED BACKGROUND
-   ========================= */
+   ========================================================= */
 body {
   background-color: #0a120e;
 
@@ -29,10 +85,119 @@ body {
   background-attachment: fixed, fixed, fixed, fixed, fixed;
 }
 
-/* =========================
-   FOOTER SOCIAL ICONS
-   ========================= */
+/* =========================================================
+   HEADER IMAGE SPACING CONTROL
+   If you still see a small gap under the header image,
+   tighten the first content block below the header.
+   ========================================================= */
+.center .page-header + .content,
+.center .page-header + main,
+.center .page-header + div {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 
+/* If ContentMeta (date, read time, breadcrumbs) is creating space */
+.center .content-meta,
+.center .breadcrumb-container,
+.center nav[aria-label="Breadcrumb"],
+.center .breadcrumbs {
+  margin-top: 0.25rem !important;
+  padding-top: 0 !important;
+}
+
+/* =========================================================
+   EXPLORER MENU CHEVRON MARKER
+   Adds a chevron before links in the explorer
+   ========================================================= */
+.left.sidebar .explorer a,
+.left.sidebar nav a {
+  position: relative;
+  padding-left: 1.05rem !important;
+}
+
+/* Chevron */
+.left.sidebar .explorer a::before,
+.left.sidebar nav a::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  opacity: 0.55;
+}
+
+/* Active / hovered chevron stronger */
+.left.sidebar .explorer a:hover::before,
+.left.sidebar nav a:hover::before {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   TABLE OF CONTENTS CHEVRON MARKER
+   Mirrors explorer chevron behavior inside TOC
+   ========================================================= */
+.right.sidebar .table-of-contents a,
+.right.sidebar .toc a {
+  position: relative;
+  padding-left: 1.05rem !important;
+}
+
+/* Chevron */
+.right.sidebar .table-of-contents a::before,
+.right.sidebar .toc a::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+
+  /* Make sure it is not washed out by TOC text fading */
+  opacity: 0.85;
+}
+
+/* If your TOC has “faded text” styling, keep chevron readable */
+.right.sidebar .table-of-contents,
+.right.sidebar .toc {
+  --toc-link-opacity: 0.75;
+}
+
+.right.sidebar .table-of-contents a,
+.right.sidebar .toc a {
+  opacity: var(--toc-link-opacity);
+}
+
+.right.sidebar .table-of-contents a:hover,
+.right.sidebar .toc a:hover {
+  opacity: 1;
+}
+
+/* =========================================================
+   RECENT POSTS BLOCK
+   If you render recent posts in-body via component, style it here
+   ========================================================= */
+.recent-posts-in-body {
+  margin: 2rem 0;
+  padding: 1.1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+
+.recent-posts-in-body h2 {
+  margin: 0 0 0.65rem 0;
+}
+
+.recent-posts-in-body ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.recent-posts-in-body li + li {
+  margin-top: 0.25rem;
+}
+
+/* =========================================================
+   FOOTER SOCIAL ICONS
+   ========================================================= */
 /* Instagram */
 footer a[href^="https://www.instagram.com/"] {
   background-image: url("../static/instagram.svg");
@@ -49,7 +214,7 @@ footer a[href*="discord.com"] {
   background-image: url("../static/discord.svg");
 }
 
-/* ProtonMail */
+/* ProtonMail (mailto) */
 footer a[href^="mailto:"] {
   background-image: url("../static/protonmail.svg");
 }
