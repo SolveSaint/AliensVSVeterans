@@ -8,9 +8,10 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [Component.GoatCounterSPA(), Component.Postscript()],
   footer: Component.Footer({
     links: {
+      "Instagram": "https://www.instagram.com/aliensvsveterans/",
+      "TikTok_TEST": "https://www.tiktok.com/@aliensvsveterans",
       "AVSV Discord": "https://discord.gg/5zdc5RJByb",
-      "instagram": "https://www.instagram.com/aliensvsveterans/",
-	  "Contact": "mailto:contact@aliensvsveterans.com",
+      "Contact": "mailto:contact@aliensvsveterans.com",
     },
   }),
 }
