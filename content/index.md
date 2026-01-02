@@ -1,11 +1,12 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/01/2026 9:24 AM
+updated: 01/01/2026 9:25 AM
 title: www.AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
   - AVSV
   - Quartz
+  - NHI
 ---
 
 <div class="avv-title">
