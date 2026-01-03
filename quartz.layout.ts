@@ -6,14 +6,16 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [Component.HeaderImage()],
   afterBody: [Component.GoatCounterSPA(), Component.Postscript()],
-  footer: Component.Footer({
-    links: {
-      Instagram: "https://www.instagram.com/aliensvsveterans/",
-      TikTok: "https://www.tiktok.com/@aliensvsveterans",
-      "AVSV Discord": "https://discord.gg/5zdc5RJByb",
-      Contact: "mailto:contact@aliensvsveterans.com",
-    },
-  }),
+footer: Component.Footer({
+  links: {
+    "Contact Us:": "",
+
+    Instagram: "https://www.instagram.com/aliensvsveterans/",
+    TikTok: "https://www.tiktok.com/@aliensvsveterans",
+    "AVSV Discord": "https://discord.gg/5zdc5RJByb",
+    Contact: "mailto:contact@aliensvsveterans.com",
+  },
+}),
 }
 
 // components for pages that display a single page (e.g. a single note)
