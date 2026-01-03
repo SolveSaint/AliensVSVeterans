@@ -13,6 +13,7 @@ footer: Component.Footer({
     Instagram: "https://www.instagram.com/aliensvsveterans/",
     TikTok: "https://www.tiktok.com/@aliensvsveterans",
     "AVSV Discord": "https://discord.gg/5zdc5RJByb",
+    "RSS Feed" : "https://www.aliensvsveterans.com/index.xml",
     Contact: "mailto:contact@aliensvsveterans.com",
   },
 }),
