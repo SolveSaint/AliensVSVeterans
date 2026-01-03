@@ -11,15 +11,12 @@ const config: QuartzConfig = {
     analytics: {
       provider: "goatcounter",
       websiteId: "aliensvsveterans",
-      // Optional. If you use a self hosted GoatCounter script, set scriptSrc.
       // scriptSrc: "https://www.aliensvsveterans.com/count.js",
-      // Optional. If your GoatCounter instance is on a custom host, set host.
       // host: "https://YOUR_GOATCOUNTER_HOST",
     },
 
     locale: "en-US",
 
-    // Docs: no protocol, no leading or trailing slashes
     baseUrl: "www.aliensvsveterans.com",
     canonicalUrl: "https://www.aliensvsveterans.com",
 
@@ -76,7 +73,6 @@ const config: QuartzConfig = {
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
 
-      // Keep identical ordering with Biolectrics
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
 

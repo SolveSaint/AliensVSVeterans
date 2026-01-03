@@ -8,33 +8,33 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [Component.GoatCounterSPA(), Component.Postscript()],
   footer: Component.Footer({
     links: {
-      "Instagram": "https://www.instagram.com/aliensvsveterans/",
-      "TikTok": "https://www.tiktok.com/@aliensvsveterans",
+      Instagram: "https://www.instagram.com/aliensvsveterans/",
+      TikTok: "https://www.tiktok.com/@aliensvsveterans",
       "AVSV Discord": "https://discord.gg/5zdc5RJByb",
-      "Contact": "mailto:contact@aliensvsveterans.com",
+      Contact: "mailto:contact@aliensvsveterans.com",
     },
   }),
 }
 
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
-beforeBody: [
-  Component.ConditionalRender({
-    component: Component.Breadcrumbs(),
-    condition: (page) => page.fileData.slug !== "index",
-  }),
-  // Hide title on index page
-  Component.ConditionalRender({
-    component: Component.ArticleTitle(),
-    condition: (page) => page.fileData.slug !== "index",
-  }),
-  Component.ContentMeta(),
-  // Hide tags on index page
-  Component.ConditionalRender({
-    component: Component.TagList(),
-    condition: (page) => page.fileData.slug !== "index",
-  }),
-],
+  beforeBody: [
+    Component.ConditionalRender({
+      component: Component.Breadcrumbs(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+    // Hide title on index page
+    Component.ConditionalRender({
+      component: Component.ArticleTitle(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+    Component.ContentMeta(),
+    // Hide tags on index page
+    Component.ConditionalRender({
+      component: Component.TagList(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+  ],
 
   left: [
     Component.PageTitle(),
