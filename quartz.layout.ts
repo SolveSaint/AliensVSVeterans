@@ -34,22 +34,24 @@ export const defaultContentPageLayout: PageLayout = {
       component: Component.TagList(),
       condition: (page) => page.fileData.slug !== "index",
     }),
+  ],
 
-    // Giscus comments (opt in per page with frontmatter: comments: true)
+  // this renders AFTER the markdown body
+  afterBody: [
+    // comments only appear when frontmatter has comments: true
     Component.Comments({
       options: {
         repo: "SolveSaint/aliensvsveterans",
         repoId: "R_kgDOQwETTQ",
         category: "Comments",
-        categoryId: "DIC_kwDOQwETTc4COgy-",
+        categoryId: "DIC_kwDOQwETT4C0gy_-",
         mapping: "pathname",
         strict: true,
         reactionsEnabled: false,
+        emitMetadata: false,
         inputPosition: "bottom",
         lang: "en",
-        // Use preferred scheme so it matches Quartz dark and light modes
         theme: "preferred_color_scheme",
-        // Performance
         loading: "lazy",
       },
     }),
