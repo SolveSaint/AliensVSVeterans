@@ -1,42 +1,23 @@
-type GiscusElement = Omit<HTMLElement, "dataset"> & {
-  dataset: DOMStringMap & {
-    repo: `${string}/${string}`
-    repoId: string
-    category: string
-    categoryId: string
-    mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
-    strict?: string
-    reactionsEnabled?: string
-    inputPosition?: "top" | "bottom"
-    lang?: string
-    theme?: string
-    loading?: string
-  }
+const safeAddCleanup = (fn: () => void) => {
+  const w = window as unknown as { addCleanup?: (fn: () => void) => void }
+  if (typeof w.addCleanup === "function") w.addCleanup(fn)
 }
 
-const setGiscusConfig = (config: Record<string, unknown>) => {
+const postToGiscus = (msg: Record<string, unknown>) => {
   const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement | null
   if (!iframe?.contentWindow) return
-
-  iframe.contentWindow.postMessage(
-    {
-      giscus: {
-        setConfig: config,
-      },
-    },
-    "https://giscus.app",
-  )
+  iframe.contentWindow.postMessage({ giscus: msg }, "https://giscus.app")
 }
 
-const mountGiscusIfNeeded = () => {
-  const container = document.querySelector(".giscus") as GiscusElement | null
+const mountIfNeeded = () => {
+  const container = document.querySelector(".giscus") as HTMLElement | null
   if (!container) return
 
-  const alreadyMounted =
-    container.querySelector("iframe.giscus-frame") ||
-    container.querySelector('script[data-giscus-script="true"]')
+  // already mounted
+  if (container.querySelector("iframe.giscus-frame")) return
+  if (container.querySelector('script[data-giscus-script="true"]')) return
 
-  if (alreadyMounted) return
+  const ds = (container as any).dataset as DOMStringMap
 
   const s = document.createElement("script")
   s.src = "https://giscus.app/client.js"
@@ -44,31 +25,34 @@ const mountGiscusIfNeeded = () => {
   s.crossOrigin = "anonymous"
   s.setAttribute("data-giscus-script", "true")
 
-  s.setAttribute("data-repo", container.dataset.repo)
-  s.setAttribute("data-repo-id", container.dataset.repoId)
-  s.setAttribute("data-category", container.dataset.category)
-  s.setAttribute("data-category-id", container.dataset.categoryId)
+  s.setAttribute("data-loading", ds.loading ?? "lazy")
+  s.setAttribute("data-emit-metadata", ds.emitMetadata ?? "0")
 
-  s.setAttribute("data-mapping", container.dataset.mapping ?? "pathname")
-  s.setAttribute("data-strict", container.dataset.strict ?? "1")
-  s.setAttribute("data-reactions-enabled", container.dataset.reactionsEnabled ?? "0")
-  s.setAttribute("data-input-position", container.dataset.inputPosition ?? "bottom")
-  s.setAttribute("data-lang", container.dataset.lang ?? "en")
-  s.setAttribute("data-emit-metadata", "0")
-  s.setAttribute("data-loading", container.dataset.loading ?? "lazy")
+  s.setAttribute("data-repo", ds.repo ?? "")
+  s.setAttribute("data-repo-id", ds.repoId ?? "")
+  s.setAttribute("data-category", ds.category ?? "")
+  s.setAttribute("data-category-id", ds.categoryId ?? "")
 
-  // Use your chosen mode from the Giscus configurator
-  s.setAttribute("data-theme", container.dataset.theme ?? "preferred_color_scheme")
+  s.setAttribute("data-mapping", ds.mapping ?? "pathname")
+  s.setAttribute("data-strict", ds.strict ?? "1")
+  s.setAttribute("data-reactions-enabled", ds.reactionsEnabled ?? "0")
+  s.setAttribute("data-input-position", ds.inputPosition ?? "bottom")
+  s.setAttribute("data-lang", ds.lang ?? "en")
+
+  // Use your configurator choice
+  s.setAttribute("data-theme", ds.theme ?? "preferred_color_scheme")
 
   container.appendChild(s)
 }
 
 const onNav = () => {
-  mountGiscusIfNeeded()
+  mountIfNeeded()
 
-  // Keep discussions aligned to the current page in SPA mode
-  setGiscusConfig({
-    term: window.location.pathname || "/",
+  // keep discussion synced in SPA mode
+  postToGiscus({
+    setConfig: {
+      term: window.location.pathname || "/",
+    },
   })
 }
 
@@ -76,15 +60,16 @@ const onThemeChange = (e: any) => {
   const theme = e?.detail?.theme
   if (theme !== "dark" && theme !== "light") return
 
-  // Use built in themes
-  setGiscusConfig({ theme })
+  // only needed if you are not using preferred_color_scheme
+  postToGiscus({
+    setConfig: { theme },
+  })
 }
 
 document.addEventListener("nav", onNav)
 document.addEventListener("themechange", onThemeChange)
 
+safeAddCleanup(() => document.removeEventListener("themechange", onThemeChange))
+
 // initial
 onNav()
-
-// cleanup hook Quartz uses
-window.addCleanup(() => document.removeEventListener("themechange", onThemeChange))
