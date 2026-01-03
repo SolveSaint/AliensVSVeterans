@@ -669,8 +669,10 @@ footer a[href^="mailto:"] {
 /* Shared icon behavior */
 footer a[href*="instagram.com"],
 footer a[href*="tiktok.com"],
-footer a[href*="discord"],
-footer a[href*="rss"]:hover,
+footer a[href*="discord.gg"],
+footer a[href*="discord.com"],
+footer a[href$="index.xml"],
+footer a[href*="/index.xml"],
 footer a[href^="mailto:"] {
   display: inline-block;
   width: 18px;
@@ -694,11 +696,14 @@ footer a[href^="mailto:"] {
 
 footer a[href*="instagram.com"]:hover,
 footer a[href*="tiktok.com"]:hover,
-footer a[href*="discord"]:hover,
-footer a[href*="rss"]:hover,
+footer a[href*="discord.gg"]:hover,
+footer a[href*="discord.com"]:hover,
+footer a[href$="index.xml"]:hover,
+footer a[href*="/index.xml"]:hover,
 footer a[href^="mailto:"]:hover {
   opacity: 1;
 }
+
 footer a[href=""] {
   pointer-events: none;
   cursor: default;
