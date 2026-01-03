@@ -655,6 +655,12 @@ footer a[href*="discord.com"] {
   background-image: url("../static/discord.svg");
 }
 
+/* RSS */
+footer a[href$="index.xml"],
+footer a[href*="/index.xml"] {
+  background-image: url("../static/rss.svg");
+}
+
 /* ProtonMail (mailto) */
 footer a[href^="mailto:"] {
   background-image: url("../static/protonmail.svg");
@@ -664,6 +670,7 @@ footer a[href^="mailto:"] {
 footer a[href*="instagram.com"],
 footer a[href*="tiktok.com"],
 footer a[href*="discord"],
+footer a[href*="rss"]:hover,
 footer a[href^="mailto:"] {
   display: inline-block;
   width: 18px;
@@ -688,6 +695,7 @@ footer a[href^="mailto:"] {
 footer a[href*="instagram.com"]:hover,
 footer a[href*="tiktok.com"]:hover,
 footer a[href*="discord"]:hover,
+footer a[href*="rss"]:hover,
 footer a[href^="mailto:"]:hover {
   opacity: 1;
 }
