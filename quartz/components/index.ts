@@ -26,6 +26,7 @@ import ConditionalRender from "./ConditionalRender"
 import HeaderImage from "./HeaderImage"
 import GoatCounterSPA from "./GoatCounterSPA"
 import Postscript from "./Postscript"
+import CommentNotice from "./CommentNotice"
 
 export {
   ArticleTitle,
@@ -56,4 +57,5 @@ export {
   HeaderImage,
   GoatCounterSPA,
   Postscript,
+  CommentNotice,
 }

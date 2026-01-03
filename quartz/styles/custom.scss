@@ -697,3 +697,16 @@ footer a[href=""] {
   text-decoration: none;
   opacity: 0.85;
 }
+.comment-notice {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--secondary);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.comment-notice p {
+  margin: 0.35rem 0 0;
+}
