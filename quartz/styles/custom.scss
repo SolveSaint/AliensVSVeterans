@@ -691,3 +691,9 @@ footer a[href*="discord"]:hover,
 footer a[href^="mailto:"]:hover {
   opacity: 1;
 }
+footer a[href=""] {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  opacity: 0.85;
+}
