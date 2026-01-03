@@ -35,7 +35,7 @@ const defaultOptions: Options = {
   enableRSS: true,
   rssLimit: 10,
   rssFullHtml: false,
-  rssSlug: "index",
+  rssSlug: "main",
   includeEmptyFiles: true,
 }
 
@@ -94,14 +94,21 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?:
 
 export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   opts = { ...defaultOptions, ...opts }
+
+  const rssSlug = opts?.rssSlug ?? "rss"
+  const rssExt = ".rss"
+  const rssPath = `${rssSlug}${rssExt}`
+
   return {
     name: "ContentIndex",
     async *emit(ctx, content) {
       const cfg = ctx.cfg.configuration
       const linkIndex: ContentIndexMap = new Map()
+
       for (const [tree, file] of content) {
         const slug = file.data.slug!
         const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
+
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
           linkIndex.set(slug, {
             slug,
@@ -132,17 +139,14 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         yield write({
           ctx,
           content: generateRSSFeed(cfg, linkIndex, opts.rssLimit),
-          slug: (opts?.rssSlug ?? "index") as FullSlug,
-          ext: ".xml",
+          slug: rssSlug as FullSlug,
+          ext: rssExt,
         })
       }
 
       const fp = joinSegments("static", "contentIndex") as FullSlug
       const simplifiedIndex = Object.fromEntries(
         Array.from(linkIndex).map(([slug, content]) => {
-          // remove description and from content index as nothing downstream
-          // actually uses it. we only keep it in the index as we need it
-          // for the RSS feed
           delete content.description
           delete content.date
           return [slug, content]
@@ -164,7 +168,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
               rel="alternate"
               type="application/rss+xml"
               title="RSS Feed"
-              href={`https://${ctx.cfg.configuration.baseUrl}/index.xml`}
+              href={`https://${joinSegments(ctx.cfg.configuration.baseUrl, rssPath)}`}
             />,
           ],
         }

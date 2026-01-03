@@ -13,16 +13,13 @@
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
    Night forest green bias + tall pine silhouettes (SVG)
-   Trees are FIXED to viewport so they are always visible (no background scroll)
+   Trees are FIXED to viewport so they are always visible
    ========================= */
 body {
   background-color: #0a120e;
 
   background-image:
-    /* FIXED TALL PINE TREELINE, ALWAYS ON SCREEN, CLEAN RIGHT EDGE */
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.88)'%3E%3Cpath d='M0 700 L0 430 L35 345 L70 430 L110 285 L150 450 L195 255 L240 505 L290 295 L345 565 L400 305 L455 605 L510 330 L565 645 L620 345 L675 610 L730 315 L785 575 L840 295 L895 525 L950 275 L1005 485 L1060 265 L1115 455 L1170 285 L1225 435 L1270 335 L1310 420 L1350 360 L1400 430 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 448 L28 380 L55 448 L92 320 L125 468 L165 300 L205 500 L252 320 L300 548 L350 338 L402 586 L452 360 L505 620 L558 372 L612 592 L664 350 L716 564 L768 330 L820 520 L872 310 L924 488 L976 298 L1028 465 L1080 290 L1132 448 L1184 300 L1236 438 L1278 360 L1320 432 L1360 388 L1400 448 L1400 700 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
-
-    /* FOG FADE ABOVE TREES */
     linear-gradient(
       to top,
       rgba(0, 0, 0, 0.70) 0%,
@@ -30,8 +27,6 @@ body {
       rgba(10, 18, 14, 0.22) 60%,
       rgba(10, 18, 14, 0) 86%
     ),
-
-    /* NIGHT FOREST TEXTURE */
     radial-gradient(
       ellipse at center,
       rgba(255, 255, 255, 0.055) 0%,
@@ -69,7 +64,6 @@ body {
     repeat,
     repeat;
 
-  /* Trees stay locked to viewport */
   background-attachment:
     fixed,
     fixed,
@@ -149,14 +143,12 @@ body,
   max-width: 100%;
 }
 
-/* Prevent layout blowouts */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Media should never push width */
 img,
 svg,
 video,
@@ -165,7 +157,6 @@ canvas {
   height: auto;
 }
 
-/* Code blocks scroll internally, not the page */
 pre {
   max-width: 100%;
   overflow-x: auto;
@@ -177,7 +168,6 @@ code {
   word-break: break-word;
 }
 
-/* Wrap long text in the reading area only */
 .center article p,
 .center article li,
 .center article blockquote,
@@ -536,14 +526,12 @@ svg[data-icon*="book"],
   background: rgba(96, 163, 255, 0.22);
 }
 
-/* Hover */
 .explorer-content a:not(.folder-title):hover {
   background-color: rgba(96, 163, 255, 0.15);
   color: #eef4f0;
   border-radius: 8px;
 }
 
-/* Chevron */
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
   position: relative;
@@ -636,43 +624,13 @@ svg[data-icon*="book"],
 
 /* =========================
    FOOTER SOCIAL ICONS
-   Keep your existing SVG icons working as icon-only links
+   Icon-only links via URL selectors
    ========================= */
-
-/* Instagram */
-footer a[href^="https://www.instagram.com/"] {
-  background-image: url("../static/instagram.svg");
-}
-
-/* TikTok */
-footer a[href*="tiktok.com"] {
-  background-image: url("../static/tiktok.svg");
-}
-
-/* Discord */
-footer a[href*="discord.gg"],
-footer a[href*="discord.com"] {
-  background-image: url("../static/discord.svg");
-}
-
-/* RSS */
-footer a[href$="index.xml"],
-footer a[href*="/index.xml"] {
-  background-image: url("../static/rss.svg");
-}
-
-/* ProtonMail (mailto) */
-footer a[href^="mailto:"] {
-  background-image: url("../static/protonmail.svg");
-}
-
-/* Shared icon behavior */
-footer a[href*="instagram.com"],
+footer a[href^="https://www.instagram.com/"],
 footer a[href*="tiktok.com"],
 footer a[href*="discord.gg"],
 footer a[href*="discord.com"],
-footer a[href$="index.xml"],
-footer a[href*="/index.xml"],
+footer a[href$=".rss"],
 footer a[href^="mailto:"] {
   display: inline-block;
   width: 18px;
@@ -694,38 +652,47 @@ footer a[href^="mailto:"] {
   margin-right: 0.75rem;
 }
 
-footer a[href*="instagram.com"]:hover,
+footer a[href^="https://www.instagram.com/"] {
+  background-image: url("../static/instagram.svg");
+}
+
+footer a[href*="tiktok.com"] {
+  background-image: url("../static/tiktok.svg");
+}
+
+footer a[href*="discord.gg"],
+footer a[href*="discord.com"] {
+  background-image: url("../static/discord.svg");
+}
+
+footer a[href$=".rss"] {
+  background-image: url("../static/rss.svg");
+}
+
+footer a[href^="mailto:"] {
+  background-image: url("../static/protonmail.svg");
+}
+
+footer a[href^="https://www.instagram.com/"]:hover,
 footer a[href*="tiktok.com"]:hover,
 footer a[href*="discord.gg"]:hover,
 footer a[href*="discord.com"]:hover,
-footer a[href$="index.xml"]:hover,
-footer a[href*="/index.xml"]:hover,
+footer a[href$=".rss"]:hover,
 footer a[href^="mailto:"]:hover {
   opacity: 1;
 }
 
+/* Disable empty placeholder links */
 footer a[href=""] {
   pointer-events: none;
   cursor: default;
   text-decoration: none;
   opacity: 0.85;
 }
-.comment-notice {
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--secondary);
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 0.95rem;
-  opacity: 0.95;
-}
 
-.comment-notice p {
-  margin: 0.35rem 0 0;
-}
 /* =========================
    GISCUS WARNING BANNER
-   Injected via CSS (no HTML changes needed)
+   Injected via CSS
    ========================= */
 .page-footer .giscus::before {
   content: "Content here should remain respectful of the subject matter and the persons involved with this site. Comments are public. Do not post private or identifying information. Contact me directly if you need to do so.";
@@ -741,6 +708,7 @@ footer a[href=""] {
   font-size: 0.95rem;
   opacity: 0.95;
 }
+
 /* =========================
    GISCUS → FOOTER SPACING
    ========================= */
