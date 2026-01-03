@@ -1,3 +1,5 @@
+document.documentElement.setAttribute("saved-theme", "dark")
+document.documentElement.classList.add("dark")
 import micromorph from "micromorph"
 import { FullSlug, RelativeURL, getFullSlug, normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"
