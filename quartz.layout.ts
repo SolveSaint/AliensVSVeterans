@@ -6,16 +6,15 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [Component.HeaderImage()],
   afterBody: [Component.GoatCounterSPA(), Component.Postscript()],
-footer: Component.Footer({
-  links: {
-    "Contact Us:": "",
-
-    Instagram: "https://www.instagram.com/aliensvsveterans/",
-    TikTok: "https://www.tiktok.com/@aliensvsveterans",
-    "AVSV Discord": "https://discord.gg/5zdc5RJByb",
-    Contact: "mailto:contact@aliensvsveterans.com",
-  },
-}),
+  footer: Component.Footer({
+    links: {
+      "Contact Us:": "",
+      Instagram: "https://www.instagram.com/aliensvsveterans/",
+      TikTok: "https://www.tiktok.com/@aliensvsveterans",
+      "AVSV Discord": "https://discord.gg/5zdc5RJByb",
+      Contact: "mailto:contact@aliensvsveterans.com",
+    },
+  }),
 }
 
 // components for pages that display a single page (e.g. a single note)
@@ -25,13 +24,11 @@ export const defaultContentPageLayout: PageLayout = {
       component: Component.Breadcrumbs(),
       condition: (page) => page.fileData.slug !== "index",
     }),
-    // Hide title on index page
     Component.ConditionalRender({
       component: Component.ArticleTitle(),
       condition: (page) => page.fileData.slug !== "index",
     }),
     Component.ContentMeta(),
-    // Hide tags on index page
     Component.ConditionalRender({
       component: Component.TagList(),
       condition: (page) => page.fileData.slug !== "index",
@@ -40,7 +37,9 @@ export const defaultContentPageLayout: PageLayout = {
 
   // this renders AFTER the markdown body
   afterBody: [
-    // comments only appear when frontmatter has comments: true
+    // show only when frontmatter has comments: true
+    Component.CommentNotice(),
+
     Component.Comments({
       options: {
         repo: "SolveSaint/aliensvsveterans",
@@ -64,21 +63,15 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
       components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
+        { Component: Component.Search(), grow: true },
         { Component: Component.Darkmode() },
         { Component: Component.ReaderMode() },
       ],
     }),
     Component.Explorer(),
   ],
-  right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
-  ],
+
+  right: [Component.Graph(), Component.DesktopOnly(Component.TableOfContents()), Component.Backlinks()],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
@@ -88,13 +81,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-      ],
+      components: [{ Component: Component.Search(), grow: true }, { Component: Component.Darkmode() }],
     }),
     Component.Explorer(),
   ],
