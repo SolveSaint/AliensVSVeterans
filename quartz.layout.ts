@@ -44,10 +44,10 @@ export const defaultContentPageLayout: PageLayout = {
     // comments only appear when frontmatter has comments: true
     Component.Comments({
       options: {
-        repo: "SolveSaint/aliensvsveterans",
+        repo: "solvesaint/aliensvsveterans",
         repoId: "R_kgDOQwETTQ",
         category: "Comments",
-        categoryId: "DIC_kwDOQwETT4C0gy_-",
+        categoryId: "DIC_kwDOQwETTc4C0gy-",
         mapping: "pathname",
         strict: false,
         reactionsEnabled: false,
