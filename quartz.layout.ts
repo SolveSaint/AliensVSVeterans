@@ -49,7 +49,7 @@ export const defaultContentPageLayout: PageLayout = {
         category: "Comments",
         categoryId: "DIC_kwDOQwETT4C0gy_-",
         mapping: "pathname",
-        strict: true,
+        strict: false,
         reactionsEnabled: false,
         emitMetadata: false,
         inputPosition: "bottom",
