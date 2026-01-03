@@ -1,92 +1,90 @@
-const changeTheme = (e: CustomEventMap["themechange"]) => {
-  const theme = e.detail.theme
-  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
-  if (!iframe) {
-    return
-  }
-
-  if (!iframe.contentWindow) {
-    return
-  }
-
-  iframe.contentWindow.postMessage(
-    {
-      giscus: {
-        setConfig: {
-          theme: getThemeUrl(getThemeName(theme)),
-        },
-      },
-    },
-    "https://giscus.app",
-  )
-}
-
-const getThemeName = (theme: string) => {
-  if (theme !== "dark" && theme !== "light") {
-    return theme
-  }
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
-  if (!giscusContainer) {
-    return theme
-  }
-  const darkGiscus = giscusContainer.dataset.darkTheme ?? "dark"
-  const lightGiscus = giscusContainer.dataset.lightTheme ?? "light"
-  return theme === "dark" ? darkGiscus : lightGiscus
-}
-
-const getThemeUrl = (theme: string) => {
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
-  if (!giscusContainer) {
-    return `https://giscus.app/themes/${theme}.css`
-  }
-  return `${giscusContainer.dataset.themeUrl ?? "https://giscus.app/themes"}/${theme}.css`
-}
-
 type GiscusElement = Omit<HTMLElement, "dataset"> & {
   dataset: DOMStringMap & {
     repo: `${string}/${string}`
     repoId: string
     category: string
     categoryId: string
-    themeUrl: string
-    lightTheme: string
-    darkTheme: string
-    mapping: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
-    strict: string
-    reactionsEnabled: string
-    inputPosition: "top" | "bottom"
-    lang: string
+    mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
+    strict?: string
+    reactionsEnabled?: string
+    inputPosition?: "top" | "bottom"
+    lang?: string
+    theme?: string
+    loading?: string
   }
 }
 
-document.addEventListener("nav", () => {
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
-  if (!giscusContainer) {
-    return
-  }
+const setGiscusConfig = (config: Record<string, unknown>) => {
+  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement | null
+  if (!iframe?.contentWindow) return
 
-  const giscusScript = document.createElement("script")
-  giscusScript.src = "https://giscus.app/client.js"
-  giscusScript.async = true
-  giscusScript.crossOrigin = "anonymous"
-  giscusScript.setAttribute("data-loading", "lazy")
-  giscusScript.setAttribute("data-emit-metadata", "0")
-  giscusScript.setAttribute("data-repo", giscusContainer.dataset.repo)
-  giscusScript.setAttribute("data-repo-id", giscusContainer.dataset.repoId)
-  giscusScript.setAttribute("data-category", giscusContainer.dataset.category)
-  giscusScript.setAttribute("data-category-id", giscusContainer.dataset.categoryId)
-  giscusScript.setAttribute("data-mapping", giscusContainer.dataset.mapping)
-  giscusScript.setAttribute("data-strict", giscusContainer.dataset.strict)
-  giscusScript.setAttribute("data-reactions-enabled", giscusContainer.dataset.reactionsEnabled)
-  giscusScript.setAttribute("data-input-position", giscusContainer.dataset.inputPosition)
-  giscusScript.setAttribute("data-lang", giscusContainer.dataset.lang)
-  const theme = document.documentElement.getAttribute("saved-theme")
-  if (theme) {
-    giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(theme)))
-  }
+  iframe.contentWindow.postMessage(
+    {
+      giscus: {
+        setConfig: config,
+      },
+    },
+    "https://giscus.app",
+  )
+}
 
-  giscusContainer.appendChild(giscusScript)
+const mountGiscusIfNeeded = () => {
+  const container = document.querySelector(".giscus") as GiscusElement | null
+  if (!container) return
 
-  document.addEventListener("themechange", changeTheme)
-  window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
-})
+  const alreadyMounted =
+    container.querySelector("iframe.giscus-frame") ||
+    container.querySelector('script[data-giscus-script="true"]')
+
+  if (alreadyMounted) return
+
+  const s = document.createElement("script")
+  s.src = "https://giscus.app/client.js"
+  s.async = true
+  s.crossOrigin = "anonymous"
+  s.setAttribute("data-giscus-script", "true")
+
+  s.setAttribute("data-repo", container.dataset.repo)
+  s.setAttribute("data-repo-id", container.dataset.repoId)
+  s.setAttribute("data-category", container.dataset.category)
+  s.setAttribute("data-category-id", container.dataset.categoryId)
+
+  s.setAttribute("data-mapping", container.dataset.mapping ?? "pathname")
+  s.setAttribute("data-strict", container.dataset.strict ?? "1")
+  s.setAttribute("data-reactions-enabled", container.dataset.reactionsEnabled ?? "0")
+  s.setAttribute("data-input-position", container.dataset.inputPosition ?? "bottom")
+  s.setAttribute("data-lang", container.dataset.lang ?? "en")
+  s.setAttribute("data-emit-metadata", "0")
+  s.setAttribute("data-loading", container.dataset.loading ?? "lazy")
+
+  // Use your chosen mode from the Giscus configurator
+  s.setAttribute("data-theme", container.dataset.theme ?? "preferred_color_scheme")
+
+  container.appendChild(s)
+}
+
+const onNav = () => {
+  mountGiscusIfNeeded()
+
+  // Keep discussions aligned to the current page in SPA mode
+  setGiscusConfig({
+    term: window.location.pathname || "/",
+  })
+}
+
+const onThemeChange = (e: any) => {
+  const theme = e?.detail?.theme
+  if (theme !== "dark" && theme !== "light") return
+
+  // Use built in themes
+  setGiscusConfig({ theme })
+}
+
+document.addEventListener("nav", onNav)
+document.addEventListener("themechange", onThemeChange)
+
+// initial
+onNav()
+
+// cleanup hook Quartz uses
+window.addCleanup(() => document.removeEventListener("themechange", onThemeChange))
