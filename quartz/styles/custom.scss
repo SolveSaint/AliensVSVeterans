@@ -728,7 +728,7 @@ footer a[href=""] {
    Injected via CSS (no HTML changes needed)
    ========================= */
 .page-footer .giscus::before {
-  content: "Comments are public. Do not post private or identifying information. Content should remain respectful of the subject matter and the individuals documented on this site.";
+  content: "Comments are public. Markdown is supported. Do not post private or identifying information. Content should remain respectful of the subject matter and the individuals documented on this site.";
   display: block;
 
   margin-top: 2.5rem;
