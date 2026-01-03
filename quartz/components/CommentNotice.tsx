@@ -1,17 +1,19 @@
-import { QuartzComponent, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-const CommentNotice: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
-  const enabled =
-    fileData.frontmatter?.comments === true || fileData.frontmatter?.comments === "true"
+export default (() => {
+  const CommentNotice: QuartzComponent = (props?: QuartzComponentProps) => {
+    const fileData = props?.fileData
+    const enabled = fileData?.frontmatter?.comments === true || fileData?.frontmatter?.comments === "true"
 
-  if (!enabled) return <></>
+    if (!enabled) return <></>
 
-  return (
-    <div class="comment-notice">
-      <strong>Comment Policy</strong>
-      <p>Comments are moderated. Abusive, vulgar, or off-topic content will be removed.</p>
-    </div>
-  )
-}
+    return (
+      <div class="comment-notice">
+        <strong>Comment Policy</strong>
+        <p>Comments are moderated. Abusive, vulgar, or off topic content will be removed.</p>
+      </div>
+    )
+  }
 
-export default CommentNotice
+  return CommentNotice
+}) satisfies QuartzComponentConstructor
