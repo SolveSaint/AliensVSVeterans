@@ -1,0 +1,227 @@
+name: Discussion AutoMod
+
+on:
+  discussion_comment:
+    types: [created, edited]
+
+permissions:
+  discussions: write
+  contents: read
+
+jobs:
+  moderate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Moderate comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Raw and normalized text
+            const raw = (context.payload.comment?.body || "")
+            const body = raw.toLowerCase()
+            const bodyFlat = body.replace(/\s+/g, " ").trim()
+
+            const author = context.payload.comment?.user?.login || "unknown"
+            const url = context.payload.comment?.html_url || ""
+            const nodeId = context.payload.comment?.node_id
+
+            if (!nodeId) {
+              core.info("No comment node_id found. Nothing to do.")
+              return
+            }
+
+            // =========================
+            // ZERO TOLERANCE WORD LISTS
+            // =========================
+
+            // Protected class slurs and common hate terms
+            // Includes singular tokens you want treated as unacceptable even when "quoted"
+            const slurs = [
+              // race and ethnicity
+              "nigger", "nigga", "coon", "spic", "wetback", "chink", "gook", "raghead",
+
+              // religion and ethnicity
+              "kike", "jewboy",
+
+              // sexuality and gender
+              "faggot", "fag", "dyke", "tranny",
+
+              // disability
+              "retard", "retarded", "spaz"
+            ]
+
+            // Regex for common variants and pluralization, light leetspeak, spacing tricks
+            const slurRegex = [
+              /\bnigg(?:er|a|as|ers)\b/i,
+              /\bkik(?:e|es|ed)\b/i,
+              /\bfag(?:got|s)?\b/i,
+              /\bdyk(?:e|es)\b/i,
+              /\btrann(?:y|ies)\b/i,
+              /\bretard(?:ed|s)?\b/i,
+
+              // spaced or punctuated attempts
+              /\bn[\W_]*i[\W_]*g[\W_]*g[\W_]*e[\W_]*r\b/i,
+              /\bk[\W_]*i[\W_]*k[\W_]*e\b/i
+            ]
+
+            // Mental health framing is not allowed on this site
+            // Keep these phrase-based so normal words like "concern" do not trigger
+            const mentalHealthPhrases = [
+              "mental illness",
+              "mentally ill",
+              "mental health",
+              "you are mentally ill",
+              "youre mentally ill",
+              "you are insane",
+              "youre insane",
+              "you are crazy",
+              "youre crazy",
+              "you are delusional",
+              "youre delusional",
+              "you are psychotic",
+              "youre psychotic",
+              "you are schizophrenic",
+              "youre schizophrenic",
+              "you have schizophrenia",
+              "schizophrenia",
+              "schizo",
+              "bipolar",
+              "mania",
+              "manic episode",
+              "hallucinating",
+              "hallucination",
+              "paranoid",
+              "psychosis",
+              "take your meds",
+              "off your meds",
+              "need your meds",
+              "get help",
+              "seek help",
+              "you need help",
+              "see a therapist",
+              "go to therapy",
+              "check yourself in",
+              "you are having a breakdown",
+              "youre having a breakdown"
+            ]
+
+            // Epistemic attacks or reality denial aimed at the site content
+            // Keep them explicit so innocent phrases like "not happening" do not trigger
+            const realityAttacks = [
+              "you are lying",
+              "youre lying",
+              "this is a lie",
+              "you made this up",
+              "you made it up",
+              "this is made up",
+              "this is fake",
+              "fake story",
+              "bullshit story",
+              "complete bullshit",
+              "total bullshit",
+              "this didnt happen",
+              "this did not happen",
+              "that didnt happen",
+              "that did not happen",
+              "nothing happened",
+              "never happened",
+              "hoax",
+              "fraud",
+              "scam",
+              "attention seeker",
+              "attention seeking"
+            ]
+
+            // Harassment and abuse basics, plus concern trolling phrased to avoid broad hits
+            const harassmentPhrases = [
+              "kill yourself", "kys",
+              "go die",
+              "shut up",
+              "get the fuck out",
+              "fuck you",
+              "you are an idiot",
+              "youre an idiot",
+              "you are stupid",
+              "youre stupid",
+
+              // concern trolling and gaslighting patterns
+              "im worried about you",
+              "i'm worried about you",
+              "we are worried about you",
+              "everyone is worried about you",
+              "this is all in your head",
+              "its all in your head",
+              "it's all in your head"
+            ]
+
+            // =========================
+            // DOXXING DETECTION
+            // =========================
+            const doxxRegex = [
+              /\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/i, // phone
+              /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i, // email
+              /\b\d{1,5}\s+\w+(?:\s+\w+){0,4}\s+(?:st|street|rd|road|ave|avenue|blvd|boulevard|ln|lane|dr|drive|ct|court|cir|circle|pkwy|parkway)\b/i // address-ish
+            ]
+
+            // =========================
+            // MATCHING
+            // =========================
+            const hitSlur =
+              slurs.some(s => body.includes(s)) ||
+              slurRegex.some(rx => rx.test(raw))
+
+            const hitMental =
+              mentalHealthPhrases.some(p => bodyFlat.includes(p))
+
+            const hitRealityAttack =
+              realityAttacks.some(p => bodyFlat.includes(p))
+
+            const hitHarassment =
+              harassmentPhrases.some(p => bodyFlat.includes(p))
+
+            const hitDoxx =
+              doxxRegex.some(rx => rx.test(raw))
+
+            const shouldHide = hitSlur || hitMental || hitRealityAttack || hitHarassment || hitDoxx
+
+            if (!shouldHide) {
+              core.info("No rules hit.")
+              return
+            }
+
+            // Choose classifier
+            // ABUSE for slurs and harassment
+            // SPAM for doxxing patterns
+            // OFF_TOPIC for reality denial and derail
+            const classifier =
+              hitDoxx ? "SPAM" :
+              (hitSlur || hitMental || hitHarassment) ? "ABUSE" :
+              "OFF_TOPIC"
+
+            // Lightweight reason for logs
+            const reasons = []
+            if (hitSlur) reasons.push("slur")
+            if (hitMental) reasons.push("mental-health")
+            if (hitRealityAttack) reasons.push("reality-attack")
+            if (hitHarassment) reasons.push("harassment")
+            if (hitDoxx) reasons.push("doxx")
+
+            core.warning(
+              `AutoMod minimizing comment. classifier=${classifier} reasons=${reasons.join(",")} author=${author} url=${url}`
+            )
+
+            // Minimize comment via GraphQL
+            await github.graphql(
+              `
+              mutation($subjectId: ID!, $classifier: ReportedContentClassifiers!) {
+                minimizeComment(input: { subjectId: $subjectId, classifier: $classifier }) {
+                  minimizedComment { isMinimized }
+                }
+              }
+              `,
+              {
+                subjectId: nodeId,
+                classifier
+              }
+            )
