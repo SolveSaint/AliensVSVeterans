@@ -1,6 +1,6 @@
 ---
 created: 01/05/2026 3:59 PM
-updated: 01/05/2026 6:15 PM
+updated: 01/05/2026 6:22 PM
 site: https://www.aliensvsveterans.com/Scar-of-Unknown-Origin-in-Childhood
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/695c2ff4-6754-8325-b2ce-61dbbd7348c3
 title: Scar of Unknown Origin in Childhood
@@ -15,7 +15,7 @@ tags:
 
 ## The Scar
 
-As a child, I was highly observant. My memory was excellent, and I was careful by nature. My parents would leave me home alone at the age of eight, and this was completely fine for me. I would never cause a problem or did things I shouldn't when left alone.
+As a child, I was highly observant. My memory was excellent, and I was careful by nature. My parents would leave me home alone at the age of eight, and this was completely fine for me. I would never cause a problem or do things I shouldn't when left alone.
 
 At some point when I was young, I was looking over my body and noticed a small horizontal scar on my left side, just below my rib cage. I had no idea where it had come from. I had never been injured in a way that would explain it. I had not undergone any surgeries or medical procedures that could account for it either. It was just kind of there.
 
