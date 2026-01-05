@@ -1,8 +1,8 @@
 ---
 created: 01/05/2026 3:59 PM
-updated: 01/05/2026 6:04 PM
+updated: 01/05/2026 6:15 PM
 site: https://www.aliensvsveterans.com/Scar-of-Unknown-Origin-in-Childhood
-chatref:
+chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/695c2ff4-6754-8325-b2ce-61dbbd7348c3
 title: Scar of Unknown Origin in Childhood
 tags:
   - NHI
