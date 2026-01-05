@@ -1,7 +1,7 @@
 ---
 created: 01/05/2026 3:59 PM
-updated: 01/05/2026 4:57 PM
-site: https://solvesaint.github.io/Biolectrics-Wiki/Scar-of-Unknown-Origin-in-Childhood
+updated: 01/05/2026 6:04 PM
+site: https://www.aliensvsveterans.com/Scar-of-Unknown-Origin-in-Childhood
 chatref:
 title: Scar of Unknown Origin in Childhood
 tags:
