@@ -21,7 +21,7 @@ At some point when I was young, I was looking over my body and noticed a small h
 
 ## A Father’s Explanation
 
-I asked my father about the scar and showed it to him. He told me that I had run into his bayonet, which he had brought back from Vietnam. I did not remember anything like that happening, so I questioned the explanation internally, but I did not press the issue. If I had been stabbed by my father’s bayonet, my mother would have had a severe reaction, yet she never mentioned anything to me about it.
+I asked my father about the scar and showed it to him. He told me that I had run into his bayonet. I did not remember anything like that happening, so I questioned the explanation internally, but I did not press the issue. If I had been stabbed by my father’s bayonet, my mother would have had a severe reaction, yet she never mentioned anything to me about it.
 
 ## Internal Conflict
 
