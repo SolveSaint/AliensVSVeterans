@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 2:48 PM
+updated: 01/11/2026 2:49 PM
 title: www.AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -39,6 +39,7 @@ At the time, I did not have a biological framework to explain it, but I thought 
 
 ## First Encounter. Age 19
 ![[AVSV - Age 19 First Encounter.png|300]]
+
 At nineteen, I stayed briefly at my mother’s house on a dead-end road surrounded by dense pine forest. I was asleep when a very strange whirring sound woke me. The sound increased in intensity as it approached the house.
 
 I propped myself on one elbow and watched through the window, frozen. The sound was technological, unlike anything I had heard before. It moved slowly past the house and the whirring faded into the distance.
