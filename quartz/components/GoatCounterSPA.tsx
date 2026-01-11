@@ -17,7 +17,7 @@ const GoatCounterSPA: QuartzComponent = (_props: QuartzComponentProps) => {
   return (
     <>
       <script
-        data-goatcounter="https://YOUR_GOATCOUNTER_SUBDOMAIN.goatcounter.com/count"
+        data-goatcounter="https://aliensvsveterans.goatcounter.com/count"
         async
         src="//gc.zgo.at/count.js"
       ></script>

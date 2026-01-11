@@ -11,14 +11,14 @@ const config: QuartzConfig = {
     analytics: {
       provider: "goatcounter",
       websiteId: "aliensvsveterans",
-      // scriptSrc: "https://www.aliensvsveterans.com/count.js",
+      // scriptSrc: "https://aliensvsveterans.com/count.js",
       // host: "https://YOUR_GOATCOUNTER_HOST",
     },
 
     locale: "en-US",
 
-    baseUrl: "www.aliensvsveterans.com",
-    canonicalUrl: "https://www.aliensvsveterans.com",
+    baseUrl: "aliensvsveterans.com",
+    canonicalUrl: "https://aliensvsveterans.com",
 
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
