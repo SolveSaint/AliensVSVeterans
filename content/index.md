@@ -1,7 +1,7 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 4:11 PM
-title: www.AliensVSVeterans.com
+updated: 01/11/2026 4:43 PM
+title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
   - AVSV
