@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 2:29 PM
+updated: 01/11/2026 2:44 PM
 title: www.AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -57,7 +57,7 @@ From this line of reasoning, I identified glutamate as the primary excitatory ne
 
 ---
 
-## Second Encounter and Physiological Assault. Age 45 (2020–2022)
+## Second Encounter and Physiological Assault. Age 45
 
 In the period leading up to being controlled, a distinct sensory process began.
 
@@ -65,17 +65,17 @@ Each night when I lay down to sleep, my feet would begin vibrating at a level th
 
 The vibration progressed to my hands. Again this lasted for a while, building up in strength every night.  Then it covered my face in the same manner. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. Like repeated pin stabs rather than diffuse tingling. Night after night, the intensity kept increasing.
 
-The sensations became painful. After roughly a year of nightly progression, it reached a final crescendo. That night, the intensity was so strong that it made me gasp involuntarily and jerk forward. But immediately afterward, the sensation faded.
+The sensations became painful. After roughly a year of nightly progression, it reached a final crescendo. The intensity was so strong that it made me gasp out loud involuntarily and jerk forward. But then immediately afterward, the sensation faded.
 
-It never returned. **The abrupt cessation gave the strong impression that a process had been completed**.
+It never returned. **The abrupt cessation gave the very strong impression that some kind of process had been completed**.
 
-In 2020, a new phase began.
+Then a new phase began. An agony producing phase.
 
 At that time, I had no understanding of the cause, or the mechanism. I assumed it had to be due to my condition even though this was severely abnormal from what I knew of ALS.
 
-My spinal cord itself burned horribly and continuously, unrelenting. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue, causing me to scream in agony with each strike. The pain was was so high that almost no one would be able to understand it. Positional relief did not exist. I slept when exhaustion forced it and was limited to two to four hours per night. I screamed in my sleep according to my girl friend.
+My spinal cord itself burned horribly and continuously, unrelenting. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue, causing me to scream in agony with each strike. The pain was was so high that almost no one would be able to understand it. Positional relief did not exist. I slept when exhaustion forced it and was limited to two to four hours per night. I screamed in my sleep according to my girl friend, but remained exhaustively sleeping at times.
 
-I saw numerous physicians. None had any explanation at all. Specialists, none had encountered anything similar. So that left me to suffer as they tried medications that didn't work and set follow-up appointments for four months later. This cycle continued multiple times to no avail.
+I saw numerous doctors. None had an explanation. Specialists as well, none had encountered anything similar. So that left me to suffer as they tried medications that didn't work. Then set a follow-up appointment for after four more months of agony. This cycle continued multiple times to without a solution.
 
 The pain didn't diminish. Feeling that pain all day long, day after day, month after month, and into year after year, I began to wane. But finally, after two long years of the most intense agony you can imagine, it began to recede.
 
