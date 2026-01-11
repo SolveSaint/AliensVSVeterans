@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 10:03 PM
-updated: 01/11/2026 6:00 PM
+updated: 01/11/2026 6:25 PM
 site: https://solvesaint.github.io/Biolectrics-Wiki/The-Takeover
 chatref:
 title: The Takeover
@@ -23,7 +23,9 @@ The NHI have developed deep control over my nervous system over the course of fi
  - Dream manipulation to enforce motivation.
 
 ## How It Began
-![[Seated on Gym Floor.png|300|inc]]
+<p align="center">
+  <img src="./Seated on Gym Floor.png" alt="Seated on Gym Floor" />
+</p>
 
 I had been training Brazilian Jiu Jitsu with the plan to open my own school. This was a very difficult process due to my muscle cramping condition but I found I could fight laying down quite proficiently as long as no one was able to get head control and torque my spine. I made it work and became very good with Closed Guard, Half Guard, Deep Half, De La Riva, and Spider occasionally. However, around mid blue belt I began to become weak with increased muscle cramping. The cramping became much worse over time and I was forced to stop.
 

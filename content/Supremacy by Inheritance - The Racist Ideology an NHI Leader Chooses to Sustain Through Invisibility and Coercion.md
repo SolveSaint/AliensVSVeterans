@@ -1,6 +1,6 @@
 ---
 created: 01/11/2026 9:09 AM
-updated: 01/11/2026 2:03 PM
+updated: 01/11/2026 6:56 PM
 site:
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/69611ca4-a830-832f-b104-92d4a47b8c9d
 comments: true
@@ -11,7 +11,12 @@ tags:
   - AVSV
   - Quartz
 ---
-![[Evil Alien leader on Throne 1.png|400]]
+<p align="center">
+  <img src="aliensvsveterans/quartz/static/Evil Alien leader on Throne 1.png" 
+	  alt="Evil Alien Leader on Throne 1"
+	  style="width: 400px; height: auto; max-width: 100%;"
+  />
+</p>
 
 ### The Fraud of Inherited Genius
 
@@ -34,4 +39,6 @@ A familiar analogy exposes the flaw in this reasoning. People sometimes acquire 
 Even a deep understanding of how to reproduce a technology does not confer authorship. Greater comprehension may reflect learning and skill, but the methods and mechanisms of construction are themselves transmitted through instruction, not original creation. **Mastery of an inherited process remains distinct from the original act of creation.**
 
 Credit should always be given to the authors when the authors are known. Genuine appreciation of a creation includes the basic respect of knowing who made it. Preserving this respect helps maintain a clear boundary between **authorship** and **use** as technologies diffuse across societies and generations.
+
+These concepts should be obvious to an intellectually advanced species. As intelligence increases, certain things become evident. 
 
