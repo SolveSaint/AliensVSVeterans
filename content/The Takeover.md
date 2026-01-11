@@ -24,6 +24,7 @@ The NHI have developed deep control over my nervous system over the course of fi
 
 ## How It Began
 ![[Seated on Gym Floor.png|400]]
+
 I had been training Brazilian Jiu Jitsu with the plan to open my own school. This was a very difficult process due to my muscle cramping condition but I found I could fight laying down quite proficiently as long as no one was able to get head control and torque my spine. I made it work and became very good with Closed Guard, Half Guard, Deep Half, De La Riva, and Spider occasionally. However, around mid blue belt I began to become weak with increased muscle cramping. The cramping became much worse over time and I was forced to stop.
 
 ## Homebound
