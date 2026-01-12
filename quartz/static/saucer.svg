@@ -1,10 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 200" preserveAspectRatio="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 260"
+     preserveAspectRatio="xMidYMid meet">
+
+  <!-- MAIN BODY -->
   <ellipse
-    cx="700"
-    cy="100"
-    rx="140"
-    ry="20"
-    fill="#2b2f33"
-    fill-opacity="0.85" />
+    cx="600"
+    cy="150"
+    rx="520"
+    ry="70"
+    fill="#2b2f33" />
+
+  <!-- LOWER SHADOW BELLY -->
+  <ellipse
+    cx="600"
+    cy="165"
+    rx="460"
+    ry="55"
+    fill="#1c1f22" />
+
+  <!-- TOP DOME -->
+  <ellipse
+    cx="600"
+    cy="120"
+    rx="180"
+    ry="38"
+    fill="#32373c" />
+
+  <!-- DOME SHADOW -->
+  <ellipse
+    cx="600"
+    cy="128"
+    rx="155"
+    ry="26"
+    fill="#24282c" />
+
+  <!-- SUBTLE METAL RIM (NOT GLOWY) -->
+  <ellipse
+    cx="600"
+    cy="150"
+    rx="520"
+    ry="70"
+    fill="none"
+    stroke="#3a4046"
+    stroke-width="2"
+    opacity="0.45" />
+
+  <!-- VERY FAINT PANEL BREAKS -->
+  <g stroke="#3c4248" stroke-width="1" opacity="0.22">
+    <line x1="260" y1="150" x2="940" y2="150"/>
+    <line x1="350" y1="138" x2="850" y2="138"/>
+    <line x1="350" y1="162" x2="850" y2="162"/>
+  </g>
+
 </svg>
 

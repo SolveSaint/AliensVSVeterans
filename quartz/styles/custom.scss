@@ -12,15 +12,15 @@
 
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
-   Night forest green bias + tall pine silhouettes (SVG)
-   Trees are FIXED to viewport so they are always visible
+   Night forest green bias plus tall pine silhouettes (SVG)
+   Trees are fixed to viewport so they are always visible
    This is the BACK tree layer
    ========================= */
 body {
   background-color: #0a120e;
 
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.88)'%3E%3Cpath d='M0 700 L0 430 L35 345 L70 430 L110 285 L150 450 L195 255 L240 505 L290 295 L345 565 L400 305 L455 605 L510 330 L565 645 L620 345 L675 610 L730 315 L785 575 L840 295 L895 525 L950 275 L1005 485 L1060 265 L1115 455 L1170 285 L1225 435 L1270 335 L1310 420 L1350 360 L1400 430 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 448 L28 380 L55 448 L92 320 L125 468 L165 300 L205 500 L252 320 L300 548 L350 338 L402 586 L452 360 L505 620 L558 372 L612 592 L664 350 L716 564 L768 330 L820 520 L872 310 L924 488 L976 298 L1028 465 L1080 290 L1132 448 L1184 300 L1236 438 L1278 360 L1320 432 L1360 388 L1400 448 L1400 700 Z' opacity='0.92'/%3E%3C/g%3E%3C/svg%3E"),
+    url("../static/trees-back.svg"),
     linear-gradient(
       to top,
       rgba(0, 0, 0, 0.70) 0%,
@@ -69,6 +69,8 @@ body {
 
 /* =========================
    SAUCER IN TREES
+   Back trees are the body background image.
+   This adds the saucer layer and a front tree occluder band.
    ========================= */
 
 html {
@@ -95,11 +97,9 @@ html::before {
 
   /* solid, dark metal */
   opacity: 0.92;
-
-  /* keep it solid, do not wash out */
   mix-blend-mode: normal;
 
-  /* deep night metal grade + slight rim specular */
+  /* deep night metal grade plus slight rim specular */
   filter:
     brightness(0.82)
     contrast(1.18)
@@ -111,7 +111,7 @@ html::before {
   animation: saucerPatrol 320s ease-in-out infinite;
 }
 
-/* FRONT TREES OCCLUDER BAND */
+/* FRONT TREES OCCLUDER BAND (top layer, only around saucer height) */
 html::after {
   content: "";
   position: fixed;
@@ -120,9 +120,7 @@ html::after {
   pointer-events: none;
   z-index: 2;
 
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.98)'%3E%3Cpath d='M0 700 L0 420 L40 350 L80 420 L120 300 L160 460 L200 280 L240 520 L300 300 L360 560 L420 320 L480 600 L540 340 L600 640 L660 360 L720 600 L780 340 L840 560 L900 320 L960 520 L1020 300 L1080 460 L1140 280 L1200 420 L1260 350 L1320 420 L1400 420 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 460 L30 410 L60 460 L105 360 L140 488 L180 340 L220 520 L270 360 L330 560 L390 388 L450 600 L510 410 L570 640 L630 420 L690 600 L750 410 L810 560 L870 388 L930 520 L990 360 L1050 488 L1110 340 L1170 460 L1230 410 L1290 460 L1400 460 L1400 700 Z' opacity='0.80'/%3E%3C/g%3E%3C/svg%3E");
-
+  background-image: url("../static/trees-front.svg");
   background-repeat: repeat-x;
   background-size: 1800px 1100px;
   background-position: center bottom;
@@ -133,26 +131,26 @@ html::after {
 
   transform-origin: 50% 100%;
   will-change: transform;
-
   animation: treetopsSway 18s ease-in-out infinite;
 
+  /* only show in a band around the saucer height */
   -webkit-mask-image: linear-gradient(
     to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0) 36%,
-    rgba(0,0,0,1) 48%,
-    rgba(0,0,0,1) 68%,
-    rgba(0,0,0,0) 80%,
-    rgba(0,0,0,0) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 36%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0) 100%
   );
   mask-image: linear-gradient(
     to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0) 36%,
-    rgba(0,0,0,1) 48%,
-    rgba(0,0,0,1) 68%,
-    rgba(0,0,0,0) 80%,
-    rgba(0,0,0,0) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 36%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0) 100%
   );
 }
 
@@ -939,7 +937,7 @@ footer a[href=""] {
   opacity: 0.96;
 }
 
-/* Giscus → footer spacing */
+/* Giscus to footer spacing */
 .giscus {
   margin-bottom: 1rem;
 }
