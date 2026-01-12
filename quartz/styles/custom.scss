@@ -66,44 +66,45 @@ body {
     fixed;
 }
 
-/* =========================
-   SUBTLE SAUCER PASS
-   Recessed between background and content
-   ========================= */
-
-/* Keep content above */
-#quartz-root,
-#quartz-body {
-  position: relative;
-  z-index: 1;
-}
-
-/* Put saucer in the environment layer */
+/* Saucer container, recessed between background and content */
 #quartz-root::before {
   content: "";
   position: fixed;
-  inset: 0;
-  pointer-events: none;
 
-  /* Behind content, above body background */
+  /* Choose height here */
+  top: 72%;
+  left: 50%;
+
+  width: 1400px;
+  height: 200px;
+
+  pointer-events: none;
   z-index: 0;
 
   background-image: url("../static/saucer.svg");
   background-repeat: no-repeat;
-  background-size: 1400px 200px;
+  background-size: contain;
+  background-position: center;
 
-  /* Start here. We can tune height next */
-  background-position: center 72%;
-
-  /* Recess it */
   opacity: 0.22;
   mix-blend-mode: multiply;
+
+  transform: translateX(-50%);
+  animation: saucerOscillate 260s ease-in-out infinite;
+}
+
+/* Guaranteed back and forth motion, no reset snap */
+@keyframes saucerOscillate {
+  0%   { transform: translateX(-50%) translateX(-35vw); }
+  50%  { transform: translateX(-50%) translateX(35vw); }
+  100% { transform: translateX(-50%) translateX(-35vw); }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   #quartz-root::before {
     display: none !important;
+    animation: none !important;
   }
 }
 
