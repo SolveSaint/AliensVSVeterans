@@ -511,8 +511,10 @@ svg[data-icon*="book"],
 }
 
 /* =========================
-   EXPLORER: Biolectrics blocks, SAFE chevron, cleaner layout
-   Fixes arrow drawing under wrapped text by making it a left column.
+   EXPLORER
+   Biolectrics blocks for files
+   Folder rows stay clean
+   Hover and active chevron restored
    ========================= */
 
 /* FOLDERS (no block background, single line) */
@@ -554,20 +556,13 @@ svg[data-icon*="book"],
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Softer blue accent on folder hover */
+/* Softer blue accent on folder hover (slow fade-in) */
 .explorer-content .folder-container:hover {
   background-color: rgba(96, 163, 255, 0.08);
   border-left: 2px solid rgba(96, 163, 255, 0.18);
 }
 
-/* Remove left rail on folders to stop curved bracket artifacts */
-.explorer-content .explorer-ul > li > .folder-container,
-.explorer-content ul.content > li > .folder-container {
-  box-shadow: none !important;
-  border-left: none !important;
-}
-
-/* FILES (pill blocks + optional zebra) */
+/* FILES (pill blocks + zebra) */
 .explorer-content .explorer-ul > li > a:not(.folder-title),
 .explorer-content ul.content > li > a:not(.folder-title) {
   display: flex;
@@ -578,66 +573,36 @@ svg[data-icon*="book"],
   border-radius: 8px;
   position: relative;
 
-  margin-left: 12px;
-  text-decoration: none;
-
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
+  margin-left: 12px;
   border-left: 2px solid rgba(255, 255, 255, 0.06);
+
   box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.06);
   background-clip: padding-box;
 
-  color: #c9d6cf;
   min-width: 0;
 }
 
-/* Chevron column (SAFE, never overlaps) */
-.explorer-content .explorer-ul > li > a:not(.folder-title)::before,
-.explorer-content ul.content > li > a:not(.folder-title)::before {
-  content: "›";
-  flex: 0 0 14px;
-  width: 14px;
-  margin-top: 0.12em;
-
-  font-size: 1.05rem;
-  line-height: 1;
-
-  color: rgba(96, 163, 255, 0.9);
-  opacity: 0;
-
-  transform: translateX(-2px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-/* Zebra backgrounds (only if your postscript adds zebra-odd/even) */
+/* Zebra backgrounds set by postscript.ts */
 .explorer-content .zebra-odd  { background-color: rgba(255, 255, 255, 0.07); }
 .explorer-content .zebra-even { background-color: rgba(255, 255, 255, 0.04); }
 
-/* Hover for files */
+/* Blue-tinted hover for files */
 .explorer-content a:not(.folder-title):hover {
   background-color: rgba(96, 163, 255, 0.15);
   color: #e6f0ff;
 }
 
-.explorer-content a:not(.folder-title):hover::before {
-  opacity: 0.95;
-  transform: translateX(0);
-}
-
-/* Active file link */
+/* Active file highlight */
 .explorer-content a.is-active {
-  background-color: rgba(96, 163, 255, 0.20);
+  background-color: rgba(96, 163, 255, 0.24);
   color: #eef4f0;
+  border-radius: 8px;
   box-shadow: inset 3px 0 0 rgba(96, 163, 255, 0.75);
 }
 
-.explorer-content a.is-active::before {
-  opacity: 1;
-  transform: translateX(0);
-  color: rgba(96, 163, 255, 0.98);
-}
-
-/* Dividers for files, shifted past rail */
+/* Dividers for files */
 .explorer-content .explorer-ul > li > a:not(.folder-title)::after,
 .explorer-content ul.content > li > a:not(.folder-title)::after {
   content: "";
@@ -652,7 +617,66 @@ svg[data-icon*="book"],
 /* Soften end gradient so stripes show through */
 .explorer-ul.gradient-active::after { opacity: 0.15; }
 
-/* Accessibility: reduced motion */
+/* Remove left rail on folders to stop the curved bracket artifact */
+.explorer-content .explorer-ul > li > .folder-container,
+.explorer-content ul.content > li > .folder-container {
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+/* Keep the rail only on FILE blocks (no flashing) */
+.explorer-content .explorer-content .explorer-ul > li > a:not(.folder-title),
+.explorer-content .explorer-content ul.content > li > a:not(.folder-title) {
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.06);
+  background-clip: padding-box;
+}
+
+/* Shift file divider so it doesn't sit under the rail */
+.explorer-content .explorer-ul > li > a:not(.folder-title)::after,
+.explorer-content ul.content > li > a:not(.folder-title)::after {
+  left: 14px;
+}
+
+/* ===== Chevron for explorer FILE items only (hover and active) =====
+   This restores the arrow behavior without overlap.
+   It works because the link is flex, and ::before is a real flex column.
+*/
+.explorer-content .explorer-ul > li > a:not(.folder-title)::before,
+.explorer-content ul.content > li > a:not(.folder-title)::before {
+  content: "›";
+  display: inline-block;
+
+  flex: 0 0 14px;
+  width: 14px;
+
+  margin-top: 0.12em;
+
+  font-size: 1.05rem;
+  line-height: 1;
+
+  color: rgba(96, 163, 255, 0.9);
+
+  opacity: 0;
+  transform: translateX(-2px);
+
+  pointer-events: none;
+
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.explorer-content .explorer-ul > li > a:not(.folder-title):hover::before,
+.explorer-content ul.content > li > a:not(.folder-title):hover::before {
+  opacity: 0.95;
+  transform: translateX(0);
+}
+
+.explorer-content .explorer-ul > li > a.is-active:not(.folder-title)::before,
+.explorer-content ul.content > li > a.is-active:not(.folder-title)::before {
+  opacity: 1;
+  transform: translateX(0);
+  color: rgba(96, 163, 255, 0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .explorer-content .folder-container,
   .explorer-content a:not(.folder-title),
