@@ -1,6 +1,6 @@
 ---
 created: 01/11/2026 9:09 AM
-updated: 01/12/2026 5:29 PM
+updated: 01/12/2026 5:46 PM
 site:
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/69611ca4-a830-832f-b104-92d4a47b8c9d
 comments: true
@@ -12,9 +12,9 @@ tags:
   - Quartz
 ---
 <p align="center">
-  <span class="img-frame frame-ego-gold1">
+  <span class="img-frame frame-alien-stone1">
     <img src="./images/Evil Alien leader on Throne 1.png"
-         alt="Evil Alien Leader on Throne"
+         alt="Evil Alien Leader on Throne 1"
          style="width: 400px; height: auto; max-width: 100%;" />
   </span>
 </p>
