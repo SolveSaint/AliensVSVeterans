@@ -1011,7 +1011,7 @@ footer a[href=""] {
   position: relative;
   display: inline-block;
 
-  /* Frame grows OUTWARD from the image */
+  /* default padding (used only if a frame class does not override it) */
   padding-top:    40px;  /* top */
   padding-right:  36px;  /* right */
   padding-bottom: 74px;  /* bottom */
@@ -1042,7 +1042,7 @@ footer a[href=""] {
    FRAME OPTIONS
    ========================= */
 
-/* Alien stone frame */
+/* Alien stone frame (uses the padding you found that works for this frame) */
 .img-frame.frame-alien-stone1 {
   background-image: url("/static/frames/frame-alien-stone1.svg");
 
@@ -1052,20 +1052,12 @@ footer a[href=""] {
   padding-left:   34px;  /* left */
 }
 
-.img-frame.frame-alien-stone1 > img {
-  top: 8px; /* image nudge */
-}
-
-/* Gold ego frame */
+/* Gold ego frame (USES YOUR WORKING VALUES, unchanged) */
 .img-frame.frame-ego-gold1 {
   background-image: url("/static/frames/frame-gold-ego.svg");
 
-  padding-top:    40px;  /* top */
-  padding-right:  36px;  /* right */
-  padding-bottom: 74px;  /* bottom */
-  padding-left:   34px;  /* left */
-}
-
-.img-frame.frame-ego-gold1 > img {
-  top: 8px; /* image nudge */
+  padding-top:    20px;  /* top */
+  padding-right:  26px;  /* right */
+  padding-bottom: 90px;  /* bottom */
+  padding-left:   26px;  /* left */
 }
