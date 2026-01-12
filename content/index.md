@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 7:04 PM
+updated: 01/11/2026 7:32 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -32,7 +32,6 @@ tags:
     style="width: 400px; height: auto; max-width: 100%;"
   />
 </p>
-
 
 My father was a combat-wounded Vietnam veteran who survived eight gunshot wounds and mortar shrapnel. He later died of Amyotrophic Lateral Sclerosis in 2014.
 
