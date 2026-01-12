@@ -68,31 +68,41 @@ body {
 
 /* =========================
    SUBTLE SAUCER PASS
-   Separate layer so we do not touch the data URI
+   Recessed between background and content
    ========================= */
-body::before {
+
+/* Keep content above */
+#quartz-root,
+#quartz-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Put saucer in the environment layer */
+#quartz-root::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
 
-  /* TEMP: put it above everything */
-  z-index: 9999;
+  /* Behind content, above body background */
+  z-index: 0;
 
   background-image: url("../static/saucer.svg");
   background-repeat: no-repeat;
   background-size: 1400px 200px;
-  background-position: center center;
 
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
+  /* Start here. We can tune height next */
+  background-position: center 72%;
 
-  outline: 2px solid red;
+  /* Recess it */
+  opacity: 0.22;
+  mix-blend-mode: multiply;
 }
 
-/* Respect reduced motion */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  body::before {
+  #quartz-root::before {
     display: none !important;
   }
 }
