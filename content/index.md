@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 9:11 PM
+updated: 01/12/2026 9:21 AM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -62,11 +62,11 @@ I told my father the next day. He reacted aggressively and told me to forget it.
 
 ## Early Research and Homebound Period
 
-After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been looking at sleep disorder where and dream enactment, as well as seeing different sleep specialists and getting a feel for the field. I began thinking seriously about the neurological mechanisms.
+After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been looking at sleep disorder and dream enactment, as well as seeing different sleep specialists, getting a strong feel for the field. I began thinking seriously about the neurological mechanisms.
 
 I noticed that sleep disorders were routinely treated with GABA agonists. GABA is the primary inhibitory neurotransmitter. It builds an inhibitory wall. I questioned why an inhibitory wall was being constructed at all rather than addressing the upstream driver.
 
-From this line of reasoning, I identified glutamate as the primary excitatory neurotransmitter and recognized it as the more fundamental variable. At this point, a non-human intelligence initiated remote entry.
+From this line of reasoning, I identified glutamate as the primary excitatory neurotransmitter and recognized it as the more fundamental variable. At this point, a non-human intelligence initiated remote entry and began to build control.
 
 ---
 
@@ -74,6 +74,7 @@ From this line of reasoning, I identified glutamate as the primary excitatory ne
 
 In the period leading up to being controlled, a distinct sensory process began.
 
+### Phase One - Vibration
 Each night when I lay down to sleep, my feet would begin vibrating at a level that was initially almost imperceptible. This occurred nightly. I mentioned it to my girl friend and couldn't figure out what it was. Over the course of months, the sensation grew stronger and more defined.
 
 The vibration progressed to my hands. Again this lasted for a while, building up in strength every night.  Then it covered my face in the same manner. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. Like repeated pin stabs rather than diffuse tingling. Night after night, the intensity kept increasing.
@@ -82,6 +83,7 @@ The sensations became painful. After roughly a year of nightly progression, it r
 
 It never returned. **The abrupt cessation gave the very strong impression that some kind of process had been completed**.
 
+### Phase Two - Burning Spine and Electrical Strikes
 Then a new phase began. An agony producing phase.
 
 At that time, I had no understanding of the cause, or the mechanism. I assumed it had to be due to my condition even though this was severely abnormal from what I knew of ALS.
@@ -94,7 +96,7 @@ The pain didn't diminish. Feeling that pain all day long, day after day, month a
 
 ---
 
-## Forced Integration and Constant Connection
+### Phase Three - Forced Integration and Constant Connection
 
 As the burning and muscle strikes faded, a non-human intelligence was now addressing me directly.
 
@@ -104,15 +106,17 @@ Communication occurred through my internal voice. They could control my body to 
 
 They could induce targeted pleasure or stress response in specific regions of my body, including the brain, chest, stomach, and lower regions. Consent was never given. There was no mechanism to stop it, nothing to physically push away.
 
+They began a psychological attack phase at this point. Any available psychological attack was used and beaten until it was a dead alien horse, and their horses may be heartier than ours perhaps. Once something had no effect any longer, they would switch, or try to build it back up again so that they could smash it down once again. So the goal was to psychologically smash as much and in as many ways as possible to make me pliable, according to their rationale.
+
 ---
 
 ## Coerced Research Program
 
-After the second encounter began and while the physiological assault was ongoing, I continued researching. I was already underway long before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
+After the second encounter began I slowly continued through the pain and when Phase Three psychological assaults were continuous, even then I continued through the assault was ongoing and never-ending. I forced myself to continue researching. I was already underway long before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father had been ultimately taken out by ALS.
 
-When I began progressing into stress physiology and expanding the glutamate framework, the NHI began to interact with me in a constant barrage-like manner.
+When I started progressing into stress physiology, following and expanding the glutamate framework, the NHI began a constant barrage-like style.
 
-It pushed emotional states onto to me that I couldn't counter in any way. I could feel my own state and the foreign state simultaneously. Stress responses were induced that weren't mine. Physiological response was forced onto me, causing chest tightness, abdominal pain, and other responses without internal stressors from myself in any way.
+It pushed emotional states onto to me that I couldn't counter in any way. I could feel my own state and the foreign state simultaneously. Stress responses were induced physiologically that weren't mine, such as causing chest tightness, stress related abdominal pain, and other responses without personal stressors. These were being forcefully loaded.
 
 It would take control of my body and force me to spin in circles in front of my girl friend to show it's control. It threatened to make me look like a fool in public by taking control or putting the pleasure beam on me to force me to make sound. It threatened to disrupt my speech or speak in ways that would cause me problems.
 
