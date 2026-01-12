@@ -66,37 +66,57 @@ body {
     fixed;
 }
 
-/* DEBUG: make sure it exists and moves */
+/* =========================
+   SAUCER PASS – FULL WIDTH OSCILLATION
+   ========================= */
+
 #quartz-root::before {
   content: "";
   position: fixed;
-  inset: 0;
+
+  /* vertical placement */
+  top: 72%;
+  left: 50%;
+
+  /* saucer size */
+  width: 1400px;
+  height: 200px;
+
   pointer-events: none;
 
-  /* Put it above content just for debug */
-  z-index: 9999;
+  /* between background and content */
+  z-index: 0;
 
   background-image: url("../static/saucer.svg");
   background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 
-  /* Make it big and centered */
-  background-size: 900px 220px;
-  background-position: 50% 50%;
+  /* visibility */
+  opacity: 0.22;
+  mix-blend-mode: multiply;
 
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
+  /* center anchor */
+  transform: translateX(-50%);
 
-  outline: 2px solid red;
-
-  animation: saucerDrift 18s ease-in-out infinite;
+  /* slow patrol motion */
+  animation: saucerPatrol 320s ease-in-out infinite;
 }
 
-@keyframes saucerDrift {
-  0%   { background-position: 25% 50%; }
-  50%  { background-position: 75% 50%; }
-  100% { background-position: 25% 50%; }
+/* TRUE back-and-forth across most of the viewport */
+@keyframes saucerPatrol {
+  0% {
+    transform: translateX(-50%) translateX(-45vw);
+  }
+  50% {
+    transform: translateX(-50%) translateX(45vw);
+  }
+  100% {
+    transform: translateX(-50%) translateX(-45vw);
+  }
 }
 
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   #quartz-root::before {
     display: none !important;
