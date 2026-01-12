@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400">
+  <defs>
+    <!-- Organic skin gradients -->
+    <radialGradient id="bioGlow" cx="50%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#7fffe6" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#2de0c8" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="carapace" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b2a22"/>
+      <stop offset="35%" stop-color="#0f3a30"/>
+      <stop offset="65%" stop-color="#081c17"/>
+      <stop offset="100%" stop-color="#040b09"/>
+    </linearGradient>
+
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#62ffe8" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#20cdb5" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0a5a4f" stop-opacity="0.15"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18" result="b"/>
+      <feOffset in="b" dx="0" dy="26" result="o"/>
+      <feColorMatrix in="o" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 .65 0" result="s"/>
+      <feMerge>
+        <feMergeNode in="s"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="innerBloom" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="g"/>
+      <feColorMatrix in="g" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0.2
+                0 0 1 0 0.2
+                0 0 0 0.35 0" result="c"/>
+      <feMerge>
+        <feMergeNode in="c"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Organic edge noise -->
+    <filter id="edgeWobble" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <!-- Outer carapace -->
+  <g filter="url(#softShadow)">
+    <path
+      d="M140,110
+         C110,140 92,190 96,240
+         L96,1160
+         C92,1215 118,1266 162,1300
+         C214,1340 288,1364 370,1368
+         L630,1368
+         C712,1364 786,1340 838,1300
+         C882,1266 908,1215 904,1160
+         L904,240
+         C908,190 890,140 860,110
+         C820,70 760,44 690,36
+         L310,36
+         C240,44 180,70 140,110
+         Z"
+      fill="url(#carapace)"
+      filter="url(#edgeWobble)"
+    />
+
+    <!-- Inner rim glow -->
+    <path
+      d="M185,165
+         C160,190 148,224 150,260
+         L150,1128
+         C148,1168 168,1206 204,1232
+         C244,1261 304,1278 376,1282
+         L624,1282
+         C696,1278 756,1261 796,1232
+         C832,1206 852,1168 850,1128
+         L850,260
+         C852,224 840,190 815,165
+         C782,132 732,114 675,108
+         L325,108
+         C268,114 218,132 185,165
+         Z"
+      fill="none"
+      stroke="url(#rim)"
+      stroke-width="18"
+      stroke-linejoin="round"
+      filter="url(#innerBloom)"
+      opacity="0.95"
+    />
+
+    <!-- Bio glow wash -->
+    <rect x="70" y="30" width="860" height="1320" rx="120" ry="120" fill="url(#bioGlow)"/>
+
+    <!-- Tendril corners -->
+    <g opacity="0.85">
+      <path d="M170,170 C120,240 130,330 165,380 C205,435 220,520 160,610"
+            fill="none" stroke="#1de6cc" stroke-width="12" stroke-linecap="round" stroke-opacity="0.18"/>
+      <path d="M830,170 C880,240 870,330 835,380 C795,435 780,520 840,610"
+            fill="none" stroke="#1de6cc" stroke-width="12" stroke-linecap="round" stroke-opacity="0.18"/>
+      <path d="M200,1230 C140,1170 140,1090 185,1040 C230,988 250,930 210,860"
+            fill="none" stroke="#1de6cc" stroke-width="12" stroke-linecap="round" stroke-opacity="0.18"/>
+      <path d="M800,1230 C860,1170 860,1090 815,1040 C770,988 750,930 790,860"
+            fill="none" stroke="#1de6cc" stroke-width="12" stroke-linecap="round" stroke-opacity="0.18"/>
+    </g>
+
+    <!-- Inner plate hint, only visible where image does not cover -->
+    <path
+      d="M220,215
+         C204,232 198,254 200,278
+         L200,1098
+         C198,1128 212,1152 238,1170
+         C270,1192 322,1206 386,1210
+         L614,1210
+         C678,1206 730,1192 762,1170
+         C788,1152 802,1128 800,1098
+         L800,278
+         C802,254 796,232 780,215
+         C758,192 722,178 680,174
+         L320,174
+         C278,178 242,192 220,215
+         Z"
+      fill="#000000"
+      opacity="0.22"
+    />
+  </g>
+</svg>
