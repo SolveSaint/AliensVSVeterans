@@ -1024,6 +1024,21 @@ footer a[href=""] {
   margin: 2.5rem auto;
 }
 
+/* Image inside ego frame */
+.ego-frame img {
+  display: block;
+  position: relative;
+
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+
+  border-radius: 24px;
+
+  /* optical centering nudge */
+  top: 8px;
+}
+
 /* The image itself */
 .ego-frame img {
   display: block;
