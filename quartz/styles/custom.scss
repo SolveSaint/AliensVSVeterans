@@ -1003,51 +1003,20 @@ footer a[href=""] {
 /* Frames */
 
 /* Gold ego frame backing */
-.ego-frame {
-  position: relative;
-  display: inline-block;
-
-  /* tuned padding for optical centering */
-  padding:
-    20px   /* top */
-    26px   /* right */
-    90px   /* bottom — reduced */
-    26px;  /* left */
-
-  background-image: url("../static/frames/frame-gold-ego.svg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
-
-  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
-
-  margin: 2.5rem auto;
-}
-
 /* Image inside ego frame */
 .ego-frame img {
   display: block;
   position: relative;
 
-  width: 400px;
+  width: 400px;        /* base size */
   max-width: 100%;
   height: auto;
 
   border-radius: 24px;
 
-  /* optical centering nudge */
-  top: 8px;
-}
+  /* OPTICAL APERTURE CORRECTION */
+  top: -16px;                 /* lift image upward */
+  transform: scaleX(1.03);    /* push image outward left/right */
 
-/* The image itself */
-.ego-frame img {
-  display: block;
-  position: relative;
-
-  width: 400px;
-  max-width: 100%;
-  height: auto;
-
-  /* optional rounding */
-  border-radius: 24px;
+  z-index: 1;
 }
