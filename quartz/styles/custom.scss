@@ -1014,10 +1014,10 @@ footer a[href=""] {
   /* Padding defines the frame thickness.
      Adjust these to grow the frame OUTWARD */
   padding:
-    36px   /* top */
+    40px   /* top */
     36px   /* right */
-    70px   /* bottom */
-    36px;  /* left */
+    74px   /* bottom */
+    34px;  /* left */
 
   /* IMPORTANT: absolute path for Quartz */
   background-image: url("/static/frames/frame-gold-ego.svg");
