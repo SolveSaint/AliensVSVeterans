@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 4:43 PM
+updated: 01/11/2026 7:04 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -25,7 +25,12 @@ tags:
 ---
 
 ## About Me. Origin.
-![[Father and Nurse.png|500]]
+<p align="center">
+  <img src="aliensvsveterans/quartz/static/Father and Nurse.png" 
+	  alt="Father and Nurse"
+	  style="width: 400px; height: auto; max-width: 100%;"
+  />
+</p>
 
 My father was a combat-wounded Vietnam veteran who survived eight gunshot wounds and mortar shrapnel. He later died of Amyotrophic Lateral Sclerosis in 2014.
 
@@ -38,7 +43,12 @@ At the time, I did not have a biological framework to explain it, but I thought 
 ---
 
 ## First Encounter. Age 19
-![[AVSV - Age 19 First Encounter.png|300]]
+<p align="center">
+  <img src="aliensvsveterans/quartz/static/AVSV - Age 19 First Encounter.png" 
+	  alt="Age 19 First Encounter"
+	  style="width: 400px; height: auto; max-width: 100%;"
+  />
+</p>
 
 At nineteen, I stayed briefly at my mother’s house on a dead-end road surrounded by dense pine forest. I was asleep when a very strange whirring sound woke me. The sound increased in intensity as it approached the house.
 
