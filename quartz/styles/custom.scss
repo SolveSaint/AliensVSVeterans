@@ -69,12 +69,18 @@ body {
 
 /* =========================
    SAUCER IN TREES
-   BACK TREES (body bg) -> SAUCER -> FRONT TREES MASK
-   Use body pseudo elements so they sit behind Quartz content
+   Back trees are the body background image.
+   This adds:
+   1) Saucer layer
+   2) A front tree occluder band that sits above the saucer
    ========================= */
 
+html {
+  position: relative;
+}
+
 /* SAUCER LAYER (middle) */
-body::before {
+html::before {
   content: "";
   position: fixed;
 
@@ -92,16 +98,19 @@ body::before {
   background-size: contain;
   background-position: center;
 
-  opacity: 0.16;
-  mix-blend-mode: multiply;
-  filter: blur(0.6px);
+  /* keep it subtle but visible */
+  opacity: 0.14;
+
+  /* remove blend tricks, they make “in front” more obvious */
+  mix-blend-mode: normal;
+  filter: none;
 
   transform: translate(-50%, -50%);
   animation: saucerPatrol 320s ease-in-out infinite;
 }
 
-/* FRONT TREES MASK (top layer, but only in a band around the saucer) */
-body::after {
+/* FRONT TREES OCCLUDER BAND (top layer, only around saucer height) */
+html::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -109,25 +118,29 @@ body::after {
   pointer-events: none;
   z-index: 2;
 
+  /* a darker, more solid silhouette than the back layer */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.92)'%3E%3Cpath d='M0 700 L0 420 L40 350 L80 420 L120 300 L160 460 L200 280 L240 520 L300 300 L360 560 L420 320 L480 600 L540 340 L600 640 L660 360 L720 600 L780 340 L840 560 L900 320 L960 520 L1020 300 L1080 460 L1140 280 L1200 420 L1260 350 L1320 420 L1400 420 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 460 L30 410 L60 460 L105 360 L140 488 L180 340 L220 520 L270 360 L330 560 L390 388 L450 600 L510 410 L570 640 L630 420 L690 600 L750 410 L810 560 L870 388 L930 520 L990 360 L1050 488 L1110 340 L1170 460 L1230 410 L1290 460 L1400 460 L1400 700 Z' opacity='0.75'/%3E%3C/g%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.98)'%3E%3Cpath d='M0 700 L0 420 L40 350 L80 420 L120 300 L160 460 L200 280 L240 520 L300 300 L360 560 L420 320 L480 600 L540 340 L600 640 L660 360 L720 600 L780 340 L840 560 L900 320 L960 520 L1020 300 L1080 460 L1140 280 L1200 420 L1260 350 L1320 420 L1400 420 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 460 L30 410 L60 460 L105 360 L140 488 L180 340 L220 520 L270 360 L330 560 L390 388 L450 600 L510 410 L570 640 L630 420 L690 600 L750 410 L810 560 L870 388 L930 520 L990 360 L1050 488 L1110 340 L1170 460 L1230 410 L1290 460 L1400 460 L1400 700 Z' opacity='0.80'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 1800px 1100px;
   background-position: center bottom;
   background-attachment: fixed;
 
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-  filter: blur(0.35px);
+  /* this is the occlusion strength */
+  opacity: 0.85;
 
-  /* This is the key: only show the front trees around the saucer band */
+  /* do NOT blend. make it a real occluder */
+  mix-blend-mode: normal;
+  filter: none;
+
+  /* only show in a band around the saucer height */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 36%,
     rgba(0, 0, 0, 1) 48%,
-    rgba(0, 0, 0, 1) 66%,
-    rgba(0, 0, 0, 0) 78%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 0) 80%,
     rgba(0, 0, 0, 0) 100%
   );
   mask-image: linear-gradient(
@@ -135,13 +148,13 @@ body::after {
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0) 36%,
     rgba(0, 0, 0, 1) 48%,
-    rgba(0, 0, 0, 1) 66%,
-    rgba(0, 0, 0, 0) 78%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 0) 80%,
     rgba(0, 0, 0, 0) 100%
   );
 }
 
-/* Wide travel across the viewport, back and forth (no reset jump) */
+/* Back and forth travel (no reset jump) */
 @keyframes saucerPatrol {
   0%   { transform: translate(-50%, -50%) translateX(-46vw); }
   50%  { transform: translate(-50%, -50%) translateX(46vw); }
@@ -149,8 +162,8 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before,
-  body::after {
+  html::before,
+  html::after {
     display: none !important;
     animation: none !important;
   }
