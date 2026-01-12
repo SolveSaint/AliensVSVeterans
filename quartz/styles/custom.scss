@@ -69,10 +69,6 @@ body {
 
 /* =========================
    SAUCER IN TREES
-   Back trees are the body background image.
-   This adds:
-   1) Saucer layer
-   2) A front tree occluder band that sits above the saucer
    ========================= */
 
 html {
@@ -83,7 +79,6 @@ html {
 html::before {
   content: "";
   position: fixed;
-
   left: 50%;
   top: 56%;
 
@@ -98,20 +93,25 @@ html::before {
   background-size: contain;
   background-position: center;
 
-  /* keep it subtle but visible */
-  opacity: 0.14;
+  /* solid, dark metal */
+  opacity: 0.92;
 
-  /* remove blend tricks, they make “in front” more obvious */
+  /* keep it solid, do not wash out */
   mix-blend-mode: normal;
+
+  /* deep night metal grade + slight rim specular */
   filter:
-    drop-shadow(0 0 6px rgba(160, 190, 255, 0.12))
-    drop-shadow(0 0 14px rgba(160, 190, 255, 0.06));
+    brightness(0.82)
+    contrast(1.18)
+    saturate(0.72)
+    drop-shadow(0 0 3px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 10px rgba(180, 205, 255, 0.07));
 
   transform: translate(-50%, -50%);
   animation: saucerPatrol 320s ease-in-out infinite;
 }
 
-/* FRONT TREES OCCLUDER BAND (top layer, only around saucer height) */
+/* FRONT TREES OCCLUDER BAND */
 html::after {
   content: "";
   position: fixed;
@@ -120,54 +120,60 @@ html::after {
   pointer-events: none;
   z-index: 2;
 
-  /* a darker, more solid silhouette than the back layer */
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.98)'%3E%3Cpath d='M0 700 L0 420 L40 350 L80 420 L120 300 L160 460 L200 280 L240 520 L300 300 L360 560 L420 320 L480 600 L540 340 L600 640 L660 360 L720 600 L780 340 L840 560 L900 320 L960 520 L1020 300 L1080 460 L1140 280 L1200 420 L1260 350 L1320 420 L1400 420 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 460 L30 410 L60 460 L105 360 L140 488 L180 340 L220 520 L270 360 L330 560 L390 388 L450 600 L510 410 L570 640 L630 420 L690 600 L750 410 L810 560 L870 388 L930 520 L990 360 L1050 488 L1110 340 L1170 460 L1230 410 L1290 460 L1400 460 L1400 700 Z' opacity='0.80'/%3E%3C/g%3E%3C/svg%3E");
+
   background-repeat: repeat-x;
   background-size: 1800px 1100px;
   background-position: center bottom;
   background-attachment: fixed;
 
-  /* this is the occlusion strength */
   opacity: 0.85;
-
-  /* do NOT blend. make it a real occluder */
   mix-blend-mode: normal;
-  filter: none;
 
-  /* only show in a band around the saucer height */
+  transform-origin: 50% 100%;
+  will-change: transform;
+
+  animation: treetopsSway 18s ease-in-out infinite;
+
   -webkit-mask-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 36%,
-    rgba(0, 0, 0, 1) 48%,
-    rgba(0, 0, 0, 1) 68%,
-    rgba(0, 0, 0, 0) 80%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 36%,
+    rgba(0,0,0,1) 48%,
+    rgba(0,0,0,1) 68%,
+    rgba(0,0,0,0) 80%,
+    rgba(0,0,0,0) 100%
   );
   mask-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 36%,
-    rgba(0, 0, 0, 1) 48%,
-    rgba(0, 0, 0, 1) 68%,
-    rgba(0, 0, 0, 0) 80%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 36%,
+    rgba(0,0,0,1) 48%,
+    rgba(0,0,0,1) 68%,
+    rgba(0,0,0,0) 80%,
+    rgba(0,0,0,0) 100%
   );
 }
 
-/* Back and forth travel (no reset jump) */
+/* Motion */
 @keyframes saucerPatrol {
   0%   { transform: translate(-50%, -50%) translateX(-46vw); }
   50%  { transform: translate(-50%, -50%) translateX(46vw); }
   100% { transform: translate(-50%, -50%) translateX(-46vw); }
 }
 
+@keyframes treetopsSway {
+  0%   { transform: rotate(-0.18deg) skewX(-0.25deg); }
+  50%  { transform: rotate(0.18deg)  skewX(0.25deg); }
+  100% { transform: rotate(-0.18deg) skewX(-0.25deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html::before,
   html::after {
-    display: none !important;
     animation: none !important;
+    display: none !important;
   }
 }
 
