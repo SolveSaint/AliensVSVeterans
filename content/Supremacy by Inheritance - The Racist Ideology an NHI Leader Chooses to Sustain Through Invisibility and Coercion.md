@@ -1,6 +1,6 @@
 ---
 created: 01/11/2026 9:09 AM
-updated: 01/12/2026 4:12 PM
+updated: 01/12/2026 4:32 PM
 site:
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/69611ca4-a830-832f-b104-92d4a47b8c9d
 comments: true
@@ -15,7 +15,7 @@ tags:
   <span class="ego-frame">
     <img
       src="./images/Evil Alien leader on Throne 1.png"
-      alt="Evil Alien Leader on Throne 1"
+      alt="Evil Alien Leader on Throne"
     />
   </span>
 </p>
