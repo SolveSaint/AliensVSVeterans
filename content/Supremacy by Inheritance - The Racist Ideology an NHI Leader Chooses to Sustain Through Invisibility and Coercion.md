@@ -1,6 +1,6 @@
 ---
 created: 01/11/2026 9:09 AM
-updated: 01/12/2026 10:14 AM
+updated: 01/12/2026 10:20 AM
 site:
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/69611ca4-a830-832f-b104-92d4a47b8c9d
 comments: true
@@ -42,11 +42,11 @@ Credit should always be given to the authors when the authors are known. Genuine
 
 These concepts should be obvious to an intellectually advanced species. As intelligence increases, certain things become clear. Groups accomplish difficult tasks by relying on specialists, not by treating everyone as interchangeable. Life takes many forms, but beneath those forms are shared biological processes. When it comes to thought and creation, form is usually not a limiting factor. **A high‑yield specialist can emerge in many forms**.
 
-The NHI deny this truth. They believe at a cultural level that their current species group already contains all the diversity needed to accomplish the most difficult feats. This belief has been shown to be incorrect. The Roswell crash exposed vulnerability rather than perfection, yet still didn't provide the necessary grounding. This assumes they had not already exposed themselves through staged and careless acts, such as landing on a human Precision Landing Site while being recorded by a trained military crew. These events occurred after Roswell, but there is no reason to believe they were the first. Many similar incidents could have occurred earlier, only to fade as the people who witnessed them passed out of living memory.
+The NHI deny this truth. They believe at a cultural level that their current species group already contains all the diversity needed to accomplish the most difficult feats. This belief has been shown to be incorrect. **The Roswell crash exposed vulnerability rather than perfection**, yet still didn't provide the necessary grounding. This assumes they had not already exposed themselves through staged and careless acts, such as **landing on a human Precision Landing Site while being recorded by a trained military crew**. These events occurred after Roswell, but there is no reason to believe they were the first. Many similar incidents could have occurred earlier, only to fade as the people who witnessed them passed out of living memory.
 
 ---
 
-This is a Work In Progress.  Return later for the full article.
+### This article is a Work In Progress.  Return later for the full article...
 
 
 
