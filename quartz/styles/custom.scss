@@ -82,10 +82,11 @@ html::before {
   content: "";
   position: fixed;
   left: 50%;
-  top: 56%;
+  top: 58%;
 
-  width: 1600px;
-  height: 260px;
+  /* smaller footprint */
+  width: clamp(520px, 46vw, 920px);
+  height: clamp(120px, 12vw, 200px);
 
   pointer-events: none;
   z-index: 1;
@@ -95,20 +96,37 @@ html::before {
   background-size: contain;
   background-position: center;
 
-  /* solid, dark metal */
-  opacity: 0.92;
+  /* less obtrusive */
+  opacity: 0.28;
   mix-blend-mode: normal;
 
-  /* deep night metal grade plus slight rim specular */
+  /* dark metal, low contrast, slight atmospheric softness */
   filter:
-    brightness(0.82)
-    contrast(1.18)
-    saturate(0.72)
-    drop-shadow(0 0 3px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 10px rgba(180, 205, 255, 0.07));
+    brightness(0.62)
+    contrast(0.92)
+    saturate(0.45)
+    blur(0.25px)
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 8px rgba(180, 205, 255, 0.05));
+
+  /* kill any visible rectangular edge by oval masking */
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 58%,
+    rgba(0,0,0,0.75) 70%,
+    rgba(0,0,0,0.22) 82%,
+    rgba(0,0,0,0) 92%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 58%,
+    rgba(0,0,0,0.75) 70%,
+    rgba(0,0,0,0.22) 82%,
+    rgba(0,0,0,0) 92%
+  );
 
   transform: translate(-50%, -50%);
-  animation: saucerPatrol 320s ease-in-out infinite;
+  animation: saucerPatrol 320s ease-in-out infinite, saucerDrift 14s ease-in-out infinite;
 }
 
 /* FRONT TREES OCCLUDER BAND (top layer, only around saucer height) */
@@ -126,12 +144,14 @@ html::after {
   background-position: center bottom;
   background-attachment: fixed;
 
-  opacity: 0.85;
+  opacity: 0.88;
   mix-blend-mode: normal;
 
   transform-origin: 50% 100%;
   will-change: transform;
-  animation: treetopsSway 18s ease-in-out infinite;
+
+  /* stronger, more alive wind motion */
+  animation: treetopsSway 9.5s ease-in-out infinite;
 
   /* only show in a band around the saucer height */
   -webkit-mask-image: linear-gradient(
@@ -161,17 +181,26 @@ html::after {
   100% { transform: translate(-50%, -50%) translateX(-46vw); }
 }
 
+/* subtle bob so it feels like it belongs in the scene */
+@keyframes saucerDrift {
+  0%   { filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px) drop-shadow(0 0 2px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 8px rgba(180, 205, 255, 0.05)); }
+  50%  { filter: brightness(0.66) contrast(0.92) saturate(0.45) blur(0.25px) drop-shadow(0 0 2px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 10px rgba(180, 205, 255, 0.06)); }
+  100% { filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px) drop-shadow(0 0 2px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 8px rgba(180, 205, 255, 0.05)); }
+}
+
+/* more wind, slight bend plus subtle lift and settle */
 @keyframes treetopsSway {
-  0%   { transform: rotate(-0.18deg) skewX(-0.25deg); }
-  50%  { transform: rotate(0.18deg)  skewX(0.25deg); }
-  100% { transform: rotate(-0.18deg) skewX(-0.25deg); }
+  0%   { transform: rotate(-0.55deg) skewX(-0.65deg) translateY(0px); }
+  22%  { transform: rotate(0.35deg)  skewX(0.55deg)  translateY(-2px); }
+  50%  { transform: rotate(0.65deg)  skewX(0.75deg)  translateY(-3px); }
+  78%  { transform: rotate(-0.25deg) skewX(-0.45deg) translateY(-1px); }
+  100% { transform: rotate(-0.55deg) skewX(-0.65deg) translateY(0px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html::before,
   html::after {
     animation: none !important;
-    display: none !important;
   }
 }
 
