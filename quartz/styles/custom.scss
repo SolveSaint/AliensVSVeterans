@@ -1008,7 +1008,12 @@ footer a[href=""] {
 .img-frame {
   position: relative;
   display: inline-block;
-  margin: 2.5rem auto;
+
+  /* spacing around the framed image */
+  margin-top: 2.5rem;     /* top */
+  margin-right: 0;        /* right */
+  margin-bottom: 2.5rem;  /* bottom */
+  margin-left: 0;         /* left */
 
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -1017,11 +1022,20 @@ footer a[href=""] {
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
 }
 
+/* Optional: CSS centering without <p align="center"> */
+.img-frame.is-centered {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Image inside any frame */
 .img-frame img {
   display: block;
-  width: 400px;        /* hard cap */
-  max-width: 100%;     /* responsive safety */
+
+  width: 400px;     /* hard cap */
+  max-width: 100%;  /* responsive safety */
   height: auto;
 
   position: relative;
@@ -1042,7 +1056,6 @@ footer a[href=""] {
   padding-bottom: 52px;  /* bottom */
   padding-left:   30px;  /* left */
 }
-
 
 /* =========================
    ALIEN STONE FRAME
