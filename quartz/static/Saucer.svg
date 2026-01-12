@@ -1,27 +1,21 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 1400 200"
-  preserveAspectRatio="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 200" preserveAspectRatio="none">
 
-  <!-- very dark, barely visible cigar -->
+  <!-- DEBUG saucer: bright red, thick, obvious -->
   <ellipse
     cx="700"
     cy="100"
-    rx="140"
-    ry="20"
-    fill="rgba(15,15,15,0.25)">
+    rx="220"
+    ry="40"
+    fill="red"
+    fill-opacity="1">
 
     <animate
       attributeName="cx"
-      from="400"
-      to="1000"
-      dur="260s"
+      from="300"
+      to="1100"
+      dur="20s"
       repeatCount="indefinite"
-      direction="alternate"
-      calcMode="spline"
-      keySplines="0.42 0 0.58 1" />
+      direction="alternate" />
   </ellipse>
 
 </svg>
-
-
