@@ -66,41 +66,37 @@ body {
     fixed;
 }
 
-/* Saucer container, recessed between background and content */
+/* DEBUG: make sure it exists and moves */
 #quartz-root::before {
   content: "";
   position: fixed;
-
-  /* Choose height here */
-  top: 72%;
-  left: 50%;
-
-  width: 1400px;
-  height: 200px;
-
+  inset: 0;
   pointer-events: none;
-  z-index: 0;
+
+  /* Put it above content just for debug */
+  z-index: 9999;
 
   background-image: url("../static/saucer.svg");
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 
-  opacity: 0.22;
-  mix-blend-mode: multiply;
+  /* Make it big and centered */
+  background-size: 900px 220px;
+  background-position: 50% 50%;
 
-  transform: translateX(-50%);
-  animation: saucerOscillate 260s ease-in-out infinite;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+
+  outline: 2px solid red;
+
+  animation: saucerDrift 18s ease-in-out infinite;
 }
 
-/* Guaranteed back and forth motion, no reset snap */
-@keyframes saucerOscillate {
-  0%   { transform: translateX(-50%) translateX(-35vw); }
-  50%  { transform: translateX(-50%) translateX(35vw); }
-  100% { transform: translateX(-50%) translateX(-35vw); }
+@keyframes saucerDrift {
+  0%   { background-position: 25% 50%; }
+  50%  { background-position: 75% 50%; }
+  100% { background-position: 25% 50%; }
 }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   #quartz-root::before {
     display: none !important;
