@@ -1004,20 +1004,27 @@ footer a[href=""] {
    IMAGE FRAME BASE
    ========================= */
 
+/* Base image frame wrapper */
 .img-frame {
   position: relative;
   display: inline-block;
   margin: 2.5rem auto;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
 }
 
-.img-frame > img {
+/* Image inside any frame */
+.img-frame img {
   display: block;
-  position: relative;
-
-  width: 400px;
-  max-width: 100%;
+  width: 400px;        /* hard cap */
+  max-width: 100%;     /* responsive safety */
   height: auto;
 
+  position: relative;
   border-radius: 24px;
 }
 
@@ -1026,43 +1033,31 @@ footer a[href=""] {
    Padding-based (tight, controlled)
    ========================= */
 
+/* Gold ego frame (USES YOUR WORKING VALUES, unchanged) */
 .img-frame.frame-ego-gold1 {
   background-image: url("/static/frames/frame-gold-ego.svg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
 
   padding-top:    44px;  /* top */
   padding-right:  32px;  /* right */
   padding-bottom: 60px;  /* bottom */
   padding-left:   30px;  /* left */
-
-  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
 }
+
 
 /* =========================
    ALIEN STONE FRAME
    Outward-growing (massive, lateral)
    ========================= */
 
-.img-frame.frame-alien-stone1::before {
-  content: "";
-  position: absolute;
-
-  top:    -30px;   /* top */
-  right:  -160px;  /* right */
-  bottom: -60px;   /* bottom */
-  left:   -160px;  /* left */
-
+/* Alien stone frame */
+.img-frame.frame-alien-stone1 {
   background-image: url("/static/frames/frame-alien-stone1.svg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
 
-  pointer-events: none;
-  z-index: -1;
-
-  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
+  padding-top:    30px;   /* top */
+  padding-right:  160px;  /* right */
+  padding-bottom: 60px;   /* bottom */
+  padding-left:   160px;  /* left */
 }
+
 
 
