@@ -26,11 +26,13 @@ tags:
 
 ## About Me. Origin.
 <p align="center">
-  <img src="aliensvsveterans/quartz/static/Father and Nurse.png" 
-	  alt="Father and Nurse"
-	  style="width: 400px; height: auto; max-width: 100%;"
+  <img
+    src="/aliensvsveterans/static/Father%20and%20Nurse.png"
+    alt="Father and Nurse"
+    style="width: 400px; height: auto; max-width: 100%;"
   />
 </p>
+
 
 My father was a combat-wounded Vietnam veteran who survived eight gunshot wounds and mortar shrapnel. He later died of Amyotrophic Lateral Sclerosis in 2014.
 
