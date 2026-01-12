@@ -67,6 +67,39 @@ body {
 }
 
 /* =========================
+   SUBTLE SAUCER PASS
+   Separate layer so we do not touch the data URI
+   ========================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  /* Behind everything else */
+  z-index: 0;
+
+  background-image: url("/static/saucer.svg");
+  background-repeat: no-repeat;
+  background-size: 1400px 200px;
+
+  /* Put it down in the forest band */
+  background-position: center 72%;
+
+  /* Keep it subtle */
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    display: none !important;
+  }
+}
+
+/* =========================
    KEEP CONTENT ABOVE BACKGROUND
    ========================= */
 #quartz-body,
