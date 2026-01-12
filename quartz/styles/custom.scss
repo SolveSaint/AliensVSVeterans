@@ -1002,21 +1002,62 @@ footer a[href=""] {
 
 /* Frames */
 
-/* Gold ego frame backing */
-/* Image inside ego frame */
+/* =========================
+   EGOTISTICAL GOLD FRAME
+   SVG-backed, responsive
+   ========================= */
+
+.ego-frame {
+  position: relative;
+  display: inline-block;
+
+  /* Padding defines the frame thickness.
+     Adjust these to grow the frame OUTWARD */
+  padding:
+    28px   /* top */
+    32px   /* right */
+    96px   /* bottom */
+    32px;  /* left */
+
+  /* IMPORTANT: absolute path for Quartz */
+  background-image: url("/static/frames/frame-gold-ego.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+
+  /* Frame sits behind the image */
+  z-index: 0;
+
+  filter:
+    drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
+
+  margin: 2.5rem auto;
+
+  /* keep centered even inside markdown */
+  text-align: center;
+}
+
+/* =========================
+   IMAGE INSIDE FRAME
+   ========================= */
+
 .ego-frame img {
   display: block;
   position: relative;
 
-  width: 400px;        /* base size */
+  /* responsive by default */
   max-width: 100%;
   height: auto;
 
-  border-radius: 24px;
+  /* optional preferred size */
+  width: 400px;
 
-  /* OPTICAL APERTURE CORRECTION */
-  top: -16px;                 /* lift image upward */
-  transform: scaleX(1.03);    /* push image outward left/right */
+  /* rounding must match frame opening */
+  border-radius: 26px;
 
+  /* lift image ABOVE frame */
   z-index: 1;
+
+  /* optical centering */
+  transform: translateY(6px);
 }
