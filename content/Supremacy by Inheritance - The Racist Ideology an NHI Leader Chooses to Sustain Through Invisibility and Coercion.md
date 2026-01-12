@@ -11,12 +11,12 @@ tags:
   - AVSV
   - Quartz
 ---
-<p align="center">
-<img src="./images/Evil Alien leader on Throne 1.png"
-alt="Evil Alien Leader on Throne 1"
-style="width: 400px; height: auto; max-width: 100%;"
-/>
-</p>
+<div class="ego-frame">
+  <img
+    src="./images/Evil Alien leader on Throne 1.png"
+    alt="Evil Alien Leader on Throne 1"
+  />
+</div>
 
 ### The Fraud of Inherited Genius
 
