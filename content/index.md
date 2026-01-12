@@ -27,7 +27,7 @@ tags:
 ## About Me. Origin.
 <p align="center">
   <img
-    src="/aliensvsveterans/static/Father%20and%20Nurse.png"
+    src="/static/Father%20and%20Nurse.png"
     alt="Father and Nurse"
     style="width: 400px; height: auto; max-width: 100%;"
   />
