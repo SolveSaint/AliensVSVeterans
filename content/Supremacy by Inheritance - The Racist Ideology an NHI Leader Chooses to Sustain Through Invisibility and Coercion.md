@@ -1,6 +1,6 @@
 ---
 created: 01/11/2026 9:09 AM
-updated: 01/11/2026 6:56 PM
+updated: 01/11/2026 7:55 PM
 site:
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/69611ca4-a830-832f-b104-92d4a47b8c9d
 comments: true
@@ -18,7 +18,7 @@ tags:
   />
 </p>
 
-### The Fraud of Inherited Genius
+### <span style="color:#d6b85c;">The Fraud of Inherited Genius</span>
 
 We are facing a highly **racist** and **separatist** species that prides itself on its technological capabilities: **invisibility**, **speed**, **wide-scale imaging**, **remote interaction**, **remote biological control analogous to remote computer systems**, **precision pain and pleasure induction**, and **real-time** access to thought and memory.  
 

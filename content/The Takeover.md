@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 10:03 PM
-updated: 01/11/2026 7:29 PM
+updated: 01/11/2026 7:52 PM
 site: https://solvesaint.github.io/Biolectrics-Wiki/The-Takeover
 chatref:
 title: The Takeover
@@ -24,7 +24,7 @@ The NHI have developed deep control over my nervous system over the course of fi
 
 ## <span style="color:#d6b85c;">How It Began</span>
 <p align="center">
-  <img src="aliensvsveterans/quartz/static/Seated on Gym Floor.png" 
+  <img src="./images/Seated on Gym Floor.png" 
 	  alt="Seated on Gym Floor"
 	  style="width: 400px; height: auto; max-width: 100%;"
   />

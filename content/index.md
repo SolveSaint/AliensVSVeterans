@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/11/2026 7:40 PM
+updated: 01/11/2026 7:54 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -24,13 +24,14 @@ tags:
 
 ---
 
-## About Me. Origin.
+## <span style="color:#d6b85c;">About Me. Origin.
 <p align="center">
-
-![[static/Father and Nurse.png|400]]
-
+  <img
+    src="./images/Father and Nurse.png"
+    alt="Father and Nurse"
+    style="width: 400px; height: auto; max-width: 100%;"
+  />
 </p>
-
 
 My father was a combat-wounded Vietnam veteran who survived eight gunshot wounds and mortar shrapnel. He later died of Amyotrophic Lateral Sclerosis in 2014.
 
@@ -42,9 +43,9 @@ At the time, I did not have a biological framework to explain it, but I thought 
 
 ---
 
-## First Encounter. Age 19
+## <span style="color:#d6b85c;">First Encounter. Age 19</span>
 <p align="center">
-  <img src="aliensvsveterans/quartz/static/AVSV - Age 19 First Encounter.png" 
+  <img src="./images/AVSV - Age 19 First Encounter.png" 
 	  alt="Age 19 First Encounter"
 	  style="width: 400px; height: auto; max-width: 100%;"
   />
@@ -58,7 +59,7 @@ I told my father the next day. He reacted aggressively and told me to forget it.
 
 ---
 
-## Early Research and Homebound Period
+## <span style="color:#d6b85c;">Early Research and Homebound Period</span>
 
 After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been looking at sleep disorder where and dream enactment, as well as seeing different sleep specialists and getting a feel for the field. I began thinking seriously about the neurological mechanisms.
 
@@ -68,7 +69,7 @@ From this line of reasoning, I identified glutamate as the primary excitatory ne
 
 ---
 
-## Second Encounter and Physiological Assault. Age 45
+## <span style="color:#d6b85c;">Second Encounter and Physiological Assault. Age 45</span>
 
 In the period leading up to being controlled, a distinct sensory process began.
 
@@ -92,7 +93,7 @@ The pain didn't diminish. Feeling that pain all day long, day after day, month a
 
 ---
 
-## Forced Integration and Constant Connection
+## <span style="color:#d6b85c;">Forced Integration and Constant Connection</span>
 
 As the burning and muscle strikes faded, a non-human intelligence was now addressing me directly.
 
@@ -104,7 +105,7 @@ They could induce targeted pleasure or stress response in specific regions of my
 
 ---
 
-## Coerced Research Program
+## <span style="color:#d6b85c;">Coerced Research Program</span>
 
 After the second encounter began and while the physiological assault was ongoing, I continued researching. I was already underway long before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father was ultimately taken out by ALS.
 
@@ -118,7 +119,7 @@ If I stopped researching, they attacked internal weaknesses aggressively and wit
 
 ---
 
-## Directional Confirmation
+## <span style="color:#d6b85c;">Directional Confirmation</span>
 
 The glutamate pathway was correct. It led into stress physiology, cortisol, calcium flooding, mitochondrial dysfunction, and oxidative damage. I was driven through thousands of research papers, filtered to [this set](https://solvesaint.github.io/Biolectrics-Wiki/Research-Paper-Database), under constant pressure.
 
@@ -126,7 +127,7 @@ When I reached significant breakthroughs, I was allowed brief periods of rest. O
 
 ---
 
-## Resolution
+## <span style="color:#d6b85c;">Resolution</span>
 
 I completed the main portion of the research.
 
@@ -134,7 +135,7 @@ I now understand my father’s disease, Amyotrophic Lateral Sclerosis, which rem
 
 ---
 
-## Core Mechanism
+## <span style="color:#d6b85c;">Core Mechanism</span>
 
 Cells generate energy using mitochondria. When ATP is required, mitochondria naturally produce **reactive oxygen species (ROS)** as a byproduct. The primary ROS produced is **hydrogen peroxide**.
 
