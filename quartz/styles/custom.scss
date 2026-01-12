@@ -7,14 +7,14 @@
 #quartz-root,
 #quartz-body {
   position: relative;
-  z-index: 2;
+  z-index: 3; /* content layer */
 }
 
 /* =========================
    STRONG GLOBAL TEXTURED BACKGROUND
    Night forest green bias + tall pine silhouettes (SVG)
    Trees are FIXED to viewport so they are always visible
-   BACK TREES live here
+   This is the BACK tree layer
    ========================= */
 body {
   background-color: #0a120e;
@@ -68,29 +68,31 @@ body {
 }
 
 /* =========================
-   SAUCER LAYER
-   BACK TREES (body) -> SAUCER -> FRONT TREES (below)
+   SAUCER IN TREES
+   BACK TREES (body bg) -> SAUCER -> FRONT TREES MASK
+   Use body pseudo elements so they sit behind Quartz content
    ========================= */
 
-#quartz-root::before {
+/* SAUCER LAYER (middle) */
+body::before {
   content: "";
   position: fixed;
 
   left: 50%;
   top: 56%;
 
-  width: 1400px;
-  height: 240px;
+  width: 1600px;
+  height: 260px;
 
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 
   background-image: url("../static/saucer.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 
-  opacity: 0.18;
+  opacity: 0.16;
   mix-blend-mode: multiply;
   filter: blur(0.6px);
 
@@ -98,46 +100,60 @@ body {
   animation: saucerPatrol 320s ease-in-out infinite;
 }
 
+/* FRONT TREES MASK (top layer, but only in a band around the saucer) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 2;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.92)'%3E%3Cpath d='M0 700 L0 420 L40 350 L80 420 L120 300 L160 460 L200 280 L240 520 L300 300 L360 560 L420 320 L480 600 L540 340 L600 640 L660 360 L720 600 L780 340 L840 560 L900 320 L960 520 L1020 300 L1080 460 L1140 280 L1200 420 L1260 350 L1320 420 L1400 420 L1400 700 Z'/%3E%3Cpath d='M0 700 L0 460 L30 410 L60 460 L105 360 L140 488 L180 340 L220 520 L270 360 L330 560 L390 388 L450 600 L510 410 L570 640 L630 420 L690 600 L750 410 L810 560 L870 388 L930 520 L990 360 L1050 488 L1110 340 L1170 460 L1230 410 L1290 460 L1400 460 L1400 700 Z' opacity='0.75'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1800px 1100px;
+  background-position: center bottom;
+  background-attachment: fixed;
+
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  filter: blur(0.35px);
+
+  /* This is the key: only show the front trees around the saucer band */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 36%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 66%,
+    rgba(0, 0, 0, 0) 78%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 36%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 66%,
+    rgba(0, 0, 0, 0) 78%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Wide travel across the viewport, back and forth (no reset jump) */
 @keyframes saucerPatrol {
-  0%   { transform: translate(-50%, -50%) translateX(-42vw); }
-  50%  { transform: translate(-50%, -50%) translateX(42vw); }
-  100% { transform: translate(-50%, -50%) translateX(-42vw); }
+  0%   { transform: translate(-50%, -50%) translateX(-46vw); }
+  50%  { transform: translate(-50%, -50%) translateX(46vw); }
+  100% { transform: translate(-50%, -50%) translateX(-46vw); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #quartz-root::before {
+  body::before,
+  body::after {
     display: none !important;
     animation: none !important;
   }
-}
-
-/* =========================
-   FRONT TREES MASK
-   Sits in front of saucer to force depth
-   ========================= */
-
-#quartz-root::after {
-  content: "";
-  position: fixed;
-
-  left: 0;
-  right: 0;
-  bottom: -40px;
-
-  height: 320px;
-
-  pointer-events: none;
-
-  /* In front of saucer (0) and behind content (2) */
-  z-index: 1;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 700' preserveAspectRatio='none'%3E%3Cg fill='rgba(0,0,0,0.92)'%3E%3Cpath d='M0 700 L0 420 L40 350 L80 420 L120 300 L160 460 L200 280 L240 520 L300 300 L360 560 L420 320 L480 600 L540 340 L600 640 L660 360 L720 600 L780 340 L840 560 L900 320 L960 520 L1020 300 L1080 460 L1140 280 L1200 420 L1260 350 L1320 420 L1400 420 L1400 700 Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-size: 1800px 320px;
-  background-position: center bottom;
-
-  opacity: 0.88;
-  filter: blur(0.4px);
 }
 
 /* =========================
@@ -149,7 +165,7 @@ main,
 article,
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   min-width: 0;
 }
 
@@ -711,7 +727,7 @@ svg[data-icon*="book"],
   left: 14px;
 }
 
-/* ===== Chevron for explorer FILE items only (hover and active) ===== */
+/* Chevron for explorer FILE items only (hover and active) */
 .explorer-content .explorer-ul > li > a:not(.folder-title)::before,
 .explorer-content ul.content > li > a:not(.folder-title)::before {
   content: "›";
