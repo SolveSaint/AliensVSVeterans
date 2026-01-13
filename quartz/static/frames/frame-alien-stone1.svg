@@ -4,235 +4,119 @@
 
   <defs>
     <!-- Stone gradients -->
-    <linearGradient id="stoneBase" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%"   stop-color="#6c6f63"/>
-      <stop offset="22%"  stop-color="#3f433a"/>
-      <stop offset="48%"  stop-color="#2a2e28"/>
-      <stop offset="74%"  stop-color="#42493f"/>
-      <stop offset="100%" stop-color="#7a7f72"/>
+    <linearGradient id="stoneA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#2c2f33"/>
+      <stop offset="35%" stop-color="#3a3f46"/>
+      <stop offset="70%" stop-color="#1f2226"/>
+      <stop offset="100%" stop-color="#121416"/>
     </linearGradient>
 
-    <linearGradient id="stoneRim" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0%"   stop-color="#11150f"/>
-      <stop offset="18%"  stop-color="#4b5347"/>
-      <stop offset="42%"  stop-color="#9aa08d"/>
-      <stop offset="62%"  stop-color="#2b3129"/>
-      <stop offset="100%" stop-color="#0f140f"/>
+    <linearGradient id="stoneB" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#0e0f10"/>
+      <stop offset="40%" stop-color="#30343a"/>
+      <stop offset="100%" stop-color="#0b0c0d"/>
     </linearGradient>
 
-    <radialGradient id="bioSheen" cx="48%" cy="36%" r="72%">
-      <stop offset="0%"   stop-color="rgba(190,255,210,0.12)"/>
-      <stop offset="38%"  stop-color="rgba(140,220,185,0.06)"/>
-      <stop offset="70%"  stop-color="rgba(0,0,0,0.0)"/>
-      <stop offset="100%" stop-color="rgba(0,0,0,0.0)"/>
+    <linearGradient id="inlayLip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="rgba(255,255,255,0.10)"/>
+      <stop offset="55%" stop-color="rgba(255,255,255,0.02)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+    </linearGradient>
+
+    <!-- Stone texture -->
+    <filter id="stoneTex" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.35 0" result="grain"/>
+      <feComposite in="grain" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <!-- Soft inner shadow for the inlay window -->
+    <filter id="inlayShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feOffset dx="0" dy="2" result="off"/>
+      <feGaussianBlur in="off" stdDeviation="3" result="blur"/>
+      <feComposite in="blur" in2="SourceAlpha" operator="out" result="innerCut"/>
+      <feColorMatrix in="innerCut" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.55 0" result="shade"/>
+      <feComposite in="shade" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <!-- Edge chiseling -->
+    <filter id="edgeChisel" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="0.6" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 0.9 0" result="b2"/>
+      <feComposite in="b2" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <!-- Vignette -->
+    <radialGradient id="vign" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0)"/>
+      <stop offset="70%" stop-color="rgba(0,0,0,0.10)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
     </radialGradient>
-
-    <!-- Subtle porous texture -->
-    <filter id="stoneNoise" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
-      <feColorMatrix in="n" type="matrix"
-        values="0 0 0 0 0.10
-                0 0 0 0 0.12
-                0 0 0 0 0.10
-                0 0 0 0.18 0" result="t"/>
-      <feComposite in="t" in2="SourceGraphic" operator="multiply"/>
-    </filter>
-
-    <!-- Micro shadow for carved details -->
-    <filter id="carveShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.55)"/>
-    </filter>
-
-    <!-- Outer silhouette shadow (keep subtle) -->
-    <filter id="outerShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="rgba(0,0,0,0.55)"/>
-    </filter>
   </defs>
 
-  <!-- OUTER ORGANIC PLATE (same canvas size as gold frame) -->
-  <g filter="url(#outerShadow)">
-    <!-- Main plate -->
-    <path id="plate"
-      d="M110 86
-         C120 60 150 50 180 54
-         C215 20 285 18 320 50
-         C365 26 425 30 456 60
-         C500 24 580 22 620 58
-         C665 24 745 28 784 62
-         C825 32 900 36 940 70
-         C985 38 1045 44 1080 78
-         C1118 92 1140 120 1144 154
-         C1182 190 1180 250 1144 286
-         C1178 330 1174 394 1140 430
-         C1176 470 1174 540 1142 574
-         C1178 616 1170 690 1120 720
-         C1090 764 1020 770 980 742
-         C935 778 860 776 820 738
-         C770 774 690 772 650 736
-         C610 772 520 770 480 736
-         C440 770 360 772 318 736
-         C280 770 210 770 176 736
-         C120 722 90 672 102 616
-         C70 582 70 520 104 486
-         C70 450 70 386 106 350
-         C70 316 70 248 104 214
-         C78 178 84 122 110 86 Z"
-      fill="url(#stoneBase)"/>
+  <!-- OUTER STONE PLATE -->
+  <rect x="10" y="10" width="1180" height="780" rx="38"
+        fill="url(#stoneA)" filter="url(#stoneTex)"/>
 
-    <!-- Rim highlight and dark edge -->
-    <path
-      d="M125 110
-         C136 82 160 76 188 78
-         C224 52 282 52 310 80
-         C362 58 422 62 452 90
-         C500 58 572 58 612 90
-         C664 60 740 64 776 96
-         C826 72 892 74 930 104
-         C980 78 1040 86 1066 116
-         C1100 130 1118 154 1120 180
-         C1150 208 1148 250 1120 278
-         C1146 312 1142 380 1116 410
-         C1142 446 1142 520 1118 546
-         C1142 584 1132 650 1096 676
-         C1072 708 1016 712 984 692
-         C944 718 878 716 846 690
-         C808 716 734 712 700 686
-         C664 712 584 712 552 686
-         C516 712 438 714 404 690
-         C372 716 308 718 276 692
-         C236 712 176 706 152 676
-         C124 658 112 628 122 596
-         C94 566 94 526 124 496
-         C94 464 94 408 126 378
-         C96 346 96 292 126 262
-         C98 234 102 152 125 110 Z"
-      fill="none"
-      stroke="url(#stoneRim)"
-      stroke-width="18"
-      opacity="0.90"/>
+  <!-- Carved outer rim -->
+  <rect x="22" y="22" width="1156" height="756" rx="34"
+        fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
 
-    <!-- Bio sheen overlay -->
-    <path
-      d="M110 86
-         C120 60 150 50 180 54
-         C215 20 285 18 320 50
-         C365 26 425 30 456 60
-         C500 24 580 22 620 58
-         C665 24 745 28 784 62
-         C825 32 900 36 940 70
-         C985 38 1045 44 1080 78
-         C1118 92 1140 120 1144 154
-         C1182 190 1180 250 1144 286
-         C1178 330 1174 394 1140 430
-         C1176 470 1174 540 1142 574
-         C1178 616 1170 690 1120 720
-         C1090 764 1020 770 980 742
-         C935 778 860 776 820 738
-         C770 774 690 772 650 736
-         C610 772 520 770 480 736
-         C440 770 360 772 318 736
-         C280 770 210 770 176 736
-         C120 722 90 672 102 616
-         C70 582 70 520 104 486
-         C70 450 70 386 106 350
-         C70 316 70 248 104 214
-         C78 178 84 122 110 86 Z"
-      fill="url(#bioSheen)"
-      opacity="0.85"/>
+  <rect x="28" y="28" width="1144" height="744" rx="32"
+        fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="10" opacity="0.55"/>
+
+  <!-- Random cracks and chisel marks (subtle) -->
+  <g opacity="0.28" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#edgeChisel)">
+    <path d="M110 140 C170 120, 210 170, 260 150 C310 130, 360 150, 410 135"
+          stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+    <path d="M980 120 C930 150, 910 190, 860 205 C820 218, 790 250, 740 265"
+          stroke="rgba(0,0,0,0.35)" stroke-width="2.5"/>
+
+    <path d="M140 690 C210 650, 270 680, 330 650 C380 625, 430 635, 500 610"
+          stroke="rgba(0,0,0,0.30)" stroke-width="2.5"/>
+    <path d="M1030 700 C980 660, 920 690, 880 660 C850 640, 810 642, 760 615"
+          stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+
+    <path d="M70 420 C120 410, 150 435, 190 430 C230 425, 270 445, 320 440"
+          stroke="rgba(255,255,255,0.07)" stroke-width="1.6"/>
+    <path d="M860 430 C910 410, 960 445, 1010 425 C1050 410, 1090 420, 1130 405"
+          stroke="rgba(0,0,0,0.35)" stroke-width="2.2"/>
   </g>
 
-  <!-- INNER INLAY (no hole, just a recessed panel for the image to sit over) -->
-  <g filter="url(#carveShadow)">
-    <!-- Inlay panel -->
-    <rect x="210" y="150" width="780" height="500" rx="42"
-          fill="rgba(0,0,0,0.22)"/>
+  <!-- INNER INLAY WINDOW (ALIGNED TO YOUR GOLD PADDING)
+       Bounds match: left 30, top 46, right 30, bottom 52 -->
+  <!-- Inlay base recess -->
+  <rect x="30" y="46" width="1140" height="702" rx="26"
+        fill="url(#stoneB)" filter="url(#inlayShadow)"/>
 
-    <!-- Inlay bevel highlight -->
-    <rect x="210" y="150" width="780" height="500" rx="42"
-          fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="6"/>
+  <!-- Inlay lip (thin bevel) -->
+  <rect x="38" y="54" width="1124" height="686" rx="22"
+        fill="none" stroke="url(#inlayLip)" stroke-width="8" opacity="0.95"/>
 
-    <!-- Inlay bevel inner shadow -->
-    <rect x="226" y="166" width="748" height="468" rx="36"
-          fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="6"/>
+  <!-- Inner cut line to suggest a fitted slot -->
+  <rect x="48" y="64" width="1104" height="666" rx="18"
+        fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="6" opacity="0.75"/>
+
+  <!-- Corner glyphs (alien looking but still stone) -->
+  <g opacity="0.26" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M62 86 C90 78, 110 78, 138 86" stroke="rgba(255,255,255,0.10)" stroke-width="3"/>
+    <path d="M1062 86 C1090 78, 1110 78, 1138 86" stroke="rgba(255,255,255,0.10)" stroke-width="3"/>
+    <path d="M62 712 C90 720, 110 720, 138 712" stroke="rgba(0,0,0,0.35)" stroke-width="3"/>
+    <path d="M1062 712 C1090 720, 1110 720, 1138 712" stroke="rgba(0,0,0,0.35)" stroke-width="3"/>
   </g>
 
-  <!-- ORGANIC RIDGES AND CARVINGS -->
-  <g opacity="0.92" filter="url(#carveShadow)">
-    <!-- Top ridge -->
-    <path d="M210 150
-             C320 104 450 96 600 98
-             C750 100 880 114 990 150"
-          fill="none" stroke="rgba(190,255,210,0.12)" stroke-width="12" stroke-linecap="round"/>
-
-    <path d="M214 170
-             C330 130 460 124 600 126
-             C740 128 870 140 986 170"
-          fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="10" stroke-linecap="round"/>
-
-    <!-- Side tendril ribs -->
-    <path d="M180 210
-             C150 300 150 400 180 490
-             C200 560 220 610 242 650"
-          fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="10" stroke-linecap="round"/>
-
-    <path d="M1020 210
-             C1050 300 1050 400 1020 490
-             C1000 560 980 610 958 650"
-          fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="10" stroke-linecap="round"/>
-
-    <!-- Bottom crest -->
-    <path d="M260 650
-             C390 700 510 724 600 724
-             C690 724 810 700 940 650"
-          fill="none" stroke="rgba(190,255,210,0.10)" stroke-width="12" stroke-linecap="round"/>
-
-    <path d="M276 632
-             C400 674 518 694 600 694
-             C682 694 800 674 924 632"
-          fill="none" stroke="rgba(0,0,0,0.30)" stroke-width="10" stroke-linecap="round"/>
-
-    <!-- Crack lines -->
-    <path d="M290 122 C320 160 350 190 390 220 C430 250 448 282 460 322"
-          fill="none" stroke="rgba(0,0,0,0.33)" stroke-width="4" stroke-linecap="round" opacity="0.70"/>
-
-    <path d="M920 140 C890 176 860 206 820 236 C780 266 760 300 744 348"
-          fill="none" stroke="rgba(0,0,0,0.33)" stroke-width="4" stroke-linecap="round" opacity="0.70"/>
-
-    <path d="M360 720 C420 680 460 654 510 634 C560 614 590 584 610 540"
-          fill="none" stroke="rgba(0,0,0,0.30)" stroke-width="4" stroke-linecap="round" opacity="0.60"/>
-
-    <path d="M840 708 C780 668 740 642 690 622 C640 602 612 574 596 532"
-          fill="none" stroke="rgba(0,0,0,0.30)" stroke-width="4" stroke-linecap="round" opacity="0.60"/>
-  </g>
-
-  <!-- Apply subtle porous texture over everything -->
-  <g filter="url(#stoneNoise)" opacity="0.35">
-    <path
-      d="M110 86
-         C120 60 150 50 180 54
-         C215 20 285 18 320 50
-         C365 26 425 30 456 60
-         C500 24 580 22 620 58
-         C665 24 745 28 784 62
-         C825 32 900 36 940 70
-         C985 38 1045 44 1080 78
-         C1118 92 1140 120 1144 154
-         C1182 190 1180 250 1144 286
-         C1178 330 1174 394 1140 430
-         C1176 470 1174 540 1142 574
-         C1178 616 1170 690 1120 720
-         C1090 764 1020 770 980 742
-         C935 778 860 776 820 738
-         C770 774 690 772 650 736
-         C610 772 520 770 480 736
-         C440 770 360 772 318 736
-         C280 770 210 770 176 736
-         C120 722 90 672 102 616
-         C70 582 70 520 104 486
-         C70 450 70 386 106 350
-         C70 316 70 248 104 214
-         C78 178 84 122 110 86 Z"
-      fill="rgba(255,255,255,0.10)"/>
-  </g>
-
+  <!-- Vignette over the whole frame (very subtle) -->
+  <rect x="10" y="10" width="1180" height="780" rx="38" fill="url(#vign)" opacity="0.9"/>
 </svg>
