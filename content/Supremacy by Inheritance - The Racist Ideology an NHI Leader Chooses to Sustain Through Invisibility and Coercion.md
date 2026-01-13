@@ -1,6 +1,6 @@
 ---
 created: 01/11/2026 9:09 AM
-updated: 01/12/2026 7:09 PM
+updated: 01/12/2026 8:11 PM
 site:
 chatref: https://chatgpt.com/g/g-p-694b0f73cd648191a921894b2d09cfa8-nhi-channel/c/69611ca4-a830-832f-b104-92d4a47b8c9d
 comments: true
@@ -11,11 +11,11 @@ tags:
   - AVSV
   - Quartz
 ---
-<p align="center">
-<div class="img-frame frame-ego-gold1 is-centered">
-  <img src="/static/images/example.jpg" alt="">
+
+<div class="img-frame frame-alien-stone1 is-centered">
+  <img src="../images/Evil Alien leader on Throne 1.png" alt="Evil Alien leader on Throne">
 </div>
-</p>
+
 
 ### The Fraud of Inherited Genius
 
