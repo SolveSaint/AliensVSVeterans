@@ -1001,10 +1001,18 @@ footer a[href=""] {
 }
 
 /* =========================
-   IMAGE FRAMES (FINAL)
+   IMAGE FRAMES (PER-FRAME SETTINGS ONLY)
+   Use:
+     <div class="img-frame frame-ego-gold1 is-centered">
+       <img src="..." alt="">
+     </div>
+
+     <div class="img-frame frame-alien-stone1 is-centered">
+       <img src="..." alt="">
+     </div>
    ========================= */
 
-/* Frame wrapper */
+/* Common wrapper behavior */
 .img-frame {
   position: relative;
   display: inline-block;
@@ -1016,7 +1024,7 @@ footer a[href=""] {
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
 }
 
-/* Optional centering helper */
+/* Optional: center the framed block without <p align="center"> */
 .img-frame.is-centered {
   display: block;
   width: fit-content;
@@ -1024,40 +1032,61 @@ footer a[href=""] {
   margin-right: auto;
 }
 
-/* Image inside frame — HARD SIZE */
+/* Image inside a frame */
 .img-frame img {
   display: block;
 
-  width: 400px;        /* FIXED target size */
-  max-width: 100%;    /* responsive safety */
+  width: 400px;     /* image target size */
+  max-width: 100%;  /* responsive safety */
   height: auto;
 
-  border-radius: 6%;  /* scales with image size */
+  /* MUST match the SVG inlay radius proportionally.
+     Default: match gold inlay rx=20 on width=860 => 20/860 ~= 2.33% */
+  border-radius: 2.33%;
 }
 
 /* =========================
-   GOLD EGO FRAME (PERCENT-BASED)
+   GOLD EGO FRAME
+   viewBox: 1200 x 800
+   inlay window: x=170, y=170, w=860, h=460
+   padding percents:
+     left/right = 170/1200 = 14.17%
+     top/bottom = 170/800  = 21.25%
    ========================= */
 .img-frame.frame-ego-gold1 {
   background-image: url("/static/frames/frame-gold-ego.svg");
 
-  padding-top:    5.75%;  /* top    = 46 / 800 */
-  padding-right:  2.5%;   /* right  = 30 / 1200 */
-  padding-bottom: 6.5%;   /* bottom = 52 / 800 */
-  padding-left:   2.5%;   /* left   = 30 / 1200 */
+  padding-top:    21.25%; /* top */
+  padding-right:  14.17%; /* right */
+  padding-bottom: 21.25%; /* bottom */
+  padding-left:   14.17%; /* left */
 }
 
 /* =========================
-   ALIEN STONE FRAME (PERCENT-BASED)
+   ALIEN STONE FRAME
+   Set these to match THAT SVG’s inlay window.
+   If your stone SVG uses the same inlay as gold (x=170,y=170,w=860,h=460),
+   then these values are correct as-is.
+   If not, change them per the formula:
+     padding-left  = (leftInset / viewBoxWidth)  * 100%
+     padding-right = (rightInset / viewBoxWidth) * 100%
+     padding-top   = (topInset / viewBoxHeight)  * 100%
+     padding-bottom= (bottomInset / viewBoxHeight)* 100%
    ========================= */
 .img-frame.frame-alien-stone1 {
   background-image: url("/static/frames/frame-alien-stone1.svg");
 
-  padding-top:    5.75%;  /* adjust per SVG */
-  padding-right:  2.5%;
-  padding-bottom: 6.5%;
-  padding-left:   2.5%;
+  padding-top:    21.25%; /* top */
+  padding-right:  14.17%; /* right */
+  padding-bottom: 21.25%; /* bottom */
+  padding-left:   14.17%; /* left */
 }
+
+/* Optional per-frame radius overrides if a frame uses a different inlay rx.
+   Example: if a frame’s inlay rx is 26 on inlay width 1140 => 26/1140=2.28%
+   .img-frame.frame-alien-stone1 img { border-radius: 2.28%; }
+*/
+
 
 
 
