@@ -1002,11 +1002,10 @@ footer a[href=""] {
 
 /* =========================
    IMAGE FRAMES (PER-FRAME SETTINGS ONLY)
-   Use: <div class="img-frame frame-ego-gold1"> ... </div>
-        <div class="img-frame frame-alien-stone1"> ... </div>
+   Use: <div class="img-frame frame-ego-gold1 is-centered"><img ...></div>
+        <div class="img-frame frame-alien-stone1 is-centered"><img ...></div>
    ========================= */
 
-/* Common wrapper behavior (NOT default sizing or padding) */
 .img-frame {
   position: relative;
   display: inline-block;
@@ -1018,7 +1017,6 @@ footer a[href=""] {
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
 }
 
-/* Optional: center the framed block without <p align="center"> */
 .img-frame.is-centered {
   display: block;
   width: fit-content;
@@ -1026,39 +1024,39 @@ footer a[href=""] {
   margin-right: auto;
 }
 
-/* Image inside a frame */
+/* Let images scale naturally, frame follows padding */
 .img-frame img {
   display: block;
-
-  width: 400px;     /* image target size */
-  max-width: 100%;  /* responsive safety */
+  max-width: 100%;
   height: auto;
 
-  border-radius: 24px;
+  border-radius: 6%; /* scalable corner match */
 }
 
 /* =========================
-   GOLD EGO FRAME (KEEP THESE VALUES)
+   GOLD FRAME (matches x=170 y=170 w=860 h=460)
    ========================= */
 .img-frame.frame-ego-gold1 {
   background-image: url("/static/frames/frame-gold-ego.svg");
 
-  padding-top:    46px;  /* top */
-  padding-right:  30px;  /* right */
-  padding-bottom: 52px;  /* bottom */
-  padding-left:   30px;  /* left */
+  padding-top:    21.25%;    /* top */
+  padding-right:  14.1667%;  /* right */
+  padding-bottom: 21.25%;    /* bottom */
+  padding-left:   14.1667%;  /* left */
 }
 
 /* =========================
-   ALIEN STONE FRAME (OWN VALUES)
-   Adjust these until the inlay matches perfectly.
+   ALIEN STONE FRAME
+   Keep as its own tuned percent values once you set its inlay geometry
    ========================= */
 .img-frame.frame-alien-stone1 {
   background-image: url("/static/frames/frame-alien-stone1.svg");
 
-  padding-top:    44px;  /* top */
-  padding-right:  20px;  /* right */
-  padding-bottom: 48px;  /* bottom */
-  padding-left:   18px;  /* left */
+  padding-top:    5.75%;     /* top */
+  padding-right:  2.5%;      /* right */
+  padding-bottom: 6.5%;      /* bottom */
+  padding-left:   2.5%;      /* left */
 }
+
+
 
