@@ -12,7 +12,7 @@ tags:
   - Quartz
 ---
 <p align="center">
-  <span class="img-frame frame-alien-stone1">
+  <span class="img-frame frame-ego-gold1">
     <img src="./images/Evil Alien leader on Throne 1.png" />
   </span>
 </p>
