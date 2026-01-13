@@ -12,9 +12,9 @@ tags:
   - Quartz
 ---
 <p align="center">
-  <span class="img-frame frame-alien-stone1">
-    <img src="./images/Evil Alien leader on Throne 1.png" alt="Evil Alien Leader on Throne" />
-  </span>
+<div class="img-frame frame-ego-gold1 is-centered">
+  <img src="/static/images/example.jpg" alt="">
+</div>
 </p>
 
 ### The Fraud of Inherited Genius
