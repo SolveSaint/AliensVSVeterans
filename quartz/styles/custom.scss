@@ -1007,16 +1007,16 @@ footer a[href=""] {
 #quartz-root h2,
 #quartz-root h3,
 #quartz-root h4 {
-  color: #e6cf7a !important; /* fallback */
+  color: #f0dc8a !important; /* fallback */
 
   background-image: linear-gradient(
     180deg,
-    #fff6cf 0%,
-    #f7e29a 20%,
-    #e6c86a 42%,
-    #fff1b5 55%,
-    #d4b257 72%,
-    #9e7b2a 100%
+    #fff9dd 0%,
+    #ffefb8 18%,
+    #f0d37a 40%,
+    #fff3c8 52%,
+    #e2c36a 70%,
+    #b8953a 100%
   );
 
   -webkit-background-clip: text;
@@ -1024,11 +1024,11 @@ footer a[href=""] {
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
 
-  /* less crushing shadow, more lift */
+  /* shadow now purely for separation, not darkness */
   text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.55),
-    0 4px 10px rgba(0, 0, 0, 0.35),
-    0 0 10px rgba(255, 230, 150, 0.12);
+    0 1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 8px rgba(0, 0, 0, 0.30),
+    0 0 14px rgba(255, 235, 170, 0.22);
 }
 
 /* If the index titles are links, force link to inherit gradient */
