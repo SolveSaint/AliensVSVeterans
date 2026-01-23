@@ -354,6 +354,34 @@ code {
 }
 
 /* =========================
+   HEADER BANNER. CENTER AND FILL AVAILABLE COLUMN WIDTH
+   ========================= */
+.center .page-header figure,
+.center .page-header picture,
+.center .page-header a {
+  width: 100%;
+  max-width: none;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.center .page-header figure,
+.center .page-header picture {
+  display: flex;
+  justify-content: center;
+}
+
+.center .page-header img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+
+  /* Optional. Use cover if you want it to feel more full width with a fixed height. */
+  object-fit: contain;
+}
+
+/* =========================
    SIDEBARS
    ========================= */
 .left.sidebar,
