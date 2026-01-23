@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/12/2026 9:21 AM
+updated: 01/23/2026 12:46 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -135,7 +135,7 @@ When I reached significant breakthroughs, I was allowed brief periods of rest. O
 ## Resolution
 I completed the main portion of the research.
 
-I now understand my father’s disease, Amyotrophic Lateral Sclerosis, which remains unresolved in current medicine. I also understand that the same underlying mechanism drives the majority of chronic disease, including Alzheimer's, Parkinson's, Cardiovascular disease, and cancer, which my mother died from.
+I now understand my father’s disease, Amyotrophic Lateral Sclerosis (ALS), which remains unresolved in current medicine. I also understand that the same underlying mechanism drives the majority of chronic disease, including Alzheimer's, Parkinson's, Cardiovascular disease, and cancer, which my mother died from.
 
 ---
 
