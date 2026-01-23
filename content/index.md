@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/23/2026 12:46 PM
+updated: 01/23/2026 6:26 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -143,9 +143,9 @@ I now understand my father’s disease, Amyotrophic Lateral Sclerosis (ALS), whi
 
 Cells generate energy using mitochondria. When ATP is required, mitochondria naturally produce **reactive oxygen species (ROS)** as a byproduct. The primary ROS produced is **hydrogen peroxide**.
 
-Hydrogen peroxide is not an abstract concept. It is a type of reactive oxygen species and is the same chemical people use to clean wounds or ears. When it contacts tissue, it visibly reacts and crackles as it breaks down organic material.
+Hydrogen peroxide is what people commonly clean wounds or ears with to break down wax. This makes the job much easier, however, this same chemical breaks down  interior cell walls.
 
-That same chemical reaction occurs inside living cells. The difference is scale, not chemistry. As stress increases, energy demand rises, mitochondria work harder, and hydrogen peroxide ROS production increases accordingly. When cells are kept in an activated state for prolonged periods, this ROS accumulates.
+The difference is scale, not chemistry. As stress increases, energy demand rises, mitochondria work harder, and hydrogen peroxide ROS production increases accordingly. When cells are kept in an activated state for prolonged periods, this ROS accumulates.
 
 Under normal conditions, cells tightly regulate hydrogen peroxide and neutralize it safely through antioxidant and repair systems.
 
