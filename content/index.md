@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/23/2026 6:26 PM
+updated: 01/23/2026 6:31 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -147,18 +147,14 @@ Hydrogen peroxide is what people commonly clean wounds or ears with to break dow
 
 The difference is scale, not chemistry. As stress increases, energy demand rises, mitochondria work harder, and hydrogen peroxide ROS production increases accordingly. When cells are kept in an activated state for prolonged periods, this ROS accumulates.
 
-Under normal conditions, cells tightly regulate hydrogen peroxide and neutralize it safely through antioxidant and repair systems.
-
-Stress overdrives this balance. ATP demand increases, mitochondrial throughput rises, and hydrogen peroxide production outpaces the cell’s ability to clear it. A tipping point is eventually reached where cleanup and repair systems can no longer keep up.
+Under normal conditions, cells tightly regulate hydrogen peroxide and neutralize it safely through antioxidant and repair systems. Stress overdrives this balance. ATP demand increases, mitochondrial throughput rises, and hydrogen peroxide production outpaces the cell’s ability to clear it. A tipping point is eventually reached where cleanup and repair systems can no longer keep up.
 
 At that point, hydrogen peroxide ROS begins damaging membranes, proteins, and DNA rather than being safely removed.
 
-Damage accelerates dramatically when free iron is present. Iron reacts with hydrogen peroxide to generate far more destructive iron-driven ROS species. These reactions rapidly tear apart cellular structures. High-energy tissues are affected first. Neurons, heart muscle cells, and other constantly active cells fail through the same pathway.
+Damage accelerates dramatically when **free iron** is present. Iron reacts with hydrogen peroxide to generate far more destructive **iron-driven ROS** species. These reactions rapidly tear apart cellular structures. High-energy tissues are affected first. Neurons, heart muscle cells, and other constantly active cells fail through the same pathway.
 
 Chronic stress worsens this process by increasing glutamate signaling. Glutamate keeps cells active when they should be resting. This forces continuous mitochondrial overdrive, sustained hydrogen peroxide ROS production, and cumulative cellular injury.
 
-Most chronic disease emerges from this pattern. Excessive cellular activation combined with stress-driven overuse leads to oxidative damage, structural failure, and eventual tissue breakdown.
+**Most chronic disease emerges from this pattern.** Excessive cellular activation combined with stress-driven overuse leads to oxidative damage, structural failure, and eventual tissue breakdown.
 
 This unified mechanism is explored in more depth at the [Biolectrics-Wiki](https://solvesaint.github.io/Biolectrics-Wiki/)
-
-> **This mechanism is the cause of most disease.**
