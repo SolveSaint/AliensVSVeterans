@@ -1001,31 +1001,45 @@ footer a[href=""] {
 
 /* =========================
    HEADINGS EVERYWHERE, INCLUDING INDEX CARDS
-   Keep gold, but do NOT affect the top left logo
+   Gold metal gradient text
    ========================= */
 #quartz-root h1,
 #quartz-root h2,
 #quartz-root h3,
 #quartz-root h4 {
+  /* fallback if background-clip is not supported */
   color: #d6b85c !important;
+
+  /* metallic gold */
+  background-image: linear-gradient(
+    180deg,
+    #fff2bf 0%,
+    #f4d87a 18%,
+    #d6b85c 42%,
+    #f8e39a 54%,
+    #c7a547 72%,
+    #8a6b1f 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+
+  /* keeps readability on the noisy background */
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.70),
+    0 6px 16px rgba(0, 0, 0, 0.40);
 }
 
-/* If the index titles are links, force link color to inherit */
+/* If the index titles are links, force link to inherit gradient */
 #quartz-root h1 a,
 #quartz-root h2 a,
 #quartz-root h3 a,
 #quartz-root h4 a {
   color: inherit !important;
-}
-
-/* HARD EXCLUSION: keep top-left site title as gradient, not gold */
-.left.sidebar .page-title {
-  color: inherit !important;
-}
-
-.left.sidebar .page-title a {
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
+  -webkit-text-fill-color: inherit !important;
 }
 
 /* =========================
