@@ -1393,3 +1393,20 @@ footer a[href=""] {
   align-items: center;
   gap: 0.25rem;
 }
+
+/* =========================
+   BREADCRUMB LINE ISOLATION
+   Prevent title from sharing breadcrumb row
+   ========================= */
+
+/* Breadcrumbs must always occupy their own line */
+.breadcrumb-container {
+  display: block;        /* NOT inline-flex */
+  width: 100%;
+}
+
+/* Ensure title always breaks to a new line */
+.article-title {
+  display: block;
+  margin-top: 0.75rem;   /* spacing below breadcrumbs */
+}
