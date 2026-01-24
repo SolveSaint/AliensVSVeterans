@@ -16,14 +16,17 @@
    Trees are fixed to viewport so they are always visible
    This is the BACK tree layer
    ========================= */
+   
 body {
   background-color: #0a120e;
 
-  /* Needed so pseudo layers do not create stacking surprises */
   position: relative;
 
+  /* Order matters. First item is topmost.
+     We want: rear trees on top, stars behind trees, then gradients behind everything. */
   background-image:
     url("../static/trees-back.svg"),
+    url("../static/stars-twinkle.svg"),
     linear-gradient(
       to top,
       rgba(0, 0, 0, 0.70) 0%,
@@ -41,23 +44,65 @@ body {
 
   background-size:
     1800px 1100px,
+    1400px 900px,
     100% 1100px,
     100% 100%;
 
   background-position:
     center bottom,
+    center top,
     center bottom,
     center;
 
   background-repeat:
     repeat-x,
+    repeat,
     no-repeat,
     no-repeat;
 
   background-attachment:
     fixed,
     fixed,
+    fixed,
     fixed;
+
+  /* Only the stars move. Other layers keep the same positions. */
+  will-change: background-position;
+  animation: starTwinkle 6.8s ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0% {
+    background-position:
+      center bottom,
+      center top,
+      center bottom,
+      center;
+  }
+
+  40% {
+    background-position:
+      center bottom,
+      6px -4px,
+      center bottom,
+      center;
+  }
+
+  70% {
+    background-position:
+      center bottom,
+      2px -8px,
+      center bottom,
+      center;
+  }
+
+  100% {
+    background-position:
+      center bottom,
+      center top,
+      center bottom,
+      center;
+  }
 }
 
 /* =========================
@@ -65,37 +110,6 @@ body {
    Place stars behind everything and animate gently
    File lives in /static. Use the same relative path style as your other SVGs.
    ========================= */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  pointer-events: none;
-  z-index: 0;
-
-  background-image: url("../static/stars-twinkle.svg");
-  background-repeat: repeat;
-  background-size: 1400px 900px;
-  background-position: center top;
-
-  opacity: 0.78;
-  mix-blend-mode: screen;
-
-  will-change: opacity, transform, background-position;
-  animation: starTwinkleSvg 6.8s ease-in-out infinite, starDriftSvg 46s linear infinite;
-}
-
-@keyframes starTwinkleSvg {
-  0%   { opacity: 0.64; }
-  45%  { opacity: 0.88; }
-  100% { opacity: 0.64; }
-}
-
-@keyframes starDriftSvg {
-  0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(6px, -4px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
 
 /* =========================
    SAUCER IN TREES
