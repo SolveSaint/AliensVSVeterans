@@ -68,6 +68,130 @@ body {
 }
 
 /* =========================
+   STARFIELD. TWINKLE. SKY BAND ONLY
+   Sits above body background, but masked so it only appears in the open sky.
+   ========================= */
+body {
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  /* Slightly aggressive cold blue white, tuned to your UI blues */
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(190, 210, 255, 0.28) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 22%, rgba(190, 210, 255, 0.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 36% 10%, rgba(220, 235, 255, 0.22) 0 1px, transparent 2px),
+    radial-gradient(circle at 62% 14%, rgba(190, 210, 255, 0.14) 0 1px, transparent 2px),
+    radial-gradient(circle at 18% 28%, rgba(220, 235, 255, 0.16) 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 30%, rgba(190, 210, 255, 0.12) 0 1px, transparent 2px),
+
+    /* dense micro field */
+    radial-gradient(rgba(190, 210, 255, 0.09) 1px, transparent 1px),
+    radial-gradient(rgba(220, 235, 255, 0.06) 1px, transparent 1px);
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    6px 6px,
+    3px 3px;
+
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    1px 1px;
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    repeat,
+    repeat;
+
+  opacity: 0.70;
+  mix-blend-mode: screen;
+
+  /* only show stars in the upper sky region */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 26%,
+    rgba(0, 0, 0, 0.55) 38%,
+    rgba(0, 0, 0, 0.10) 48%,
+    rgba(0, 0, 0, 0) 56%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 26%,
+    rgba(0, 0, 0, 0.55) 38%,
+    rgba(0, 0, 0, 0.10) 48%,
+    rgba(0, 0, 0, 0) 56%
+  );
+
+  animation: starsTwinkle 6.2s ease-in-out infinite, starsDrift 34s linear infinite;
+  will-change: opacity, background-position;
+}
+
+@keyframes starsTwinkle {
+  0%   { opacity: 0.62; filter: brightness(0.95); }
+  22%  { opacity: 0.74; filter: brightness(1.10); }
+  50%  { opacity: 0.60; filter: brightness(0.92); }
+  78%  { opacity: 0.76; filter: brightness(1.14); }
+  100% { opacity: 0.62; filter: brightness(0.95); }
+}
+
+@keyframes starsDrift {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      1px 1px;
+  }
+  100% {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      42px -18px,
+      -28px 12px;
+  }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none !important;
+  }
+}
+
+/* =========================
    SAUCER IN TREES
    Back trees are the body background image.
    This adds the saucer layer and a front tree occluder band.
