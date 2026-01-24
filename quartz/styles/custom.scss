@@ -1144,6 +1144,87 @@ footer a[href=""] {
 }
 
 /* =========================
+   HEADING CHEVRONS (ALL H1–H6)
+   Excludes site title + hero title
+   ========================= */
+
+/* Base positioning */
+#quartz-root h1:not(.avv-title),
+#quartz-root h2:not(.avv-title),
+#quartz-root h3:not(.avv-title),
+#quartz-root h4:not(.avv-title),
+#quartz-root h5:not(.avv-title),
+#quartz-root h6:not(.avv-title) {
+  position: relative;
+  padding-left: 1.75rem; /* space for chevron */
+}
+
+/* HARD EXCLUSION: top-left site title */
+.left.sidebar .page-title h1,
+.left.sidebar .page-title h2,
+.left.sidebar .page-title h3,
+.left.sidebar .page-title h4,
+.left.sidebar .page-title h5,
+.left.sidebar .page-title h6 {
+  padding-left: 0 !important;
+}
+
+/* Chevron */
+#quartz-root h1:not(.avv-title)::before,
+#quartz-root h2:not(.avv-title)::before,
+#quartz-root h3:not(.avv-title)::before,
+#quartz-root h4:not(.avv-title)::before,
+#quartz-root h5:not(.avv-title)::before,
+#quartz-root h6:not(.avv-title)::before {
+  content: "›";
+  position: absolute;
+  left: 0.45rem;
+  top: 0.32em; /* aligns to first line */
+
+  font-size: 1.25em;
+  line-height: 1;
+
+  color: rgba(214, 184, 92, 0.9); /* gold */
+
+  opacity: 0;
+  transform: translateX(-6px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    text-shadow 220ms ease;
+}
+
+/* Hover reveal */
+#quartz-root h1:not(.avv-title):hover::before,
+#quartz-root h2:not(.avv-title):hover::before,
+#quartz-root h3:not(.avv-title):hover::before,
+#quartz-root h4:not(.avv-title):hover::before,
+#quartz-root h5:not(.avv-title):hover::before,
+#quartz-root h6:not(.avv-title):hover::before {
+  opacity: 1;
+  transform: translateX(0);
+
+  text-shadow:
+    0 0 10px rgba(214, 184, 92, 0.55),
+    0 0 18px rgba(214, 184, 92, 0.35);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #quartz-root h1::before,
+  #quartz-root h2::before,
+  #quartz-root h3::before,
+  #quartz-root h4::before,
+  #quartz-root h5::before,
+  #quartz-root h6::before {
+    transition: none !important;
+  }
+}
+
+/* =========================
    IMAGE FRAMES (PER-FRAME SETTINGS ONLY)
    Use:
      <div class="img-frame frame-ego-gold1 is-centered">
