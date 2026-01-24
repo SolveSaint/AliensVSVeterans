@@ -39,25 +39,27 @@ body {
       rgba(0, 0, 0, 0.64) 100%
     ),
 
-    /* BACKMOST STARFIELD LAYERS
-       These stay behind trees-back.svg because they are last in the stack.
-       We animate their positions to create a subtle twinkle shimmer. */
-    radial-gradient(rgba(214, 236, 255, 0.075) 1px, transparent 1px),
-    radial-gradient(rgba(214, 236, 255, 0.038) 1px, transparent 1px);
+/* BACKMOST STARFIELD LAYERS
+   Bigger dots, higher alpha, and multi layer drift so it is visible. */
+radial-gradient(rgba(235, 245, 255, 0.14) 1.2px, transparent 1.2px),
+radial-gradient(rgba(235, 245, 255, 0.08) 1px, transparent 1px),
+radial-gradient(rgba(235, 245, 255, 0.05) 0.8px, transparent 0.8px);
 
-  background-size:
-    1800px 1100px,
-    100% 1100px,
-    100% 100%,
-    5px 5px,
-    2px 2px;
+background-size:
+  1800px 1100px,
+  100% 1100px,
+  100% 100%,
+  7px 7px,
+  4px 4px,
+  11px 11px;
 
-  background-position:
-    center bottom,
-    center bottom,
-    center,
-    0 0,
-    1px 1px;
+background-position:
+  center bottom,
+  center bottom,
+  center,
+  0 0,
+  2px 2px,
+  5px 1px;
 
   background-repeat:
     repeat-x,
@@ -88,25 +90,52 @@ body {
       center bottom,
       center,
       0 0,
-      1px 1px;
+      2px 2px,
+      5px 1px;
+
+    background-size:
+      1800px 1100px,
+      100% 1100px,
+      100% 100%,
+      7px 7px,
+      4px 4px,
+      11px 11px;
   }
 
-  35% {
+  40% {
     background-position:
       center bottom,
       center bottom,
       center,
-      0.6px 0.3px,
-      1.4px 1.2px;
+      3px 2px,
+      7px 6px,
+      1px 4px;
+
+    background-size:
+      1800px 1100px,
+      100% 1100px,
+      100% 100%,
+      7px 7px,
+      5px 5px,
+      10px 10px;
   }
 
-  60% {
+  70% {
     background-position:
       center bottom,
       center bottom,
       center,
-      0.2px 0.8px,
-      1.1px 1.6px;
+      1px 4px,
+      4px 9px,
+      7px 2px;
+
+    background-size:
+      1800px 1100px,
+      100% 1100px,
+      100% 100%,
+      8px 8px,
+      4px 4px,
+      12px 12px;
   }
 
   100% {
@@ -115,7 +144,16 @@ body {
       center bottom,
       center,
       0 0,
-      1px 1px;
+      2px 2px,
+      5px 1px;
+
+    background-size:
+      1800px 1100px,
+      100% 1100px,
+      100% 100%,
+      7px 7px,
+      4px 4px,
+      11px 11px;
   }
 }
 
