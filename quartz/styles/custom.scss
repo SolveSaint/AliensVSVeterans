@@ -1000,6 +1000,75 @@ footer a[href=""] {
 }
 
 /* =========================
+   HEADING BACKPLATE
+   Subtle translucent band behind h1–h4 to increase contrast
+   ========================= */
+#quartz-root h1,
+#quartz-root h2,
+#quartz-root h3,
+#quartz-root h4 {
+  position: relative;
+  display: inline-block; /* keep plate sized to text */
+  padding: 0.18em 0.42em;
+  border-radius: 10px;
+  line-height: 1.15;
+}
+
+/* the plate */
+#quartz-root h1::before,
+#quartz-root h2::before,
+#quartz-root h3::before,
+#quartz-root h4::before {
+  content: "";
+  position: absolute;
+  inset: -0.12em -0.45em; /* extend past text */
+  border-radius: 12px;
+  z-index: -1;
+
+  /* mostly transparent, but flattens background detail */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.44) 0%,
+      rgba(0, 0, 0, 0.26) 55%,
+      rgba(0, 0, 0, 0.42) 100%
+    );
+
+  /* subtle edge so it reads intentional */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* soft lift */
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* optional: slight blur to “de-noise” trees behind */
+  backdrop-filter: blur(2.2px);
+  -webkit-backdrop-filter: blur(2.2px);
+}
+
+/* Make h1 plate a bit stronger, since it sits on busy areas often */
+#quartz-root h1::before {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.50) 0%,
+      rgba(0, 0, 0, 0.30) 55%,
+      rgba(0, 0, 0, 0.48) 100%
+    );
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* If headings are links, keep the same plate behavior */
+#quartz-root h1 a,
+#quartz-root h2 a,
+#quartz-root h3 a,
+#quartz-root h4 a {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
    HEADINGS EVERYWHERE, INCLUDING INDEX CARDS
    Gold metal gradient text
    ========================= */
