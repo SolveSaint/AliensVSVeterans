@@ -66,7 +66,6 @@ body {
     fixed,
     fixed;
 
-  /* Only the stars move. Other layers keep the same positions. */
   will-change: background-position;
   animation: starTwinkle 6.8s ease-in-out infinite;
 }
@@ -105,11 +104,16 @@ body {
   }
 }
 
-/* =========================
-   BACKMOST STARFIELD (SVG)
-   Place stars behind everything and animate gently
-   File lives in /static. Use the same relative path style as your other SVGs.
-   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none !important;
+  }
+
+  html::before,
+  html::after {
+    animation: none !important;
+  }
+}
 
 /* =========================
    SAUCER IN TREES
