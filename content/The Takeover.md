@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 10:03 PM
-updated: 01/12/2026 9:25 AM
+updated: 01/24/2026 3:29 PM
 site: https://solvesaint.github.io/Biolectrics-Wiki/The-Takeover
 chatref:
 title: The Takeover
@@ -10,7 +10,7 @@ tags:
   - Quartz
 ---
 
-# NHI Mind Slave
+## NHI Mind Slave
 The NHI have developed deep control over my nervous system over the course of five active years. Their current abilities are as follows:
  
  - Generation of very large static strikes to the top of my head with impact. 
@@ -54,6 +54,7 @@ This went on for a while where I basically ignored it I believe.  The pain faded
 I went over to my computer and sat down. About ten seconds later I was struck directly on top of the head with two large static strikes that had impact, one after the other.  **KNOCK KNOCK**
 
 I was taken aback at first, and it hurt a decent amount. Not too bad. And then I started to find it funny. Some invisible force hitting me on the head as a knock knock joke. Or that was my interpretation. So I laughed and started conversing with it out loud while it responded using my internal voice.
+
 ## Psychological Attacks
 The relationship was imposed quickly. It came in with multiple psychological attack styles with ethics out of the question. I believe this was to break my will so I would become less resistant. 
 
