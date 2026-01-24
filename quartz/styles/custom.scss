@@ -433,7 +433,6 @@ code {
   opacity: 0.85;
 }
 
-/* Color tokens */
 .avv-welcome {
   color: #f2c94c;
   font-weight: 500;
@@ -591,21 +590,10 @@ code {
     line-height: 1.65;
   }
 
-  h1 {
-    font-size: 1.6rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1.15rem;
-  }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.15rem; }
 
   .left.sidebar,
   .right.sidebar {
@@ -780,7 +768,6 @@ svg[data-icon*="book"],
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* Soften end gradient so stripes show through */
 .explorer-ul.gradient-active::after { opacity: 0.15; }
 
 /* Remove left rail on folders to stop the curved bracket artifact */
@@ -1000,22 +987,26 @@ footer a[href=""] {
 }
 
 /* =========================
-   HEADINGS: GOLD GRADIENT + BACKPLATE + POSITION
-   Applies to h1–h4 everywhere, including index cards
-   Does not affect the top-left site title (not an h1–h4)
+   HEADINGS: GOLD GRADIENT + BACKPLATE + POSITION + HOVER CHEVRON
+   Applies to h1–h6 everywhere, including index cards
+   Excludes:
+     - .avv-title (Welcome hero)
+     - top-left site title area
    ========================= */
-#quartz-root h1,
-#quartz-root h2,
-#quartz-root h3,
-#quartz-root h4 {
+#quartz-root h1:not(.avv-title),
+#quartz-root h2:not(.avv-title),
+#quartz-root h3:not(.avv-title),
+#quartz-root h4:not(.avv-title),
+#quartz-root h5:not(.avv-title),
+#quartz-root h6:not(.avv-title) {
   position: relative;
-  display: inline-block; /* plate hugs text */
+  display: inline-block;        /* plate hugs text */
   padding: 0.18em 0.42em;
   border-radius: 10px;
   line-height: 1.15;
 
-  /* helps prevent plate clipping in some overflow contexts */
-  isolation: isolate;
+  /* room for hover chevron */
+  padding-left: 1.35rem;
 
   /* pull up toward separators */
   margin-top: -0.35em !important;
@@ -1039,6 +1030,7 @@ footer a[href=""] {
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
 
+  /* separation only (NO glow-on-hover) */
   text-shadow:
     0 1px 0 rgba(0, 0, 0, 0.45),
     0 3px 8px rgba(0, 0, 0, 0.30),
@@ -1046,16 +1038,18 @@ footer a[href=""] {
 }
 
 /* Fine tune per level */
-#quartz-root h1 { margin-top: -0.45em !important; }
-#quartz-root h2 { margin-top: -0.38em !important; }
-#quartz-root h3 { margin-top: -0.30em !important; }
-#quartz-root h4 { margin-top: -0.22em !important; }
+#quartz-root h1:not(.avv-title) { margin-top: -0.45em !important; }
+#quartz-root h2:not(.avv-title) { margin-top: -0.38em !important; }
+#quartz-root h3:not(.avv-title) { margin-top: -0.30em !important; }
+#quartz-root h4:not(.avv-title) { margin-top: -0.22em !important; }
 
-/* Backplate */
-#quartz-root h1::before,
-#quartz-root h2::before,
-#quartz-root h3::before,
-#quartz-root h4::before {
+/* Backplate (uses ::before) */
+#quartz-root h1:not(.avv-title)::before,
+#quartz-root h2:not(.avv-title)::before,
+#quartz-root h3:not(.avv-title)::before,
+#quartz-root h4:not(.avv-title)::before,
+#quartz-root h5:not(.avv-title)::before,
+#quartz-root h6:not(.avv-title)::before {
   content: "";
   position: absolute;
   inset: -0.12em -0.45em;
@@ -1080,7 +1074,7 @@ footer a[href=""] {
 }
 
 /* h1 plate slightly stronger */
-#quartz-root h1::before {
+#quartz-root h1:not(.avv-title)::before {
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.50) 0%,
@@ -1091,75 +1085,19 @@ footer a[href=""] {
 }
 
 /* If headings are links, inherit gradient */
-#quartz-root h1 a,
-#quartz-root h2 a,
-#quartz-root h3 a,
-#quartz-root h4 a {
+#quartz-root h1:not(.avv-title) a,
+#quartz-root h2:not(.avv-title) a,
+#quartz-root h3:not(.avv-title) a,
+#quartz-root h4:not(.avv-title) a,
+#quartz-root h5:not(.avv-title) a,
+#quartz-root h6:not(.avv-title) a {
   position: relative;
   z-index: 1;
   color: inherit !important;
   -webkit-text-fill-color: inherit !important;
 }
 
-/* =========================
-   H1/H2 HOVER GLOW
-   Smooth ramp up and down, holds while hovered
-   ========================= */
-
-/* Base state: mild glow */
-#quartz-root h1,
-#quartz-root h2 {
-  transition:
-    text-shadow 320ms ease,
-    filter 320ms ease;
-}
-
-/* Hover and keyboard focus */
-#quartz-root h1:hover,
-#quartz-root h2:hover,
-#quartz-root h1:focus-within,
-#quartz-root h2:focus-within {
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.45),
-    0 3px 10px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(255, 235, 170, 0.35),
-    0 0 34px rgba(255, 210, 120, 0.28),
-    0 0 52px rgba(255, 200, 90, 0.18);
-
-  /* small lift in intensity without changing color */
-  filter: brightness(1.08) saturate(1.08);
-}
-
-/* If the heading itself is a link, hovering the link should also glow */
-#quartz-root h1 a:hover,
-#quartz-root h2 a:hover,
-#quartz-root h1 a:focus,
-#quartz-root h2 a:focus {
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.45),
-    0 3px 10px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(255, 235, 170, 0.35),
-    0 0 34px rgba(255, 210, 120, 0.28),
-    0 0 52px rgba(255, 200, 90, 0.18);
-}
-
-/* =========================
-   HEADING CHEVRONS (ALL H1–H6)
-   Excludes site title + hero title
-   ========================= */
-
-/* Base positioning */
-#quartz-root h1:not(.avv-title),
-#quartz-root h2:not(.avv-title),
-#quartz-root h3:not(.avv-title),
-#quartz-root h4:not(.avv-title),
-#quartz-root h5:not(.avv-title),
-#quartz-root h6:not(.avv-title) {
-  position: relative;
-  padding-left: 1.75rem; /* space for chevron */
-}
-
-/* HARD EXCLUSION: top-left site title */
+/* HARD EXCLUSION: never touch the top-left site title area */
 .left.sidebar .page-title h1,
 .left.sidebar .page-title h2,
 .left.sidebar .page-title h3,
@@ -1169,57 +1107,51 @@ footer a[href=""] {
   padding-left: 0 !important;
 }
 
-/* Chevron */
-#quartz-root h1:not(.avv-title)::before,
-#quartz-root h2:not(.avv-title)::before,
-#quartz-root h3:not(.avv-title)::before,
-#quartz-root h4:not(.avv-title)::before,
-#quartz-root h5:not(.avv-title)::before,
-#quartz-root h6:not(.avv-title)::before {
+/* Heading chevron (uses ::after so it won't collide with ::before backplate) */
+#quartz-root h1:not(.avv-title)::after,
+#quartz-root h2:not(.avv-title)::after,
+#quartz-root h3:not(.avv-title)::after,
+#quartz-root h4:not(.avv-title)::after,
+#quartz-root h5:not(.avv-title)::after,
+#quartz-root h6:not(.avv-title)::after {
   content: "›";
   position: absolute;
-  left: 0.45rem;
-  top: 0.32em; /* aligns to first line */
+  left: 0.35rem;
+  top: 0.33em;
 
-  font-size: 1.25em;
+  font-size: 1.05em;
   line-height: 1;
 
-  color: rgba(214, 184, 92, 0.9); /* gold */
+  color: rgba(96, 163, 255, 0.9);
 
   opacity: 0;
-  transform: translateX(-6px);
+  transform: translateX(-2px);
 
   pointer-events: none;
 
   transition:
     opacity 220ms ease,
-    transform 220ms ease,
-    text-shadow 220ms ease;
+    transform 220ms ease;
 }
 
-/* Hover reveal */
-#quartz-root h1:not(.avv-title):hover::before,
-#quartz-root h2:not(.avv-title):hover::before,
-#quartz-root h3:not(.avv-title):hover::before,
-#quartz-root h4:not(.avv-title):hover::before,
-#quartz-root h5:not(.avv-title):hover::before,
-#quartz-root h6:not(.avv-title):hover::before {
-  opacity: 1;
+/* Fade in on hover, fade out on leave */
+#quartz-root h1:not(.avv-title):hover::after,
+#quartz-root h2:not(.avv-title):hover::after,
+#quartz-root h3:not(.avv-title):hover::after,
+#quartz-root h4:not(.avv-title):hover::after,
+#quartz-root h5:not(.avv-title):hover::after,
+#quartz-root h6:not(.avv-title):hover::after {
+  opacity: 0.95;
   transform: translateX(0);
-
-  text-shadow:
-    0 0 10px rgba(214, 184, 92, 0.55),
-    0 0 18px rgba(214, 184, 92, 0.35);
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  #quartz-root h1::before,
-  #quartz-root h2::before,
-  #quartz-root h3::before,
-  #quartz-root h4::before,
-  #quartz-root h5::before,
-  #quartz-root h6::before {
+  #quartz-root h1::after,
+  #quartz-root h2::after,
+  #quartz-root h3::after,
+  #quartz-root h4::after,
+  #quartz-root h5::after,
+  #quartz-root h6::after {
     transition: none !important;
   }
 }
