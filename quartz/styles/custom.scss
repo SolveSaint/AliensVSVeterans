@@ -1102,6 +1102,48 @@ footer a[href=""] {
 }
 
 /* =========================
+   H1/H2 HOVER GLOW
+   Smooth ramp up and down, holds while hovered
+   ========================= */
+
+/* Base state: mild glow */
+#quartz-root h1,
+#quartz-root h2 {
+  transition:
+    text-shadow 320ms ease,
+    filter 320ms ease;
+}
+
+/* Hover and keyboard focus */
+#quartz-root h1:hover,
+#quartz-root h2:hover,
+#quartz-root h1:focus-within,
+#quartz-root h2:focus-within {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 10px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 235, 170, 0.35),
+    0 0 34px rgba(255, 210, 120, 0.28),
+    0 0 52px rgba(255, 200, 90, 0.18);
+
+  /* small lift in intensity without changing color */
+  filter: brightness(1.08) saturate(1.08);
+}
+
+/* If the heading itself is a link, hovering the link should also glow */
+#quartz-root h1 a:hover,
+#quartz-root h2 a:hover,
+#quartz-root h1 a:focus,
+#quartz-root h2 a:focus {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 10px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 235, 170, 0.35),
+    0 0 34px rgba(255, 210, 120, 0.28),
+    0 0 52px rgba(255, 200, 90, 0.18);
+}
+
+/* =========================
    IMAGE FRAMES (PER-FRAME SETTINGS ONLY)
    Use:
      <div class="img-frame frame-ego-gold1 is-centered">
