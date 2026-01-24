@@ -1340,3 +1340,30 @@ footer a[href=""] {
   padding-bottom: 5.00%;
   padding-left:   5.00%;
 }
+
+/* =========================
+   BREADCRUMB TRUNCATION + HOVER EXPAND
+   Prevent long paths from crowding titles
+   Quartz-safe, layout-only fix
+   ========================= */
+
+.breadcrumbs {
+  max-width: 72ch;        /* cap width so it doesn't collide with title */
+  white-space: nowrap;   /* single-line by default */
+  overflow: hidden;      /* required for ellipsis */
+  text-overflow: ellipsis;
+
+  display: block;        /* ensures truncation works consistently */
+  opacity: 0.85;         /* slightly de-emphasize vs heading */
+}
+
+/* Prevent internal wrapping of links */
+.breadcrumbs a {
+  white-space: nowrap;
+}
+
+/* Hover: reveal full breadcrumb path intentionally */
+.breadcrumbs:hover {
+  overflow: visible;
+  white-space: normal;
+}
