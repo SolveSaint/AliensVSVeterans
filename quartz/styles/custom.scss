@@ -1367,3 +1367,29 @@ footer a[href=""] {
 .breadcrumb-element:last-child a {
   opacity: 0.85;
 }
+
+/* =========================
+   BREADCRUMB REPOSITIONING
+   Place directly under banner, above title
+   ========================= */
+
+/* Ensure header establishes positioning context */
+.page-header {
+  position: relative;
+}
+
+/* Move breadcrumbs upward into banner gap */
+.breadcrumb-container {
+  margin-top: -1.25rem;   /* pulls it up under the banner */
+  margin-bottom: 0.75rem; /* space before the title */
+
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+
+  background: rgba(0, 0, 0, 0.45); /* readability over textures */
+  backdrop-filter: blur(2px);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
