@@ -19,7 +19,7 @@
 body {
   background-color: #0a120e;
 
-  /* Needed so body animation does not create stacking surprises */
+  /* Needed so pseudo layers do not create stacking surprises */
   position: relative;
 
   background-image:
@@ -37,124 +37,64 @@ body {
       rgba(255, 255, 255, 0.028) 35%,
       rgba(0, 0, 0, 0.36) 70%,
       rgba(0, 0, 0, 0.64) 100%
-    ),
+    );
 
-/* BACKMOST STARFIELD LAYERS
-   Bigger dots, higher alpha, and multi layer drift so it is visible. */
-radial-gradient(rgba(235, 245, 255, 0.14) 1.2px, transparent 1.2px),
-radial-gradient(rgba(235, 245, 255, 0.08) 1px, transparent 1px),
-radial-gradient(rgba(235, 245, 255, 0.05) 0.8px, transparent 0.8px);
+  background-size:
+    1800px 1100px,
+    100% 1100px,
+    100% 100%;
 
-background-size:
-  1800px 1100px,
-  100% 1100px,
-  100% 100%,
-  7px 7px,
-  4px 4px,
-  11px 11px;
-
-background-position:
-  center bottom,
-  center bottom,
-  center,
-  0 0,
-  2px 2px,
-  5px 1px;
+  background-position:
+    center bottom,
+    center bottom,
+    center;
 
   background-repeat:
     repeat-x,
     no-repeat,
-    no-repeat,
-    repeat,
-    repeat;
+    no-repeat;
 
   background-attachment:
     fixed,
     fixed,
-    fixed,
-    fixed,
     fixed;
-
-  /* Twinkle without overlaying content or trees.
-     Only the star layers move in the keyframes. */
-  will-change: background-position;
-  animation: starTwinkle 7.5s ease-in-out infinite;
 }
 
-/* Star motion.
-   Keep the first three layers fixed. Move only the last two star layers. */
-@keyframes starTwinkle {
-  0% {
-    background-position:
-      center bottom,
-      center bottom,
-      center,
-      0 0,
-      2px 2px,
-      5px 1px;
+/* =========================
+   BACKMOST STARFIELD (SVG)
+   Place stars behind everything and animate gently
+   File lives in /static. Use the same relative path style as your other SVGs.
+   ========================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
 
-    background-size:
-      1800px 1100px,
-      100% 1100px,
-      100% 100%,
-      7px 7px,
-      4px 4px,
-      11px 11px;
-  }
+  pointer-events: none;
+  z-index: 0;
 
-  40% {
-    background-position:
-      center bottom,
-      center bottom,
-      center,
-      3px 2px,
-      7px 6px,
-      1px 4px;
+  background-image: url("../static/stars-twinkle.svg");
+  background-repeat: repeat;
+  background-size: 1400px 900px;
+  background-position: center top;
 
-    background-size:
-      1800px 1100px,
-      100% 1100px,
-      100% 100%,
-      7px 7px,
-      5px 5px,
-      10px 10px;
-  }
+  opacity: 0.78;
+  mix-blend-mode: screen;
 
-  70% {
-    background-position:
-      center bottom,
-      center bottom,
-      center,
-      1px 4px,
-      4px 9px,
-      7px 2px;
+  will-change: opacity, transform, background-position;
+  animation: starTwinkleSvg 6.8s ease-in-out infinite, starDriftSvg 46s linear infinite;
+}
 
-    background-size:
-      1800px 1100px,
-      100% 1100px,
-      100% 100%,
-      8px 8px,
-      4px 4px,
-      12px 12px;
-  }
+@keyframes starTwinkleSvg {
+  0%   { opacity: 0.64; }
+  45%  { opacity: 0.88; }
+  100% { opacity: 0.64; }
+}
 
-  100% {
-    background-position:
-      center bottom,
-      center bottom,
-      center,
-      0 0,
-      2px 2px,
-      5px 1px;
-
-    background-size:
-      1800px 1100px,
-      100% 1100px,
-      100% 100%,
-      7px 7px,
-      4px 4px,
-      11px 11px;
-  }
+@keyframes starDriftSvg {
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(6px, -4px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* =========================
@@ -290,35 +230,24 @@ html::after {
 
 /* Motion */
 @keyframes saucerPatrol {
-  /* normal low patrol */
   0% {
     transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
   }
-
   18% {
     transform: translate(-50%, -50%) translateX(-18vw) translateY(0);
   }
-
-  /* rare ascent above trees */
   32% {
     transform: translate(-50%, -50%) translateX(0vw) translateY(-18vh);
   }
-
-  /* brief linger up high */
   38% {
     transform: translate(-50%, -50%) translateX(6vw) translateY(-20vh);
   }
-
-  /* descend back into trees */
   50% {
     transform: translate(-50%, -50%) translateX(18vw) translateY(0);
   }
-
-  /* resume normal patrol */
   75% {
     transform: translate(-50%, -50%) translateX(46vw) translateY(0);
   }
-
   100% {
     transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
   }
@@ -331,37 +260,31 @@ html::after {
       center bottom,
       calc(50% - 46vw) 58%;
   }
-
   18% {
     background-position:
       center bottom,
       calc(50% - 18vw) 58%;
   }
-
   32% {
     background-position:
       center bottom,
       50% calc(58% - 18vh);
   }
-
   38% {
     background-position:
       center bottom,
       calc(50% + 6vw) calc(58% - 20vh);
   }
-
   50% {
     background-position:
       center bottom,
       calc(50% + 18vw) 58%;
   }
-
   75% {
     background-position:
       center bottom,
       calc(50% + 46vw) 58%;
   }
-
   100% {
     background-position:
       center bottom,
@@ -389,7 +312,7 @@ html::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body {
+  body::before {
     animation: none !important;
   }
 
@@ -572,7 +495,6 @@ code {
   height: auto;
   display: block;
 
-  /* Optional. Use cover if you want it to feel more full width with a fixed height. */
   object-fit: contain;
 }
 
@@ -1195,21 +1117,16 @@ footer a[href=""] {
 #quartz-root h5:not(.avv-title),
 #quartz-root h6:not(.avv-title) {
   position: relative;
-  display: inline-block;        /* plate hugs text */
+  display: inline-block;
   padding: 0.18em 0.42em;
   border-radius: 10px;
   line-height: 1.15;
 
-  /* room for hover chevron */
   padding-left: 1.35rem;
-
-  /* pull up toward separators */
   margin-top: -0.35em !important;
 
-  /* fallback if clip unsupported */
   color: #f0dc8a !important;
 
-  /* brighter metallic gold */
   background-image: linear-gradient(
     180deg,
     #fff9dd 0%,
@@ -1225,7 +1142,6 @@ footer a[href=""] {
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
 
-  /* separation only (NO glow-on-hover) */
   text-shadow:
     0 1px 0 rgba(0, 0, 0, 0.45),
     0 3px 8px rgba(0, 0, 0, 0.30),
@@ -1353,14 +1269,6 @@ footer a[href=""] {
 
 /* =========================
    IMAGE FRAMES (PER-FRAME SETTINGS ONLY)
-   Use:
-     <div class="img-frame frame-ego-gold1 is-centered">
-       <img src="..." alt="">
-     </div>
-
-     <div class="img-frame frame-alien-stone1 is-centered">
-       <img src="..." alt="">
-     </div>
    ========================= */
 
 /* Common wrapper behavior */
@@ -1387,53 +1295,29 @@ footer a[href=""] {
 .img-frame img {
   display: block;
 
-  width: 400px;     /* image target size */
-  max-width: 100%;  /* responsive safety */
+  width: 400px;
+  max-width: 100%;
   height: auto;
 
-  /* MUST match the SVG inlay radius proportionally.
-     Default: match gold inlay rx=20 on width=860 => 20/860 ~= 2.33% */
   border-radius: 2.33%;
 }
 
-/* =========================
-   GOLD EGO FRAME
-   viewBox: 1200 x 800
-   inlay window: x=170, y=170, w=860, h=460
-   padding percents:
-     left/right = 170/1200 = 14.17%
-     top/bottom = 170/800  = 21.25%
-   ========================= */
+/* GOLD EGO FRAME */
 .img-frame.frame-ego-gold1 {
   background-image: url("/static/frames/frame-gold-ego.svg");
 
-  padding-top:    21.25%; /* top */
-  padding-right:  14.17%; /* right */
-  padding-bottom: 21.25%; /* bottom */
-  padding-left:   14.17%; /* left */
+  padding-top:    21.25%;
+  padding-right:  14.17%;
+  padding-bottom: 21.25%;
+  padding-left:   14.17%;
 }
 
-/* =========================
-   ALIEN STONE FRAME
-   Set these to match THAT SVG’s inlay window.
-   If your stone SVG uses the same inlay as gold (x=170,y=170,w=860,h=460),
-   then these values are correct as-is.
-   If not, change them per the formula:
-     padding-left  = (leftInset / viewBoxWidth)  * 100%
-     padding-right = (rightInset / viewBoxWidth) * 100%
-     padding-top   = (topInset / viewBoxHeight)  * 100%
-     padding-bottom= (bottomInset / viewBoxHeight)* 100%
-   ========================= */
+/* ALIEN STONE FRAME */
 .img-frame.frame-alien-stone1 {
   background-image: url("/static/frames/frame-alien-stone1.svg");
 
-  padding-top:    5.00%; /* top */
-  padding-right:  5.00%; /* right */
-  padding-bottom: 5.00%; /* bottom */
-  padding-left:   5.00%; /* left */
+  padding-top:    5.00%;
+  padding-right:  5.00%;
+  padding-bottom: 5.00%;
+  padding-left:   5.00%;
 }
-
-/* Optional per-frame radius overrides if a frame uses a different inlay rx.
-   Example: if a frame’s inlay rx is 26 on inlay width 1140 => 26/1140=2.28%
-   .img-frame.frame-alien-stone1 img { border-radius: 2.28%; }
-*/
