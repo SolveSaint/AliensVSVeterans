@@ -124,11 +124,12 @@ html::before {
 
   transform: translate(-50%, -50%);
 
-  /* twice the speed: 320s -> 160s */
+  /* patrol speed goal: 80s */
   animation: saucerPatrol 80s ease-in-out infinite, saucerDrift 14s ease-in-out infinite;
 }
 
-/* FRONT TREES OCCLUDER BAND (top layer, only around saucer height) */
+/* FRONT TREES OCCLUDER BAND (top layer, only around saucer height)
+   Adds a faint green glow behind the front trees so it is visible even when occluded. */
 html::after {
   content: "";
   position: fixed;
@@ -137,20 +138,44 @@ html::after {
   pointer-events: none;
   z-index: 2;
 
-  background-image: url("../static/trees-front.svg");
-  background-repeat: repeat-x;
-  background-size: 1800px 1100px;
-  background-position: center bottom;
-  background-attachment: fixed;
+  /* Layer 1: front trees
+     Layer 2: saucer glow (behind trees, shows through SVG transparency) */
+  background-image:
+    url("../static/trees-front.svg"),
+    radial-gradient(
+      ellipse 10rem 5rem at 50% 58%,
+      rgba(44, 170, 120, 0.18) 0%,
+      rgba(44, 170, 120, 0.09) 28%,
+      rgba(44, 170, 120, 0.035) 52%,
+      rgba(44, 170, 120, 0.00) 74%
+    );
+
+  background-repeat:
+    repeat-x,
+    no-repeat;
+
+  background-size:
+    1800px 1100px,
+    22rem 12rem;
+
+  background-position:
+    center bottom,
+    calc(50% - 46vw) 58%;
+
+  background-attachment:
+    fixed,
+    fixed;
 
   opacity: 0.88;
   mix-blend-mode: normal;
 
   transform-origin: 50% 100%;
-  will-change: transform;
+  will-change: transform, background-position;
 
-  /* stronger, more alive wind motion */
-  animation: treetopsSway 9.5s ease-in-out infinite;
+  /* stronger, more alive wind motion plus glow synced to patrol */
+  animation:
+    treetopsSway 9.5s ease-in-out infinite,
+    saucerGlow 80s ease-in-out infinite;
 
   /* only show in a band around the saucer height */
   -webkit-mask-image: linear-gradient(
@@ -206,6 +231,51 @@ html::after {
 
   100% {
     transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
+  }
+}
+
+/* Glow follows the same path as saucerPatrol, but as a background-position in the occluder layer */
+@keyframes saucerGlow {
+  0% {
+    background-position:
+      center bottom,
+      calc(50% - 46vw) 58%;
+  }
+
+  18% {
+    background-position:
+      center bottom,
+      calc(50% - 18vw) 58%;
+  }
+
+  32% {
+    background-position:
+      center bottom,
+      50% calc(58% - 18vh);
+  }
+
+  38% {
+    background-position:
+      center bottom,
+      calc(50% + 6vw) calc(58% - 20vh);
+  }
+
+  50% {
+    background-position:
+      center bottom,
+      calc(50% + 18vw) 58%;
+  }
+
+  75% {
+    background-position:
+      center bottom,
+      calc(50% + 46vw) 58%;
+  }
+
+  100% {
+    background-position:
+      center bottom,
+      calc(50% - 46vw) 58%;
   }
 }
 
