@@ -1342,55 +1342,28 @@ footer a[href=""] {
 }
 
 /* =========================
-   BREADCRUMB TRUNCATION, HARD CAP
-   Works even inside flex layouts
+   BREADCRUMB HARD TRUNCATION
+   Targets actual Quartz markup
    ========================= */
 
-.breadcrumbs {
-  display: block;
-
-  /* Hard visual cap so it cannot run into the title area */
-  width: min(42ch, 62vw);
+.breadcrumb-container {
   max-width: 100%;
-  min-width: 0;
+  overflow: hidden;
+}
 
+/* The LAST breadcrumb is the page title — clamp it */
+.breadcrumb-element:last-child a {
+  display: inline-block;
+
+  max-width: 36ch;   /* ← controls how short it is */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
+  vertical-align: bottom;
+}
+
+/* Optional: reduce visual dominance */
+.breadcrumb-element:last-child a {
   opacity: 0.85;
-}
-
-/* If breadcrumbs live inside a flex header row, this is critical */
-.breadcrumbs,
-.breadcrumbs * {
-  min-width: 0;
-}
-
-/* Keep inner pieces from wrapping */
-.breadcrumbs a,
-.breadcrumbs li,
-.breadcrumbs ol,
-.breadcrumbs ul {
-  white-space: nowrap;
-}
-
-/* Hover expand, shows full path without moving layout */
-.breadcrumbs {
-  position: relative;
-}
-
-.breadcrumbs:hover {
-  overflow: visible;
-  white-space: normal;
-  z-index: 50;
-}
-
-/* Optional, give the expanded crumbs a readable backdrop */
-.breadcrumbs:hover ol,
-.breadcrumbs:hover ul {
-  background: rgba(0, 0, 0, 0.72);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-  display: inline-block;
 }
