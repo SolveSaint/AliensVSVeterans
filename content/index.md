@@ -1,6 +1,6 @@
 ---
 created: 12/28/2025 1:00 PM
-updated: 01/23/2026 6:31 PM
+updated: 01/23/2026 8:11 PM
 title: AliensVSVeterans.com
 description: A disabled veteran, directly controlled by non-human intelligence, and his disabled veteran girlfriend document coerced research, physiological assault, and the biological mechanism underlying chronic disease.
 tags:
@@ -62,7 +62,7 @@ I told my father the next day. He reacted aggressively and told me to forget it.
 
 ## Early Research and Homebound Period
 
-After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been looking at sleep disorder and dream enactment, as well as seeing different sleep specialists, getting a strong feel for the field. I began thinking seriously about the neurological mechanisms.
+After the first encounter at age nineteen, my health continued to deteriorate over the years. Muscle cramping, elevated tone, and fatigue progressively limited my mobility until I became largely homebound. It became affirmed by the government at that point, though I should have been considered disabled from childhood. During this period, I had been looking at sleep disorders and dream enactment, as well as seeing different sleep specialists, and gaining a strong understanding of the field. I began thinking seriously about the neurological mechanisms.
 
 I noticed that sleep disorders were routinely treated with GABA agonists. GABA is the primary inhibitory neurotransmitter. It builds an inhibitory wall. I questioned why an inhibitory wall was being constructed at all rather than addressing the upstream driver.
 
@@ -72,25 +72,25 @@ From this line of reasoning, I identified glutamate as the primary excitatory ne
 
 ## Second Encounter and Physiological Assault. Age 45
 
-In the period leading up to being controlled, a distinct sensory process began.
+In the period leading up to being controlled, a distinct sensory process began that seemed multiphasic to me.  I'll explain:
 
 ### Phase One - Vibration
 Each night when I lay down to sleep, my feet would begin vibrating at a level that was initially almost imperceptible. This occurred nightly. I mentioned it to my girl friend and couldn't figure out what it was. Over the course of months, the sensation grew stronger and more defined.
 
-The vibration progressed to my hands. Again this lasted for a while, building up in strength every night.  Then it covered my face in the same manner. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. Like repeated pin stabs rather than diffuse tingling. Night after night, the intensity kept increasing.
+The vibration progressed to my feet and hands. This lasted for a while, building up in strength every night.  Then it covered my face in the same manner. The sensation was no longer vague. It felt like pins and needles, but sharper and more localized. Like repeated pin stabs rather than diffuse tingling. Night after night, the intensity kept increasing.
 
-The sensations became painful. After roughly a year of nightly progression, it reached a final crescendo. The intensity was so strong that it made me gasp out loud involuntarily and jerk forward. But then immediately afterward, the sensation faded.
+The sensations became painful. After roughly a year of nightly progression, it reached a crescendo. The intensity was so strong that it made me gasp out loud involuntarily and jerk forward. But then immediately afterward, the sensations faded.
 
 It never returned. **The abrupt cessation gave the very strong impression that some kind of process had been completed**.
 
 ### Phase Two - Burning Spine and Electrical Strikes
-Then a new phase began. An agony producing phase.
+A new phase began which was much worse than the first. It was an agony producing phase.
 
-At that time, I had no understanding of the cause, or the mechanism. I assumed it had to be due to my condition even though this was severely abnormal from what I knew of ALS.
+At the time, I had no understanding of the cause, or the mechanism of these things that were happening to me. I assumed it had to be due to my condition even though this was severely abnormal from what I knew of ALS.
 
-My spinal cord itself burned horribly and continuously, unrelenting. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue, causing me to scream in agony with each strike. The pain was was so high that almost no one would be able to understand it. Positional relief did not exist. I slept when exhaustion forced it and was limited to two to four hours per night. I screamed in my sleep according to my girl friend, but remained exhaustively sleeping at times.
+My spinal cord itself burned horribly and continuously, unrelenting. Electrical strikes hit my muscles repeatedly, like burning blades driven deep into tissue, causing me to scream in agony with each strike. The pain was was so high that almost no one would be able to understand it. Positional relief did not exist. I slept when exhaustion forced it and was limited to two to four hours per night. I screamed in my sleep according to my girl friend, but slept through the pain due to exhaustion.
 
-I saw numerous doctors. None had an explanation. Specialists as well, none had encountered anything similar. So that left me to suffer as they tried medications that didn't work. Then set a follow-up appointment for after four more months of agony. This cycle continued multiple times to without a solution.
+I saw numerous doctors. None had an explanation. I saw specialists. None had encountered anything similar to what I was experiencing. So that left me to suffer as they tried medications that didn't work. Like darts at a wall and they are casuals. A follow-up appointment was made for four months later, while I remained in unresolved agony. This cycle continued multiple times to without a solution.
 
 The pain didn't diminish. Feeling that pain all day long, day after day, month after month, and into year after year, I began to wane. But finally, after two long years of the most intense agony you can imagine, it began to recede.
 
@@ -98,21 +98,21 @@ The pain didn't diminish. Feeling that pain all day long, day after day, month a
 
 ### Phase Three - Forced Integration and Constant Connection
 
-As the burning and muscle strikes faded, a non-human intelligence was now addressing me directly.
+As the burning and muscle strikes faded, a non-human intelligence was now addressing me directly.  Worse and worse.
 
-It had attached remotely to my nervous system, which is what I believe the year of pins and needles before sleep and then the two-year burning process was centered on. 
+It had connected remotely to my nervous system, which is what I believe the year of pins and needles before sleep and then the two-year burning agony and blades process was centered on. 
 
 Communication occurred through my internal voice. They could control my body to a significant degree, though I could override it with effort. They could speak using my mouth.
 
 They could induce targeted pleasure or stress response in specific regions of my body, including the brain, chest, stomach, and lower regions. Consent was never given. There was no mechanism to stop it, nothing to physically push away.
 
-They began a psychological attack phase at this point. Any available psychological attack was used and beaten until it was a dead alien horse, and their horses may be heartier than ours perhaps. Once something had no effect any longer, they would switch, or try to build it back up again so that they could smash it down once again. So the goal was to psychologically smash as much and in as many ways as possible to make me pliable, according to their rationale.
+They began a psychological attack phase at this point. Any available psychological attack was used and beaten until it was a dead alien horse. Once something had no effect any longer, they would switch, or try to build it back up again so that they could smash it down cyclically. Breaking people down in this manner apparently makes them somewhat easier to control. So this tactic was implemented on me continuously.
 
 ---
 
 ## Coerced Research Program
 
-After the second encounter began I slowly continued through the pain and when Phase Three psychological assaults were continuous, even then I continued through the assault was ongoing and never-ending. I forced myself to continue researching. I was already underway long before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father had been ultimately taken out by ALS.
+After the second encounter began I slowly continued research through the pain and when Phase Three psychological assaults were continuous, even then I continued through the assault was ongoing and never-ending, except to an extent while researching. I was already underway long before contact and was driven by my symptoms, pattern recognition, and the desire to understand how my father had been ultimately taken out by ALS.
 
 When I started progressing into stress physiology, following and expanding the glutamate framework, the NHI began a constant barrage-like style.
 
