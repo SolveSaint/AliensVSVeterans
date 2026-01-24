@@ -16,7 +16,7 @@
    Trees are fixed to viewport so they are always visible
    This is the BACK tree layer
    ========================= */
-   
+
 body {
   background-color: #0a120e;
   position: relative;
@@ -60,7 +60,7 @@ body {
     fixed;
 }
 
-/* Stars layer sits BEHIND trees because it's under the first background-image layer.
+/* Stars layer sits behind trees because it is under the first background-image layer.
    It is also behind content because content is z-index 3.
    We animate opacity only, no drifting. */
 body::before {
@@ -105,17 +105,6 @@ body::before {
   100% { opacity: 0.48; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  body::before {
-    animation: none !important;
-  }
-
-  html::before,
-  html::after {
-    animation: none !important;
-  }
-}
-
 /* =========================
    SAUCER IN TREES
    Back trees are the body background image.
@@ -133,7 +122,6 @@ html::before {
   left: 50%;
   top: 58%;
 
-  /* half size */
   width: clamp(260px, 23vw, 460px);
   height: clamp(60px, 6vw, 100px);
 
@@ -221,12 +209,10 @@ html::after {
   transform-origin: 50% 100%;
   will-change: transform, background-position;
 
-  /* stronger, more alive wind motion plus glow synced to patrol */
   animation:
     treetopsSway 9.5s ease-in-out infinite,
     saucerGlow 80s ease-in-out infinite;
 
-  /* only show in a band around the saucer height */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
@@ -249,27 +235,13 @@ html::after {
 
 /* Motion */
 @keyframes saucerPatrol {
-  0% {
-    transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
-  }
-  18% {
-    transform: translate(-50%, -50%) translateX(-18vw) translateY(0);
-  }
-  32% {
-    transform: translate(-50%, -50%) translateX(0vw) translateY(-18vh);
-  }
-  38% {
-    transform: translate(-50%, -50%) translateX(6vw) translateY(-20vh);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateX(18vw) translateY(0);
-  }
-  75% {
-    transform: translate(-50%, -50%) translateX(46vw) translateY(0);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
-  }
+  0%   { transform: translate(-50%, -50%) translateX(-46vw) translateY(0); }
+  18%  { transform: translate(-50%, -50%) translateX(-18vw) translateY(0); }
+  32%  { transform: translate(-50%, -50%) translateX(0vw)  translateY(-18vh); }
+  38%  { transform: translate(-50%, -50%) translateX(6vw)  translateY(-20vh); }
+  50%  { transform: translate(-50%, -50%) translateX(18vw) translateY(0); }
+  75%  { transform: translate(-50%, -50%) translateX(46vw) translateY(0); }
+  100% { transform: translate(-50%, -50%) translateX(-46vw) translateY(0); }
 }
 
 /* Glow follows the same path as saucerPatrol, but as a background-position in the occluder layer */
@@ -330,15 +302,14 @@ html::after {
   }
 }
 
+/* =========================
+   REDUCED MOTION
+   Single block, deduped
+   ========================= */
 @media (prefers-reduced-motion: reduce) {
-  body::before {
-    animation: none !important;
-  }
-
+  body::before { animation: none !important; }
   html::before,
-  html::after {
-    animation: none !important;
-  }
+  html::after { animation: none !important; }
 }
 
 /* =========================
@@ -378,12 +349,8 @@ footer {
 }
 
 /* Links */
-a {
-  color: #7fb4ff;
-}
-a:hover {
-  color: #a7c9ff;
-}
+a { color: #7fb4ff; }
+a:hover { color: #a7c9ff; }
 
 /* Headings inside articles */
 .center article h1,
@@ -397,9 +364,7 @@ a:hover {
 
 /* Code */
 code,
-pre {
-  color: #e6ebe7;
-}
+pre { color: #e6ebe7; }
 
 /* =========================
    GLOBAL WIDTH SAFETY
@@ -414,9 +379,7 @@ body,
 
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
 img,
 svg,
@@ -471,24 +434,16 @@ code {
   padding: 0 !important;
 }
 
-.center .page-header header > div {
-  margin-bottom: 0 !important;
-}
+.center .page-header header > div { margin-bottom: 0 !important; }
 
 .center .page-header figure,
-.center .page-header picture {
-  margin: 0 !important;
-}
+.center .page-header picture { margin: 0 !important; }
 
 .center .page-header img,
-.center .page-header a {
-  display: block;
-}
+.center .page-header a { display: block; }
 
 /* Keep columns aligned at the top */
-#quartz-body {
-  align-items: flex-start !important;
-}
+#quartz-body { align-items: flex-start !important; }
 
 /* =========================
    HEADER BANNER. CENTER AND FILL AVAILABLE COLUMN WIDTH
@@ -513,7 +468,6 @@ code {
   max-width: 100%;
   height: auto;
   display: block;
-
   object-fit: contain;
 }
 
@@ -526,9 +480,7 @@ code {
   padding-top: 1rem !important;
 }
 
-.left.sidebar .page-title {
-  margin-top: 0 !important;
-}
+.left.sidebar .page-title { margin-top: 0 !important; }
 
 .right.sidebar .graph {
   margin-top: 0 !important;
@@ -554,9 +506,7 @@ code {
   animation: avvFadeIn 600ms ease-out both;
 }
 
-.avv-title span {
-  display: inline;
-}
+.avv-title span { display: inline; }
 
 .avv-title::after {
   content: "";
@@ -592,19 +542,11 @@ code {
 
 .avv-welcome,
 .avv-aliens,
-.avv-veterans {
-  letter-spacing: 0.01em;
-}
+.avv-veterans { letter-spacing: 0.01em; }
 
 @keyframes avvFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================
@@ -623,9 +565,7 @@ code {
   padding-top: 0 !important;
 }
 
-.center .page-header .content-meta {
-  margin-bottom: 0.35rem !important;
-}
+.center .page-header .content-meta { margin-bottom: 0.35rem !important; }
 
 /* =========================
    TOP LEFT SITE TITLE
@@ -674,9 +614,7 @@ code {
     text-wrap: balance;
   }
 
-  .avv-title::after {
-    width: min(360px, 92vw);
-  }
+  .avv-title::after { width: min(360px, 92vw); }
 }
 
 /* =========================
@@ -688,9 +626,7 @@ code {
     max-width: 100% !important;
   }
 
-  .left.sidebar .page-title {
-    min-width: 0 !important;
-  }
+  .left.sidebar .page-title { min-width: 0 !important; }
 
   .left.sidebar .page-title a {
     max-width: none !important;
@@ -706,18 +642,14 @@ code {
   }
 
   .left.sidebar .search,
-  .left.sidebar .searchbar {
-    flex: 0 0 auto !important;
-  }
+  .left.sidebar .searchbar { flex: 0 0 auto !important; }
 }
 
 /* =========================
    MOBILE FONT SIZE BOOST
    ========================= */
 @media (max-width: 700px) {
-  body {
-    font-size: 1.05rem;
-  }
+  body { font-size: 1.05rem; }
 
   p,
   li,
@@ -732,24 +664,18 @@ code {
   h4 { font-size: 1.15rem; }
 
   .left.sidebar,
-  .right.sidebar {
-    font-size: 0.95rem;
-  }
+  .right.sidebar { font-size: 0.95rem; }
 
   .page-meta,
   .content-meta,
   .breadcrumb,
-  .breadcrumbs {
-    font-size: 0.85rem;
-  }
+  .breadcrumbs { font-size: 0.85rem; }
 }
 
 /* =========================
    FORCE DARK MODE ONLY
    ========================= */
-:root {
-  color-scheme: dark !important;
-}
+:root { color-scheme: dark !important; }
 
 html[data-theme="light"],
 html[data-theme="light"] body {
@@ -914,16 +840,10 @@ svg[data-icon*="book"],
 }
 
 /* Keep the rail only on FILE blocks (no flashing) */
-.explorer-content .explorer-content .explorer-ul > li > a:not(.folder-title),
-.explorer-content .explorer-content ul.content > li > a:not(.folder-title) {
+.explorer-content .explorer-ul > li > a:not(.folder-title),
+.explorer-content ul.content > li > a:not(.folder-title) {
   box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.06);
   background-clip: padding-box;
-}
-
-/* Shift file divider so it doesn't sit under the rail */
-.explorer-content .explorer-ul > li > a:not(.folder-title)::after,
-.explorer-content ul.content > li > a:not(.folder-title)::after {
-  left: 14px;
 }
 
 /* Chevron for explorer FILE items only (hover and active) */
@@ -977,9 +897,7 @@ svg[data-icon*="book"],
    Align to first line, not vertical center
    ========================= */
 
-.toc li {
-  position: relative;
-}
+.toc li { position: relative; }
 
 .toc li > a {
   display: block;
@@ -1016,14 +934,10 @@ svg[data-icon*="book"],
   color: rgba(96, 163, 255, 0.98);
 }
 
-.toc li > a:hover {
-  background-color: rgba(96, 163, 255, 0.12);
-}
+.toc li > a:hover { background-color: rgba(96, 163, 255, 0.12); }
 
 @media (prefers-reduced-motion: reduce) {
-  .toc li::before {
-    transition: none !important;
-  }
+  .toc li::before { transition: none !important; }
 }
 
 /* =========================
@@ -1056,35 +970,21 @@ footer a[href^="mailto:"] {
   margin-right: 0.75rem;
 }
 
-footer a[href^="https://www.instagram.com/"] {
-  background-image: url("../static/instagram.svg");
-}
-
-footer a[href*="tiktok.com"] {
-  background-image: url("../static/tiktok.svg");
-}
+footer a[href^="https://www.instagram.com/"] { background-image: url("../static/instagram.svg"); }
+footer a[href*="tiktok.com"] { background-image: url("../static/tiktok.svg"); }
 
 footer a[href*="discord.gg"],
-footer a[href*="discord.com"] {
-  background-image: url("../static/discord.svg");
-}
+footer a[href*="discord.com"] { background-image: url("../static/discord.svg"); }
 
-footer a[href$=".rss"] {
-  background-image: url("../static/rss.svg");
-}
-
-footer a[href^="mailto:"] {
-  background-image: url("../static/protonmail.svg");
-}
+footer a[href$=".rss"] { background-image: url("../static/rss.svg"); }
+footer a[href^="mailto:"] { background-image: url("../static/protonmail.svg"); }
 
 footer a[href^="https://www.instagram.com/"]:hover,
 footer a[href*="tiktok.com"]:hover,
 footer a[href*="discord.gg"]:hover,
 footer a[href*="discord.com"]:hover,
 footer a[href$=".rss"]:hover,
-footer a[href^="mailto:"]:hover {
-  opacity: 1;
-}
+footer a[href^="mailto:"]:hover { opacity: 1; }
 
 /* Disable empty placeholder links */
 footer a[href=""] {
@@ -1118,17 +1018,21 @@ footer a[href=""] {
 }
 
 /* Giscus to footer spacing */
-.giscus {
-  margin-bottom: 1rem;
-}
+.giscus { margin-bottom: 1rem; }
 
 /* =========================
    HEADINGS: GOLD GRADIENT + BACKPLATE + POSITION + HOVER CHEVRON
-   Applies to h1–h6 everywhere, including index cards
+   Applies to h1-h6 everywhere
    Excludes:
-     - .avv-title (Welcome hero)
-     - top-left site title area
+     .avv-title (Welcome hero)
+     top-left site title area
    ========================= */
+
+/* Ensure pseudo elements cannot be clipped */
+#quartz-root :is(h1, h2, h3, h4, h5, h6):not(.avv-title) {
+  overflow: visible;
+}
+
 #quartz-root h1:not(.avv-title),
 #quartz-root h2:not(.avv-title),
 #quartz-root h3:not(.avv-title),
@@ -1143,8 +1047,6 @@ footer a[href=""] {
 
   padding-left: 1.35rem;
   margin-top: -0.35em !important;
-
-  color: #f0dc8a !important;
 
   background-image: linear-gradient(
     180deg,
@@ -1237,7 +1139,7 @@ footer a[href=""] {
   padding-left: 0 !important;
 }
 
-/* Heading chevron (uses ::after so it won't collide with ::before backplate) */
+/* Heading chevron (uses ::after so it will not collide with ::before backplate) */
 #quartz-root h1:not(.avv-title)::after,
 #quartz-root h2:not(.avv-title)::after,
 #quartz-root h3:not(.avv-title)::after,
@@ -1254,6 +1156,8 @@ footer a[href=""] {
 
   color: rgba(96, 163, 255, 0.9);
 
+  z-index: 2;
+
   opacity: 0;
   transform: translateX(-2px);
 
@@ -1264,15 +1168,34 @@ footer a[href=""] {
     transform 220ms ease;
 }
 
-/* Fade in on hover, fade out on leave */
+/* Fade in on hover and keyboard focus, fade out on leave */
 #quartz-root h1:not(.avv-title):hover::after,
 #quartz-root h2:not(.avv-title):hover::after,
 #quartz-root h3:not(.avv-title):hover::after,
 #quartz-root h4:not(.avv-title):hover::after,
 #quartz-root h5:not(.avv-title):hover::after,
-#quartz-root h6:not(.avv-title):hover::after {
+#quartz-root h6:not(.avv-title):hover::after,
+#quartz-root h1:not(.avv-title):focus-within::after,
+#quartz-root h2:not(.avv-title):focus-within::after,
+#quartz-root h3:not(.avv-title):focus-within::after,
+#quartz-root h4:not(.avv-title):focus-within::after,
+#quartz-root h5:not(.avv-title):focus-within::after,
+#quartz-root h6:not(.avv-title):focus-within::after {
   opacity: 0.95;
   transform: translateX(0);
+}
+
+/* Touch devices have no hover, so show chevron by default */
+@media (hover: none) and (pointer: coarse) {
+  #quartz-root h1:not(.avv-title)::after,
+  #quartz-root h2:not(.avv-title)::after,
+  #quartz-root h3:not(.avv-title)::after,
+  #quartz-root h4:not(.avv-title)::after,
+  #quartz-root h5:not(.avv-title)::after,
+  #quartz-root h6:not(.avv-title)::after {
+    opacity: 0.85;
+    transform: translateX(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1302,7 +1225,7 @@ footer a[href=""] {
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
 }
 
-/* Optional: center the framed block without <p align="center"> */
+/* Optional: center the framed block without align tags */
 .img-frame.is-centered {
   display: block;
   width: fit-content;
@@ -1340,41 +1263,36 @@ footer a[href=""] {
   padding-bottom: 5.00%;
   padding-left:   5.00%;
 }
+
 /* =========================
    BREADCRUMBS. FINAL OVERRIDE
    Left aligned trail, own line, truncates last crumb
    Sits just under banner, above title
    ========================= */
 
-.page-header {
-  position: relative;
-}
+.page-header { position: relative; }
 
 /* The actual breadcrumb nav element in Quartz */
 .breadcrumb-container {
-  /* position in the vertical stack */
   margin-top: -1.25rem;
   margin-bottom: 0.65rem;
 
-  /* force normal trail layout */
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
   gap: 0.35rem;
 
-  /* defeat any inherited centering */
   width: 100%;
   text-align: left;
 
-  /* keep it readable over the forest texture */
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(2px);
 
-  /* prevent weird overflow behaviors */
   overflow: hidden;
+  opacity: 0.9;
 }
 
 /* Each breadcrumb piece should behave like inline content */
@@ -1411,10 +1329,3 @@ footer a[href=""] {
   display: block;
   margin-top: 0;
 }
-
-/* Optional subtle de emphasis */
-.breadcrumb-container {
-  opacity: 0.9;
-}
-
-
