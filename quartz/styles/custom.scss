@@ -19,14 +19,11 @@
    
 body {
   background-color: #0a120e;
-
   position: relative;
 
-  /* Order matters. First item is topmost.
-     We want: rear trees on top, stars behind trees, then gradients behind everything. */
+  /* Rear trees on top, then gradients. Stars moved to body::before so we can fade opacity only. */
   background-image:
     url("../static/trees-back.svg"),
-    url("../static/stars-twinkle.svg"),
     linear-gradient(
       to top,
       rgba(0, 0, 0, 0.70) 0%,
@@ -44,68 +41,72 @@ body {
 
   background-size:
     1800px 1100px,
-    1400px 900px,
     100% 1100px,
     100% 100%;
 
   background-position:
     center bottom,
-    center top,
     center bottom,
     center;
 
   background-repeat:
     repeat-x,
-    repeat,
     no-repeat,
     no-repeat;
 
   background-attachment:
     fixed,
     fixed,
-    fixed,
     fixed;
-
-  will-change: background-position;
-  animation: starTwinkle 6.8s ease-in-out infinite;
 }
 
-@keyframes starTwinkle {
-  0% {
-    background-position:
-      center bottom,
-      center top,
-      center bottom,
-      center;
-  }
+/* Stars layer sits BEHIND trees because it's under the first background-image layer.
+   It is also behind content because content is z-index 3.
+   We animate opacity only, no drifting. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
 
-  40% {
-    background-position:
-      center bottom,
-      6px -4px,
-      center bottom,
-      center;
-  }
+  /* Behind html::before (saucer, z 1) and html::after (front trees, z 2) */
+  z-index: 0;
 
-  70% {
-    background-position:
-      center bottom,
-      2px -8px,
-      center bottom,
-      center;
-  }
+  background-image: url("../static/stars-twinkle.svg");
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 1400px 900px;
+  background-attachment: fixed;
 
-  100% {
-    background-position:
-      center bottom,
-      center top,
-      center bottom,
-      center;
-  }
+  /* Only show stars in the sky band, so they never sit on the tree silhouettes. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 42%,
+    rgba(0,0,0,0) 72%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 42%,
+    rgba(0,0,0,0) 72%,
+    rgba(0,0,0,0) 100%
+  );
+
+  opacity: 0.55;
+  animation: starTwinkleOpacity 4.8s ease-in-out infinite;
+}
+
+@keyframes starTwinkleOpacity {
+  0%   { opacity: 0.48; }
+  35%  { opacity: 0.62; }
+  60%  { opacity: 0.52; }
+  100% { opacity: 0.48; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body {
+  body::before {
     animation: none !important;
   }
 
