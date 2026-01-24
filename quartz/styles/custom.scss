@@ -1000,84 +1000,30 @@ footer a[href=""] {
 }
 
 /* =========================
-   HEADING BACKPLATE
-   Subtle translucent band behind h1–h4 to increase contrast
+   HEADINGS: GOLD GRADIENT + BACKPLATE + POSITION
+   Applies to h1–h4 everywhere, including index cards
+   Does not affect the top-left site title (not an h1–h4)
    ========================= */
 #quartz-root h1,
 #quartz-root h2,
 #quartz-root h3,
 #quartz-root h4 {
   position: relative;
-  display: inline-block; /* keep plate sized to text */
+  display: inline-block; /* plate hugs text */
   padding: 0.18em 0.42em;
   border-radius: 10px;
   line-height: 1.15;
-}
 
-/* the plate */
-#quartz-root h1::before,
-#quartz-root h2::before,
-#quartz-root h3::before,
-#quartz-root h4::before {
-  content: "";
-  position: absolute;
-  inset: -0.12em -0.45em; /* extend past text */
-  border-radius: 12px;
-  z-index: -1;
+  /* helps prevent plate clipping in some overflow contexts */
+  isolation: isolate;
 
-  /* mostly transparent, but flattens background detail */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.44) 0%,
-      rgba(0, 0, 0, 0.26) 55%,
-      rgba(0, 0, 0, 0.42) 100%
-    );
+  /* pull up toward separators */
+  margin-top: -0.35em !important;
 
-  /* subtle edge so it reads intentional */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* fallback if clip unsupported */
+  color: #f0dc8a !important;
 
-  /* soft lift */
-  box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-
-  /* optional: slight blur to “de-noise” trees behind */
-  backdrop-filter: blur(2.2px);
-  -webkit-backdrop-filter: blur(2.2px);
-}
-
-/* Make h1 plate a bit stronger, since it sits on busy areas often */
-#quartz-root h1::before {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.50) 0%,
-      rgba(0, 0, 0, 0.30) 55%,
-      rgba(0, 0, 0, 0.48) 100%
-    );
-  border-color: rgba(255, 255, 255, 0.10);
-}
-
-/* If headings are links, keep the same plate behavior */
-#quartz-root h1 a,
-#quartz-root h2 a,
-#quartz-root h3 a,
-#quartz-root h4 a {
-  position: relative;
-  z-index: 1;
-}
-
-/* =========================
-   HEADINGS EVERYWHERE, INCLUDING INDEX CARDS
-   Gold metal gradient text
-   ========================= */
-#quartz-root h1,
-#quartz-root h2,
-#quartz-root h3,
-#quartz-root h4 {
-  color: #f0dc8a !important; /* fallback */
-
+  /* brighter metallic gold */
   background-image: linear-gradient(
     180deg,
     #fff9dd 0%,
@@ -1093,18 +1039,64 @@ footer a[href=""] {
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
 
-  /* shadow now purely for separation, not darkness */
   text-shadow:
     0 1px 0 rgba(0, 0, 0, 0.45),
     0 3px 8px rgba(0, 0, 0, 0.30),
     0 0 14px rgba(255, 235, 170, 0.22);
 }
 
-/* If the index titles are links, force link to inherit gradient */
+/* Fine tune per level */
+#quartz-root h1 { margin-top: -0.45em !important; }
+#quartz-root h2 { margin-top: -0.38em !important; }
+#quartz-root h3 { margin-top: -0.30em !important; }
+#quartz-root h4 { margin-top: -0.22em !important; }
+
+/* Backplate */
+#quartz-root h1::before,
+#quartz-root h2::before,
+#quartz-root h3::before,
+#quartz-root h4::before {
+  content: "";
+  position: absolute;
+  inset: -0.12em -0.45em;
+  border-radius: 12px;
+  z-index: -1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.44) 0%,
+    rgba(0, 0, 0, 0.26) 55%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(2.2px);
+  -webkit-backdrop-filter: blur(2.2px);
+}
+
+/* h1 plate slightly stronger */
+#quartz-root h1::before {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.50) 0%,
+    rgba(0, 0, 0, 0.30) 55%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* If headings are links, inherit gradient */
 #quartz-root h1 a,
 #quartz-root h2 a,
 #quartz-root h3 a,
 #quartz-root h4 a {
+  position: relative;
+  z-index: 1;
   color: inherit !important;
   -webkit-text-fill-color: inherit !important;
 }
