@@ -1340,73 +1340,81 @@ footer a[href=""] {
   padding-bottom: 5.00%;
   padding-left:   5.00%;
 }
-
 /* =========================
-   BREADCRUMB HARD TRUNCATION
-   Targets actual Quartz markup
+   BREADCRUMBS. FINAL OVERRIDE
+   Left aligned trail, own line, truncates last crumb
+   Sits just under banner, above title
    ========================= */
 
-.breadcrumb-container {
-  max-width: 100%;
-  overflow: hidden;
-}
-
-/* The LAST breadcrumb is the page title — clamp it */
-.breadcrumb-element:last-child a {
-  display: inline-block;
-
-  max-width: 36ch;   /* ← controls how short it is */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  vertical-align: bottom;
-}
-
-/* Optional: reduce visual dominance */
-.breadcrumb-element:last-child a {
-  opacity: 0.85;
-}
-
-/* =========================
-   BREADCRUMB REPOSITIONING
-   Place directly under banner, above title
-   ========================= */
-
-/* Ensure header establishes positioning context */
 .page-header {
   position: relative;
 }
 
-/* Move breadcrumbs upward into banner gap */
+/* The actual breadcrumb nav element in Quartz */
 .breadcrumb-container {
-  margin-top: -1.25rem;   /* pulls it up under the banner */
-  margin-bottom: 0.75rem; /* space before the title */
+  /* position in the vertical stack */
+  margin-top: -1.25rem;
+  margin-bottom: 0.65rem;
 
+  /* force normal trail layout */
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+
+  /* defeat any inherited centering */
+  width: 100%;
+  text-align: left;
+
+  /* keep it readable over the forest texture */
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
-
-  background: rgba(0, 0, 0, 0.45); /* readability over textures */
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(2px);
 
+  /* prevent weird overflow behaviors */
+  overflow: hidden;
+}
+
+/* Each breadcrumb piece should behave like inline content */
+.breadcrumb-element {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  min-width: 0;
 }
 
-/* =========================
-   BREADCRUMB LINE ISOLATION
-   Prevent title from sharing breadcrumb row
-   ========================= */
-
-/* Breadcrumbs must always occupy their own line */
-.breadcrumb-container {
-  display: block;        /* NOT inline-flex */
-  width: 100%;
+/* Keep the separator tight and not floating away */
+.breadcrumb-element p {
+  margin: 0;
+  opacity: 0.85;
 }
 
-/* Ensure title always breaks to a new line */
+/* Truncate the LAST crumb only */
+.breadcrumb-element:last-child {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.breadcrumb-element:last-child a {
+  display: inline-block;
+  max-width: min(36ch, 62vw);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+/* Ensure the page title is always on its own line */
 .article-title {
   display: block;
-  margin-top: 0.75rem;   /* spacing below breadcrumbs */
+  margin-top: 0;
 }
+
+/* Optional subtle de emphasis */
+.breadcrumb-container {
+  opacity: 0.9;
+}
+
+
