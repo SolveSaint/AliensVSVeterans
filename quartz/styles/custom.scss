@@ -125,7 +125,7 @@ html::before {
   transform: translate(-50%, -50%);
 
   /* twice the speed: 320s -> 160s */
-  animation: saucerPatrol 160s ease-in-out infinite, saucerDrift 14s ease-in-out infinite;
+  animation: saucerPatrol 80s ease-in-out infinite, saucerDrift 14s ease-in-out infinite;
 }
 
 /* FRONT TREES OCCLUDER BAND (top layer, only around saucer height) */
@@ -175,25 +175,57 @@ html::after {
 
 /* Motion */
 @keyframes saucerPatrol {
-  0%   { transform: translate(-50%, -50%) translateX(-46vw); }
-  50%  { transform: translate(-50%, -50%) translateX(46vw); }
-  100% { transform: translate(-50%, -50%) translateX(-46vw); }
+  /* normal low patrol */
+  0% {
+    transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
+  }
+
+  18% {
+    transform: translate(-50%, -50%) translateX(-18vw) translateY(0);
+  }
+
+  /* rare ascent above trees */
+  32% {
+    transform: translate(-50%, -50%) translateX(0vw) translateY(-18vh);
+  }
+
+  /* brief linger up high */
+  38% {
+    transform: translate(-50%, -50%) translateX(6vw) translateY(-20vh);
+  }
+
+  /* descend back into trees */
+  50% {
+    transform: translate(-50%, -50%) translateX(18vw) translateY(0);
+  }
+
+  /* resume normal patrol */
+  75% {
+    transform: translate(-50%, -50%) translateX(46vw) translateY(0);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translateX(-46vw) translateY(0);
+  }
 }
 
 /* subtle bob so it feels like it belongs in the scene */
 @keyframes saucerDrift {
-  0%   { filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px) drop-shadow(0 0 2px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 8px rgba(180, 205, 255, 0.05)); }
-  50%  { filter: brightness(0.66) contrast(0.92) saturate(0.45) blur(0.25px) drop-shadow(0 0 2px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 10px rgba(180, 205, 255, 0.06)); }
-  100% { filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px) drop-shadow(0 0 2px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 8px rgba(180, 205, 255, 0.05)); }
-}
-
-/* more wind, slight bend plus subtle lift and settle */
-@keyframes treetopsSway {
-  0%   { transform: rotate(-0.55deg) skewX(-0.65deg) translateY(0px); }
-  22%  { transform: rotate(0.35deg)  skewX(0.55deg)  translateY(-2px); }
-  50%  { transform: rotate(0.65deg)  skewX(0.75deg)  translateY(-3px); }
-  78%  { transform: rotate(-0.25deg) skewX(-0.45deg) translateY(-1px); }
-  100% { transform: rotate(-0.55deg) skewX(-0.65deg) translateY(0px); }
+  0% {
+    filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px)
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 8px rgba(180, 205, 255, 0.05));
+  }
+  50% {
+    filter: brightness(0.66) contrast(0.92) saturate(0.45) blur(0.35px)
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 10px rgba(180, 205, 255, 0.06));
+  }
+  100% {
+    filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px)
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 8px rgba(180, 205, 255, 0.05));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
