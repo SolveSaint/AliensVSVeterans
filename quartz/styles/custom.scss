@@ -1342,28 +1342,55 @@ footer a[href=""] {
 }
 
 /* =========================
-   BREADCRUMB TRUNCATION + HOVER EXPAND
-   Prevent long paths from crowding titles
-   Quartz-safe, layout-only fix
+   BREADCRUMB TRUNCATION, HARD CAP
+   Works even inside flex layouts
    ========================= */
 
 .breadcrumbs {
-  max-width: 72ch;        /* cap width so it doesn't collide with title */
-  white-space: nowrap;   /* single-line by default */
-  overflow: hidden;      /* required for ellipsis */
+  display: block;
+
+  /* Hard visual cap so it cannot run into the title area */
+  width: min(42ch, 62vw);
+  max-width: 100%;
+  min-width: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 
-  display: block;        /* ensures truncation works consistently */
-  opacity: 0.85;         /* slightly de-emphasize vs heading */
+  opacity: 0.85;
 }
 
-/* Prevent internal wrapping of links */
-.breadcrumbs a {
+/* If breadcrumbs live inside a flex header row, this is critical */
+.breadcrumbs,
+.breadcrumbs * {
+  min-width: 0;
+}
+
+/* Keep inner pieces from wrapping */
+.breadcrumbs a,
+.breadcrumbs li,
+.breadcrumbs ol,
+.breadcrumbs ul {
   white-space: nowrap;
 }
 
-/* Hover: reveal full breadcrumb path intentionally */
+/* Hover expand, shows full path without moving layout */
+.breadcrumbs {
+  position: relative;
+}
+
 .breadcrumbs:hover {
   overflow: visible;
   white-space: normal;
+  z-index: 50;
+}
+
+/* Optional, give the expanded crumbs a readable backdrop */
+.breadcrumbs:hover ol,
+.breadcrumbs:hover ul {
+  background: rgba(0, 0, 0, 0.72);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  display: inline-block;
 }
