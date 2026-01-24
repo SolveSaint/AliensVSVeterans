@@ -18,7 +18,6 @@
    ========================= */
 body {
   background-color: #0a120e;
-
   position: relative;
   z-index: 0;
 
@@ -37,24 +36,34 @@ body {
       rgba(255, 255, 255, 0.028) 35%,
       rgba(0, 0, 0, 0.36) 70%,
       rgba(0, 0, 0, 0.64) 100%
-    );
+    ),
+    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 
   background-size:
     1800px 1100px,
     100% 1100px,
-    100% 100%;
+    100% 100%,
+    5px 5px,
+    2px 2px;
 
   background-position:
     center bottom,
     center bottom,
-    center;
+    center,
+    0 0,
+    1px 1px;
 
   background-repeat:
     repeat-x,
     no-repeat,
-    no-repeat;
+    no-repeat,
+    repeat,
+    repeat;
 
   background-attachment:
+    fixed,
+    fixed,
     fixed,
     fixed,
     fixed;
@@ -78,8 +87,8 @@ body::before {
   inset: 0;
   pointer-events: none;
 
-  /* backmost */
-  z-index: -1;
+  /* behind html::before (z 1) and html::after (z 2), behind content (z 3) */
+  z-index: 0;
 
   /* keep stars in the sky band only */
   -webkit-mask-image: linear-gradient(
@@ -384,7 +393,10 @@ html::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before,
+  body::before {
+    animation: none !important;
+  }
+
   html::before,
   html::after {
     animation: none !important;
