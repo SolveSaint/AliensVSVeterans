@@ -1,0 +1,1331 @@
+@use "./base.scss";
+
+/* =========================
+   GLOBAL STACKING
+   Keep overlays behind content
+   ========================= */
+#quartz-root,
+#quartz-body {
+  position: relative;
+  z-index: 3; /* content layer */
+}
+
+/* =========================
+   STRONG GLOBAL TEXTURED BACKGROUND
+   Night forest green bias plus tall pine silhouettes (SVG)
+   Trees are fixed to viewport so they are always visible
+   This is the BACK tree layer
+   ========================= */
+
+body {
+  background-color: #0a120e;
+  position: relative;
+
+  /* Rear trees on top, then gradients. Stars moved to body::before so we can fade opacity only. */
+  background-image:
+    url("../static/trees-back.svg"),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.70) 0%,
+      rgba(10, 18, 14, 0.48) 34%,
+      rgba(10, 18, 14, 0.22) 60%,
+      rgba(10, 18, 14, 0) 86%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.028) 35%,
+      rgba(0, 0, 0, 0.36) 70%,
+      rgba(0, 0, 0, 0.64) 100%
+    );
+
+  background-size:
+    1800px 1100px,
+    100% 1100px,
+    100% 100%;
+
+  background-position:
+    center bottom,
+    center bottom,
+    center;
+
+  background-repeat:
+    repeat-x,
+    no-repeat,
+    no-repeat;
+
+  background-attachment:
+    fixed,
+    fixed,
+    fixed;
+}
+
+/* Stars layer sits behind trees because it is under the first background-image layer.
+   It is also behind content because content is z-index 3.
+   We animate opacity only, no drifting. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  /* Behind html::before (saucer, z 1) and html::after (front trees, z 2) */
+  z-index: 0;
+
+  background-image: url("../static/stars-twinkle.svg");
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 1400px 900px;
+  background-attachment: fixed;
+
+  /* Only show stars in the sky band, so they never sit on the tree silhouettes. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 42%,
+    rgba(0,0,0,0) 72%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 42%,
+    rgba(0,0,0,0) 72%,
+    rgba(0,0,0,0) 100%
+  );
+
+  opacity: 0.55;
+  animation: starTwinkleOpacity 4.8s ease-in-out infinite;
+}
+
+@keyframes starTwinkleOpacity {
+  0%   { opacity: 0.48; }
+  35%  { opacity: 0.62; }
+  60%  { opacity: 0.52; }
+  100% { opacity: 0.48; }
+}
+
+/* =========================
+   SAUCER IN TREES
+   Back trees are the body background image.
+   This adds the saucer layer and a front tree occluder band.
+   ========================= */
+
+html {
+  position: relative;
+}
+
+/* SAUCER LAYER (middle) */
+html::before {
+  content: "";
+  position: fixed;
+  left: 50%;
+  top: 58%;
+
+  width: clamp(260px, 23vw, 460px);
+  height: clamp(60px, 6vw, 100px);
+
+  pointer-events: none;
+  z-index: 1;
+
+  background-image: url("../static/saucer.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  opacity: 1.00;
+  mix-blend-mode: normal;
+
+  filter:
+    brightness(0.62)
+    contrast(0.92)
+    saturate(0.45)
+    blur(0.25px)
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 8px rgba(180, 205, 255, 0.05));
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 58%,
+    rgba(0,0,0,0.75) 70%,
+    rgba(0,0,0,0.22) 82%,
+    rgba(0,0,0,0) 92%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 58%,
+    rgba(0,0,0,0.75) 70%,
+    rgba(0,0,0,0.22) 82%,
+    rgba(0,0,0,0) 92%
+  );
+
+  transform: translate(-50%, -50%);
+
+  /* patrol speed goal: 80s */
+  animation: saucerPatrol 80s ease-in-out infinite, saucerDrift 14s ease-in-out infinite;
+}
+
+/* FRONT TREES OCCLUDER BAND (top layer, only around saucer height)
+   Adds a faint green glow behind the front trees so it is visible even when occluded. */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 2;
+
+  /* Layer 1: front trees
+     Layer 2: saucer glow (behind trees, shows through SVG transparency) */
+  background-image:
+    url("../static/trees-front.svg"),
+    radial-gradient(
+      ellipse 10rem 5rem at 50% 58%,
+      rgba(44, 170, 120, 0.18) 0%,
+      rgba(44, 170, 120, 0.09) 28%,
+      rgba(44, 170, 120, 0.035) 52%,
+      rgba(44, 170, 120, 0.00) 74%
+    );
+
+  background-repeat:
+    repeat-x,
+    no-repeat;
+
+  background-size:
+    1800px 1100px,
+    22rem 12rem;
+
+  background-position:
+    center bottom,
+    calc(50% - 46vw) 58%;
+
+  background-attachment:
+    fixed,
+    fixed;
+
+  opacity: 0.88;
+  mix-blend-mode: normal;
+
+  transform-origin: 50% 100%;
+  will-change: transform, background-position;
+
+  animation:
+    treetopsSway 9.5s ease-in-out infinite,
+    saucerGlow 80s ease-in-out infinite;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 36%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 36%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Motion */
+@keyframes saucerPatrol {
+  0%   { transform: translate(-50%, -50%) translateX(-46vw) translateY(0); }
+  18%  { transform: translate(-50%, -50%) translateX(-18vw) translateY(0); }
+  32%  { transform: translate(-50%, -50%) translateX(0vw)  translateY(-18vh); }
+  38%  { transform: translate(-50%, -50%) translateX(6vw)  translateY(-20vh); }
+  50%  { transform: translate(-50%, -50%) translateX(18vw) translateY(0); }
+  75%  { transform: translate(-50%, -50%) translateX(46vw) translateY(0); }
+  100% { transform: translate(-50%, -50%) translateX(-46vw) translateY(0); }
+}
+
+/* Glow follows the same path as saucerPatrol, but as a background-position in the occluder layer */
+@keyframes saucerGlow {
+  0% {
+    background-position:
+      center bottom,
+      calc(50% - 46vw) 58%;
+  }
+  18% {
+    background-position:
+      center bottom,
+      calc(50% - 18vw) 58%;
+  }
+  32% {
+    background-position:
+      center bottom,
+      50% calc(58% - 18vh);
+  }
+  38% {
+    background-position:
+      center bottom,
+      calc(50% + 6vw) calc(58% - 20vh);
+  }
+  50% {
+    background-position:
+      center bottom,
+      calc(50% + 18vw) 58%;
+  }
+  75% {
+    background-position:
+      center bottom,
+      calc(50% + 46vw) 58%;
+  }
+  100% {
+    background-position:
+      center bottom,
+      calc(50% - 46vw) 58%;
+  }
+}
+
+/* subtle bob so it feels like it belongs in the scene */
+@keyframes saucerDrift {
+  0% {
+    filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px)
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 8px rgba(180, 205, 255, 0.05));
+  }
+  50% {
+    filter: brightness(0.66) contrast(0.92) saturate(0.45) blur(0.35px)
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 10px rgba(180, 205, 255, 0.06));
+  }
+  100% {
+    filter: brightness(0.62) contrast(0.92) saturate(0.45) blur(0.25px)
+      drop-shadow(0 0 2px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 8px rgba(180, 205, 255, 0.05));
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+   Single block, deduped
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none !important; }
+  html::before,
+  html::after { animation: none !important; }
+}
+
+/* =========================
+   KEEP CONTENT ABOVE BACKGROUND
+   ========================= */
+#quartz-body,
+.center,
+main,
+article,
+.content {
+  position: relative;
+  z-index: 3;
+  min-width: 0;
+}
+
+/* =========================
+   GLOBAL TEXT PALETTE
+   Warm neutrals tuned for dark green
+   ========================= */
+html,
+body,
+#quartz-root,
+#quartz-body {
+  color: #e6ebe7;
+}
+
+.page-meta,
+.content-meta,
+.breadcrumb,
+.breadcrumbs,
+.left.sidebar,
+.right.sidebar,
+.toc,
+.graph,
+footer {
+  color: #9aa8a0;
+}
+
+/* Links */
+a { color: #7fb4ff; }
+a:hover { color: #a7c9ff; }
+
+/* Headings inside articles */
+.center article h1,
+.center article h2,
+.center article h3,
+.center article h4,
+.center article h5,
+.center article h6 {
+  color: #f1f5f2;
+}
+
+/* Code */
+code,
+pre { color: #e6ebe7; }
+
+/* =========================
+   GLOBAL WIDTH SAFETY
+   ========================= */
+html,
+body,
+#quartz-root,
+#quartz-body {
+  width: 100%;
+  max-width: 100%;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.center article p,
+.center article li,
+.center article blockquote,
+.center article h1,
+.center article h2,
+.center article h3,
+.center article h4,
+.center article h5,
+.center article h6,
+.center article strong,
+.center article em,
+.center article a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* =========================
+   GLOBAL LAYOUT PULL UP
+   ========================= */
+#quartz-root,
+#quartz-body,
+.center,
+.center .page-header,
+.center .page-header header {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.center .page-header header {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.center .page-header header > div { margin-bottom: 0 !important; }
+
+.center .page-header figure,
+.center .page-header picture { margin: 0 !important; }
+
+.center .page-header img,
+.center .page-header a { display: block; }
+
+/* Keep columns aligned at the top */
+#quartz-body { align-items: flex-start !important; }
+
+/* =========================
+   HEADER BANNER. CENTER AND FILL AVAILABLE COLUMN WIDTH
+   ========================= */
+.center .page-header figure,
+.center .page-header picture,
+.center .page-header a {
+  width: 100%;
+  max-width: none;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.center .page-header figure,
+.center .page-header picture {
+  display: flex;
+  justify-content: center;
+}
+
+.center .page-header img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* =========================
+   SIDEBARS
+   ========================= */
+.left.sidebar,
+.right.sidebar {
+  margin-top: 0 !important;
+  padding-top: 1rem !important;
+}
+
+.left.sidebar .page-title { margin-top: 0 !important; }
+
+.right.sidebar .graph {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* =========================
+   FAKE H1 HERO TITLE
+   ========================= */
+.avv-title {
+  white-space: nowrap;
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.08;
+  margin: 0 0 2rem 0;
+  color: #e6ebe7;
+  text-align: center;
+  letter-spacing: 0.01em;
+  transform: translateZ(0);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 4px 12px rgba(0, 0, 0, 0.45);
+  animation: avvFadeIn 600ms ease-out both;
+}
+
+.avv-title span { display: inline; }
+
+.avv-title::after {
+  content: "";
+  display: block;
+  width: 360px;
+  height: 7px;
+  margin: 0.8rem auto 0;
+  background: linear-gradient(90deg, #c43c3c, #ffffff, #1f4ed8);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.avv-welcome {
+  color: #f2c94c;
+  font-weight: 500;
+  opacity: 0.92;
+  text-shadow: 0 0 14px rgba(242, 201, 76, 0.42);
+}
+
+.avv-aliens {
+  color: #c43c3c;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 14px rgba(196, 60, 60, 0.4);
+}
+
+.avv-veterans {
+  color: #1f4ed8;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 14px rgba(31, 78, 216, 0.36);
+}
+
+.avv-welcome,
+.avv-aliens,
+.avv-veterans { letter-spacing: 0.01em; }
+
+@keyframes avvFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   META ROW TIGHTENING
+   ========================= */
+.page-meta,
+.content-meta,
+.breadcrumb,
+.breadcrumbs {
+  margin-top: 0.25rem !important;
+}
+
+.center .page-header .popover-hint,
+.center .page-header .content-meta {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.center .page-header .content-meta { margin-bottom: 0.35rem !important; }
+
+/* =========================
+   TOP LEFT SITE TITLE
+   Flag gradient text
+   ========================= */
+.left.sidebar .page-title a {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+
+  background: linear-gradient(
+    90deg,
+    #c43c3c 0%,
+    #c43c3c 38%,
+    #ffffff 38%,
+    #ffffff 52%,
+    #1f4ed8 52%,
+    #1f4ed8 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 14px rgba(196, 60, 60, 0.22),
+    0 0 14px rgba(31, 78, 216, 0.22);
+}
+
+.left.sidebar .page-title,
+.left.sidebar .page-title a {
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  hyphens: none !important;
+  white-space: nowrap !important;
+}
+
+/* =========================
+   MOBILE: WRAP HERO TITLE
+   ========================= */
+@media (max-width: 700px) {
+  .avv-title {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .avv-title::after { width: min(360px, 92vw); }
+}
+
+/* =========================
+   MOBILE: FIX HEADER ROW (TITLE + SEARCH)
+   ========================= */
+@media (max-width: 700px) {
+  .left.sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .left.sidebar .page-title { min-width: 0 !important; }
+
+  .left.sidebar .page-title a {
+    max-width: none !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .left.sidebar input[type="search"],
+  .left.sidebar .search input,
+  .left.sidebar .searchbar input {
+    width: 9.5rem !important;
+    max-width: 9.5rem !important;
+  }
+
+  .left.sidebar .search,
+  .left.sidebar .searchbar { flex: 0 0 auto !important; }
+}
+
+/* =========================
+   MOBILE FONT SIZE BOOST
+   ========================= */
+@media (max-width: 700px) {
+  body { font-size: 1.05rem; }
+
+  p,
+  li,
+  blockquote {
+    font-size: 1.1rem;
+    line-height: 1.65;
+  }
+
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.15rem; }
+
+  .left.sidebar,
+  .right.sidebar { font-size: 0.95rem; }
+
+  .page-meta,
+  .content-meta,
+  .breadcrumb,
+  .breadcrumbs { font-size: 0.85rem; }
+}
+
+/* =========================
+   FORCE DARK MODE ONLY
+   ========================= */
+:root { color-scheme: dark !important; }
+
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background-color: #0a120e !important;
+  color: #e6ebe7 !important;
+}
+
+html,
+html[data-theme],
+html[data-theme="dark"] {
+  --background: #0a120e !important;
+  --text: #e6ebe7 !important;
+}
+
+/* =========================
+   REMOVE THEME TOGGLE (MOON ICON)
+   ========================= */
+button[aria-label*="theme"],
+button[title*="theme"],
+button[aria-label*="dark"],
+button[aria-label*="light"],
+a[aria-label*="theme"],
+a[title*="theme"],
+svg[data-icon*="moon"],
+svg[data-icon*="sun"],
+.theme-toggle,
+.theme-switch,
+.darkmode-toggle,
+.lightmode-toggle {
+  display: none !important;
+}
+
+/* =========================
+   REMOVE BOOK ICON
+   ========================= */
+button[aria-label*="reader"],
+button[title*="reader"],
+button[aria-label*="book"],
+button[title*="book"],
+a[aria-label*="reader"],
+a[title*="reader"],
+a[aria-label*="book"],
+a[title*="book"],
+svg[data-icon*="book"],
+.book,
+.book-toggle,
+.reader-toggle {
+  display: none !important;
+}
+
+/* =========================
+   EXPLORER
+   Biolectrics blocks for files
+   Folder rows stay clean
+   Hover and active chevron restored
+   ========================= */
+
+/* FOLDERS (no block background, single line) */
+.explorer-content .explorer-ul > li > .folder-container,
+.explorer-content ul.content > li > .folder-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  position: relative;
+  background: transparent;
+  transition: background-color 0.28s ease, border-color 0.28s ease;
+}
+
+.explorer-content .explorer-ul > li > .folder-container > div,
+.explorer-content ul.content > li > .folder-container > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.explorer-content .folder-title {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Subtle divider under folders */
+.explorer-content .explorer-ul > li > .folder-container::after,
+.explorer-content ul.content > li > .folder-container::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Softer blue accent on folder hover (slow fade-in) */
+.explorer-content .folder-container:hover {
+  background-color: rgba(96, 163, 255, 0.08);
+  border-left: 2px solid rgba(96, 163, 255, 0.18);
+}
+
+/* FILES (pill blocks + zebra) */
+.explorer-content .explorer-ul > li > a:not(.folder-title),
+.explorer-content ul.content > li > a:not(.folder-title) {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  padding: 8px 12px;
+  border-radius: 8px;
+  position: relative;
+
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  margin-left: 12px;
+  border-left: 2px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.06);
+  background-clip: padding-box;
+
+  min-width: 0;
+}
+
+/* Zebra backgrounds set by postscript.ts */
+.explorer-content .zebra-odd  { background-color: rgba(255, 255, 255, 0.07); }
+.explorer-content .zebra-even { background-color: rgba(255, 255, 255, 0.04); }
+
+/* Blue-tinted hover for files */
+.explorer-content a:not(.folder-title):hover {
+  background-color: rgba(96, 163, 255, 0.15);
+  color: #e6f0ff;
+}
+
+/* Active file highlight */
+.explorer-content a.is-active {
+  background-color: rgba(96, 163, 255, 0.24);
+  color: #eef4f0;
+  border-radius: 8px;
+  box-shadow: inset 3px 0 0 rgba(96, 163, 255, 0.75);
+}
+
+/* Dividers for files */
+.explorer-content .explorer-ul > li > a:not(.folder-title)::after,
+.explorer-content ul.content > li > a:not(.folder-title)::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 8px;
+  bottom: -1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.explorer-ul.gradient-active::after { opacity: 0.15; }
+
+/* Remove left rail on folders to stop the curved bracket artifact */
+.explorer-content .explorer-ul > li > .folder-container,
+.explorer-content ul.content > li > .folder-container {
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+/* Keep the rail only on FILE blocks (no flashing) */
+.explorer-content .explorer-ul > li > a:not(.folder-title),
+.explorer-content ul.content > li > a:not(.folder-title) {
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.06);
+  background-clip: padding-box;
+}
+
+/* Chevron for explorer FILE items only (hover and active) */
+.explorer-content .explorer-ul > li > a:not(.folder-title)::before,
+.explorer-content ul.content > li > a:not(.folder-title)::before {
+  content: "›";
+  display: inline-block;
+
+  flex: 0 0 14px;
+  width: 14px;
+
+  margin-top: 0.12em;
+
+  font-size: 1.05rem;
+  line-height: 1;
+
+  color: rgba(96, 163, 255, 0.9);
+
+  opacity: 0;
+  transform: translateX(-2px);
+
+  pointer-events: none;
+
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.explorer-content .explorer-ul > li > a:not(.folder-title):hover::before,
+.explorer-content ul.content > li > a:not(.folder-title):hover::before {
+  opacity: 0.95;
+  transform: translateX(0);
+}
+
+.explorer-content .explorer-ul > li > a.is-active:not(.folder-title)::before,
+.explorer-content ul.content > li > a.is-active:not(.folder-title)::before {
+  opacity: 1;
+  transform: translateX(0);
+  color: rgba(96, 163, 255, 0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer-content .folder-container,
+  .explorer-content a:not(.folder-title),
+  .explorer-content .explorer-ul > li > a:not(.folder-title)::before,
+  .explorer-content ul.content > li > a:not(.folder-title)::before {
+    transition: none !important;
+  }
+}
+
+/* =========================
+   TABLE OF CONTENTS CHEVRON
+   Align to first line, not vertical center
+   ========================= */
+
+.toc li { position: relative; }
+
+.toc li > a {
+  display: block;
+  padding-left: 24px !important;
+  border-radius: 6px;
+}
+
+.toc li::before {
+  content: "›";
+  position: absolute;
+  left: 8px;
+  top: 0.35em;
+
+  font-size: 1.05rem;
+  line-height: 1;
+
+  color: rgba(96, 163, 255, 0.9);
+  opacity: 0;
+
+  transform: translateX(-2px);
+  transition: opacity 220ms ease, transform 220ms ease;
+
+  pointer-events: none;
+}
+
+.toc li:hover::before {
+  opacity: 0.95;
+  transform: translateX(0);
+}
+
+.toc li:has(> a.active)::before {
+  opacity: 1;
+  transform: translateX(0);
+  color: rgba(96, 163, 255, 0.98);
+}
+
+.toc li > a:hover { background-color: rgba(96, 163, 255, 0.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .toc li::before { transition: none !important; }
+}
+
+/* =========================
+   FOOTER SOCIAL ICONS
+   Icon-only links via URL selectors
+   ========================= */
+footer a[href^="https://www.instagram.com/"],
+footer a[href*="tiktok.com"],
+footer a[href*="discord.gg"],
+footer a[href*="discord.com"],
+footer a[href$=".rss"],
+footer a[href^="mailto:"] {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 200%;
+
+  filter: invert(1);
+  opacity: 0.9;
+  vertical-align: middle;
+
+  margin-right: 0.75rem;
+}
+
+footer a[href^="https://www.instagram.com/"] { background-image: url("../static/instagram.svg"); }
+footer a[href*="tiktok.com"] { background-image: url("../static/tiktok.svg"); }
+
+footer a[href*="discord.gg"],
+footer a[href*="discord.com"] { background-image: url("../static/discord.svg"); }
+
+footer a[href$=".rss"] { background-image: url("../static/rss.svg"); }
+footer a[href^="mailto:"] { background-image: url("../static/protonmail.svg"); }
+
+footer a[href^="https://www.instagram.com/"]:hover,
+footer a[href*="tiktok.com"]:hover,
+footer a[href*="discord.gg"]:hover,
+footer a[href*="discord.com"]:hover,
+footer a[href$=".rss"]:hover,
+footer a[href^="mailto:"]:hover { opacity: 1; }
+
+/* Disable empty placeholder links */
+footer a[href=""] {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+/* =========================
+   GISCUS WARNING BANNER
+   Injected via CSS
+   ========================= */
+.page-footer .giscus::before {
+  content: "Content here should remain respectful of the subject matter and the persons involved with this site. Comments are public. Do not post private or identifying information. Contact me directly if you need to do so.";
+  display: block;
+
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1.1rem;
+
+  background: rgba(96, 163, 255, 0.12);
+  border-left: 3px solid rgba(96, 163, 255, 0.65);
+
+  color: #dbe6f2;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  border-radius: 6px;
+  opacity: 0.96;
+}
+
+/* Giscus to footer spacing */
+.giscus { margin-bottom: 1rem; }
+
+/* =========================
+   HEADINGS: GOLD GRADIENT + BACKPLATE + POSITION + HOVER CHEVRON
+   Applies to h1-h6 everywhere
+   Excludes:
+     .avv-title (Welcome hero)
+     top-left site title area
+   ========================= */
+
+/* Ensure pseudo elements cannot be clipped */
+#quartz-root :is(h1, h2, h3, h4, h5, h6):not(.avv-title) {
+  overflow: visible;
+}
+
+#quartz-root h1:not(.avv-title),
+#quartz-root h2:not(.avv-title),
+#quartz-root h3:not(.avv-title),
+#quartz-root h4:not(.avv-title),
+#quartz-root h5:not(.avv-title),
+#quartz-root h6:not(.avv-title) {
+  position: relative;
+  display: inline-block;
+  padding: 0.18em 0.42em;
+  border-radius: 10px;
+  line-height: 1.15;
+
+  padding-left: 1.35rem;
+  margin-top: -0.35em !important;
+
+  background-image: linear-gradient(
+    180deg,
+    #fff9dd 0%,
+    #ffefb8 18%,
+    #f0d37a 40%,
+    #fff3c8 52%,
+    #e2c36a 70%,
+    #b8953a 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 8px rgba(0, 0, 0, 0.30),
+    0 0 14px rgba(255, 235, 170, 0.22);
+}
+
+/* Fine tune per level */
+#quartz-root h1:not(.avv-title) { margin-top: -0.45em !important; }
+#quartz-root h2:not(.avv-title) { margin-top: -0.38em !important; }
+#quartz-root h3:not(.avv-title) { margin-top: -0.30em !important; }
+#quartz-root h4:not(.avv-title) { margin-top: -0.22em !important; }
+
+/* Backplate (uses ::before) */
+#quartz-root h1:not(.avv-title)::before,
+#quartz-root h2:not(.avv-title)::before,
+#quartz-root h3:not(.avv-title)::before,
+#quartz-root h4:not(.avv-title)::before,
+#quartz-root h5:not(.avv-title)::before,
+#quartz-root h6:not(.avv-title)::before {
+  content: "";
+  position: absolute;
+  inset: -0.12em -0.45em;
+  border-radius: 12px;
+  z-index: -1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.44) 0%,
+    rgba(0, 0, 0, 0.26) 55%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(2.2px);
+  -webkit-backdrop-filter: blur(2.2px);
+}
+
+/* h1 plate slightly stronger */
+#quartz-root h1:not(.avv-title)::before {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.50) 0%,
+    rgba(0, 0, 0, 0.30) 55%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* If headings are links, inherit gradient */
+#quartz-root h1:not(.avv-title) a,
+#quartz-root h2:not(.avv-title) a,
+#quartz-root h3:not(.avv-title) a,
+#quartz-root h4:not(.avv-title) a,
+#quartz-root h5:not(.avv-title) a,
+#quartz-root h6:not(.avv-title) a {
+  position: relative;
+  z-index: 1;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+/* HARD EXCLUSION: never touch the top-left site title area */
+.left.sidebar .page-title h1,
+.left.sidebar .page-title h2,
+.left.sidebar .page-title h3,
+.left.sidebar .page-title h4,
+.left.sidebar .page-title h5,
+.left.sidebar .page-title h6 {
+  padding-left: 0 !important;
+}
+
+/* Heading chevron (uses ::after so it will not collide with ::before backplate) */
+#quartz-root h1:not(.avv-title)::after,
+#quartz-root h2:not(.avv-title)::after,
+#quartz-root h3:not(.avv-title)::after,
+#quartz-root h4:not(.avv-title)::after,
+#quartz-root h5:not(.avv-title)::after,
+#quartz-root h6:not(.avv-title)::after {
+  content: "›";
+  position: absolute;
+  left: 0.35rem;
+  top: 0.33em;
+
+  font-size: 1.05em;
+  line-height: 1;
+
+  color: rgba(96, 163, 255, 0.9);
+
+  z-index: 2;
+
+  opacity: 0;
+  transform: translateX(-2px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+/* Fade in on hover and keyboard focus, fade out on leave */
+#quartz-root h1:not(.avv-title):hover::after,
+#quartz-root h2:not(.avv-title):hover::after,
+#quartz-root h3:not(.avv-title):hover::after,
+#quartz-root h4:not(.avv-title):hover::after,
+#quartz-root h5:not(.avv-title):hover::after,
+#quartz-root h6:not(.avv-title):hover::after,
+#quartz-root h1:not(.avv-title):focus-within::after,
+#quartz-root h2:not(.avv-title):focus-within::after,
+#quartz-root h3:not(.avv-title):focus-within::after,
+#quartz-root h4:not(.avv-title):focus-within::after,
+#quartz-root h5:not(.avv-title):focus-within::after,
+#quartz-root h6:not(.avv-title):focus-within::after {
+  opacity: 0.95;
+  transform: translateX(0);
+}
+
+/* Touch devices have no hover, so show chevron by default */
+@media (hover: none) and (pointer: coarse) {
+  #quartz-root h1:not(.avv-title)::after,
+  #quartz-root h2:not(.avv-title)::after,
+  #quartz-root h3:not(.avv-title)::after,
+  #quartz-root h4:not(.avv-title)::after,
+  #quartz-root h5:not(.avv-title)::after,
+  #quartz-root h6:not(.avv-title)::after {
+    opacity: 0.85;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #quartz-root h1::after,
+  #quartz-root h2::after,
+  #quartz-root h3::after,
+  #quartz-root h4::after,
+  #quartz-root h5::after,
+  #quartz-root h6::after {
+    transition: none !important;
+  }
+}
+
+/* =========================
+   IMAGE FRAMES (PER-FRAME SETTINGS ONLY)
+   ========================= */
+
+/* Common wrapper behavior */
+.img-frame {
+  position: relative;
+  display: inline-block;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.65));
+}
+
+/* Optional: center the framed block without align tags */
+.img-frame.is-centered {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image inside a frame */
+.img-frame img {
+  display: block;
+
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+
+  border-radius: 2.33%;
+}
+
+/* GOLD EGO FRAME */
+.img-frame.frame-ego-gold1 {
+  background-image: url("/static/frames/frame-gold-ego.svg");
+
+  padding-top:    21.25%;
+  padding-right:  14.17%;
+  padding-bottom: 21.25%;
+  padding-left:   14.17%;
+}
+
+/* ALIEN STONE FRAME */
+.img-frame.frame-alien-stone1 {
+  background-image: url("/static/frames/frame-alien-stone1.svg");
+
+  padding-top:    5.00%;
+  padding-right:  5.00%;
+  padding-bottom: 5.00%;
+  padding-left:   5.00%;
+}
+
+/* =========================
+   BREADCRUMBS. FINAL OVERRIDE
+   Left aligned trail, own line, truncates last crumb
+   Sits just under banner, above title
+   ========================= */
+
+.page-header { position: relative; }
+
+/* The actual breadcrumb nav element in Quartz */
+.breadcrumb-container {
+  margin-top: -1.25rem;
+  margin-bottom: 0.65rem;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+
+  width: 100%;
+  text-align: left;
+
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+/* Each breadcrumb piece should behave like inline content */
+.breadcrumb-element {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+/* Keep the separator tight and not floating away */
+.breadcrumb-element p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Truncate the LAST crumb only */
+.breadcrumb-element:last-child {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.breadcrumb-element:last-child a {
+  display: inline-block;
+  max-width: min(36ch, 62vw);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+/* Ensure the page title is always on its own line */
+.article-title {
+  display: block;
+  margin-top: 0;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 260" width="1600" height="260" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Dark metal cylinder shading -->
+    <linearGradient id="hullGrad" x1="0" y1="40" x2="0" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a0f12" stop-opacity="0.98"/>
+      <stop offset="0.20" stop-color="#141d23" stop-opacity="0.98"/>
+      <stop offset="0.50" stop-color="#1e2a32" stop-opacity="0.98"/>
+      <stop offset="0.78" stop-color="#121a20" stop-opacity="0.98"/>
+      <stop offset="1" stop-color="#070b0e" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <!-- Soft specular band to imply curvature -->
+    <linearGradient id="specGrad" x1="0" y1="70" x2="0" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#dbe7f0" stop-opacity="0"/>
+      <stop offset="0.44" stop-color="#dbe7f0" stop-opacity="0.10"/>
+      <stop offset="0.52" stop-color="#e9f3ff" stop-opacity="0.16"/>
+      <stop offset="0.60" stop-color="#dbe7f0" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#dbe7f0" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Edge darkening so it stays discreet -->
+    <radialGradient id="edgeFalloff" cx="50%" cy="50%" r="75%">
+      <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="0.70" stop-color="#000000" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.26"/>
+    </radialGradient>
+
+    <!-- Reusable cigar silhouette -->
+    <path id="cigarShape" d="
+      M 240 130
+      C 300 78, 460 56, 800 56
+      C 1140 56, 1300 78, 1360 130
+      C 1300 182, 1140 204, 800 204
+      C 460 204, 300 182, 240 130
+      Z" />
+  </defs>
+
+  <!-- No filters at all to avoid any rectangular filter bounds -->
+  <g>
+    <!-- Main hull -->
+    <use href="#cigarShape" fill="url(#hullGrad)" opacity="0.98"/>
+
+    <!-- Curvature highlight -->
+    <use href="#cigarShape" fill="url(#specGrad)" opacity="0.90"/>
+
+    <!-- Edge falloff, still clipped to the shape -->
+    <use href="#cigarShape" fill="url(#edgeFalloff)" opacity="0.65"/>
+
+    <!-- Thin rim to define silhouette without looking bright -->
+    <use href="#cigarShape" fill="none" stroke="#0f171c" stroke-opacity="0.45" stroke-width="3"/>
+
+    <!-- Faint seams -->
+    <path d="M 320 130 C 500 118, 650 112, 800 112 C 950 112, 1100 118, 1280 130"
+          fill="none" stroke="#0b1115" stroke-opacity="0.34" stroke-width="2"/>
+
+    <path d="M 320 130 C 500 142, 650 148, 800 148 C 950 148, 1100 142, 1280 130"
+          fill="none" stroke="#141f26" stroke-opacity="0.24" stroke-width="2"/>
+
+    <!-- Subtle underside darkening -->
+    <path d="
+      M 292 146
+      C 370 186, 530 198, 800 198
+      C 1070 198, 1230 186, 1308 146
+      C 1236 196, 1074 214, 800 214
+      C 526 214, 364 196, 292 146
+      Z"
+      fill="#000000" opacity="0.16"/>
+  </g>
+</svg>

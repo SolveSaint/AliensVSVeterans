@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 800"
+     preserveAspectRatio="none">
+
+  <defs>
+    <!-- Gold gradients -->
+    <linearGradient id="goldA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#fff3b0"/>
+      <stop offset="18%" stop-color="#ffd36a"/>
+      <stop offset="36%" stop-color="#d7a62f"/>
+      <stop offset="52%" stop-color="#fff1a8"/>
+      <stop offset="70%" stop-color="#b57d14"/>
+      <stop offset="86%" stop-color="#ffd976"/>
+      <stop offset="100%" stop-color="#fff6bf"/>
+    </linearGradient>
+
+    <linearGradient id="goldB" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#8a5a06"/>
+      <stop offset="22%" stop-color="#f4c85e"/>
+      <stop offset="45%" stop-color="#a46d0b"/>
+      <stop offset="68%" stop-color="#fff0a6"/>
+      <stop offset="100%" stop-color="#c78d18"/>
+    </linearGradient>
+
+    <radialGradient id="halo" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="rgba(255,240,170,0.55)"/>
+      <stop offset="65%" stop-color="rgba(255,210,90,0.12)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+
+    <!-- Ornamental pattern -->
+    <pattern id="engrave" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 20 C10 10 30 10 40 20 C30 30 10 30 0 20 Z"
+            fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="1.2"/>
+      <path d="M20 0 C10 10 10 30 20 40 C30 30 30 10 20 0 Z"
+            fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+    </pattern>
+
+    <!-- Drop shadow -->
+    <filter id="frameShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/>
+      <feOffset dx="0" dy="10" result="off"/>
+      <feColorMatrix in="off" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.65 0" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Inner shadow -->
+    <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feOffset dx="0" dy="2"/>
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="blur" in2="SourceAlpha" operator="arithmetic"
+                   k2="-1" k3="1" result="inset"/>
+      <feColorMatrix in="inset" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.55 0"/>
+      <feComposite in2="SourceGraphic" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer halo glow -->
+  <rect x="0" y="0" width="1200" height="800" fill="url(#halo)"/>
+
+  <!-- Massive outer frame -->
+  <rect x="35" y="35" width="1130" height="730" rx="46" ry="46"
+        fill="url(#goldA)" filter="url(#frameShadow)"/>
+
+  <!-- Engraving overlay -->
+  <rect x="45" y="45" width="1110" height="710" rx="42" ry="42"
+        fill="url(#engrave)" opacity="0.55"/>
+
+  <!-- Heavy beveled rim -->
+  <rect x="70" y="70" width="1060" height="660" rx="38" ry="38"
+        fill="none" stroke="url(#goldB)" stroke-width="18"/>
+
+  <rect x="88" y="88" width="1024" height="624" rx="34" ry="34"
+        fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="6"/>
+
+  <rect x="96" y="96" width="1008" height="608" rx="32" ry="32"
+        fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="4"/>
+
+  <!-- Inner frame lip -->
+  <rect x="140" y="140" width="920" height="520" rx="26" ry="26"
+        fill="rgba(0,0,0,0.10)" filter="url(#innerShadow)"/>
+
+  <!-- Image window cutout guide (the area your photo sits in)
+       FIXED: rx/ry bumped to match a scalable CSS radius around 6% -->
+  <rect x="170" y="170" width="860" height="460" rx="52" ry="52"
+        fill="rgba(0,0,0,0.08)"/>
+
+  <rect x="170" y="170" width="860" height="460" rx="52" ry="52"
+        fill="none" stroke="rgba(255,225,120,0.55)" stroke-width="3"/>
+
+  <!-- Corner ornaments (very loud) -->
+  <!-- Top left -->
+  <path d="M75 150
+           C95 110 125 85 170 75
+           C150 105 145 135 152 165
+           C125 152 100 150 75 150 Z"
+        fill="url(#goldB)" opacity="0.95"/>
+  <path d="M95 165
+           C130 120 165 105 215 95
+           C190 140 190 175 205 210
+           C170 195 140 190 95 165 Z"
+        fill="url(#goldA)" opacity="0.95"/>
+
+  <!-- Top right -->
+  <path d="M1125 150
+           C1105 110 1075 85 1030 75
+           C1050 105 1055 135 1048 165
+           C1075 152 1100 150 1125 150 Z"
+        fill="url(#goldB)" opacity="0.95"/>
+  <path d="M1105 165
+           C1070 120 1035 105 985 95
+           C1010 140 1010 175 995 210
+           C1030 195 1060 190 1105 165 Z"
+        fill="url(#goldA)" opacity="0.95"/>
+
+  <!-- Bottom left -->
+  <path d="M75 650
+           C95 690 125 715 170 725
+           C150 695 145 665 152 635
+           C125 648 100 650 75 650 Z"
+        fill="url(#goldB)" opacity="0.95"/>
+  <path d="M95 635
+           C130 680 165 695 215 705
+           C190 660 190 625 205 590
+           C170 605 140 610 95 635 Z"
+        fill="url(#goldA)" opacity="0.95"/>
+
+  <!-- Bottom right -->
+  <path d="M1125 650
+           C1105 690 1075 715 1030 725
+           C1050 695 1055 665 1048 635
+           C1075 648 1100 650 1125 650 Z"
+        fill="url(#goldB)" opacity="0.95"/>
+  <path d="M1105 635
+           C1070 680 1035 695 985 705
+           C1010 660 1010 625 995 590
+           C1030 605 1060 610 1105 635 Z"
+        fill="url(#goldA)" opacity="0.95"/>
+
+  <!-- Side laurel flourishes -->
+  <g opacity="0.9">
+    <!-- Left -->
+    <path d="M120 220
+             C105 260 105 330 120 370
+             C135 410 135 480 120 520"
+          fill="none" stroke="rgba(255,235,160,0.55)" stroke-width="6"/>
+    <path d="M128 245 C160 260 170 285 150 312
+             C180 305 195 320 190 350
+             C205 330 230 330 248 350
+             C230 320 235 300 260 280"
+          fill="none" stroke="rgba(0,0,0,0.20)" stroke-width="5"/>
+    <!-- Right -->
+    <path d="M1080 220
+             C1095 260 1095 330 1080 370
+             C1065 410 1065 480 1080 520"
+          fill="none" stroke="rgba(255,235,160,0.55)" stroke-width="6"/>
+    <path d="M1072 245 C1040 260 1030 285 1050 312
+             C1020 305 1005 320 1010 350
+             C995 330 970 330 952 350
+             C970 320 965 300 940 280"
+          fill="none" stroke="rgba(0,0,0,0.20)" stroke-width="5"/>
+  </g>
+
+  <!-- Crown-like top centerpiece -->
+  <g opacity="0.95">
+    <path d="M520 70
+             C545 40 655 40 680 70
+             C660 72 640 90 630 110
+             C610 92 590 90 570 110
+             C560 90 540 72 520 70 Z"
+          fill="url(#goldA)"/>
+    <path d="M565 105
+             C590 85 610 85 635 105
+             C620 115 615 135 600 150
+             C585 135 580 115 565 105 Z"
+          fill="url(#goldB)"/>
+    <path d="M540 92
+             C575 65 625 65 660 92"
+          fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="5"/>
+  </g>
+
+</svg>

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 800"
+     preserveAspectRatio="none">
+
+  <defs>
+    <linearGradient id="stoneA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#2c2f33"/>
+      <stop offset="35%" stop-color="#3a3f46"/>
+      <stop offset="70%" stop-color="#1f2226"/>
+      <stop offset="100%" stop-color="#121416"/>
+    </linearGradient>
+
+    <linearGradient id="stoneB" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#0e0f10"/>
+      <stop offset="40%" stop-color="#30343a"/>
+      <stop offset="100%" stop-color="#0b0c0d"/>
+    </linearGradient>
+
+    <linearGradient id="inlayLip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="55%"  stop-color="#ffffff" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35"/>
+    </linearGradient>
+
+    <filter id="stoneTex" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.35 0" result="grain"/>
+      <feComposite in="grain" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <filter id="inlayShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feOffset dx="0" dy="2" result="off"/>
+      <feGaussianBlur in="off" stdDeviation="3" result="blur"/>
+      <feComposite in="blur" in2="SourceAlpha" operator="out" result="innerCut"/>
+      <feColorMatrix in="innerCut" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.55 0" result="shade"/>
+      <feComposite in="shade" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <filter id="edgeChisel" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="0.6" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 0.9 0" result="b2"/>
+      <feComposite in="b2" in2="SourceGraphic" operator="over"/>
+    </filter>
+
+    <radialGradient id="vign" cx="50%" cy="42%" r="75%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0"/>
+      <stop offset="70%"  stop-color="#000000" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer plate -->
+  <rect x="10" y="10" width="1180" height="780" rx="38"
+        fill="url(#stoneA)" filter="url(#stoneTex)"/>
+
+  <rect x="22" y="22" width="1156" height="756" rx="34"
+        fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="6"/>
+
+  <rect x="28" y="28" width="1144" height="744" rx="32"
+        fill="none" stroke="#000000" stroke-opacity="0.55" stroke-width="10" opacity="0.55"/>
+
+  <g opacity="0.28" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#edgeChisel)">
+    <path d="M110 140 C170 120, 210 170, 260 150 C310 130, 360 150, 410 135"
+          stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/>
+    <path d="M980 120 C930 150, 910 190, 860 205 C820 218, 790 250, 740 265"
+          stroke="#000000" stroke-opacity="0.35" stroke-width="2.5"/>
+
+    <path d="M140 690 C210 650, 270 680, 330 650 C380 625, 430 635, 500 610"
+          stroke="#000000" stroke-opacity="0.30" stroke-width="2.5"/>
+    <path d="M1030 700 C980 660, 920 690, 880 660 C850 640, 810 642, 760 615"
+          stroke="#ffffff" stroke-opacity="0.08" stroke-width="2"/>
+
+    <path d="M70 420 C120 410, 150 435, 190 430 C230 425, 270 445, 320 440"
+          stroke="#ffffff" stroke-opacity="0.07" stroke-width="1.6"/>
+    <path d="M860 430 C910 410, 960 445, 1010 425 C1050 410, 1090 420, 1130 405"
+          stroke="#000000" stroke-opacity="0.35" stroke-width="2.2"/>
+  </g>
+
+  <!-- NORMALIZED INLAY
+       Matches gold inlay window exactly:
+       x=170, y=170, width=860, height=460, rx=20
+       Insets: left 170, top 170, right 170, bottom 170 -->
+  <rect x="170" y="170" width="860" height="460" rx="20"
+        fill="url(#stoneB)" filter="url(#inlayShadow)"/>
+
+  <rect x="178" y="178" width="844" height="444" rx="18"
+        fill="none" stroke="url(#inlayLip)" stroke-width="8" opacity="0.95"/>
+
+  <rect x="188" y="188" width="824" height="424" rx="14"
+        fill="none" stroke="#000000" stroke-opacity="0.45" stroke-width="6" opacity="0.75"/>
+
+  <g opacity="0.24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M198 206 C228 198, 252 198, 282 206"
+          stroke="#ffffff" stroke-opacity="0.10" stroke-width="3"/>
+    <path d="M918 206 C948 198, 972 198, 1002 206"
+          stroke="#ffffff" stroke-opacity="0.10" stroke-width="3"/>
+    <path d="M198 594 C228 602, 252 602, 282 594"
+          stroke="#000000" stroke-opacity="0.35" stroke-width="3"/>
+    <path d="M918 594 C948 602, 972 602, 1002 594"
+          stroke="#000000" stroke-opacity="0.35" stroke-width="3"/>
+  </g>
+
+  <rect x="10" y="10" width="1180" height="780" rx="38"
+        fill="url(#vign)" opacity="0.9"/>
+</svg>
